@@ -5,6 +5,7 @@
 `endif
 
 // dir = 1 output, dir = 0 input
+// gpio A,B and C will be pmod connectors A,B and C.
 // gpsw are 16 switches present on nexysA7
 // gpled are 16 leds present on nexysA7
 
