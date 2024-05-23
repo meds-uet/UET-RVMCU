@@ -12,9 +12,36 @@ module gpio_regs(
     input  logic                                gpio_sel_i,
     input  wire type_dbus2peri_s                dbus2gpio_i,
     output type_peri2dbus_s                     gpio2dbus_o,
-    output logic                                irq_o,
+    output logic [15:0]                         reg_pctl_ff,
+    output logic [7:0]                          reg_afsel_ff,
+    output logic                                gpio_irq_o,
     inout  logic [7:0]                          gpio_io
 );
+
+//internal signals
+logic                                      gpio_sel_data   ;
+logic                                      gpio_sel_dir    ;
+logic                                      gpio_sel_ie     ;
+logic                                      gpio_sel_int_lvl;
+logic                                      gpio_sel_afsel  ;
+logic                                      gpio_sel_pctl   ;
+
+logic [7:0] reg_data_ff   , reg_data_next;
+logic [7:0] reg_dir_ff    , reg_dir_next;
+logic [7:0] reg_ip_ff     , reg_ip_next;
+logic [7:0] reg_ie_ff     , reg_ie_next;
+logic [7:0] reg_int_lvl_ff, reg_int_lvl_next;
+logic [7:0] reg_afsel_next;
+logic [15:0] reg_pctl_next;
+
+type_dbus2peri_s                           dbus2gpio;
+type_peri2dbus_s                           gpio2dbus_ff;
+type_gpio_regs_e                           reg_addr  ;
+logic [31:0]                               reg_r_data;
+logic [31:0]                               reg_w_data;
+logic                                      reg_rd_req;
+logic                                      reg_wr_req;
+
 
 assign dbus2gpio = dbus2gpio_i;
 
@@ -23,7 +50,6 @@ always_comb begin
 
     gpio_sel_data    = 1'b0;
     gpio_sel_dir     = 1'b0;
-    gpio_sel_ip      = 1'b0;
     gpio_sel_ie      = 1'b0;
     gpio_sel_int_lvl = 1'b0;
     gpio_sel_afsel   = 1'b0;
@@ -83,8 +109,8 @@ always_ff @(posedge clk) begin
     end else begin
          reg_data_ff    <= reg_data_next;
          reg_dir_ff     <= reg_dir_next;
-         reg_ip_ff      <= reg_intr_pend_next;
-         reg_ie_ff      <= reg_intr_enable_next;
+         reg_ip_ff      <= reg_ip_next;
+         reg_ie_ff      <= reg_ie_next;
          reg_int_lvl_ff <= reg_int_lvl_next;
          reg_afsel_ff   <= reg_afsel_next;
          reg_pctl_ff    <= reg_pctl_next;
@@ -103,7 +129,7 @@ end
 // ----------------------------
 // Update gpio Interrupt pending register 
 // ----------------------------
-assign reg_intr_pend_next = ~{reg_data_ff ^ reg_int_lvl_ff};
+assign reg_ip_next = ~{reg_data_ff ^ reg_int_lvl_ff};
 
 always_comb begin 
 // ----------------------------
@@ -131,9 +157,9 @@ always_comb begin
 // Update gpio Interrupt enable register 
 // ----------------------------
     if (gpio_sel_ie) 
-        reg_intr_enable_next = reg_w_data[7:0];
+        reg_ie_next = reg_w_data[7:0];
     else
-        reg_intr_enable_next = reg_ie_ff;
+        reg_ie_next = reg_ie_ff;
 
 // ----------------------------
 // Update gpio interrupt level register 
@@ -171,7 +197,6 @@ assign gpio_irq_o = ((reg_ie_ff[7] & reg_ip_ff[7]) | (reg_ie_ff[6] & reg_ip_ff[6
                      (reg_ie_ff[1] & reg_ip_ff[1]) | (reg_ie_ff[0] & reg_ip_ff[0]));
 
 //================================= Dbus interface ==================================//
-type_peri2dbus_s                      gpio2dbus_ff;
 
 // Signal interface from data bus
 assign reg_addr   = type_gpio_regs_e'(dbus2gpio.addr[7:0]);
