@@ -12,27 +12,22 @@ module gpio(
     input  logic                                gpio_sel_i,
     input  wire type_dbus2peri_s                dbus2gpio_i,
     output type_peri2dbus_s                     gpio2dbus_o,
-    output logic [15:0]                         reg_pctl_ff,
-    output logic [7:0]                          reg_afsel_ff,
     output logic                                gpio_irq_o,
     inout  logic [7:0]                          gpio_io
 );
 
 //internal signals
+logic [7:0]                                gpio_pin_en ;
 logic                                      gpio_sel_data   ;
 logic                                      gpio_sel_dir    ;
 logic                                      gpio_sel_ie     ;
 logic                                      gpio_sel_int_lvl;
-logic                                      gpio_sel_afsel  ;
-logic                                      gpio_sel_pctl   ;
 
 logic [7:0] reg_data_ff   , reg_data_next;
 logic [7:0] reg_dir_ff    , reg_dir_next;
 logic [7:0] reg_ip_ff     , reg_ip_next;
 logic [7:0] reg_ie_ff     , reg_ie_next;
 logic [7:0] reg_int_lvl_ff, reg_int_lvl_next;
-logic [7:0] reg_afsel_next;
-logic [15:0] reg_pctl_next;
 
 type_dbus2peri_s                           dbus2gpio;
 type_peri2dbus_s                           gpio2dbus_ff;
@@ -52,8 +47,6 @@ always_comb begin
     gpio_sel_dir     = 1'b0;
     gpio_sel_ie      = 1'b0;
     gpio_sel_int_lvl = 1'b0;
-    gpio_sel_afsel   = 1'b0;
-    gpio_sel_pctl    = 1'b0;
     
     // Register selection for write operation
     if(reg_wr_req & ~gpio2dbus_ff.ack) begin
@@ -63,8 +56,6 @@ always_comb begin
             GPIO_IP_R      : begin               end
             GPIO_IE_R      : gpio_sel_ie      = 1'b1;
             GPIO_INT_LVL_R : gpio_sel_int_lvl = 1'b1;
-            GPIO_AFSEL_R   : gpio_sel_afsel   = 1'b1;
-            GPIO_PCTL_R    : gpio_sel_pctl    = 1'b1;
             default        : begin               end
         endcase // reg_addr
     end
@@ -82,12 +73,6 @@ always_comb begin
             GPIO_IP_R      : reg_r_data = {24'b0, reg_ip_ff};
             GPIO_IE_R      : reg_r_data = {24'b0, reg_ie_ff};
             GPIO_INT_LVL_R : reg_r_data = {24'b0, reg_int_lvl_ff};
-            GPIO_AFSEL_R   : reg_r_data = {24'b0, reg_afsel_ff};
-            GPIO_PCTL_R    : reg_r_data = {2'b0, reg_pctl_ff[15:14], 2'b0, reg_pctl_ff[13:12],
-                                           2'b0, reg_pctl_ff[11:10], 2'b0, reg_pctl_ff[9:8],
-                                           2'b0, reg_pctl_ff[7:6],   2'b0, reg_pctl_ff[5:4],
-                                           2'b0, reg_pctl_ff[3:2],   2'b0, reg_pctl_ff[1:0]
-                                           };
             default        : reg_r_data = 32'h0;
         endcase // reg_addr
     end
@@ -104,16 +89,12 @@ always_ff @(posedge clk) begin
         reg_ip_ff      <= 8'h00;
         reg_ie_ff      <= 8'h00;
         reg_int_lvl_ff <= 8'h00;
-        reg_afsel_ff   <= 8'h00;
-        reg_pctl_ff    <= 16'h0000;
     end else begin
          reg_data_ff    <= reg_data_next;
          reg_dir_ff     <= reg_dir_next;
          reg_ip_ff      <= reg_ip_next;
          reg_ie_ff      <= reg_ie_next;
          reg_int_lvl_ff <= reg_int_lvl_next;
-         reg_afsel_ff   <= reg_afsel_next;
-         reg_pctl_ff    <= reg_pctl_next;
     end
 end
 
@@ -169,24 +150,7 @@ always_comb begin
     else
         reg_int_lvl_next = reg_int_lvl_ff;
 
-// ----------------------------
-// Update gpio Alternate function select register 
-// ----------------------------    
-    if (gpio_sel_afsel) 
-        reg_afsel_next = reg_w_data[7:0];
-    else
-        reg_afsel_next = reg_afsel_ff;
-
-// ----------------------------
-// Update gpio port control mux register 
-// ----------------------------    
-    if (gpio_sel_pctl) 
-        reg_pctl_next = reg_w_data;
-    else
-        reg_pctl_next = reg_pctl_ff;
-
 end
-
 
 // ----------------------------
 //gpio Interrupt Request

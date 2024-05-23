@@ -42,7 +42,8 @@
 `define GPIOA_ADDR_MATCH             8'hA0
 `define GPIOB_ADDR_MATCH             8'hA4
 `define GPIOC_ADDR_MATCH             8'hA8
-`define GPIOD_ADDR_MATCH             8'hAC
+`define GPSW_ADDR_MATCH              8'hB0
+`define GPLED_ADDR_MATCH             8'hB4
 `define BMEM_ADDR_MATCH              20'h00001
 
 // Boot mode selection
