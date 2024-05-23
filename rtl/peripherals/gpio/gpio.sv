@@ -6,7 +6,7 @@
 
 // dir = 1 output, dir = 0 input
 
-module gpio_top(
+module gpio(
     input  logic                                clk,
     input  logic                                rst_n,
     input  logic                                gpio_sel_i,
