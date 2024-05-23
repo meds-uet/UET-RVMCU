@@ -24,11 +24,10 @@ module dbus_interconnect (
     output type_dbus2lsu_s                         dbus2lsu_o,               // Signals to core
 
     // dbus <----> Peripheral module interface
-    input wire type_peri2dbus_s                    mem2dbus_i,            // Signals from DATA memory 
+    input wire type_peri2dbus_s                    mem2dbus_i,               // Signals from DATA memory 
     input wire type_peri2dbus_s                    uart2dbus_i,              // Signals from UART module
     input wire type_peri2dbus_s                    clint2dbus_i,             // Signals from CLINT module
     input wire type_peri2dbus_s                    plic2dbus_i,              // Signals from PLIC module
-    input wire type_peri2dbus_s                    bmem2dbus_i,              // Signals from DATA memory 
     input wire type_peri2dbus_s                    spi2dbus_i,               // Signals from SPI module
     input wire type_peri2dbus_s                    gpio2dbus_i,              // Signals from GPIO module
 
@@ -36,7 +35,6 @@ module dbus_interconnect (
     output logic                                   uart_sel_o,               // UART selection line
     output logic                                   clint_sel_o,              // CLINT selection line
     output logic                                   plic_sel_o,               // PLIC selection line
-    output logic                                   bmem_sel_o,               // Boot memory selection line
     output logic                                   spi_sel_o,                // SPI selection line
     output logic                                   gpioA_sel_o,              // GPIOA selection line
     output logic                                   gpioB_sel_o,              // GPIOB selection line
@@ -61,7 +59,6 @@ logic                                 dmem_addr_match;
 logic                                 uart_addr_match;
 logic                                 clint_addr_match;
 logic                                 plic_addr_match;
-logic                                 bmem_addr_match;
 logic                                 spi_addr_match;
 logic                                 gpioA_addr_match;
 logic                                 gpioB_addr_match;
@@ -73,7 +70,6 @@ logic                                 dmem_sel;
 logic                                 uart_sel;
 logic                                 clint_sel;
 logic                                 plic_sel;
-logic                                 bmem_sel;
 logic                                 spi_sel;
 logic                                 gpioA_sel;
 logic                                 gpioB_sel;
@@ -93,7 +89,6 @@ assign dbus_req  = st_req | ld_req;
 
 // Decode the device address
 assign dmem_addr_match  = (dbus_addr[`DMEM_SEL_ADDR_HIGH:`DMEM_SEL_ADDR_LOW] == `DMEM_ADDR_MATCH);
-assign bmem_addr_match  = (dbus_addr[`BMEM_SEL_ADDR_HIGH:`BMEM_SEL_ADDR_LOW] == `BMEM_ADDR_MATCH);
 
 assign uart_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `UART_ADDR_MATCH);
 assign plic_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `PLIC_ADDR_MATCH);
@@ -165,7 +160,6 @@ always_comb begin
     clint_sel = 1'b0;
     plic_sel  = 1'b0;
     uart_sel  = 1'b0;
-    bmem_sel  = 1'b0;
     spi_sel   = 1'b0;
     gpioA_sel = 1'b0;
     gpioB_sel = 1'b0;
@@ -193,8 +187,6 @@ always_comb begin
         gpsw_sel   = 1'b1;
     end else if (gpled_addr_match & dbus_req) begin
         gpled_sel  = 1'b1;
-    end else if (bmem_addr_match & dbus_req) begin
-        bmem_sel  = 1'b1;
     end
 end
 
@@ -211,7 +203,6 @@ assign dmem_sel_o  = dmem_sel;
 assign uart_sel_o  = uart_sel;
 assign clint_sel_o = clint_sel;
 assign plic_sel_o  = plic_sel;
-assign bmem_sel_o  = bmem_sel;
 assign spi_sel_o   = spi_sel;
 assign gpioA_sel_o = gpioA_sel;
 assign gpioB_sel_o = gpioB_sel;
@@ -226,8 +217,7 @@ assign dbus2lsu_o = dmem_sel  ? type_dbus2lsu_s'(mem2dbus_i)
                   : plic_sel  ? type_dbus2lsu_s'(plic2dbus_i)
                   : uart_sel  ? type_dbus2lsu_s'(uart2dbus_i)  
                   : spi_sel   ? type_dbus2lsu_s'(spi2dbus_i) 
-                  : gpio_sel  ? type_dbus2lsu_s'(gpio2dbus_i)
-                  : bmem_sel  ? type_dbus2lsu_s'(bmem2dbus_i)  
+                  : gpio_sel  ? type_dbus2lsu_s'(gpio2dbus_i) 
                   : '0;
 
 endmodule : dbus_interconnect

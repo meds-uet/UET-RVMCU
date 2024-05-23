@@ -436,9 +436,7 @@ typedef struct packed {
     logic                            en_vaddr;
     logic                            en_ld_st_vaddr;
     logic                            mxr; 
-    logic                            lsu_flush;  
-    logic                            tlb_flush;
-    logic                            dcache_flush;
+    logic                            lsu_flush; 
 } type_csr2lsu_data_s;
 
 // Clint-2-CSR machine timer signals

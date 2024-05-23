@@ -12,8 +12,9 @@ module memory(
     output type_mem2if_s                         mem2if_o,  // From mem to IF
 
   // Data memory
-    input  wire type_exe2mem_s                   exe2mem_i, // Interface from execute to data memory 
-    output type_mem2wrb_s                        mem2wrb_o  // From data memory to writeback
+    input  logic                                 dmem_sel,
+    input  wire type_dbus2peri_s                 exe2mem_i, // Interface from execute to data memory 
+    output type_peri2dbus_s                      mem2wrb_o  // From data memory to writeback
 );
     //============================= Main memory and its memory interface =============================//
 
@@ -33,7 +34,7 @@ begin
 end
 
 always_comb begin
-    if (exe2mem_i.req ) begin           
+    if (exe2mem_i.req & dmem_sel) begin           
         mem_in.addr       = exe2mem_i.addr;
         mem_in.w_data     = exe2mem_i.w_data;             
         mem_in.w_en       = exe2mem_i.w_en;
