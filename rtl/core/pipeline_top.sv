@@ -428,7 +428,6 @@ amo amo_module (
 
 assign lsu2dbus_o   = lsu2dbus;
 assign if2mem_o     = if2mem;
-assign if2mem_o  = if2mem;
 
 endmodule : pipeline_top
 

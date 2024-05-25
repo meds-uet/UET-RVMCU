@@ -128,7 +128,6 @@ typedef enum logic [2:0] {
  typedef enum logic [2:0] {
     SYS_OPS_NONE = '0,
     SYS_OPS_SFENCE_VMA,
-    SYS_OPS_SRET,
     SYS_OPS_MRET,
     SYS_OPS_WFI 
 } type_sys_ops_e;
@@ -211,8 +210,6 @@ typedef struct packed {
     logic                            rd_wr_req;
     logic                            jump_req;
     logic                            branch_req;
-    logic                            fence_i_req;
-    logic                            fence_req;
     logic                            irq_req;
 } type_id2exe_ctrl_s;
 
@@ -232,7 +229,6 @@ typedef struct packed {
     logic                            rd_wr_req;
     logic                            jump_req;
     logic                            branch_req;
-    logic                            fence_req;
 } type_exe2lsu_ctrl_s;
 
 
@@ -253,16 +249,12 @@ typedef struct packed {
     logic                            irq_req;
     logic                            csr_rd_req;
     logic                            csr_wr_req;
-    logic                            fence_i_req;
 } type_exe2csr_ctrl_s;
 
 // LSU-2-CSR data and control signals
 typedef struct packed {                           
     type_ld_ops_e                    ld_ops;
-    type_st_ops_e                    st_ops;
-    logic                            ld_page_fault;
-    logic                            st_page_fault;
-    logic                            dcache_flush_ack;  
+    type_st_ops_e                    st_ops; 
 } type_lsu2csr_ctrl_s;
 
 typedef struct packed {                            
@@ -340,7 +332,6 @@ typedef struct packed {
 // CSR-2-Fetch interface feedback signals
 typedef struct packed {                            
     logic [`XLEN-1:0]                pc_new;
-    logic                            icache_flush; 
     logic                            irq_req;
 } type_csr2if_fb_s;
 
@@ -432,10 +423,8 @@ typedef struct packed {
 
 // CSR-2-LSU data signals
 typedef struct packed {                            
-    logic [`PPN_WIDTH-1:0]           satp_ppn;  
-    logic                            en_vaddr;
-    logic                            en_ld_st_vaddr;
-    logic                            mxr; 
+    logic [`PPN_WIDTH-1:0]           satp_ppn;  //?
+    logic                            mxr; //?
     logic                            lsu_flush; 
 } type_csr2lsu_data_s;
 
