@@ -89,7 +89,6 @@ logic                                cmp_not_zero;
 logic                                cmp_neg;
 logic                                cmp_overflow;
 logic                                branch_res;
-logic                                fence_i_req;
 
 logic  [4:0]                         shift_amt;
 
@@ -102,7 +101,6 @@ assign alu_i_operator = type_alu_i_ops_e'(id2exe_ctrl_i.alu_i_ops);
 assign branch_ops     = type_br_ops_e'(id2exe_ctrl_i.branch_ops);
 assign id2exe_ctrl    = id2exe_ctrl_i;
 assign id2exe_data    = id2exe_data_i;
-assign fence_i_req    = id2exe_ctrl.fence_i_req;
 
 // Signals for CSR module
 assign rd_addr  = id2exe_data.instr[11:7];
@@ -329,7 +327,6 @@ assign exe2lsu_ctrl.st_ops     = id2exe_ctrl.st_ops;
 assign exe2lsu_ctrl.jump_req   = id2exe_ctrl.jump_req;                          
 assign exe2lsu_ctrl.branch_req = id2exe_ctrl.branch_req; 
 assign exe2lsu_ctrl.amo_ops    = id2exe_ctrl.amo_ops;
-assign exe2lsu_ctrl.fence_req = id2exe_ctrl.fence_req;
 
 // If this is CSR operation then destination register write selection is managed 
 // by CSR read control signal
@@ -341,8 +338,7 @@ assign exe2lsu_ctrl.rd_wr_req  = (|id2exe_ctrl.csr_ops)
 assign exe2csr_ctrl.csr_ops    = id2exe_ctrl.csr_ops;
 assign exe2csr_ctrl.exc_req    = id2exe_ctrl.exc_req;
 assign exe2csr_ctrl.irq_req    = id2exe_ctrl.irq_req;                      
-assign exe2csr_ctrl.sys_ops    = id2exe_ctrl.sys_ops;  
-assign exe2csr_ctrl.fence_i_req = fence_i_req;                     
+assign exe2csr_ctrl.sys_ops    = id2exe_ctrl.sys_ops;                     
 
 // Update the output data signals for CSR
 assign exe2csr_data.csr_addr   = id2exe_data.instr[31:20];
@@ -360,7 +356,7 @@ assign exe2csr_data.csr_wdata = (id2exe_ctrl.csr_opr_sel == CSR_OPR_REG)
 // Signals from EXE module for forwarding evaluation
 assign exe2fwd.rs1_addr   = rs1_addr;
 assign exe2fwd.rs2_addr   = rs2_addr;
-assign exe2fwd.new_pc_req = id2exe_ctrl.jump_req || (id2exe_ctrl.branch_req & branch_res); // fence_i_req ||
+assign exe2fwd.new_pc_req = id2exe_ctrl.jump_req || (id2exe_ctrl.branch_req & branch_res);
 
 // The following signals determine whether the two operands are general-purpose registers
 // or not. These are used to minimize the number of stalls in case of load-use RAW hazards
@@ -380,8 +376,7 @@ assign exe2fwd_o       = exe2fwd;
 assign exe2div_o       = exe2div;
 
 // Update the feedback signals from EXE to IF stage                         
-assign exe2if_fb.pc_new       = {alu_result[31:2], 2'b0};  // fence_i_req ? id2exe_data.pc_next :  
-// assign exe2if_fb.icache_flush = fence_i_req;                         
+assign exe2if_fb.pc_new       = {alu_result[31:2], 2'b0};                         
 assign exe2if_fb_o            = exe2if_fb;                  
 
 endmodule : execute

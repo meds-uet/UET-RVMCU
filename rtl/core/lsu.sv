@@ -50,7 +50,6 @@ module lsu (
     // LSU <---> Data Bus (dbus) interface
     input  wire type_dbus2lsu_s             dbus2lsu_i,
     output type_lsu2dbus_s                  lsu2dbus_o,                // Signal to data bus 
-    output logic                            dcache_flush_o,
     output logic                            lsu_flush_o,
 
     // LSU <---> MMU interface  
@@ -85,7 +84,6 @@ logic                        ld_req;
 type_ld_ops_e                ld_ops;
 logic                        st_req;
 logic                        is_amo;
-logic                        dcache_flush_req;
 
 // Signals for LSU request/response                                                          
 logic                        lsu_amo_req;
@@ -204,7 +202,6 @@ assign lsu2csr_data.dbus_addr = ld_st_addr;
 assign lsu2csr_ctrl.ld_ops = exe2lsu_ctrl.ld_ops;
 assign lsu2csr_ctrl.st_ops = exe2lsu_ctrl.st_ops;
 
-assign lsu2csr_ctrl.dcache_flush_ack = dbus2lsu.ack;
 
 // Update signals for AMO module
 assign lsu2amo_ctrl.amo_ops       = exe2lsu_ctrl.amo_ops;
@@ -229,8 +226,7 @@ assign lsu2wrb_ctrl.rd_wrb_sel = exe2lsu_ctrl.rd_wrb_sel;
 assign lsu2fwd.rd_addr   = exe2lsu_ctrl.rd_addr; 
 assign lsu2fwd.rd_wr_req = exe2lsu_ctrl.rd_wr_req;       // For SC, forwarding loop will also be updated
 
-assign dcache_flush_req = exe2lsu_ctrl.fence_req | csr2lsu_data.dcache_flush;
-assign lsu_amo_req = ld_req | st_req | is_amo | dcache_flush_req;
+assign lsu_amo_req = ld_req | st_req | is_amo ;
 
 // Ack will be based on amo_done in case of amo_instruction
 assign lsu_amo_ack = is_amo ? amo2lsu_ctrl.amo_done : dbus2lsu.ack;    
@@ -253,7 +249,6 @@ assign lsu2mmu.is_amo         = is_amo;
 //assign lsu2mmu.d_vaddr        = ld_st_addr;
 
 // Update the output signals with proper assignment
-assign dcache_flush_o = dcache_flush_req;
 assign lsu_flush_o    = fwd2lsu_i.lsu_flush;
 
 assign lsu2csr_data_o = lsu2csr_data;

@@ -310,7 +310,6 @@ lsu lsu_module (
     // LSU to data bus interface
     .lsu2dbus_o                 (lsu2dbus),      
     .dbus2lsu_i                 (dbus2lsu),
-    .dcache_flush_o             (dcache_flush_o),
     .lsu_flush_o                (lsu_flush_o),
 
     // LSU to AMO interface

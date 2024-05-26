@@ -110,8 +110,6 @@ always_comb begin
     id2exe_ctrl.jump_req         = 1'b0;
     id2exe_ctrl.branch_req       = 1'b0;
     id2exe_ctrl.exc_req          = 1'b0;
-    id2exe_ctrl.fence_i_req      = 1'b0;
-    id2exe_ctrl.fence_req        = 1'b0;
 
     // Default values for datapath signals
     id2exe_data.imm      = {{21{instr_codeword[31]}}, instr_codeword[30:20]};
@@ -278,11 +276,8 @@ always_comb begin
             OPCODE_MEM_FENCE_INST : begin
  
                 case (funct3_opcode)
-                    3'b000  : id2exe_ctrl.fence_req = 1'b1;              // fence instruction is currently NOP
-                                                                         // but will become write buffer flush
-                                                                         // in case of write through cache and 
-                                                                         // cache flush for writeback cache
-                    3'b001  : id2exe_ctrl.fence_i_req = 1'b1;            // fence.i leads to pipeline flush                     
+                    3'b000  : id2exe_data.instr = `INSTR_NOP;
+                    3'b001  : id2exe_data.instr = `INSTR_NOP;            // fence.i leads to pipeline flush                     
                     default : illegal_instr           = 1'b1;            // Default case  
                 endcase // funct3_opcode                
             end // OPCODE_MEM_FENCE_INST
@@ -470,8 +465,6 @@ always_comb begin
      id2exe_ctrl.rd_wr_req   = 1'b0;
      id2exe_ctrl.jump_req    = 1'b0;
      id2exe_ctrl.branch_req  = 1'b0;
-     id2exe_ctrl.fence_i_req = 1'b0;
-     id2exe_ctrl.fence_req   = 1'b0;
      
      if (if2id_ctrl.exc_req) begin
          id2exe_data.exc_code = if2id_data.exc_code; 
