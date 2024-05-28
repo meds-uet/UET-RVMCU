@@ -421,12 +421,6 @@ typedef struct packed {
     logic                            lsu_flush;                           
 } type_fwd2lsu_s;
 
-// CSR-2-LSU data signals
-typedef struct packed {                            
-    logic [`PPN_WIDTH-1:0]           satp_ppn;  //?
-    logic                            mxr; //?
-    logic                            lsu_flush; 
-} type_csr2lsu_data_s;
 
 // Clint-2-CSR machine timer signals
 typedef struct packed {                            

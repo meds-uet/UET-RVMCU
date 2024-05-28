@@ -151,7 +151,6 @@ logic                            m_mode_lsu_pf_exc_req;
 logic                            m_mode_ileg_inst_exc_req;
 logic                            m_mode_i_pf_exc_req;
 logic                            m_mode_break_exc_req;
-logic                            ms_mode_ecall_req; //?
 logic                            mret_pc_req;
 
 
@@ -164,7 +163,6 @@ logic                            break_exc_req;*/
 
 // System operation related signals
 logic                            mret_req;
-//logic                            sfence_vma_req; //?
 logic                            wfi_req;
 logic                            wfi_ff, wfi_next;
 
@@ -323,12 +321,10 @@ end
 always_comb begin
 mret_req       = 1'b0;
 wfi_req        = 1'b0;
-//sfence_vma_req = 1'b0;
 
     case (exe2csr_ctrl.sys_ops)
         SYS_OPS_MRET       : mret_req       = 1'b1;
         SYS_OPS_WFI        : wfi_req        = 1'b1;
-       // SYS_OPS_SFENCE_VMA : sfence_vma_req = 1'b1;
         default            : begin  end 
     endcase
 end 
@@ -714,7 +710,7 @@ always_comb begin
         m_mode_i_pf_exc_req : begin
             csr_mtval_next = csr_pc_next;
         end
-        (ms_mode_ecall_req | m_mode_break_exc_req | m_mode_irq_req) : begin
+        (m_mode_break_exc_req | m_mode_irq_req) : begin
             csr_mtval_next = '0;
         end
         csr_mtval_wr_flag      : begin  
@@ -852,9 +848,7 @@ assign csr2fwd.csr_read_req = exe2csr_ctrl.csr_rd_req;
 assign csr2wrb_data.csr_rdata = csr_rdata;
 
 // CSR to LSU signals
-assign csr2lsu_data.satp_ppn  = csr_satp_next.ppn; //?
-assign csr2lsu_data.mxr       = csr_mstatus_ff.mxr;  //?
-assign csr2lsu_data.lsu_flush = csr2fwd.new_pc_req | csr2fwd.wfi_req; 
+//assign csr2lsu_data.lsu_flush = csr2fwd.new_pc_req | csr2fwd.wfi_req; 
 
 
 // CSR to ID feedback signal

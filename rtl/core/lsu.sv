@@ -26,7 +26,6 @@ module lsu (
     input  wire type_exe2lsu_ctrl_s         exe2lsu_ctrl_i,            // Structure for control signals from execute to memory 
 
     // LSU <---> CSR interface
-    input wire type_csr2lsu_data_s          csr2lsu_data_i,
     output type_lsu2csr_data_s              lsu2csr_data_o,
     output type_lsu2csr_ctrl_s              lsu2csr_ctrl_o,
 
@@ -67,7 +66,6 @@ type_lsu2dbus_s              lsu2dbus;
 type_dbus2lsu_s              dbus2lsu;
 type_lsu2csr_data_s          lsu2csr_data;
 type_lsu2csr_ctrl_s          lsu2csr_ctrl;
-type_csr2lsu_data_s          csr2lsu_data;
 
 type_amo2lsu_data_s          amo2lsu_data;
 type_amo2lsu_ctrl_s          amo2lsu_ctrl;
@@ -93,7 +91,6 @@ logic                        lsu_amo_ack;
 assign exe2lsu_data  = exe2lsu_data_i;
 assign exe2lsu_ctrl  = exe2lsu_ctrl_i;
 assign dbus2lsu      = dbus2lsu_i;
-assign csr2lsu_data  = csr2lsu_data_i;
 
 assign amo2lsu_data  = amo2lsu_data_i;
 assign amo2lsu_ctrl  = amo2lsu_ctrl_i;
@@ -242,11 +239,11 @@ assign lsu2dbus.st_req = st_req;
 assign lsu2dbus.st_ops = exe2lsu_ctrl.st_ops;
 
 // Signals for MMU
-assign lsu2mmu.lsu_flush      = fwd2lsu_i.lsu_flush;
+/*assign lsu2mmu.lsu_flush      = fwd2lsu_i.lsu_flush;
 assign lsu2mmu.d_req          = ld_req | st_req;
 //assign lsu2mmu.st_req         = st_req;
 assign lsu2mmu.is_amo         = is_amo;
-//assign lsu2mmu.d_vaddr        = ld_st_addr;
+//assign lsu2mmu.d_vaddr        = ld_st_addr;*/
 
 // Update the output signals with proper assignment
 assign lsu_flush_o    = fwd2lsu_i.lsu_flush;
