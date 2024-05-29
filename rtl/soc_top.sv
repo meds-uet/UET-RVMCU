@@ -29,10 +29,10 @@ module soc_top (
 
     // SPI interface signals
     // SPI bus interface signals including clock, chip_select, MOSI and MISO  
-    output logic                         spi_clk_o,
+    /*output logic                         spi_clk_o,
     output logic                         spi_cs_o,
     input  logic                         spi_miso_i,
-    output logic                         spi_mosi_o,
+    output logic                         spi_mosi_o,*/
 
     //GPIO interface signals
     inout  logic [23:0]                  gpio_io,
@@ -42,8 +42,8 @@ module soc_top (
   //  input wire type_debug_port_s         debug_port_i,
 
     // Uart interface IO signals
-    input   logic                        uart_rxd_i,
-    output                               uart_txd_o
+    /*input   logic                        uart_rxd_i,
+    output                               uart_txd_o*/
 );
 
 
@@ -137,7 +137,6 @@ dbus_interconnect dbus_interconnect_module (
     .uart_sel_o            (uart_sel),
     .clint_sel_o           (clint_sel), 
     .plic_sel_o            (plic_sel),
-    .bmem_sel_o            (bmem_sel), 
     .spi_sel_o             (spi_sel),
     .gpioA_sel_o           (gpioA_sel),
     .gpioB_sel_o           (gpioB_sel),
@@ -153,13 +152,12 @@ dbus_interconnect dbus_interconnect_module (
     .uart2dbus_i           (uart2dbus),
     .clint2dbus_i          (clint2dbus),
     .plic2dbus_i           (plic2dbus),
-    .bmem2dbus_i           (bmem2dbus),
     .spi2dbus_i            (spi2dbus),
     .gpio2dbus_i           (gpio2dbus)
 );
 
 
-uart uart_module (
+/*uart uart_module (
     .rst_n                 (rst_n    ),
     .clk                   (clk      ),
 
@@ -170,7 +168,7 @@ uart uart_module (
     .uart_irq_o            (irq_uart),
     .uart_rxd_i            (uart_rxd_i),
     .uart_txd_o            (uart_txd_o)
-);
+);*/
 
 clint clint_module (
     .rst_n                 (rst_n    ),
@@ -208,7 +206,7 @@ memory mem_top_module(
     .mem2wrb_o            (mem2dbus)  // From data memory to writeback
 );
 
-spi_top spi_top_module (
+/*spi_top spi_top_module (
     .rst_n                 (rst_n    ),
     .clk                   (clk      ),
 
@@ -222,7 +220,7 @@ spi_top spi_top_module (
     .spi_cs_o              (spi_cs_o),
     .spi_miso_i            (spi_miso_i),
     .spi_mosi_o            (spi_mosi_o)
-);
+);*/
 
 gpio_top gpio_top_module (
     .clk                   (clk),

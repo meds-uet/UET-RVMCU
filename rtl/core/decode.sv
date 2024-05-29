@@ -9,7 +9,7 @@
 
 
 `ifndef VERILATOR
-`include "../../defines/pcore_interface_defs.svh"
+`include "../defines/pcore_interface_defs.svh"
 `else
 `include "pcore_interface_defs.svh"
 `endif

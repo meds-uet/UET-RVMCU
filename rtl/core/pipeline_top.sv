@@ -9,9 +9,9 @@
 
 
 `ifndef VERILATOR
-`include "../../defines/mem_defs.svh"
-`include "../../defines/m_ext_defs.svh"
-`include "../../defines/a_ext_defs.svh"
+`include "../defines/mem_defs.svh"
+`include "../defines/m_ext_defs.svh"
+`include "../defines/a_ext_defs.svh"
 `else
 `include "mem_defs.svh"
 `include "m_ext_defs.svh"
@@ -63,7 +63,6 @@ type_exe2csr_data_s                     exe2csr_data, exe2csr_data_next;
 type_exe2csr_ctrl_s                     exe2csr_ctrl, exe2csr_ctrl_next;
 type_lsu2csr_data_s                     lsu2csr_data;
 type_lsu2csr_ctrl_s                     lsu2csr_ctrl;
-type_csr2lsu_data_s                     csr2lsu_data;
 
 // Interfaces for AMO module
 type_amo2lsu_data_s                     amo2lsu_data; 
@@ -293,7 +292,6 @@ lsu lsu_module (
 `endif
 
     // CSR module interface signals 
-    .csr2lsu_data_i             (csr2lsu_data),
     .lsu2csr_ctrl_o             (lsu2csr_ctrl),
     .lsu2csr_data_o             (lsu2csr_data),
 
@@ -338,7 +336,6 @@ csr csr_module (
     // LSU module interface signals 
     .lsu2csr_ctrl_i             (lsu2csr_ctrl),
     .lsu2csr_data_i             (lsu2csr_data),
-    .csr2lsu_data_o             (csr2lsu_data),
 
     // Writeback module interface signals 
     .csr2wrb_data_o             (csr2wrb_data),

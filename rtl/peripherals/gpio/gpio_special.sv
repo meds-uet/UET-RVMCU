@@ -1,5 +1,5 @@
 `ifndef VERILATOR
-`include "../defines/gpio_defs.svh"
+`include "gpio_defs.svh"
 `else
 `include "gpio_defs.svh"
 `endif
@@ -97,8 +97,8 @@ end
 // Signal interface from data bus
 assign reg_addr   = type_gpsl_regs_e'(dbus2gpio.addr[7:0]);
 assign reg_w_data = dbus2gpio.w_data;
-assign reg_rd_req = !dbus2gpio.w_en && dbus2gpio.req && gpio_sel_i;
-assign reg_wr_req = dbus2gpio.w_en  && dbus2gpio.req && gpio_sel_i;
+assign reg_rd_req = !dbus2gpio.w_en && dbus2gpio.req && gpled_sel_i;
+assign reg_wr_req = dbus2gpio.w_en  && dbus2gpio.req && gpled_sel_i;
 
 // gpio write/read operation 
 always_ff @(posedge clk) begin  

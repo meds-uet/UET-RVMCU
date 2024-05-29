@@ -10,7 +10,7 @@
 
 
 `ifndef VERILATOR
-`include "../../defines/a_ext_defs.svh"
+`include "../defines/a_ext_defs.svh"
 `else
 `include "a_ext_defs.svh"
 `endif

@@ -2,7 +2,7 @@
 `define MEM_DEFS
 
 `define XLEN 32
-`define IDMEM_SIZE 1000
+//`define IDMEM_SIZE 1000
 
 typedef struct packed {
     logic [`XLEN-1:0]    addr;

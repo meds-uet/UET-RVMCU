@@ -13,7 +13,7 @@
 `timescale 1 ns / 100 ps
 
 `ifndef VERILATOR
-`include "../../defines/pcore_interface_defs.svh"
+`include "../defines/pcore_interface_defs.svh"
 `else
 `include "pcore_interface_defs.svh"
 `endif
@@ -31,7 +31,6 @@ module csr (
     // LSU <---> CSR interface
     input  wire type_lsu2csr_data_s         lsu2csr_data_i,
     input  wire type_lsu2csr_ctrl_s         lsu2csr_ctrl_i,
-    output type_csr2lsu_data_s              csr2lsu_data_o,
 
     // CLINT to CSR interface  
     input wire type_clint2csr_s             clint2csr_i,
@@ -61,7 +60,6 @@ type_exe2csr_data_s              exe2csr_data;
 type_exe2csr_ctrl_s              exe2csr_ctrl;   
 type_lsu2csr_data_s              lsu2csr_data;
 type_lsu2csr_ctrl_s              lsu2csr_ctrl;
-type_csr2lsu_data_s              csr2lsu_data; 
          
 type_csr2wrb_data_s              csr2wrb_data;
 type_csr2if_fb_s                 csr2if_fb;
@@ -74,7 +72,6 @@ logic [`XLEN-1:0]                csr_rdata;
 logic [`XLEN-1:0]                csr_wdata;
 logic                            csr_rd_exc_req;
 logic                            csr_wr_exc_req;
-logic                            csr_satp_exc_req;
 type_exc_code_e                  csr_rd_exc_code; 
 type_exc_code_e                  csr_wr_exc_code; 
 logic                            csr_exc_req;
@@ -154,12 +151,12 @@ logic                            m_mode_break_exc_req;
 logic                            mret_pc_req;
 
 
-/*// Exception requests from MMU
-logic                            st_pf_exc_req;
-logic                            ld_pf_exc_req;
-logic                            i_pf_exc_req;
-logic                            lsu_pf_exc_req;
-logic                            break_exc_req;*/
+//// Exception requests from MMU
+//logic                            st_pf_exc_req;
+//logic                            ld_pf_exc_req;
+//logic                            i_pf_exc_req;
+//logic                            lsu_pf_exc_req;
+logic                            break_exc_req;
 
 // System operation related signals
 logic                            mret_req;
@@ -182,6 +179,8 @@ logic                            csr_minstreth_inc;
 logic                            is_not_ebreak;
 logic                            is_not_ecall;
 
+
+
 // Input signal assignmnets
 assign exe2csr_data = exe2csr_data_i;
 assign exe2csr_ctrl = exe2csr_ctrl_i; 
@@ -191,6 +190,7 @@ assign pipe2csr     = pipe2csr_i;
 assign fwd2csr      = fwd2csr_i;
 assign clint2csr    = clint2csr_i;
 
+assign break_exc_req = (exc_code == EXC_CODE_BREAKPOINT);
 // Load store related signals and faults
 assign ld_st_addr = lsu2csr_data.dbus_addr;
 assign ld_ops     = lsu2csr_ctrl.ld_ops;
@@ -627,7 +627,6 @@ always_ff @(negedge rst_n, posedge clk) begin
 end
 
 always_comb begin
-    sip_mask = '0;
     csr_mip_next = csr_mip_ff;
     csr_mip_next.meip = ext_irq0_ff;
    // csr_mip_next.seip = ext_irq1_ff;
@@ -635,11 +634,8 @@ always_comb begin
     csr_mip_next.msip = '0; // pipe2csr.soft_irq;
 
     if (csr_mip_wr_flag) begin
-        csr_mip_next = (csr_wdata & SIP_MASK) | (csr_mip_ff & ~SIP_MASK);
-    end else if (csr_sip_wr_flag) begin
-        sip_mask     = SIP_MASK & csr_mideleg_ff;
-        csr_mip_next = (csr_wdata & sip_mask) | (csr_mip_ff & ~sip_mask);
-    end
+        csr_mip_next = (csr_wdata & MIP_MASK) | (csr_mip_ff & ~MIP_MASK);
+    end 
 end
 
 // Timer interrupt enablement
@@ -688,10 +684,10 @@ end
 
 // Make sure the misalign request is in machine mode
 assign m_mode_misalign_exc_req  = (m_mode_exc_req) & (ld_misalign_exc_req | st_misalign_exc_req);
-assign m_mode_lsu_pf_exc_req    = m_mode_exc_req & lsu_pf_exc_req;
-assign m_mode_ileg_inst_exc_req = m_mode_exc_req & csr_exc_req;
-assign m_mode_i_pf_exc_req      = m_mode_exc_req & i_pf_exc_req;
-assign m_mode_break_exc_req     = m_mode_exc_req & break_exc_req;
+//assign m_mode_lsu_pf_exc_req    = m_mode_exc_req & lsu_pf_exc_req;
+//assign m_mode_ileg_inst_exc_req = m_mode_exc_req & csr_exc_req;
+//assign m_mode_i_pf_exc_req      = m_mode_exc_req & i_pf_exc_req;
+//assign m_mode_break_exc_req     = m_mode_exc_req & break_exc_req;
 
 always_comb begin
     case (1'b1)
@@ -753,18 +749,16 @@ always_comb begin
     trap_priv_mode = PRIV_MODE_M;
 
     if (~m_mode_exc_req && ~m_mode_irq_req) begin
-        trap_priv_mode = (priv_mode_ff == PRIV_MODE_M) ? PRIV_MODE_M : 0; //PRIV_MODE_S;
+        trap_priv_mode = (priv_mode_ff == PRIV_MODE_M) ? PRIV_MODE_M : type_priv_mode_e'(0); //PRIV_MODE_S;
     end 
 end
 
 // Exception requests from any source including CSR and earlier stages
-assign csr_exc_req     = csr_rd_exc_req | csr_wr_exc_req | csr_satp_exc_req;  
-assign ld_pf_exc_req   = lsu2csr_ctrl.ld_page_fault;
-assign st_pf_exc_req   = lsu2csr_ctrl.st_page_fault;  
-assign lsu_pf_exc_req  = ld_pf_exc_req | st_pf_exc_req;
-assign i_pf_exc_req    = exe2csr_ctrl.exc_req & (exe2csr_data.exc_code == EXC_CODE_INST_PAGE_FAULT);
+assign csr_exc_req     = csr_rd_exc_req | csr_wr_exc_req ;  
+//assign lsu_pf_exc_req  = ld_pf_exc_req | st_pf_exc_req;
+assign i_pf_exc_req    = exe2csr_ctrl.exc_req;
 
-assign exc_req       = exe2csr_ctrl.exc_req | csr_exc_req | lsu_pf_exc_req
+assign exc_req       = exe2csr_ctrl.exc_req | csr_exc_req 
                      | ld_misalign_exc_req  | st_misalign_exc_req;
 
 // Exception code corresponding to selected exception, priority is given to earlier exceptions
@@ -773,8 +767,6 @@ always_comb begin
     case (1'b1)
         exe2csr_ctrl.exc_req : exc_code = exe2csr_data.exc_code;
         csr_exc_req          : exc_code = EXC_CODE_ILLEGAL_INSTR;
-        ld_pf_exc_req        : exc_code = EXC_CODE_LD_PAGE_FAULT;
-        st_pf_exc_req        : exc_code = EXC_CODE_ST_PAGE_FAULT;
         ld_misalign_exc_req  : exc_code = EXC_CODE_LD_ADDR_MISALIGN;
         st_misalign_exc_req  : exc_code = EXC_CODE_ST_ADDR_MISALIGN;
     endcase
@@ -859,6 +851,5 @@ assign csr2wrb_data_o = csr2wrb_data;
 assign csr2fwd_o      = csr2fwd;
 assign csr2if_fb_o    = csr2if_fb;
 assign csr2id_fb_o    = csr2id_fb;
-assign csr2lsu_data_o = csr2lsu_data;
 
 endmodule : csr

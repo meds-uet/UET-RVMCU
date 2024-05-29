@@ -9,11 +9,9 @@
 
 
 `ifndef VERILATOR
-`include "../../defines/mmu_defs.svh"
-`include "../../defines/cache_defs.svh"
+`include "../defines/mem_defs.svh"
 `else
-`include "mmu_defs.svh"
-`include "cache_defs.svh"
+`include "mem_defs.svh"
 `endif
 
 module fetch (
@@ -89,6 +87,11 @@ end
 
 assign pc_plus_4 = pc_ff + 32'd4;
 
+////////////////////////////////////////////////////////////////
+logic [`XLEN-1:0]                    pc_new_jal; 
+logic [`XLEN-1:0]                    jal_imm;            
+logic                                is_jal;
+
 always_comb begin
     pc_next = (pc_plus_4);
 
@@ -112,10 +115,7 @@ always_comb begin
     endcase
 end
 
-////////////////////////////////////////////////////////////////
-logic [`XLEN-1:0]                    pc_new_jal; 
-logic [`XLEN-1:0]                    jal_imm;            
-logic                                is_jal;
+
 
 assign jal_imm = {{12{instr_word[31]}}, instr_word[19:12], instr_word[20], instr_word[30:21], 1'b0};
 //assign pc_new_jal = pc_ff + jal_imm;
@@ -183,9 +183,6 @@ assign instr_word = ((~mem2if.ack) | irq_req_next) ? `INSTR_NOP : mem2if.r_data;
 
 assign if2mem_o.addr = pc_next; 
 assign if2mem_o.req  = `IMEM_INST_REQ;
-
-assign if2mem_o.req_kill     = kill_req;
-assign if2mem_o.icache_flush = csr2if_fb.icache_flush;   
 
 // Update the outputs to ID stage
 assign if2id_data.instr         = instr_word;

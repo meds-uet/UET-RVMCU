@@ -28,7 +28,7 @@
 `define CSR_MHARTID                  0
 
 // Machine ISA info
-`define CSR_MISA                    `MISA_MXL_32 | `RVI_BASE | `RVM_EXTENTION | `RVA_EXTENTION | `RVB_EXTENTION;
+`define CSR_MISA                    `MISA_MXL_32 | `RVI_BASE | `RVM_EXTENTION | `RVA_EXTENTION | `RVB_EXTENTION
 
 // Parameters for trap setup and handling
 localparam int unsigned CSR_MTVEC_BASE_ALIGN_VECTOR = 6;

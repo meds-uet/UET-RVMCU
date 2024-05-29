@@ -9,8 +9,8 @@
 
 
 `ifndef VERILATOR
-`include "../../defines/mem_defs.svh"
-`include "../../defines/a_ext_defs.svh"
+`include "../defines/mem_defs.svh"
+`include "../defines/a_ext_defs.svh"
 `else
 `include "mem_defs.svh"
 `include "a_ext_defs.svh"
@@ -49,10 +49,7 @@ module lsu (
     // LSU <---> Data Bus (dbus) interface
     input  wire type_dbus2lsu_s             dbus2lsu_i,
     output type_lsu2dbus_s                  lsu2dbus_o,                // Signal to data bus 
-    output logic                            lsu_flush_o,
-
-    // LSU <---> MMU interface  
-    output type_lsu2mmu_s                   lsu2mmu_o 
+    output logic                            lsu_flush_o
 
 );
 

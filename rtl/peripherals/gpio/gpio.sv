@@ -1,5 +1,5 @@
 `ifndef VERILATOR
-`include "../defines/gpio_defs.svh"
+`include "gpio_defs.svh"
 `else
 `include "gpio_defs.svh"
 `endif
@@ -101,11 +101,14 @@ end
 // ----------------------------
 // Update gpio_io pins to drive the inout net
 // ----------------------------
-always_comb begin
-    for (int j=0; j<7; j++) begin
-        gpio_io[j] = reg_dir_ff[j] ? reg_data_ff[j] : 1'bz; 
-    end
-end
+assign gpio_io[0] = reg_dir_ff[0] ? reg_data_ff[0] : 1'bz;
+assign gpio_io[1] = reg_dir_ff[1] ? reg_data_ff[1] : 1'bz; 
+assign gpio_io[2] = reg_dir_ff[2] ? reg_data_ff[2] : 1'bz; 
+assign gpio_io[3] = reg_dir_ff[3] ? reg_data_ff[3] : 1'bz; 
+assign gpio_io[4] = reg_dir_ff[4] ? reg_data_ff[4] : 1'bz; 
+assign gpio_io[5] = reg_dir_ff[5] ? reg_data_ff[5] : 1'bz; 
+assign gpio_io[6] = reg_dir_ff[6] ? reg_data_ff[6] : 1'bz; 
+assign gpio_io[7] = reg_dir_ff[7] ? reg_data_ff[7] : 1'bz; 
 
 // ----------------------------
 // Update gpio Interrupt pending register 
@@ -117,6 +120,7 @@ always_comb begin
 // Update gpio data register 
 // ----------------------------
     for (int i=0; i<7; i++) begin
+    
         if (!reg_dir_ff[i])
             reg_data_next[i] = gpio_io[i]; // To read from gpio pins
         else begin
@@ -155,9 +159,9 @@ end
 // ----------------------------
 //gpio Interrupt Request
 // ----------------------------
-assign gpio_irq_o = ((reg_ie_ff[7] & reg_ip_ff[7]) | (reg_ie_ff[6] & reg_ip_ff[6]),
-                     (reg_ie_ff[5] & reg_ip_ff[5]) | (reg_ie_ff[4] & reg_ip_ff[4]),
-                     (reg_ie_ff[3] & reg_ip_ff[3]) | (reg_ie_ff[2] & reg_ip_ff[2]),
+assign gpio_irq_o = ((reg_ie_ff[7] & reg_ip_ff[7]) | (reg_ie_ff[6] & reg_ip_ff[6]) |
+                     (reg_ie_ff[5] & reg_ip_ff[5]) | (reg_ie_ff[4] & reg_ip_ff[4]) |
+                     (reg_ie_ff[3] & reg_ip_ff[3]) | (reg_ie_ff[2] & reg_ip_ff[2]) |
                      (reg_ie_ff[1] & reg_ip_ff[1]) | (reg_ie_ff[0] & reg_ip_ff[0]));
 
 //================================= Dbus interface ==================================//
