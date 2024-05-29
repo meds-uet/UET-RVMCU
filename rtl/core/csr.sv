@@ -119,7 +119,7 @@ logic                            csr_mtval_wr_flag;
 logic                            csr_mip_wr_flag;
 
 // Privilge mode definition to keep track of processor state 
-type_priv_mode_e                 priv_mode_ff, priv_mode_next; 
+type_priv_mode_e                 priv_mode_ff; 
 type_priv_mode_e                 trap_priv_mode;
                   
 // IRQ related signals
@@ -676,7 +676,8 @@ end
 // -----------------------------------------
 always_ff @(negedge rst_n, posedge clk) begin
     if (~rst_n) begin
-        csr_mtval_ff <= {`XLEN{1'b0}}; 
+        csr_mtval_ff <= {`XLEN{1'b0}};
+        priv_mode_ff   <= PRIV_MODE_M; 
     end else begin
         csr_mtval_ff <= csr_mtval_next;
     end
