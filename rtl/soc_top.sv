@@ -87,8 +87,7 @@ logic                                   irq_plic_target_0, irq_plic_target_1;
 type_peri2dbus_s                        mem2dbus;              // Signals from data memory 
 type_peri2dbus_s                        uart2dbus; 
 type_peri2dbus_s                        clint2dbus;
-type_peri2dbus_s                        plic2dbus; 
-type_peri2dbus_s                        bmem2dbus;              // Signals from boot memory 
+type_peri2dbus_s                        plic2dbus;              // Signals from boot memory 
 type_peri2dbus_s                        spi2dbus;
 type_peri2dbus_s                        gpio2dbus;
 

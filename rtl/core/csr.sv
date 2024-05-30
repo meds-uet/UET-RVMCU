@@ -135,8 +135,13 @@ logic                            seip_irq_req;
 logic                            stip_irq_req;
 logic                            ssip_irq_req;
 logic                            uart_irq_req;
+logic                            spi_irq_req;
+logic                            gpio_irq_req;
 logic                            timer_irq_ff;
 logic                            ext_irq0_ff, ext_irq1_ff;
+logic                            uart_irq_ff;
+logic                            spi_irq_ff;
+logic                            gpio_irq_ff;
 
 // M-mode interrupt/exception related signals
 logic                            m_mode_global_ie;
@@ -579,7 +584,7 @@ always_comb begin
             csr_mcause_next = {1'b0, {`XLEN-EXC_CODE_WIDTH-1{1'b0}}, exc_code};
         end
         m_mode_irq_req     : begin
-            csr_mcause_next = {1'b1, {`XLEN-EXC_CODE_WIDTH-1{1'b0}}, irq_code};
+            csr_mcause_next = {1'b1, {`XLEN-IRQ_CODE_WIDTH-1{1'b0}}, irq_code};
         end
         csr_mcause_wr_flag : begin  
             csr_mcause_next = {csr_wdata[`XLEN-1], {`XLEN-EXC_CODE_WIDTH-1{1'b0}}, csr_wdata[EXC_CODE_WIDTH-1:0]};
@@ -627,10 +632,13 @@ always_ff @(negedge rst_n, posedge clk) begin
 end
 
 always_comb begin
-    csr_mip_next = csr_mip_ff;
-    csr_mip_next.meip = ext_irq0_ff;
+    csr_mip_next         = csr_mip_ff;
+    csr_mip_next.meip    = ext_irq0_ff;
    // csr_mip_next.seip = ext_irq1_ff;
-    csr_mip_next.mtip = timer_irq_ff;
+    csr_mip_next.mtip    = timer_irq_ff;
+    csr_mip_next.uart_ip = uart_irq_ff;
+    csr_mip_next.spi_ip  = spi_irq_ff;
+    csr_mip_next.gpio_ip = gpio_irq_ff;
     csr_mip_next.msip = '0; // pipe2csr.soft_irq;
 
     if (csr_mip_wr_flag) begin
@@ -643,11 +651,17 @@ always_ff @(negedge rst_n, posedge clk) begin
     if (~rst_n) begin
         ext_irq0_ff  <= 1'b0;
         ext_irq1_ff  <= 1'b0; 
-        timer_irq_ff <= 1'b0; 
+        timer_irq_ff <= 1'b0;
+        uart_irq_ff  <= 1'b0;
+        spi_irq_ff   <= 1'b0;
+        gpio_irq_ff  <= 1'b0;
     end else begin
         ext_irq0_ff  <= pipe2csr.ext_irq[0];
         ext_irq1_ff  <= pipe2csr.ext_irq[1];
         timer_irq_ff <= pipe2csr.timer_irq;
+        uart_irq_ff  <= pipe2csr.uart_irq;
+        spi_irq_ff   <= pipe2csr.spi_irq;
+        gpio_irq_ff  <= pipe2csr.gpio_irq;
     end
 end
 
@@ -777,10 +791,14 @@ end
 assign meip_irq_req = csr_mip_next.meip & csr_mie_ff.meie;
 assign mtip_irq_req = csr_mip_next.mtip & csr_mie_ff.mtie;
 assign msip_irq_req = csr_mip_next.msip & csr_mie_ff.msie;
-// assign uart_irq_req = csr_mip_ff.uart & csr_mie_ff.uart;
+assign uart_irq_req = csr_mip_ff.uart_ip & csr_mie_ff.uart_ie;
+assign spi_irq_req  = csr_mip_ff.spi_ip & csr_mie_ff.spi_ie;
+assign gpio_irq_req = csr_mip_ff.gpio_ip & csr_mie_ff.gpio_ie;
 
-assign m_irq_req = meip_irq_req | mtip_irq_req | msip_irq_req;
-assign irq_req   = exe2csr_ctrl.irq_req;  // m_irq_req
+assign m_irq_req = meip_irq_req | mtip_irq_req | msip_irq_req
+                  | uart_irq_req | spi_irq_req | gpio_irq_req; //?
+assign irq_req   = exe2csr_ctrl.irq_req | uart_irq_req 
+                  | spi_irq_req | gpio_irq_req;  // m_irq_req //?
 
 // IRQ codes for cause register 
 always_comb begin
@@ -789,6 +807,9 @@ always_comb begin
         meip_irq_req: irq_code = type_irq_code_e'(IRQ_CODE_M_EXTERNAL);
         msip_irq_req: irq_code = type_irq_code_e'(IRQ_CODE_M_SOFTWARE);
         mtip_irq_req: irq_code = type_irq_code_e'(IRQ_CODE_M_TIMER);
+        uart_irq_req: irq_code = type_irq_code_e'(IRQ_CODE_UART);
+        spi_irq_req : irq_code = type_irq_code_e'(IRQ_CODE_SPI );
+        gpio_irq_req: irq_code = type_irq_code_e'(IRQ_CODE_GPIO);
     endcase
 end
 

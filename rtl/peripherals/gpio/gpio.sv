@@ -83,7 +83,7 @@ end
 // Update gpio registers 
 // ----------------------------
 always_ff @(posedge clk) begin
-    if(~rst_n) begin
+    if(!rst_n) begin
         reg_data_ff    <= 8'h00; 
         reg_dir_ff     <= 8'h00;
         reg_ip_ff      <= 8'h00;
