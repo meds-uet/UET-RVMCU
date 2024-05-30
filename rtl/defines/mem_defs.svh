@@ -1,8 +1,10 @@
 `ifndef MEM_DEFS
 `define MEM_DEFS
 
+`include "pcore_interface_defs.svh"
+
 `define XLEN 32
-//`define IDMEM_SIZE 1000
+`define IDMEM_SIZE 1000
 
 typedef struct packed {
     logic [`XLEN-1:0]    addr;

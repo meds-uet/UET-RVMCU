@@ -1,5 +1,5 @@
 `ifndef VERILATOR
-`include "../defines/mem_defs.svh"
+`include "mem_defs.svh"
 `else
 `include "mem_defs.svh"
 `endif
@@ -13,7 +13,7 @@ module memory(
 
   // Data memory
     input  logic                                 dmem_sel,
-    input  wire type_dbus2peri_s                 exe2mem_i, // Interface from execute to data memory 
+    input  wire type_exe2mem_s                   exe2mem_i, // Interface from execute to data memory 
     output type_peri2dbus_s                      mem2wrb_o  // From data memory to writeback
 );
     //============================= Main memory and its memory interface =============================//
