@@ -66,10 +66,5 @@ uint32_t Uetrv32_Gpio_ReadData(uint32_t pin) {
 //     GPIO_Module.ie      = GPIO_Module.ie | GPIO_Int;
 //     //GPIO Interupt Level Set
 //     GPIO_Module.int_lvl = GPIO_Module.int_lvl | GPIO_Int_Lvl;
-//     //GPIO Interupt Pending Cleared
-//     GPIO_Module.ip      = GPIO_Module.ip & ~GPIO_Int;
 
-//     // IRQ_CODE_GPIO       = 0x18;
 
-//     // IRQ_CODE_M_EXTERNAL = 0x11;
-// }

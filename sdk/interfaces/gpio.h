@@ -9,8 +9,8 @@
 
 #include <stdint.h>
 
-#define GPIO_Int      0x01
-#define GPIO_Int_Lvl  0x01
+#define GPIO_Int_pin0      0x01
+#define GPIO_Int_Lvl_pin0  0x01
 
 /** GPIO module prototype */
 typedef struct __attribute__((packed,aligned(4))){
@@ -21,14 +21,22 @@ typedef struct __attribute__((packed,aligned(4))){
 	uint32_t int_lvl;
 } Uetrv32_Gpio_Struct;
 
-/** GPIO module hardware access */
-#define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00000UL)))
+/** GPIOA module hardware access */
+#define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0xA0000000UL))) //GPIOA ADDRESS
+/** GPIOB module hardware access */
+// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0xA4000000UL))) //GPIOB ADDRESS
+/** GPIOC module hardware access */
+// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0xA8000000UL))) //GPIOC ADDRESS
+/** GPLED module hardware access */
+// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0xB0000000UL))) //GPLED ADDRESS
+/** GPSW module hardware access */
+// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0xB4000000UL))) //GPSW ADDRESS
+
 
 // Function prototypes
 void Uetrv32_Gpio_Init(void);
 void Uetrv32_Gpio_SetDirection(uint32_t pin, uint32_t direction);
 void Uetrv32_Gpio_WriteData(uint32_t pin, uint32_t value);
 uint32_t Uetrv32_Gpio_ReadData(uint32_t pin);
-// void Uetrv32_Spi_Cs_Mode(uint32_t mode);
 
 

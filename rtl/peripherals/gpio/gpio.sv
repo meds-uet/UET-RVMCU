@@ -113,16 +113,23 @@ assign gpio_io[7] = reg_dir_ff[7] ? reg_data_ff[7] : 1'bz;
 // ----------------------------
 // Update gpio Interrupt pending register 
 // ----------------------------
-assign reg_ip_next = ~{reg_data_ff ^ reg_int_lvl_ff};
+assign reg_ip_next = ~{gpio_io ^ reg_int_lvl_ff};
 
 always_comb begin 
 // ----------------------------
 // Update gpio data register 
 // ----------------------------
-    for (int i=0; i<7; i++) begin
+reg_data_next = '0;
+    for (int i=0; i<=7; i++) begin
     
         if (!reg_dir_ff[i])
-            reg_data_next[i] = gpio_io[i]; // To read from gpio pins
+        casez (gpio_io[i])
+           1'b0 :  reg_data_next[i] = 1'b0;
+           1'b1 :  reg_data_next[i] = 1'b1;
+           1'bz :  reg_data_next[i] = 1'b0;
+            default: reg_data_next[i] = gpio_io[i]; // To read from gpio pins
+        endcase
+  
         else begin
             if (gpio_sel_data) 
                 reg_data_next[i] = reg_w_data[i];
