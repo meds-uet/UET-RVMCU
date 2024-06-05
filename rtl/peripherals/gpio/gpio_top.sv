@@ -1,13 +1,21 @@
+// Copyright 2023 University of Engineering and Technology Lahore.
+// Licensed under the Apache License, Version 2.0, see LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Description:  dir = 1 output, dir = 0 input
+//               gpio A,B and C will be pmod connectors A,B and C.
+//               gpsw are 16 switches present on nexysA7
+//               gpled are 16 leds present on nexysA7
+//
+// Author: Shehzeen Malik, UET Lahore
+// Date: 20.5.2024
+
+
 `ifndef VERILATOR
 `include "gpio_defs.svh"
 `else
 `include "gpio_defs.svh"
 `endif
-
-// dir = 1 output, dir = 0 input
-// gpio A,B and C will be pmod connectors A,B and C.
-// gpsw are 16 switches present on nexysA7
-// gpled are 16 leds present on nexysA7
 
 module gpio_top(
     input  logic                                clk,
