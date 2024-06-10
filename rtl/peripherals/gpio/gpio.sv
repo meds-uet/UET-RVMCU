@@ -1,10 +1,17 @@
+// Copyright 2023 University of Engineering and Technology Lahore.
+// Licensed under the Apache License, Version 2.0, see LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Description: dir = 1 output, dir = 0 input
+//
+// Author: Shehzeen Malik, UET Lahore
+// Date: 20.5.2024
+
 `ifndef VERILATOR
 `include "gpio_defs.svh"
 `else
 `include "gpio_defs.svh"
 `endif
-
-// dir = 1 output, dir = 0 input
 
 module gpio(
     input  logic                                clk,
@@ -113,7 +120,14 @@ assign gpio_io[7] = reg_dir_ff[7] ? reg_data_ff[7] : 1'bz;
 // ----------------------------
 // Update gpio Interrupt pending register 
 // ----------------------------
-assign reg_ip_next = ~{gpio_io ^ reg_int_lvl_ff};
+always_comb begin
+    for (int i=0; i<=7; i++) begin
+        if (!reg_dir_ff[i])
+            reg_ip_next[i] = ~{reg_data_ff[i] ^ reg_int_lvl_ff[i]};
+        else
+            reg_ip_next[i] = 1'b0;
+    end
+end
 
 always_comb begin 
 // ----------------------------

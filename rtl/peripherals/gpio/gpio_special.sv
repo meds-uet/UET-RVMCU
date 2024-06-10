@@ -1,10 +1,19 @@
+// Copyright 2023 University of Engineering and Technology Lahore.
+// Licensed under the Apache License, Version 2.0, see LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Description:  For using switches and LEDs 
+//
+// Author: Shehzeen Malik, UET Lahore
+// Date: 22.5.2024
+
+
 `ifndef VERILATOR
 `include "gpio_defs.svh"
 `else
 `include "gpio_defs.svh"
 `endif
 
-// dir = 1 output, dir = 0 input
 
 module gpio_special(
     input  logic                                clk,
