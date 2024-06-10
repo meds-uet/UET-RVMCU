@@ -17,7 +17,6 @@
  **************************************************************************/
 
 void Uetrv32_Gpio_Init(void){
-
 }
 
 /**********************************************************************//**
@@ -61,10 +60,22 @@ uint32_t Uetrv32_Gpio_ReadData(uint32_t pin) {
  * GPIO Interrupt Control. This is a blocking function.
  **************************************************************************/
 
-// void Uetrv32_Gpio_Interrupt(void){
-//     //GPIO Interupt enable
-//     GPIO_Module.ie      = GPIO_Module.ie | GPIO_Int;
-//     //GPIO Interupt Level Set
-//     GPIO_Module.int_lvl = GPIO_Module.int_lvl | GPIO_Int_Lvl;
+void Uetrv32_Gpio_Interrupt(void){
+    //GPIO Interupt enable fir Pin0
+    GPIO_Module.ie      = GPIO_Module.ie | GPIO_Int_pin0;
+    //GPIO Interupt Level Set for Pin0
+    GPIO_Module.int_lvl = GPIO_Module.int_lvl | GPIO_Int_Lvl_pin0;
+
+    //Inline assembly code block
+    asm volatile (
+        "csrrw x0, mstatus, %0;"     // Write new_mstatus to mstatus
+        "csrrw x0, mie, %1"          // Write new_mstatus to mie
+        :                            // No output operands
+        : "r" (IRQ_CODE_GPIO),       // Input operand: new value for mstatus
+          "r" (IRQ_CODE_M_EXTERNAL)  // Input operand: new value for mie
+        :                            // No clobbered registers
+    );
+}
+
 
 

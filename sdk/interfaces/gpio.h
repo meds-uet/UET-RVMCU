@@ -9,8 +9,10 @@
 
 #include <stdint.h>
 
-#define GPIO_Int_pin0      0x01
-#define GPIO_Int_Lvl_pin0  0x01
+#define GPIO_Int_pin0       0x01
+#define GPIO_Int_Lvl_pin0   0x01
+#define IRQ_CODE_GPIO       0x18
+#define IRQ_CODE_M_EXTERNAL 0x11
 
 /** GPIO module prototype */
 typedef struct __attribute__((packed,aligned(4))){
