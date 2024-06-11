@@ -122,10 +122,16 @@ assign gpio_io[7] = reg_dir_ff[7] ? reg_data_ff[7] : 1'bz;
 // ----------------------------
 always_comb begin
     for (int i=0; i<=7; i++) begin
-        if (!reg_dir_ff[i])
-            reg_ip_next[i] = ~{reg_data_ff[i] ^ reg_int_lvl_ff[i]};
-        else
-            reg_ip_next[i] = 1'b0;
+        if (!reg_dir_ff[i]) begin
+		    case (gpio_io[i])
+            1'bz :  reg_ip_next[i] = 1'b0;
+            /*1'b0 :  reg_ip_next[i] = ~{reg_data_ff[i] ^ reg_int_lvl_ff[i]};
+            1'b1 :  reg_ip_next[i] = ~{reg_data_ff[i] ^ reg_int_lvl_ff[i]}; */
+            default: reg_ip_next[i] = ~{reg_data_next[i] ^ reg_int_lvl_ff[i]};
+        endcase
+                
+        end else
+          reg_ip_next[i] = 1'b0;
     end
 end
 
@@ -137,7 +143,7 @@ reg_data_next = '0;
     for (int i=0; i<=7; i++) begin
     
         if (!reg_dir_ff[i])
-        casez (gpio_io[i])
+        case (gpio_io[i])
            1'b0 :  reg_data_next[i] = 1'b0;
            1'b1 :  reg_data_next[i] = 1'b1;
            1'bz :  reg_data_next[i] = 1'b0;
