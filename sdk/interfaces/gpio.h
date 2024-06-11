@@ -11,8 +11,8 @@
 
 #define GPIO_Int_pin0       0x01
 #define GPIO_Int_Lvl_pin0   0x01
-#define IRQ_CODE_GPIO       0x18
-#define IRQ_CODE_M_EXTERNAL 0x11
+#define NVIC_Enable         0x100
+#define IRQ_Enable          0x40800 //GPIO 11 bit and M_EXTERNAL 18 bit
 
 /** GPIO module prototype */
 typedef struct __attribute__((packed,aligned(4))){
@@ -40,5 +40,5 @@ void Uetrv32_Gpio_Init(void);
 void Uetrv32_Gpio_SetDirection(uint32_t pin, uint32_t direction);
 void Uetrv32_Gpio_WriteData(uint32_t pin, uint32_t value);
 uint32_t Uetrv32_Gpio_ReadData(uint32_t pin);
-
+void Uetrv32_Gpio_Interrupt(void);
 

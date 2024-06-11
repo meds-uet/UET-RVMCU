@@ -71,8 +71,8 @@ void Uetrv32_Gpio_Interrupt(void){
         "csrrw x0, mstatus, %0;"     // Write new_mstatus to mstatus
         "csrrw x0, mie, %1"          // Write new_mstatus to mie
         :                            // No output operands
-        : "r" (IRQ_CODE_GPIO),       // Input operand: new value for mstatus
-          "r" (IRQ_CODE_M_EXTERNAL)  // Input operand: new value for mie
+        : "r" (NVIC_Enable),         // Input operand: new value for mstatus
+          "r" (IRQ_Enable)           // Input operand: new value for mie
         :                            // No clobbered registers
     );
 }

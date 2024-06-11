@@ -1,0 +1,362 @@
+/*
+
+Xilinx Vivado v2018.2 (64-bit) [Major: 2018, Minor: 2]
+SW Build: 2258646 on Thu Jun 14 20:02:38 MDT 2018
+IP Build: 2256618 on Thu Jun 14 22:10:49 MDT 2018
+
+Process ID: 26499
+License: Customer
+
+Current time: 	Mon Jun 10 14:24:01 PKT 2024
+Time zone: 	Pakistan Time (Asia/Karachi)
+
+OS: CentOS Linux release 7.9.2009 (Core)
+OS Version: 3.10.0-1160.59.1.el7.x86_64
+OS Architecture: amd64
+Available processors (cores): 8
+
+Display: :0
+Screen size: 1920x1080
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 34 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	/home/student/Xilinx/Vivado/2018.2/tps/lnx64/jre
+Java executable location: 	/home/student/Xilinx/Vivado/2018.2/tps/lnx64/jre/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 2 GB
+
+
+User name: 	student
+User home directory: /home/student
+User working directory: /home/student/Documents/gpio/UET-RVMCU/sdk
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /home/student/Xilinx/Vivado
+HDI_APPROOT: /home/student/Xilinx/Vivado/2018.2
+RDI_DATADIR: /home/student/Xilinx/Vivado/2018.2/data
+RDI_BINDIR: /home/student/Xilinx/Vivado/2018.2/bin
+
+Vivado preferences file location: /home/student/.Xilinx/Vivado/2018.2/vivado.xml
+Vivado preferences directory: /home/student/.Xilinx/Vivado/2018.2/
+Vivado layouts directory: /home/student/.Xilinx/Vivado/2018.2/layouts
+PlanAhead jar file location: 	/home/student/Xilinx/Vivado/2018.2/lib/classes/planAhead.jar
+Vivado log file location: 	/home/student/Documents/gpio/UET-RVMCU/sdk/vivado.log
+Vivado journal file location: 	/home/student/Documents/gpio/UET-RVMCU/sdk/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-26499-computer37
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /home/student/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_DSP: /home/student/Xilinx/Vivado/2018.2/ids_lite/ISE
+XILINX_PLANAHEAD: /home/student/Xilinx/Vivado/2018.2
+XILINX_SDK: /home/student/Xilinx/SDK/2018.2
+XILINX_VIVADO: /home/student/Xilinx/Vivado/2018.2
+XILINX_VIVADO_HLS: /home/student/Xilinx/Vivado/2018.2
+
+
+GUI allocated memory:	178 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 4,938 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// [GUI Memory]: 64 MB (+64516kb) [00:00:07]
+// [Engine Memory]: 4,932 MB (+5019748kb) [00:00:07]
+// HMemoryUtils.trashcanNow. Engine heap size: 4,938 MB. GUI used memory: 34 MB. Current time: 6/10/24 2:24:03 PM PKT
+selectButton(PAResourceEtoH.GettingStartedView_CREATE_NEW_PROJECT, "Create Project"); // x (w, ck)
+// Run Command: PAResourceCommand.PACommandNames_NEW_PROJECT
+// f (ck): New Project: addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 4,986 MB. GUI used memory: 36 MB. Current time: 6/10/24 2:24:39 PM PKT
+selectButton("NEXT", "Next >"); // JButton (j, f)
+selectButton(PAResourceOtoP.ProjectNameChooser_CHOOSE_PROJECT_LOCATION, (String) null); // q (ak, f)
+selectButton(RDIResource.HFolderChooserHelpers_UP_ONE_LEVEL, (String) null); // a (c, JDialog)
+// Elapsed time: 10 seconds
+setFolderChooser("/home/student/Documents/gpio");
+selectButton("NEXT", "Next >"); // JButton (j, f)
+selectButton("NEXT", "Next >"); // JButton (j, f)
+selectComboBox(PAResourceEtoH.FPGAChooser_FAMILY, "Artix-7", 1); // u (B, f)
+selectComboBox(PAResourceEtoH.FPGAChooser_SPEED, "-1", 1); // u (B, f)
+selectComboBox(PAResourceEtoH.FPGAChooser_PACKAGE, "csg324", 3); // u (B, f)
+selectTable(PAResourceEtoH.FPGAChooser_FPGA_TABLE, "xc7a100tcsg324-1 ; 324 ; 210 ; 63400 ; 126800 ; 135 ; 0 ; 240 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 1 ; 6 ;  ;  ;  ;  ; 0.95 ; 0.95 ; 1.05", 4, "xc7a100tcsg324-1", 0); // v (O, f)
+selectTable(PAResourceEtoH.FPGAChooser_FPGA_TABLE, "xc7a100tcsg324-1 ; 324 ; 210 ; 63400 ; 126800 ; 135 ; 0 ; 240 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 1 ; 6 ;  ;  ;  ;  ; 0.95 ; 0.95 ; 1.05", 4, "xc7a100tcsg324-1", 0, false, false, false, false, true); // v (O, f) - Double Click
+selectButton("NEXT", "Next >"); // JButton (j, f)
+// bx (f):  Create Project : addNotify
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_ADD
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: create_project project_1 /home/student/Documents/gpio/project_1 -part xc7a100tcsg324-1 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/student/Xilinx/Vivado/2018.2/data/ip'. 
+// TclEventType: PROJECT_NEW
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// [GUI Memory]: 67 MB (+241kb) [00:01:24]
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+selectButton("FINISH", "Finish"); // JButton (j, f)
+// 'g' command handler elapsed time: 37 seconds
+// [GUI Memory]: 73 MB (+2630kb) [00:01:24]
+dismissDialog("Create Project"); // bx (f)
+dismissDialog("New Project"); // f (ck)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_GRAPH_GENERATED
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager, Add Sources]", 2, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// c (ck): Add Sources: addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 5,051 MB. GUI used memory: 43 MB. Current time: 6/10/24 2:25:18 PM PKT
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_OR_CREATE_CONSTRAINT_FILES, "Add or create constraints"); // a (o, c)
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_NETLIST_BLOCK_DESIGN, "Add or create design sources"); // a (o, c)
+selectButton("NEXT", "Next >"); // JButton (j, c)
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_DIRECTORIES, "Add Directories"); // a (C, c)
+setFolderChooser("/home/student/Documents/gpio/UET-RVMCU/rtl");
+selectButton("FINISH", "Finish"); // JButton (j, c)
+// 'h' command handler elapsed time: 17 seconds
+dismissDialog("Add Sources"); // c (ck)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// HMemoryUtils.trashcanNow. Engine heap size: 5,067 MB. GUI used memory: 41 MB. Current time: 6/10/24 2:25:38 PM PKT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 11 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_top (soc_top.sv)]", 2); // B (D, ck)
+// [GUI Memory]: 80 MB (+3585kb) [00:01:58]
+// [GUI Memory]: 86 MB (+1823kb) [00:01:58]
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager]", 21); // u (O, ck)
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager]", 21); // u (O, ck)
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager]", 21); // u (O, ck)
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager]", 21); // u (O, ck)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bx (ck):  Starting Design Runs : addNotify
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 8 
+// HMemoryUtils.trashcanNow. Engine heap size: 5,099 MB. GUI used memory: 41 MB. Current time: 6/10/24 2:25:58 PM PKT
+// TclEventType: RUN_FAILED
+// WARNING: HTimer (ActiveMsgMonitor Process Messages Timer) is taking 615ms to process. Increasing delay to 2000 ms.
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Mon Jun 10 14:26:12 2024] Launched synth_1... Run output will be captured here: /home/student/Documents/gpio/project_1/project_1.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:12 ; elapsed = 00:00:18 . Memory (MB): peak = 6256.812 ; gain = 17.734 ; free physical = 2281 ; free virtual = 12936 
+// 'k' command handler elapsed time: 18 seconds
+// Elapsed time: 18 seconds
+dismissDialog("Starting Design Runs"); // bx (ck)
+// ah (ck): Synthesis Failed: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ah (ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'dmem_sel_i' does not exist for instance 'mem_top_module' of module 'memory' [/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv:201]. ]", 1, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv;-;;-;16;-;line;-;201;-;;-;16;-;"); // ah (O, ck)
+// Elapsed time: 13 seconds
+selectCodeEditor("soc_top.sv", 68, 109); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 68, 109, false, false, false, false, true); // ce (w, ck) - Double Click
+// Elapsed time: 13 seconds
+selectCodeEditor("soc_top.sv", 492, 254); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 158, 172); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 126, 223); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 190, 292); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 190, 292, false, false, false, false, true); // ce (w, ck) - Double Click
+selectCodeEditor("soc_top.sv", 190, 292); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 190, 292); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 220, 254); // ce (w, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'dmem_sel_i' does not exist for instance 'mem_top_module' of module 'memory' [/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv:201]. ]", 1, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv;-;;-;16;-;line;-;201;-;;-;16;-;"); // ah (O, ck)
+selectCodeEditor("soc_top.sv", 207, 161); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 207, 161, false, false, false, false, true); // ce (w, ck) - Double Click
+selectCodeEditor("soc_top.sv", 58, 160); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 58, 160, false, false, false, false, true); // ce (w, ck) - Double Click
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel_i"); // l (aQ, ck)
+// Run Command: PAResourceCommand.PACommandNames_FIND_IN_FILES
+// Find in Files: addNotify
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel_i"); // l (aQ, ck)
+selectButton(PAResourceEtoH.FindAndReplaceAllDialog_FIND, "Find"); // v (q)
+// bx (ck):  Find in Files : addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 5,103 MB. GUI used memory: 48 MB. Current time: 6/10/24 2:27:11 PM PKT
+dismissDialog("Find in Files"); // bx (ck)
+// HMemoryUtils.trashcanNow. Engine heap size: 5,103 MB. GUI used memory: 47 MB. Current time: 6/10/24 2:27:11 PM PKT
+expandTree(PAResourceEtoH.FindInFilesView_ROOT, "[ROOT]", 1); // W (O, ck)
+selectTree(PAResourceEtoH.FindInFilesView_ROOT, "[ROOT]", 1, true); // W (O, ck) - Node
+selectTree(PAResourceEtoH.FindInFilesView_ROOT, "[ROOT, [7092, 7102]]", 2, false); // W (O, ck)
+selectCodeEditor("soc_top.sv", 213, 158); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 213, 158, false, false, false, false, true); // ce (w, ck) - Double Click
+selectCodeEditor("soc_top.sv", 213, 158); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 213, 158); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 213, 158, false, false, false, false, true); // ce (w, ck) - Double Click
+selectCodeEditor("soc_top.sv", 88, 115); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 88, 115, false, false, false, false, true); // ce (w, ck) - Double Click
+selectCodeEditor("soc_top.sv", 27, 120); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 27, 120, false, false, false, false, true); // ce (w, ck) - Double Click
+selectCodeEditor("soc_top.sv", 24, 108); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 24, 108, false, false, false, false, true); // ce (w, ck) - Double Click
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, (String) null); // l (aQ, ck)
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aE (Q, ck)
+selectTab((HResource) null, (HResource) null, "Log", 2); // aE (Q, ck)
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aE (Q, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'dmem_sel_i' does not exist for instance 'mem_top_module' of module 'memory' [/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv:201]. ]", 1, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv;-;;-;16;-;line;-;201;-;;-;16;-;"); // ah (O, ck)
+selectCodeEditor("soc_top.sv", 212, 153); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 212, 153, false, false, false, false, true); // ce (w, ck) - Double Click
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "dmem_sel"); // l (aQ, ck)
+selectCodeEditor("soc_top.sv", 76, 288); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 76, 288, false, false, false, false, true); // ce (w, ck) - Double Click
+// [GUI Memory]: 91 MB (+223kb) [00:04:11]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_top (soc_top.sv), mem_top_module : memory (memory.sv)]", 7, false); // B (D, ck)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_top (soc_top.sv), mem_top_module : memory (memory.sv)]", 7, false, false, false, false, false, true); // B (D, ck) - Double Click
+selectCodeEditor("memory.sv", 389, 295); // ce (w, ck)
+selectCodeEditor("memory.sv", 389, 295, false, false, false, false, true); // ce (w, ck) - Double Click
+typeControlKey((HResource) null, "memory.sv", 'c'); // ce (w, ck)
+typeControlKey((HResource) null, "memory.sv", 'c'); // ce (w, ck)
+typeControlKey((HResource) null, "memory.sv", 'c'); // ce (w, ck)
+typeControlKey((HResource) null, "memory.sv", 'c'); // ce (w, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "soc_top.sv", 1); // k (j, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'dmem_sel_i' does not exist for instance 'mem_top_module' of module 'memory' [/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv:201]. ]", 1, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv;-;;-;16;-;line;-;201;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-448] named port connection 'dmem_sel_i' does not exist for instance 'mem_top_module' of module 'memory' [/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv:201]. ]", 1, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv;-;;-;16;-;line;-;201;-;;-;16;-;"); // ah (O, ck)
+selectCodeEditor("soc_top.sv", 75, 159); // ce (w, ck)
+selectCodeEditor("soc_top.sv", 75, 159, false, false, false, false, true); // ce (w, ck) - Double Click
+typeControlKey((HResource) null, "soc_top.sv", 'v'); // ce (w, ck)
+// [GUI Memory]: 96 MB (+473kb) [00:04:26]
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "memory.sv", 2); // k (j, ck)
+// HMemoryUtils.trashcanNow. Engine heap size: 5,118 MB. GUI used memory: 47 MB. Current time: 6/10/24 2:28:18 PM PKT
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "soc_top.sv", 1); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "memory.sv", 2); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "soc_top.sv", 1); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "memory.sv", 2); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "soc_top.sv", 1); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "memory.sv", 2); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "soc_top.sv", 1); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "memory.sv", 2); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "soc_top.sv", 1); // k (j, ck)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bx (ck):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// bx (ck):  Starting Design Runs : addNotify
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 8 
+// HMemoryUtils.trashcanNow. Engine heap size: 5,134 MB. GUI used memory: 47 MB. Current time: 6/10/24 2:28:43 PM PKT
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Mon Jun 10 14:28:58 2024] Launched synth_1... Run output will be captured here: /home/student/Documents/gpio/project_1/project_1.runs/synth_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:02 ; elapsed = 00:00:18 . Memory (MB): peak = 6289.844 ; gain = 0.000 ; free physical = 1874 ; free virtual = 12582 
+// 'k' command handler elapsed time: 18 seconds
+// Elapsed time: 18 seconds
+dismissDialog("Starting Design Runs"); // bx (ck)
+// Elapsed time: 12 seconds
+selectCodeEditor("soc_top.sv", 218, 153); // ce (w, ck)
+// [GUI Memory]: 102 MB (+1098kb) [00:06:00]
+// TclEventType: RUN_COMPLETED
+// WARNING: HTimer (ActiveMsgMonitor Process Messages Timer) is taking 350ms to process. Increasing delay to 2000 ms.
+// ah (ck): Synthesis Completed: addNotify
+// Elapsed time: 66 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_GOTO_NETLIST_DESIGN, "Open Synthesized Design"); // a (Q, ah)
+selectRadioButton(PAResourceCommand.PACommandNames_REPORTS_WINDOW, "View Reports"); // a (Q, ah)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Synthesis Completed"); // ah (ck)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (ck): No Implementation Results Available: addNotify
+selectButton(RDIResource.BaseDialog_NO, "No"); // a (A)
+dismissDialog("No Implementation Results Available"); // A (ck)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 17, false); // u (O, ck)
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// bx (ck):  Starting Design Runs : addNotify
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs impl_1 -jobs 8 
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Mon Jun 10 14:30:44 2024] Launched impl_1... Run output will be captured here: /home/student/Documents/gpio/project_1/project_1.runs/impl_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:00.80 ; elapsed = 00:00:18 . Memory (MB): peak = 6291.832 ; gain = 0.000 ; free physical = 2088 ; free virtual = 12761 
+// 'c' command handler elapsed time: 18 seconds
+// Elapsed time: 18 seconds
+dismissDialog("Starting Design Runs"); // bx (ck)
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_FAILED
+// ah (ck): Implementation Failed: addNotify
+// Elapsed time: 33 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Implementation Failed"); // ah (ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. ]", 1, true); // ah (O, ck) - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv;-;;-;16;-;line;-;114;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. ]", 1, true); // ah (O, ck) - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv;-;;-;16;-;line;-;114;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. ]", 1, true); // ah (O, ck) - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv;-;;-;16;-;line;-;114;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. ]", 1, true, false, false, false, false, true); // ah (O, ck) - Double Click - Node
+// Elapsed time: 13 seconds
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. , [Synth 8-3352] multi-driven net gpio2dbus[ack] with 2nd driver pin 'gpio_top_module/gpio_C/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv:204]. ]", 2, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv;-;;-;16;-;line;-;204;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. ]", 1, true); // ah (O, ck) - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv;-;;-;16;-;line;-;114;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. , [Synth 8-3352] multi-driven net gpio2dbus[ack] with 2nd driver pin 'gpio_top_module/gpio_C/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv:204]. ]", 2, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv;-;;-;16;-;line;-;204;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. , [Synth 8-3352] multi-driven net gpio2dbus[ack] with 3rd driver pin 'gpio_top_module/gpio_B/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv:204]. ]", 3, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv;-;;-;16;-;line;-;204;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. , [Synth 8-3352] multi-driven net gpio2dbus[ack] with 4th driver pin 'gpio_top_module/gpio_A/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv:204]. ]", 4, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv;-;;-;16;-;line;-;204;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. ]", 1, true); // ah (O, ck) - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv;-;;-;16;-;line;-;114;-;;-;16;-;"); // ah (O, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "gpio.sv", 4); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "gpio_special.sv", 3); // k (j, ck)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "gpio.sv", 4); // k (j, ck)
+selectTab((HResource) null, "PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "gpio.sv", 4, true, false); // k (j, ck) - Popup Trigger
+selectMenuItem((HResource) null, "Split Vertically"); // JMenuItem (JidePopupMenu)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "gpio_special.sv", 3); // k (j, ck)
+// HMemoryUtils.trashcanNow. Engine heap size: 5,156 MB. GUI used memory: 49 MB. Current time: 6/10/24 2:32:08 PM PKT
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // B
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. , [Synth 8-3352] multi-driven net gpio2dbus[ack] with 2nd driver pin 'gpio_top_module/gpio_C/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv:204]. ]", 2, false); // ah (O, ck)
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv;-;;-;16;-;line;-;204;-;;-;16;-;"); // ah (O, ck)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net gpio2dbus[ack] with 1st driver pin 'gpio_top_module/gp_sw_led/gpio2dbus_ff_reg[ack]/Q' [/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv:114]. ]", 1, true); // ah (O, ck) - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv;-;;-;16;-;line;-;114;-;;-;16;-;"); // ah (O, ck)
+selectCodeEditor("gpio_special.sv", 110, 270); // ce (w, ck)
+selectCodeEditor("gpio_special.sv", 110, 270, false, false, false, false, true); // ce (w, ck) - Double Click
+selectCodeEditor("gpio_special.sv", 110, 270); // ce (w, ck)
+selectCodeEditor("gpio.sv", 71, 346); // ce (w, ck)
+selectCodeEditor("gpio.sv", 71, 346, false, false, false, false, true); // ce (w, ck) - Double Click
+selectCodeEditor("gpio.sv", 71, 346); // ce (w, ck)
+selectCodeEditor("gpio.sv", 71, 336); // ce (w, ck)
+selectCodeEditor("gpio.sv", 71, 336, false, false, false, false, true); // ce (w, ck) - Double Click
+selectCodeEditor("gpio.sv", 71, 336); // ce (w, ck)
+selectCheckBox(PAResourceItoN.MsgView_ERROR_MESSAGES, (String) null, false); // g (aQ, ck): FALSE
+selectCheckBox(PAResourceItoN.MsgView_ERROR_MESSAGES, (String) null, true); // g (aQ, ck): TRUE
+collapseTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Implementation, Opt Design, DRC]", 4); // ah (O, ck)
+expandTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Implementation, Opt Design, DRC]", 4); // ah (O, ck)

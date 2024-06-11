@@ -9,7 +9,7 @@
 
 `timescale 1ns / 1ps
 
-`include "../rtl/defines/gpio_defs.svh"
+`include "gpio_defs.svh"
 
 module gpio_tb();
 
@@ -25,12 +25,15 @@ module gpio_tb();
     // wire [7:0] gpio_io;
 
     // Inout port
-    wire [7:0] gpio_io;
-    reg  [7:0] gpio_io_out;
-    reg        gpio_io_drive;
+	wire [7:0] gpio_io;   // bidirectional signal from DUT
+    reg [7:0] gpio_io_drive;  // locally driven value
+    wire [7:0] gpio_io_rec;  // locally received value (optional, but models typical pad)
+
+    assign gpio_io = gpio_io_drive;
+    assign gpio_io_rec = gpio_io;
     
     // Bidirectional control for gpio_io
-    assign gpio_io = gpio_io_drive ? gpio_io_out : 8'bz;
+   // assign gpio_io = gpio_io_drive ? gpio_io_out : 8'bz;
 
     // Outputs
     type_peri2dbus_s   gpio2dbus_o;
@@ -60,57 +63,71 @@ module gpio_tb();
         gpio_sel_i            = 1'b0;
         dbus2gpio_i.addr      = 32'h0;
         dbus2gpio_i           = '0;
-        gpio_io_drive         = 1'b0;
-        #20
+        gpio_io_drive         = 8'hzz;    // default high-Z
+        repeat (2)@ (posedge clk);
         rst_n = 1;
-        #10
+        @ (posedge clk);
+        gpio_sel_i = 1;
+        dbus2gpio_i.addr      = 32'h04; //Direction Register
+        dbus2gpio_i.w_data    = 32'hFF;
+        dbus2gpio_i.w_en      = 1'b1;
+        dbus2gpio_i.req       = 1'b1;
+        @ (posedge clk);
         // Test case
         gpio_sel_i = 1;
         dbus2gpio_i.addr      = 32'h00; //Data Register
         dbus2gpio_i.w_data    = 32'hAA; 
         dbus2gpio_i.w_en      = 1'b1;
         dbus2gpio_i.req       = 1'b1;
-        #10
-        gpio_sel_i = 1;
-        dbus2gpio_i.addr      = 32'h04; //Direction Register
-        dbus2gpio_i.w_data    = 32'h55;
-        dbus2gpio_i.w_en      = 1'b1;
-        dbus2gpio_i.req       = 1'b1;
-        #10
+		gpio_io_drive         = 8'h55;
+        @ (posedge clk);
         gpio_sel_i = 1;
         dbus2gpio_i.addr      = 32'h08; //Interrupt Pending Register
         dbus2gpio_i.w_data    = 32'hFF; 
         dbus2gpio_i.w_en      = 1'b1;
         dbus2gpio_i.req       = 1'b1;
-        #10
+        @ (posedge clk);
         gpio_sel_i = 1;
         dbus2gpio_i.addr      = 32'h0C; //Interrupt Enable Register
         dbus2gpio_i.w_data    = 32'h0F; 
         dbus2gpio_i.w_en      = 1'b1;
         dbus2gpio_i.req       = 1'b1;
-        #10
+        @ (posedge clk);
         gpio_sel_i = 1;
         dbus2gpio_i.addr      = 32'h10; //Interrupt Level Register
         dbus2gpio_i.w_data    = 32'hF0; 
         dbus2gpio_i.w_en      = 1'b1;
         dbus2gpio_i.req       = 1'b1;
-        #10
+        @ (posedge clk);
         gpio_sel_i = 0;
-        #10
+        @ (posedge clk);
         gpio_sel_i = 1;
         dbus2gpio_i.addr      = 32'h00;
         dbus2gpio_i.w_en      = 1'b0;
         dbus2gpio_i.req       = 1'b1;
-        gpio_io_drive         = 1'b1;
-        gpio_io_out           = 8'hC7;
-        #10
+        //gpio_io_drive         = 1'b1;
+        gpio_io_drive         = 8'hFF;
+        @ (posedge clk);
         gpio_sel_i = 0;
         dbus2gpio_i.req       = 1'b0;
-        #10
-        gpio_io_drive         = 1'b0;
+        repeat (3)@ (posedge clk);
+        gpio_sel_i = 1;
+        dbus2gpio_i.addr      = 32'h04; //Direction Register
+        dbus2gpio_i.w_data    = 32'hF0;
+        dbus2gpio_i.w_en      = 1'b1;
+        dbus2gpio_i.req       = 1'b1;
+		@ (posedge clk);
+		//gpio_io_drive         = 1'b0;
+		gpio_sel_i = 1;
+        dbus2gpio_i.addr      = 32'h00; //Data Register
+        dbus2gpio_i.w_data    = 32'hA0; 
+        dbus2gpio_i.w_en      = 1'b1;
+        dbus2gpio_i.req       = 1'b1;
+        repeat (3)@ (posedge clk);
+        //gpio_io_drive         = 1'b0;
         
         // Finish the simulation
-        #100 $finish;
+        @ (posedge clk);$stop;
     end
 
 

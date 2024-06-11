@@ -13,7 +13,7 @@
 
 int main(void) {
     // Initialize GPIO
-    GPIO_Init();
+    Uetrv32_Gpio_Init();
 
     // Set pin 0 as output
     Uetrv32_Gpio_SetDirection(0x01, 1);
@@ -36,6 +36,7 @@ int main(void) {
     // Read the state of pin 1
     uint32_t state1 = Uetrv32_Gpio_ReadData(0x02);
 
-    // Uetrv32_Gpio_Interrupt();
+    //Initialize GPIO Interrupt
+    Uetrv32_Gpio_Interrupt();
   
 }

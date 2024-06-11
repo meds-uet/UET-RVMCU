@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Jun 10 14:23:33 2024
+# Process ID: 26499
+# Current directory: /home/student/Documents/gpio/UET-RVMCU/sdk
+# Command line: vivado
+# Log file: /home/student/Documents/gpio/UET-RVMCU/sdk/vivado.log
+# Journal file: /home/student/Documents/gpio/UET-RVMCU/sdk/vivado.jou
+#-----------------------------------------------------------
+start_gui
+create_project project_1 /home/student/Documents/gpio/project_1 -part xc7a100tcsg324-1
+add_files {/home/student/Documents/gpio/UET-RVMCU/rtl/defines/mem_defs.svh /home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/plic/plic_gateway.sv /home/student/Documents/gpio/UET-RVMCU/rtl/soc_top.sv /home/student/Documents/gpio/UET-RVMCU/rtl/core/forward_stall.sv /home/student/Documents/gpio/UET-RVMCU/rtl/core/lsu.sv /home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_special.sv /home/student/Documents/gpio/UET-RVMCU/rtl/defines/csr_defs.svh /home/student/Documents/gpio/UET-RVMCU/rtl/defines/plic_defs.svh /home/student/Documents/gpio/UET-RVMCU/rtl/defines/pcore_interface_defs.svh /home/student/Documents/gpio/UET-RVMCU/rtl/core/csr.sv /home/student/Documents/gpio/UET-RVMCU/rtl/core/divider.sv /home/student/Documents/gpio/UET-RVMCU/rtl/core/divide.sv /home/student/Documents/gpio/UET-RVMCU/rtl/core/writeback.sv /home/student/Documents/gpio/UET-RVMCU/rtl/defines/gpio_defs.svh /home/student/Documents/gpio/UET-RVMCU/rtl/defines/m_ext_defs.svh /home/student/Documents/gpio/UET-RVMCU/rtl/core/decode.sv /home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/plic/plic_regs.sv /home/student/Documents/gpio/UET-RVMCU/rtl/memory/memory.sv /home/student/Documents/gpio/UET-RVMCU/rtl/defines/pcore_config_defs.svh /home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/plic/plic_target.sv /home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio.sv /home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/gpio/gpio_top.sv /home/student/Documents/gpio/UET-RVMCU/rtl/core/fetch.sv /home/student/Documents/gpio/UET-RVMCU/rtl/interconnect/dbus_interconnect.sv /home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/plic/plic_top.sv /home/student/Documents/gpio/UET-RVMCU/rtl/core/pipeline_top.sv /home/student/Documents/gpio/UET-RVMCU/rtl/defines/a_ext_defs.svh /home/student/Documents/gpio/UET-RVMCU/rtl/core/reg_file.sv /home/student/Documents/gpio/UET-RVMCU/rtl/peripherals/clint/clint.sv /home/student/Documents/gpio/UET-RVMCU/rtl/core/execute.sv /home/student/Documents/gpio/UET-RVMCU/rtl/core/amo.sv}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+launch_runs impl_1 -jobs 8
+wait_on_run impl_1

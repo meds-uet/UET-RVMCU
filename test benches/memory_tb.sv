@@ -47,17 +47,14 @@ module memory_tb();
         if2mem_i  = '0;
         exe2mem_i = '0;
         #10;
+        rst_n = 1;
+        #10;
 
         // Test Case 1: Instruction Fetch
         if2mem_i.addr    = 32'h04;
         if2mem_i.req     = 1'b1;
         dmem_sel         = 1'b0;
-        exe2mem_i.addr   = 32'h00;
-        exe2mem_i.w_data = 32'h00;
-        exe2mem_i.w_en   = 1'b0;
-        exe2mem_i.req    = 1'b0;
         #10;
-
         if2mem_i.req     = 1'b0;
         exe2mem_i.addr   = 32'h08;
         exe2mem_i.w_data = 32'hAA;
@@ -65,7 +62,11 @@ module memory_tb();
         exe2mem_i.req    = 1'b1;
         dmem_sel         = 1'b1;
         #10;
-
+        exe2mem_i.req    = 1'b0;
+        exe2mem_i.addr   = 32'h28;
+        exe2mem_i.w_en   = 1'b0;
+        exe2mem_i.req    = 1'b1;
+        #10;
         if2mem_i.addr    = 32'h08;
         if2mem_i.req     = 1'b1;
         exe2mem_i.addr   = 32'h18;
@@ -74,9 +75,10 @@ module memory_tb();
         exe2mem_i.req    = 1'b1;
         dmem_sel         = 1'b1;
         #10;
-
         if2mem_i.req     = 1'b0;
         exe2mem_i.req    = 1'b0;
+
+        // Finish the simulation
         #20;
         $finish;
     end
