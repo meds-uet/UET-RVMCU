@@ -43,15 +43,40 @@ logic [7:0]                           gpioB_io;
 logic                                 gpioC_irq;
 logic [7:0]                           gpioC_io;
 
+wire  type_dbus2peri_s                dbusA2gpio;
+logic type_peri2dbus_s                gpioA2dbus;
+wire  type_dbus2peri_s                dbusB2gpio;
+logic type_peri2dbus_s                gpioB2dbus;
+wire  type_dbus2peri_s                dbusC2gpio;
+logic type_peri2dbus_s                gpioC2dbus;
+wire  type_dbus2peri_s                dbusSP2gpio;
+logic type_peri2dbus_s                gpioSP2dbus;
+
 assign gpio_irq_o = gpioA_irq | gpioB_irq | gpioC_irq;
 assign gpio_io    = {gpioA_io, gpioB_io, gpioC_io};
+
+always_comb begin
+    if (gpioA_sel_i) begin
+        dbusA2gpio = dbus2gpio_i;
+        gpio2dbus_o = gpioA2dbus;
+    end else if (gpioB_sel_i) begin
+        dbusB2gpio = dbus2gpio_i;
+        gpio2dbus_o = gpioB2dbus;
+    end else if (gpioC_sel_i) begin
+        dbusC2gpio = dbus2gpio_i;
+        gpio2dbus_o = gpioC2dbus;
+    end else if (gpsw_sel_i || gpled_sel_i) begin
+        dbusSP2gpio = dbus2gpio_i;
+        gpio2dbus_o = gpioSP2dbus;
+    end
+end
 
 gpio gpio_A(
     .clk          (clk),
     .rst_n        (rst_n),
     .gpio_sel_i   (gpioA_sel_i),
-    .dbus2gpio_i  (dbus2gpio_i),
-    .gpio2dbus_o  (gpio2dbus_o),
+    .dbus2gpio_i  (dbusA2gpio),
+    .gpio2dbus_o  (gpioA2dbus),
     .gpio_irq_o   (gpioA_irq),
     .gpio_io      (gpioA_io)
 );
@@ -60,8 +85,8 @@ gpio gpio_B(
     .clk          (clk),
     .rst_n        (rst_n),
     .gpio_sel_i   (gpioB_sel_i),
-    .dbus2gpio_i  (dbus2gpio_i),
-    .gpio2dbus_o  (gpio2dbus_o),
+    .dbus2gpio_i  (dbusB2gpio),
+    .gpio2dbus_o  (gpioB2dbus),
     .gpio_irq_o   (gpioB_irq),
     .gpio_io      (gpioB_io)
 );
@@ -70,8 +95,8 @@ gpio gpio_C(
     .clk          (clk),
     .rst_n        (rst_n),
     .gpio_sel_i   (gpioC_sel_i),
-    .dbus2gpio_i  (dbus2gpio_i),
-    .gpio2dbus_o  (gpio2dbus_o),
+    .dbus2gpio_i  (dbusC2gpio),
+    .gpio2dbus_o  (gpioC2dbus),
     .gpio_irq_o   (gpioC_irq),
     .gpio_io      (gpioC_io)
 );
@@ -81,8 +106,8 @@ gpio_special gp_sw_led(
     .rst_n      (rst_n),
     .gpsw_sel_i (gpsw_sel_i),
     .gpled_sel_i(gpled_sel_i),
-    .dbus2gpio_i(dbus2gpio_i),
-    .gpio2dbus_o(gpio2dbus_o),
+    .dbus2gpio_i(dbusSP2gpio),
+    .gpio2dbus_o(gpioSP2dbus),
     .gp_switch_i(gp_switch_i),
     .gp_led_o   (gp_led_o)
 );
