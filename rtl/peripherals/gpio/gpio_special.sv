@@ -42,7 +42,7 @@ logic                                      reg_wr_req;
 
 
 assign dbus2gpio = dbus2gpio_i;
-
+assign gp_led_o  = reg_led_data_ff;
 //============= gpio selection signals for register write operations =============//
 always_comb begin
     gpled_sel_data   = 1'b0;
@@ -106,8 +106,8 @@ end
 // Signal interface from data bus
 assign reg_addr   = type_gpsl_regs_e'(dbus2gpio.addr[7:0]);
 assign reg_w_data = dbus2gpio.w_data;
-assign reg_rd_req = !dbus2gpio.w_en && dbus2gpio.req && gpled_sel_i;
-assign reg_wr_req = dbus2gpio.w_en  && dbus2gpio.req && gpled_sel_i;
+assign reg_rd_req = !dbus2gpio.w_en && dbus2gpio.req && (gpled_sel_i | gpsw_sel_i);
+assign reg_wr_req = dbus2gpio.w_en  && dbus2gpio.req && (gpled_sel_i | gpsw_sel_i);
 
 // gpio write/read operation 
 always_ff @(posedge clk) begin  

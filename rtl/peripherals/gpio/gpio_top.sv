@@ -28,6 +28,7 @@ module gpio_top(
     input  wire type_dbus2peri_s                dbus2gpio_i,
     output type_peri2dbus_s                     gpio2dbus_o,
     output logic                                gpio_irq_o,
+    output logic                                gpio_sel_data,
     inout  logic [23:0]                         gpio_io,
     input  logic [15:0]                         gp_switch_i,
     output logic [15:0]                         gp_led_o
@@ -43,31 +44,50 @@ logic [7:0]                           gpioB_io;
 logic                                 gpioC_irq;
 logic [7:0]                           gpioC_io;
 
-wire  type_dbus2peri_s                dbusA2gpio;
-logic type_peri2dbus_s                gpioA2dbus;
-wire  type_dbus2peri_s                dbusB2gpio;
-logic type_peri2dbus_s                gpioB2dbus;
-wire  type_dbus2peri_s                dbusC2gpio;
-logic type_peri2dbus_s                gpioC2dbus;
-wire  type_dbus2peri_s                dbusSP2gpio;
-logic type_peri2dbus_s                gpioSP2dbus;
+type_dbus2peri_s                dbusA2gpio;
+type_peri2dbus_s                gpioA2dbus;
+type_dbus2peri_s                dbusB2gpio;
+type_peri2dbus_s                gpioB2dbus;
+type_dbus2peri_s                dbusC2gpio;
+type_peri2dbus_s                gpioC2dbus;
+type_dbus2peri_s                dbusSP2gpio;
+type_peri2dbus_s                gpioSP2dbus;
 
 assign gpio_irq_o = gpioA_irq | gpioB_irq | gpioC_irq;
-assign gpio_io    = {gpioA_io, gpioB_io, gpioC_io};
+assign gpio_io    = {gpioC_io, gpioB_io, gpioA_io};
 
 always_comb begin
     if (gpioA_sel_i) begin
+        dbusB2gpio = '0;
+        dbusC2gpio = '0;
+        dbusSP2gpio = '0;
         dbusA2gpio = dbus2gpio_i;
         gpio2dbus_o = gpioA2dbus;
     end else if (gpioB_sel_i) begin
+        dbusA2gpio = '0;
+        dbusC2gpio = '0;
+        dbusSP2gpio = '0;
         dbusB2gpio = dbus2gpio_i;
         gpio2dbus_o = gpioB2dbus;
     end else if (gpioC_sel_i) begin
+        dbusA2gpio = '0;
+        dbusB2gpio = '0;
+        dbusSP2gpio = '0;
         dbusC2gpio = dbus2gpio_i;
         gpio2dbus_o = gpioC2dbus;
     end else if (gpsw_sel_i || gpled_sel_i) begin
+        dbusA2gpio = '0;
+        dbusB2gpio = '0;
+        dbusC2gpio = '0;
         dbusSP2gpio = dbus2gpio_i;
         gpio2dbus_o = gpioSP2dbus;
+    end
+    else begin
+        dbusA2gpio = '0;
+        dbusB2gpio = '0;
+        dbusC2gpio = '0;  
+        dbusSP2gpio = '0;
+        gpio2dbus_o = gpioA2dbus;
     end
 end
 
@@ -78,7 +98,8 @@ gpio gpio_A(
     .dbus2gpio_i  (dbusA2gpio),
     .gpio2dbus_o  (gpioA2dbus),
     .gpio_irq_o   (gpioA_irq),
-    .gpio_io      (gpioA_io)
+    .gpio_io      (gpioA_io),
+    .gpio_sel_data  (gpio_sel_data)
 );
 
 gpio gpio_B(
@@ -88,7 +109,8 @@ gpio gpio_B(
     .dbus2gpio_i  (dbusB2gpio),
     .gpio2dbus_o  (gpioB2dbus),
     .gpio_irq_o   (gpioB_irq),
-    .gpio_io      (gpioB_io)
+    .gpio_io      (gpioB_io),
+    .gpio_sel_data  ()
 );
 
 gpio gpio_C(
@@ -98,7 +120,8 @@ gpio gpio_C(
     .dbus2gpio_i  (dbusC2gpio),
     .gpio2dbus_o  (gpioC2dbus),
     .gpio_irq_o   (gpioC_irq),
-    .gpio_io      (gpioC_io)
+    .gpio_io      (gpioC_io),
+    .gpio_sel_data  ()
 );
 
 gpio_special gp_sw_led(
