@@ -88,7 +88,7 @@ end
 assign pc_plus_4 = pc_ff + 32'd4;
 
 ////////////////////////////////////////////////////////////////
-logic [`XLEN-1:0]                    pc_new_jal; 
+// logic [`XLEN-1:0]                    pc_new_jal; 
 logic [`XLEN-1:0]                    jal_imm;            
 logic                                is_jal;
 
@@ -181,7 +181,7 @@ assign instr_word = ((~mem2if.ack) | irq_req_next) ? `INSTR_NOP : mem2if.r_data;
 
 // Update the outputs to Imem module
 
-assign if2mem_o.addr = pc_next; 
+assign if2mem_o.addr = pc_ff; 
 assign if2mem_o.req  = `IMEM_INST_REQ;
 
 // Update the outputs to ID stage

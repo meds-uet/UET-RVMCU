@@ -24,7 +24,8 @@ module forward_stall (
     input wire type_wrb2fwd_s             wrb2fwd_i,
 
     // Memory <---> Forward_stall interface signals
-    input wire type_lsu2fwd_s             lsu2fwd_i,
+    input wire type_lsu2fwd_s             lsu2fwd_i, 
+    input logic                           store_busy,
 
     // M-extension <---> Forward_stall interface signals
     input wire type_div2fwd_s             div2fwd_i,
@@ -135,7 +136,7 @@ assign fwd2ptop.lsu2wrb_pipe_flush = csr2fwd.irq_flush_lsu;
 
 // Pipeline stall signals for different ppeline stages/modules 
 assign lsu_div_stall               = lsu_stall_next | div_stall_next;
-assign if_id_exe_stall             = ld_use_hazard | lsu_div_stall; 
+assign if_id_exe_stall             = ld_use_hazard | lsu_div_stall | store_busy; 
  
 assign fwd2ptop.if2id_pipe_stall   = if_id_exe_stall;
 assign fwd2ptop.id2exe_pipe_stall  = if_id_exe_stall;
@@ -164,9 +165,9 @@ end
 always_comb begin 
     lsu_stall_next = lsu_stall_ff; 
 
-    if (lsu2fwd.lsu_ack ) begin
+    if (lsu2fwd.lsu_ack || !store_busy ) begin
         lsu_stall_next = 1'b0;
-    end else if (lsu2fwd.lsu_req) begin                         
+    end else if (lsu2fwd.lsu_req || store_busy) begin                         
         lsu_stall_next = 1'b1; 
     end        
 end

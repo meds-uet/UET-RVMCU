@@ -7,10 +7,8 @@
 // Author: Shehzeen Malik, UET Lahore
 // Date: 05.4.2024
 
-
-
 `ifndef VERILATOR
-`include "mem_defs.svh"
+`include "../defines/mem_defs.svh"
 `else
 `include "mem_defs.svh"
 `endif
@@ -24,16 +22,21 @@ module memory(
 
   // Data memory
     input  logic                                 dmem_sel,
-    input  wire type_exe2mem_s                   exe2mem_i, // Interface from execute to data memory 
+    output logic                                 store_busy,
+    input  type_dbus2peri_s                      exe2mem_i, // Interface from execute to data memory 
     output type_peri2dbus_s                      mem2wrb_o  // From data memory to writeback
 );
     //============================= Main memory and its memory interface =============================//
+type_mem_wr_states_e                  c_state, n_state;
+logic                                 load_req;
+logic                                 store_req;
+logic                                 mem_read;
+logic                                 mem_modify;
+logic                                 mem_write;
+logic [`XLEN-1:0]                     read_data;
+logic [`XLEN-1:0]                     write_data;
+logic [`XLEN-1:0]                     changed_data;
 
-type_mem_in_s  mem_in;
-type_mem_out_s mem_out;
-logic [`XLEN-1:0]           mem_addr;
-logic                       mem_wen;
-logic                       mem_req;
 
 // Dual port memory instantiation and initialization
 logic [`XLEN-1:0]          dualport_memory[`IDMEM_SIZE];
@@ -41,52 +44,122 @@ logic [`XLEN-1:0]          dualport_memory[`IDMEM_SIZE];
 initial 
 begin
     // Reading the contents of example imem.txt file to memory variable
-     $readmemh("imem.txt", dualport_memory);  
+     $readmemh("F:/MEDS/meds-uet-git/mcu-aman/UET-RVMCU/rtl/memory/imem.txt", dualport_memory);  
+end
+
+assign changed_data = dualport_memory[exe2mem_i.addr[`XLEN-1:2]];
+assign load_req = exe2mem_i.req & dmem_sel & !exe2mem_i.w_en;
+assign store_req = exe2mem_i.req & dmem_sel & exe2mem_i.w_en;
+
+// Store operation state machine for dealing with sel_byte
+always_ff @(posedge clk or negedge rst_n) begin
+    if (!rst_n)
+        c_state <= MEM_IDLE;
+    else
+        c_state <= n_state;
 end
 
 always_comb begin
-    if (exe2mem_i.req & dmem_sel) begin           
-        mem_in.addr       = exe2mem_i.addr;
-        mem_in.w_data     = exe2mem_i.w_data;             
-        mem_in.w_en       = exe2mem_i.w_en;
-        mem_in.req        = 1'b1;
-        mem2wrb_o.r_data  = mem_out.r_data;
-        mem2wrb_o.ack     = mem_out.ack;
-        mem2if_o.r_data   = mem2if_o.r_data; //or instruction nop
-        mem2if_o.ack      = 1'b0; //or mem2if_o.ack
-    end else if (!exe2mem_i.req & if2mem_i.req) begin
-        mem_in.addr       = if2mem_i.addr;
-        mem_in.w_data     = '0;             
-        mem_in.w_en       = '0;
-        mem_in.req        = 1'b1;
-        mem2wrb_o.r_data  = mem2wrb_o.r_data; //or zero data
-        mem2wrb_o.ack     = 1'b0; //or mem2wrb_o.ack
-        mem2if_o.r_data   = mem_out.r_data;
-        mem2if_o.ack      = mem_out.ack;
-    end
-end
-
-//============================ Main memory module ============================//
-// Connect the local signals to appropriate IOs of the module
-assign mem_addr = mem_in.addr;
-assign mem_req = mem_in.req ;
-assign mem_wen = mem_in.w_en;
-
-
-// Synchronous load and store operations for memory
-always_ff @(posedge clk) begin  
-    if (mem_req & ~mem_out.ack) begin        
-        if (mem_wen) begin
-            dualport_memory[mem_addr] <= mem_in.w_data;
-        end else begin
-            mem_out.r_data   <= dualport_memory[mem_addr];  
+    case (c_state)
+        MEM_IDLE   : if (store_req)
+                         n_state = MEM_MODIFY;
+                     else
+                         n_state = MEM_IDLE;
+        MEM_MODIFY : n_state = MEM_WRITE;
+        MEM_WRITE  : n_state = MEM_IDLE;
+        default: begin
+            n_state = MEM_IDLE;
         end
+    endcase
+end
 
-        mem_out.ack <= 1'b1;
+always_comb begin
+    case (c_state)
+        MEM_IDLE  : begin if (store_req) begin
+                              store_busy   = 1'b1;
+                              mem_read   = 1'b1;
+                              mem_modify = 1'b0;
+                              mem_write  = 1'b0;
+                    end else begin
+                              store_busy   = 1'b0;
+                              mem_read   = 1'b0;
+                              mem_modify = 1'b0;
+                              mem_write  = 1'b0;
+                          end
+                    end
+        MEM_MODIFY : begin 
+                        store_busy   = 1'b1;
+                        mem_read   = 1'b0;
+                        mem_modify = 1'b1;
+                        mem_write  = 1'b0;
+                     end
+        MEM_WRITE  : begin 
+                        store_busy   = 1'b0;
+                        mem_read   = 1'b0;
+                        mem_modify = 1'b0;
+                        mem_write  = 1'b1;
+                     end            
+        default: begin
+            store_busy   = 1'b0;
+            mem_read   = 1'b0;
+            mem_modify = 1'b0;
+            mem_write  = 1'b0;
+        end
+    endcase
+end
+
+// write data based on sel_byte
+always_comb begin
+   // if (mem_modify) begin
+        write_data = read_data;
+        case (exe2mem_i.sel_byte)
+            4'b0001: write_data = {write_data[`XLEN-1:8],exe2mem_i.w_data[7:0]};
+            4'b0010: write_data = {write_data[`XLEN-1:16],exe2mem_i.w_data[15:8],write_data[7:0]};
+            4'b0100: write_data = {write_data[`XLEN-1:24],exe2mem_i.w_data[23:16],write_data[15:0]};
+            4'b1000: write_data = {exe2mem_i.w_data[31:24],write_data[23:0]};
+            4'b0011: write_data = {write_data[`XLEN-1:16],exe2mem_i.w_data[15:0]};
+            4'b1100: write_data = {exe2mem_i.w_data[31:16],write_data[15:0]}; 
+            4'b1111: write_data = exe2mem_i.w_data;
+            default: write_data = '0;
+        endcase
+    /*    end
+    else
+        write_data = '0;*/
+   end 
+
+// Synchronous load operation for memory
+always_ff @(posedge clk) begin  
+    if (mem_write)        //& ~mem_out.ack 
+        dualport_memory[exe2mem_i.addr[`XLEN-1:2]] <= write_data; 
+end
+
+//asynchronous data memory read
+always_comb begin
+    if (load_req) begin
+        mem2wrb_o.r_data = dualport_memory[exe2mem_i.addr[`XLEN-1:2]];
+        mem2wrb_o.ack    = 1'b1;
+        read_data        = '0;
+    end else if (mem_read) begin
+        mem2wrb_o = '0;
+        read_data = dualport_memory[exe2mem_i.addr[`XLEN-1:2]];
     end else begin
-        mem_out <= '0;
+        mem2wrb_o = '0;
+        read_data = '0;
     end
 end
 
+// Asynchronous intruction fetch
+always_comb begin //ff @ (posedge clk or negedge rst_n) begin
+   /* if (!rst_n) begin
+        mem2if_o.r_data = `INSTR_NOP;
+        mem2if_o.ack = 1'b0;
+    end else begin*/
+        if (if2mem_i.req) begin
+        mem2if_o.r_data = dualport_memory[if2mem_i.addr[`XLEN-1:2]];
+        mem2if_o.ack = 1'b1;
+        end else
+        mem2if_o  = '0;
+  //  end
+end
 
 endmodule

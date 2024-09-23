@@ -32,6 +32,7 @@ module pipeline_top (
    // Data bus interface
     output type_lsu2dbus_s              lsu2dbus_o,                // Signal to data bus 
     input  wire type_dbus2lsu_s         dbus2lsu_i,
+    input  logic                        store_busy,
     output logic                        lsu_flush_o,
 
    // Memory mapped timer interface
@@ -379,6 +380,7 @@ forward_stall forward_stall_module (
     .exe2fwd_i                  (exe2fwd),
  //   .if2fwd_stall_i             (if2fwd_stall),
 
+    .store_busy                 (store_busy),
     .fwd2if_o                   (fwd2if),
     .fwd2exe_o                  (fwd2exe),
     .fwd2csr_o                  (fwd2csr),

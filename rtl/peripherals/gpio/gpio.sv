@@ -8,9 +8,9 @@
 // Date: 20.5.2024
 
 `ifndef VERILATOR
-`include "gpio_defs.svh"
+`include "../../defines/gpio_defs.svh"
 `else
-`include "gpio_defs.svh"
+`include "../../defines/gpio_defs.svh"
 `endif
 
 module gpio(
@@ -20,13 +20,12 @@ module gpio(
     input  wire type_dbus2peri_s                dbus2gpio_i,
     output type_peri2dbus_s                     gpio2dbus_o,
     output logic                                gpio_irq_o,
-    inout  logic [7:0]                          gpio_io,
-    output logic                                gpio_sel_data
+    inout  logic [7:0]                          gpio_io
 );
 
 //internal signals
 logic [7:0]                                gpio_pin_en ;
-//logic                                      gpio_sel_data   ;
+logic                                      gpio_sel_data   ;
 logic                                      gpio_sel_dir    ;
 logic                                      gpio_sel_ie     ;
 logic                                      gpio_sel_int_lvl;
@@ -109,14 +108,14 @@ end
 // ----------------------------
 // Update gpio_io pins to drive the inout net
 // ----------------------------
-assign gpio_io[0] = (reg_dir_ff[0] ? reg_data_ff[0] : 1'bz);
-assign gpio_io[1] = (reg_dir_ff[1] ? reg_data_ff[1] : 1'bz); 
-assign gpio_io[2] = (reg_dir_ff[2] ? reg_data_ff[2] : 1'bz); 
-assign gpio_io[3] = (reg_dir_ff[3] ? reg_data_ff[3] : 1'bz); 
-assign gpio_io[4] = (reg_dir_ff[4] ? reg_data_ff[4] : 1'bz); 
-assign gpio_io[5] = (reg_dir_ff[5] ? reg_data_ff[5] : 1'bz); 
-assign gpio_io[6] = (reg_dir_ff[6] ? reg_data_ff[6] : 1'bz); 
-assign gpio_io[7] = (reg_dir_ff[7] ? reg_data_ff[7] : 1'bz); 
+assign gpio_io[0] = reg_dir_ff[0] ? reg_data_ff[0] : 1'bz;
+assign gpio_io[1] = reg_dir_ff[1] ? reg_data_ff[1] : 1'bz; 
+assign gpio_io[2] = reg_dir_ff[2] ? reg_data_ff[2] : 1'bz; 
+assign gpio_io[3] = reg_dir_ff[3] ? reg_data_ff[3] : 1'bz; 
+assign gpio_io[4] = reg_dir_ff[4] ? reg_data_ff[4] : 1'bz; 
+assign gpio_io[5] = reg_dir_ff[5] ? reg_data_ff[5] : 1'bz; 
+assign gpio_io[6] = reg_dir_ff[6] ? reg_data_ff[6] : 1'bz; 
+assign gpio_io[7] = reg_dir_ff[7] ? reg_data_ff[7] : 1'bz; 
 
 // ----------------------------
 // Update gpio Interrupt pending register 

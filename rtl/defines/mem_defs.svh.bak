@@ -3,6 +3,9 @@
 
 `include "pcore_interface_defs.svh"
 
+`define XLEN 32
+// `define IDMEM_SIZE 1000
+
 typedef struct packed {
     logic [`XLEN-1:0]    addr;
     logic                req;
@@ -25,10 +28,8 @@ typedef struct packed {
     logic                ack;
 } type_mem2wrb_s;
 
-typedef enum logic [1:0] {
-    MEM_IDLE   = 2'b00,
-    MEM_MODIFY = 2'b01,
-    MEM_WRITE  = 2'b10
-  } type_mem_wr_states_e;
+// Interface signals for cache memory arbiter and main memory
+typedef type_exe2mem_s type_mem_in_s;
+typedef type_mem2wrb_s type_mem_out_s;
 
 `endif

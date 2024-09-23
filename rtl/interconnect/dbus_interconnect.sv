@@ -88,7 +88,7 @@ assign dbus_addr = lsu2dbus.addr[`DBUS_ADDR_WIDTH-1:0];
 assign dbus_req  = st_req | ld_req; 
 
 // Decode the device address
-assign dmem_addr_match  = (dbus_addr[`DMEM_SEL_ADDR_HIGH:`DMEM_SEL_ADDR_LOW] == `DMEM_ADDR_MATCH);
+assign dmem_addr_match  = (dbus_addr[`DMEM_SEL_ADDR_HIGH:`DMEM_SEL_ADDR_LOW] < `DMEM_ADDR_MATCH);
 
 assign uart_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `UART_ADDR_MATCH);
 assign plic_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `PLIC_ADDR_MATCH);

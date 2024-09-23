@@ -9,7 +9,7 @@
 
 
 `ifndef VERILATOR
-`include "../../defines/gpio_defs.svh"
+`include "../defines/gpio_defs.svh"
 `else
 `include "gpio_defs.svh"
 `endif
@@ -91,20 +91,13 @@ always_comb begin
 // ----------------------------
     reg_sw_data_next = gp_switch_i; 
 
-// ----------------------------
-// Update general purpose LED data register based on sel_byte
+    // ----------------------------
+// Update general purpose LED data register 
 // ----------------------------
 
-    if (gpled_sel_data) begin
-        case (dbus2gpio.sel_byte)
-            4'b0001: reg_led_data_next = {reg_led_data_ff[15:7], reg_w_data[7:0]};
-            4'b0010: reg_led_data_next = {reg_w_data[15:7], reg_led_data_ff[7:0]};
-            4'b0011: reg_led_data_next =  reg_w_data[15:0];
-            4'b1111: reg_led_data_next =  reg_w_data[15:0];
-            default:
-                reg_led_data_next = reg_led_data_ff;
-        endcase
-    end else
+    if (gpled_sel_data)
+        reg_led_data_next = reg_w_data[15:0];
+    else
         reg_led_data_next = reg_led_data_ff;
 end
 
