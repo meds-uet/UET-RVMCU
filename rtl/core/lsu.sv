@@ -225,7 +225,7 @@ assign lsu_amo_req = is_amo;//ld_req | st_req | is_amo ;
 // Ack will be based on amo_done in case of amo_instruction
 assign lsu_amo_ack = is_amo ? amo2lsu_ctrl.amo_done : dbus2lsu.ack;    
 
-assign lsu2fwd.lsu_req = lsu_amo_req;
+assign lsu2fwd.lsu_req = lsu_amo_req | ld_req;
 assign lsu2fwd.lsu_ack = lsu_amo_ack;
 
 // Signals to data memory interface
