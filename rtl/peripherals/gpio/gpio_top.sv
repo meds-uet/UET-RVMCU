@@ -56,6 +56,11 @@ assign gpio_irq_o = gpioA_irq | gpioB_irq | gpioC_irq;
 assign gpio_io    = {gpioA_io, gpioB_io, gpioC_io};
 
 always_comb begin
+    dbusA2gpio  = '0;
+    gpio2dbus_o = '0;
+    dbusB2gpio  = '0;
+    dbusC2gpio = '0;
+    dbusSP2gpio = '0;
     if (gpioA_sel_i) begin
         dbusA2gpio = dbus2gpio_i;
         gpio2dbus_o = gpioA2dbus;

@@ -41,12 +41,21 @@ logic [`XLEN-1:0]                     changed_data;
 // Dual port memory instantiation and initialization
 logic [`XLEN-1:0]          dualport_memory[`IDMEM_SIZE];
 
+
+`ifdef COMPLIANCE
+initial
+begin
+     // Reading the contents of imem.txt file to memory variable
+     // Not required to $readmem for COMPLIANCE Tests
+end
+
+`else
 initial 
 begin
     // Reading the contents of example imem.txt file to memory variable
      $readmemh("../../../imem.txt", dualport_memory);  
 end
-
+`endif
 assign changed_data = dualport_memory[exe2mem_i.addr[`XLEN-1:2]];
 assign load_req = exe2mem_i.req & dmem_sel & !exe2mem_i.w_en;
 assign store_req = exe2mem_i.req & dmem_sel & exe2mem_i.w_en;

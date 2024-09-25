@@ -29,8 +29,8 @@
 // Memory related parameters
 `define IMEM_INST_REQ                1
 
-`define IDMEM_SIZE                   22'h400000
-`define MEM_ADDR_WIDTH               22
+`define IDMEM_SIZE                   26'h3FFFFFF
+`define MEM_ADDR_WIDTH               26
 
 `define DMEM_SEL_ADDR_HIGH           21 
 `define DMEM_SEL_ADDR_LOW             0

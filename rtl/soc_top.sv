@@ -269,7 +269,7 @@ gpio_top gpio_top_module (
     .gp_switch_i           (gp_switch_i),
     .gp_led_o              (gp_led_o)
 );
-
+endmodule : soc_top
 /**************************************************************************************************/
 module m_7segcon(w_clk, w_rst_x, w_load, w_din, r_sg, r_an);
     input  wire w_clk, w_rst_x, w_load;
@@ -356,26 +356,26 @@ module m_7segled (w_in, r_led);
     output reg  [7:0] r_led;
     always @(*) begin
         case (w_in)
-        4'h0  : r_led <= 8'b01111110;
-        4'h1  : r_led <= 8'b00110000;
-        4'h2  : r_led <= 8'b01101101;
-        4'h3  : r_led <= 8'b01111001;
-        4'h4  : r_led <= 8'b00110011;
-        4'h5  : r_led <= 8'b01011011;
-        4'h6  : r_led <= 8'b01011111;
-        4'h7  : r_led <= 8'b01110000;
-        4'h8  : r_led <= 8'b01111111;
-        4'h9  : r_led <= 8'b01111011;
-        4'ha  : r_led <= 8'b01110111;
-        4'hb  : r_led <= 8'b00011111;
-        4'hc  : r_led <= 8'b01001110;
-        4'hd  : r_led <= 8'b00111101;
-        4'he  : r_led <= 8'b01001111;
-        4'hf  : r_led <= 8'b01000111;
-        default:r_led <= 8'b00000000;
+        4'h0  : r_led = 8'b01111110;
+        4'h1  : r_led = 8'b00110000;
+        4'h2  : r_led = 8'b01101101;
+        4'h3  : r_led = 8'b01111001;
+        4'h4  : r_led = 8'b00110011;
+        4'h5  : r_led = 8'b01011011;
+        4'h6  : r_led = 8'b01011111;
+        4'h7  : r_led = 8'b01110000;
+        4'h8  : r_led = 8'b01111111;
+        4'h9  : r_led = 8'b01111011;
+        4'ha  : r_led = 8'b01110111;
+        4'hb  : r_led = 8'b00011111;
+        4'hc  : r_led = 8'b01001110;
+        4'hd  : r_led = 8'b00111101;
+        4'he  : r_led = 8'b01001111;
+        4'hf  : r_led = 8'b01000111;
+        default:r_led = 8'b00000000;
         endcase
     end
 endmodule
 
-endmodule : soc_top
+
 
