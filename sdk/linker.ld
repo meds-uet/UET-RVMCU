@@ -3,7 +3,7 @@ ENTRY( reset_handler )
 
 MEMORY
 { 
-  IDMEM (rx)  : ORIGIN = 0x00001000, LENGTH = 4K
+  IDMEM (rx)  : ORIGIN = 0x00000000, LENGTH = 4M
 }
 
 

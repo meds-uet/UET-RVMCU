@@ -12,66 +12,47 @@
 `define PCORE_CONFIG_DEFS
 
 `ifndef COMPLIANCE
-//`define DRAM                         1
 //`define RTL_SIMULATION               1 
 `endif
-
-`define ICACHE_SETS                  512
-`define DCACHE_SETS                  2048
 
 //============================= CORE PARAMETERS ========================//
 
 // Width of main registers and buses
 `define XLEN                         32
 
-`define VALEN                        32
-`define PALEN                        34
-`define PAGE_SIZE                    4096  // 4k page size in bytes
-`define VPAGE_AWIDTH                 `VALEN-$clog2(`PAGE_SIZE)
-`define PPN_WIDTH                    22
 `define RF_AWIDTH                    5
 `define RF_SIZE                      32
 
-// Memory address map related definitions
-`define DMEM_ADDR_MATCH              20'hF4240 //3D090 for 1MB //4'h8
-`define UART_ADDR_MATCH              8'h90
-`define UART_NS_ADDR_MATCH           8'h98
-`define SPI_ADDR_MATCH               8'h9C
-`define PLIC_ADDR_MATCH              8'h94
-`define CLINT_ADDR_MATCH             8'h02
-`define GPIOA_ADDR_MATCH             8'hA0
-`define GPIOB_ADDR_MATCH             8'hA4
-`define GPIOC_ADDR_MATCH             8'hA8
-`define GPSW_ADDR_MATCH              8'hB0
-`define GPLED_ADDR_MATCH             8'hB4
-`define BMEM_ADDR_MATCH              20'h00001
-
-// Boot mode selection
-
-`ifndef COMPLIANCE
-`ifdef LINUX_BOOT
-`define PC_RESET                     32'h00001000  // Booting from boot memory to pass the device tree pointer                    
-`else
-`define PC_RESET                     32'h00000000  // Booting from data memory
-`endif
-`else 
 `define PC_RESET                     32'h00000000
-`endif
+
 
 // Memory related parameters
-`define IMEM_SIZE                    24'hFFFFFF
 `define IMEM_INST_REQ                1
 
-`define BMEM_SIZE                    4096
+`define IDMEM_SIZE                   22'h400000
+`define MEM_ADDR_WIDTH               22
 
-`define IDMEM_SIZE                   20'hF423F //F423F for 4MB //F9F for 32KB //3FFFFFF
-`define MEM_ADDR_WIDTH               26
+`define DMEM_SEL_ADDR_HIGH           21 
+`define DMEM_SEL_ADDR_LOW             0
+`define PERI_SEL_ADDR_HIGH           21
+`define PERI_SEL_ADDR_LOW            16
+`define PLCL_SEL_ADDR_HIGH           21
+`define PLCL_SEL_ADDR_LOW            0
 
-`define DMEM_SEL_ADDR_HIGH           19 //31 
-`define DMEM_SEL_ADDR_LOW             0//28
-
-`define PERI_SEL_ADDR_HIGH           15 //31
-`define PERI_SEL_ADDR_LOW            8 //24
+// Memory address map related definitions
+//`define IMEM_ADDR_MATCH              21'h100000 //1MB instruction memory
+`define DMEM_ADDR_MATCH              21'h200000 //2MB instruction + code memory
+`define UART_ADDR_MATCH              6'h20
+`define SPI_ADDR_MATCH               6'h21
+`define GPIOA_ADDR_MATCH             6'h22
+`define GPIOB_ADDR_MATCH             6'h23
+`define GPIOC_ADDR_MATCH             6'h24
+`define GPSW_ADDR_MATCH              6'h25
+`define GPLED_ADDR_MATCH             6'h26
+`define PLIC_ADDR_START              21'h300000
+`define PLIC_ADDR_END                21'h300FFF
+`define CLINT_ADDR_START             21'h301000
+`define CLINT_ADDR_END               21'h31FFFF
 
 // Pipeline stage definitions
 `define IF2ID_PIPELINE_STAGE         1

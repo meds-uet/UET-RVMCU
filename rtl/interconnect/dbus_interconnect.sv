@@ -91,14 +91,17 @@ assign dbus_req  = st_req | ld_req;
 assign dmem_addr_match  = (dbus_addr[`DMEM_SEL_ADDR_HIGH:`DMEM_SEL_ADDR_LOW] < `DMEM_ADDR_MATCH);
 
 assign uart_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `UART_ADDR_MATCH);
-assign plic_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `PLIC_ADDR_MATCH);
-assign clint_addr_match = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `CLINT_ADDR_MATCH);
 assign spi_addr_match   = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `SPI_ADDR_MATCH);
 assign gpioA_addr_match = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `GPIOA_ADDR_MATCH);
 assign gpioB_addr_match = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `GPIOB_ADDR_MATCH);
 assign gpioC_addr_match = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `GPIOC_ADDR_MATCH);
 assign gpsw_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `GPSW_ADDR_MATCH);
 assign gpled_addr_match = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `GPLED_ADDR_MATCH);
+
+assign plic_addr_match  = ((dbus_addr[`PLCL_SEL_ADDR_HIGH:`PLCL_SEL_ADDR_LOW] > `PLIC_ADDR_START)
+                           & (dbus_addr[`PLCL_SEL_ADDR_HIGH:`PLCL_SEL_ADDR_LOW] <= `PLIC_ADDR_END));
+assign clint_addr_match = ((dbus_addr[`PLCL_SEL_ADDR_HIGH:`PLCL_SEL_ADDR_LOW] > `CLINT_ADDR_START)
+                           & (dbus_addr[`PLCL_SEL_ADDR_HIGH:`PLCL_SEL_ADDR_LOW] <= `CLINT_ADDR_END));
 
 //=================================== Store operation =====================================//
 // Prepare the write data and mask for store  
@@ -221,4 +224,3 @@ assign dbus2lsu_o = dmem_sel  ? type_dbus2lsu_s'(mem2dbus_i)
                   : '0;
 
 endmodule : dbus_interconnect
-

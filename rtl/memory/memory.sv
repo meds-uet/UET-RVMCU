@@ -44,7 +44,7 @@ logic [`XLEN-1:0]          dualport_memory[`IDMEM_SIZE];
 initial 
 begin
     // Reading the contents of example imem.txt file to memory variable
-     $readmemh("F:/MEDS/meds-uet-git/mcu-aman/UET-RVMCU/rtl/memory/imem.txt", dualport_memory);  
+     $readmemh("../../../imem.txt", dualport_memory);  
 end
 
 assign changed_data = dualport_memory[exe2mem_i.addr[`XLEN-1:2]];
