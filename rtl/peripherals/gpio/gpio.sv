@@ -10,7 +10,7 @@
 `ifndef VERILATOR
 `include "../../defines/gpio_defs.svh"
 `else
-`include "../../defines/gpio_defs.svh"
+`include "gpio_defs.svh"
 `endif
 
 module gpio(
