@@ -3,8 +3,6 @@
 .equ CSR_MTVEC,   0x305
 .equ CSR_MIE,     0x304
 .equ CSR_MEPC,    0x341
-.equ CSR_SSTATUS, 0x100
-.equ CSR_SATP,    0x180
 
 .equ MSTATUS_MIE, 0x00000008
 
@@ -51,6 +49,8 @@ vtable:
   .weak meip_handler
   .set  meip_handler, default_interrupt_handler
   .weak uart_handler
+  .set  uart_handler, default_interrupt_handler
+  .weak mexc_handler
   .set  uart_handler, default_interrupt_handler
 
 # Assembly 'reset handler' function to initialize core CPU registers.
