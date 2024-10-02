@@ -1,9 +1,11 @@
 OUTPUT_ARCH( "riscv" )
 ENTRY( reset_handler )
+STARTUP (startup.o)
 
 MEMORY
 { 
   IDMEM (rwx)  : ORIGIN = 0x00000000, LENGTH = 2M
+  PERI  (rwx)  : ORIGIN = 0x00200000, LENGTH = 2M
 }
 
 
