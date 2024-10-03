@@ -4,8 +4,8 @@
 //pcore halt code section
 #define RVMODEL_HALT                                          \
     la   a0, begin_signature;                                 \
-    la   a1, end_signature;                                   \
-    addi a1, a1, -4;                                          \
+    la   a1, rvtest_sig_end;                                   \
+    addi a1, a1, 0;                                          \
     li   a2, 0x001FFE68;                                      \
     signature_dump_loop:                                      \
       bge  a0, a1, signature_dump_end;                        \
