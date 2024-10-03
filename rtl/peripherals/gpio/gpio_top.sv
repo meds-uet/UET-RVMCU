@@ -62,17 +62,35 @@ always_comb begin
     dbusC2gpio = '0;
     dbusSP2gpio = '0;
     if (gpioA_sel_i) begin
-        dbusA2gpio = dbus2gpio_i;
+        dbusA2gpio  = dbus2gpio_i;
+        dbusB2gpio  = '0;
+        dbusC2gpio  = '0;
+        dbusSP2gpio = '0;
         gpio2dbus_o = gpioA2dbus;
     end else if (gpioB_sel_i) begin
         dbusB2gpio = dbus2gpio_i;
+        dbusA2gpio  = '0;
+        dbusC2gpio  = '0;
+        dbusSP2gpio = '0;
         gpio2dbus_o = gpioB2dbus;
     end else if (gpioC_sel_i) begin
         dbusC2gpio = dbus2gpio_i;
+        dbusB2gpio  = '0;
+        dbusA2gpio  = '0;
+        dbusSP2gpio = '0;
         gpio2dbus_o = gpioC2dbus;
     end else if (gpsw_sel_i || gpled_sel_i) begin
         dbusSP2gpio = dbus2gpio_i;
+        dbusB2gpio  = '0;
+        dbusC2gpio  = '0;
+        dbusA2gpio  = '0;
         gpio2dbus_o = gpioSP2dbus;
+    end else begin
+        dbusSP2gpio = '0;
+        dbusB2gpio  = '0;
+        dbusC2gpio  = '0;
+        dbusA2gpio  = '0;
+        gpio2dbus_o = '0;
     end
 end
 
