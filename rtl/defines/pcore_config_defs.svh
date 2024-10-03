@@ -39,8 +39,6 @@
 `define PLCL_SEL_ADDR_HIGH           21
 `define PLCL_SEL_ADDR_LOW            0
 
-// Memory address map related definitions
-//`define IMEM_ADDR_MATCH              22'h100000 //1MB instruction memory
 `define DMEM_ADDR_MATCH              22'h200000 //2MB instruction + code memory
 `define UART_ADDR_MATCH              6'h20
 `define SPI_ADDR_MATCH               6'h21

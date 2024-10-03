@@ -12,7 +12,6 @@
 `else
 `include "gpio_defs.svh"
 `endif
-
 module gpio(
     input  logic                                clk,
     input  logic                                rst_n,
