@@ -39,8 +39,7 @@ logic [`XLEN-1:0]                     changed_data;
 
 
 // Dual port memory instantiation and initialization
-logic [`XLEN-1:0]          dualport_memory[`IDMEM_SIZE];
-
+logic [`XLEN-1:0]          dualport_memory[`IDMEM_SIZE]; //4194303
 
 `ifdef COMPLIANCE
 initial

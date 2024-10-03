@@ -6,176 +6,15 @@
 
 #include "Vpcore_tb___024root.h"
 
+extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_h64894f63_0;
+extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_h66910629_0;
+extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_hc2dc19fa_0;
+extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_h006f755c_0;
+
 VL_INLINE_OPT void Vpcore_tb___024root___act_sequent__TOP__0(Vpcore_tb___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_sequent__TOP__0\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__uart_sel = 0U;
-    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0)))) {
-        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0)))) {
-            if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0) {
-                vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__uart_sel = 1U;
-            }
-        }
-    }
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___act_sequent__TOP__1(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_sequent__TOP__1\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__spi_sel = 0U;
-    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0)))) {
-        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0)))) {
-            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0)))) {
-                if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0) {
-                    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__spi_sel = 1U;
-                }
-            }
-        }
-    }
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___act_sequent__TOP__2(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_sequent__TOP__2\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel = 0U;
-    if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0) {
-        vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel = 1U;
-    }
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___act_sequent__TOP__3(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_sequent__TOP__3\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel = 0U;
-    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0)))) {
-        if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0) {
-            vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel = 1U;
-        }
-    }
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___act_sequent__TOP__4(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_sequent__TOP__4\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel = 0U;
-    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0)))) {
-        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0)))) {
-            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0)))) {
-                if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0)))) {
-                    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0)))) {
-                        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0)))) {
-                            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0)))) {
-                                if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0) {
-                                    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel = 1U;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___act_sequent__TOP__5(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_sequent__TOP__5\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel = 0U;
-    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0)))) {
-        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0)))) {
-            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0)))) {
-                if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0)))) {
-                    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0)))) {
-                        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0)))) {
-                            if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0) {
-                                vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel = 1U;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___act_sequent__TOP__6(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_sequent__TOP__6\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel = 0U;
-    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0)))) {
-        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0)))) {
-            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0)))) {
-                if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0)))) {
-                    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0)))) {
-                        if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0) {
-                            vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel = 1U;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___act_sequent__TOP__7(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_sequent__TOP__7\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel = 0U;
-    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0)))) {
-        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0)))) {
-            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0)))) {
-                if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0)))) {
-                    if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0) {
-                        vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel = 1U;
-                    }
-                }
-            }
-        }
-    }
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__0(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_comb__TOP__0\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus = 0ULL;
-    if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
-            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__gpio2dbus_ff;
-    } else if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
-            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__gpio2dbus_ff;
-    } else if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
-            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__gpio2dbus_ff;
-    } else if (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel) 
-                | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel))) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
-            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpio2dbus_ff;
-    }
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_comb__TOP__1\n"); );
     // Init
     CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT____Vlvbound_h4d69f270__0;
     pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT____Vlvbound_h4d69f270__0 = 0;
@@ -183,10 +22,30 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
     pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h140467bf__0 = 0;
     CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hb3ea78f5__0;
     pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hb3ea78f5__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0;
+    pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0;
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0;
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0;
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0;
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0;
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0;
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0;
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0;
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0 = 0;
     CData/*0:0*/ pcore_tb__DOT__dut__DOT__clint_module__DOT____VdfgTmp_h7b251b97__0;
     pcore_tb__DOT__dut__DOT__clint_module__DOT____VdfgTmp_h7b251b97__0 = 0;
     CData/*0:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____VdfgTmp_hf58aaa35__0;
     pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____VdfgTmp_hf58aaa35__0 = 0;
+    CData/*0:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT____VdfgTmp_h951c8663__0;
+    pcore_tb__DOT__dut__DOT__mem_top_module__DOT____VdfgTmp_h951c8663__0 = 0;
     CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT____VdfgTmp_h2e79a1d4__0;
     pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT____VdfgTmp_h2e79a1d4__0 = 0;
     CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT____VdfgTmp_h2e79a1d4__0;
@@ -195,177 +54,12 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
     pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT____VdfgTmp_h2e79a1d4__0 = 0;
     CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT____VdfgTmp_h32a1b980__0;
     pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT____VdfgTmp_h32a1b980__0 = 0;
+    CData/*0:0*/ __VdfgTmp_hc9213adb__0;
+    __VdfgTmp_hc9213adb__0 = 0;
+    CData/*2:0*/ __Vtableidx3;
+    __Vtableidx3 = 0;
     IData/*31:0*/ __Vtemp_ha3c3e6fa__0;
     // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel)
-            ? vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__clint2dbus_ff
-            : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel)
-                ? vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic2dbus_ff
-                : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__uart_sel)
-                    ? vlSelf->pcore_tb__DOT__dut__DOT__uart2dbus
-                    : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__spi_sel)
-                        ? vlSelf->pcore_tb__DOT__dut__DOT__spi2dbus
-                        : (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel) 
-                            | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel) 
-                               | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel) 
-                                  | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel) 
-                                     | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel)))))
-                            ? vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus
-                            : 0ULL)))));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_data[0U] 
-        = (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                   >> 1U));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_data[1U] 
-        = (IData)((((QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U])) 
-                    << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_data[2U] 
-        = (IData)(((((QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U])) 
-                     << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))) 
-                   >> 0x20U));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_save = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2fwd 
-        = ((0xf8U & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                     >> 0xcU)) | ((4U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff) 
-                                  | (((IData)(vlSelf->__VdfgTmp_h240225d2__0) 
-                                      << 1U) | (1U 
-                                                & ((0U 
-                                                    != 
-                                                    (0xfU 
-                                                     & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                                                        >> 3U)))
-                                                    ? (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_done)
-                                                    : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))))));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_word = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
-        = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__ld_req) 
-            & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))
-            ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                       >> 1U)) : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a_ff);
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_ctrl 
-        = ((0x78U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff) 
-           | (((IData)((0U != (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                                       >> 3U)))) << 2U) 
-              | (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_flush) 
-                  << 1U) | (1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu)))));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_next 
-        = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_ff;
-    if ((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2fwd) 
-               | (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__store_busy))))) {
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_next = 0U;
-    } else if ((1U & (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2fwd) 
-                       >> 1U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__store_busy)))) {
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_next = 1U;
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__sc_pass 
-        = (IData)((((0x10U == (0x78U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) 
-                    & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_reserve_ff)) 
-                   & ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_buffer_addr_ff 
-                       == vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U]) 
-                      & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_buffer_data_ff 
-                         == vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a))));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_slt_b 
-        = VL_LTS_III(32, vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a, 
-                     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]);
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_uslt_b 
-        = (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
-           < vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]);
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_stall 
-        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__div_stall_next) 
-           | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_next));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next = 0U;
-    if ((4U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
-        if ((1U & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state) 
-                      >> 1U)))) {
-            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state)))) {
-                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next = 0U;
-            }
-        }
-    } else if ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next 
-            = ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))
-                ? ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))
-                    ? 4U : 3U) : (((1U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                                                   >> 3U))) 
-                                   | ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__sc_pass)) 
-                                      & (0x10U == (0x78U 
-                                                   & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff))))
-                                   ? 4U : 3U));
-    } else if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next 
-            = ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))
-                ? 2U : 1U);
-    } else if ((0U != (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                               >> 3U)))) {
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next = 1U;
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_result 
-        = ((0x40U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-            ? ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]
-                : ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                    ? ((8U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                        ? ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_uslt_b)
-                            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]
-                            : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a)
-                        : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_uslt_b)
-                            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a
-                            : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))
-                    : ((8U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                        ? ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_slt_b)
-                            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]
-                            : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a)
-                        : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_slt_b)
-                            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a
-                            : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))))
-            : ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                ? ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                    ? ((8U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                        ? (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
-                           | vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U])
-                        : (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
-                           & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))
-                    : ((8U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                        ? (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
-                           ^ vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U])
-                        : (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
-                           + vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U])))
-                : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__ld_use_hazard 
-        = ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_stall)) 
-           & (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu2rs1_hazard) 
-               & ((IData)((0U != (0x802U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U]))) 
-                  & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_csr_req))) 
-              | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu2rs2_hazard) 
-                 & ((IData)((0U != (0x3000402U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U]))) 
-                    & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_csr_req)))));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__w_data = 0U;
-    if ((1U & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state) 
-                  >> 2U)))) {
-        if ((1U & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state) 
-                      >> 1U)))) {
-            if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
-                if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))) {
-                    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_save 
-                        = (1U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                                          >> 3U)));
-                }
-            }
-        }
-        if ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
-            if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
-                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__w_data 
-                    = ((2U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                                       >> 3U))) ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]
-                        : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_result);
-            }
-        }
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0 
-        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__ld_use_hazard) 
-           | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_stall));
-    vlSelf->__VdfgTmp_hc9213adb__0 = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__ld_use_hazard) 
-                                      | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_flush));
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[0U] 
         = ((0xfU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[0U]) 
            | (((0U != (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
@@ -378,12 +72,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                                >> 3U))) ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__w_data
                 : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]) 
               >> 0x1cU));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__if_id_exe_stall 
-        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0) 
-           | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__store_busy));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT____Vcellinp__divide_module__fwd2div_flush_i 
-        = ((IData)(vlSelf->__VdfgTmp_hc9213adb__0) 
-           | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__m_mode_irq_req));
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
         = (3U & vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U]);
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
@@ -492,209 +180,257 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                                          >> 0x1eU)));
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req 
         = (IData)((0U != (3U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[0U])));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword = 0U;
-    if ((0x800U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
-        if ((1U & (~ (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                      >> 0xaU)))) {
-            if ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
-                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_word 
-                    = (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                               >> 1U));
-            }
-            if ((1U & (~ (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                          >> 9U)))) {
-                if ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) {
-                    if ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) {
-                        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword 
-                            = (0xffffU & (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                                  >> 0x11U)));
-                    }
-                } else {
-                    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword 
-                        = (0xffffU & (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                              >> 1U)));
-                }
-            }
-        }
-    } else if ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
-        if ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
-            if ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) {
-                if ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) {
-                    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword 
-                        = (0xffffU & (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                              >> 0x11U)));
-                }
-            } else {
-                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword 
-                    = (0xffffU & (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                          >> 1U)));
-            }
-        }
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte = 0U;
-    if ((1U & (~ (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                  >> 0xbU)))) {
-        if ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
-            if ((1U & (~ (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                          >> 9U)))) {
-                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte 
-                    = (0xffU & ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
-                                 ? ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
-                                     ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                                >> 0x19U))
-                                     : (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                                >> 0x11U)))
-                                 : ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
-                                     ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                                >> 9U))
-                                     : (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                                >> 1U)))));
-            }
-        } else if ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
-            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte 
-                = (0xffU & ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
-                             ? ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
-                                 ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                            >> 0x19U))
-                                 : (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                            >> 0x11U)))
-                             : ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
-                                 ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                            >> 9U))
-                                 : (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                                            >> 1U)))));
-        }
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0 
-        = (((0x101000U < (0x3fffffU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U] 
-                                       >> 4U))) & (0x11ffffU 
-                                                   >= 
-                                                   (0x3fffffU 
-                                                    & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U] 
-                                                       >> 4U)))) 
-           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req));
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0 
-        = (((0x100000U < (0x3fffffU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U] 
-                                       >> 4U))) & (0x100fffU 
-                                                   >= 
-                                                   (0x3fffffU 
-                                                    & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U] 
-                                                       >> 4U)))) 
-           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req));
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0 
-        = (IData)(((0x2000000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
-                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0 
-        = (IData)(((0x2100000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
-                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0 
-        = (IData)(((0x2200000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
-                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0 
-        = (IData)(((0x2300000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
-                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0 
-        = (IData)(((0x2400000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
-                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0 
-        = (IData)(((0x2500000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
-                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel = 0U;
-    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0)))) {
-        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0)))) {
-            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0)))) {
-                if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0)))) {
-                    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0)))) {
-                        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0)))) {
-                            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0)))) {
-                                if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0)))) {
-                                    if ((IData)(((0x2600000U 
-                                                  == 
-                                                  (0x3f00000U 
-                                                   & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
-                                                 & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)))) {
-                                        vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel = 1U;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dmem_sel = 0U;
+    if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req) {
+        vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dmem_sel = 1U;
     }
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
         = ((0xfffffffcU & vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U]) 
            | ((2U & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[0U] 
                      << 1U)) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U] 
-        = (0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U]);
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
-        = (0xffffffe0U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U]);
-    if (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_done) {
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U] 
-            = ((0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U]) 
-               | (((2U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                                   >> 3U))) ? (1U & 
-                                               (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__sc_pass)))
-                    : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a) 
-                  << 5U));
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
-            = ((0xffffffe0U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U]) 
-               | (((2U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
-                                   >> 3U))) ? (1U & 
-                                               (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__sc_pass)))
-                    : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a) 
-                  >> 0x1bU));
-    } else if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))) {
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U] 
-            = ((0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U]) 
-               | (((0x800U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                    ? ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                        ? 0U : ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                                 ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_word
-                                 : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword)))
-                    : ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                        ? ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                            ? (((- (IData)((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword) 
-                                                  >> 0xfU)))) 
-                                << 0x10U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword))
-                            : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte))
-                        : ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                            ? (((- (IData)((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte) 
-                                                  >> 7U)))) 
-                                << 8U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte))
-                            : 0U))) << 5U));
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
-            = ((0xffffffe0U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U]) 
-               | (((0x800U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                    ? ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                        ? 0U : ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                                 ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_word
-                                 : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword)))
-                    : ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                        ? ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                            ? (((- (IData)((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword) 
-                                                  >> 0xfU)))) 
-                                << 0x10U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword))
-                            : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte))
-                        : ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
-                            ? (((- (IData)((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte) 
-                                                  >> 7U)))) 
-                                << 8U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte))
-                            : 0U))) >> 0x1bU));
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0 
+        = (IData)(((0x2500000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
+                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0 
+        = (IData)(((0x2400000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
+                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0 
+        = (IData)(((0x2300000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
+                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0 
+        = (IData)(((0x2200000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
+                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0 
+        = (IData)(((0x2100000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
+                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0 
+        = (IData)(((0x2000000U == (0x3f00000U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
+                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)));
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0 
+        = (((0x300000U < (0x3fffffU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U] 
+                                       >> 4U))) & (0x300fffU 
+                                                   >= 
+                                                   (0x3fffffU 
+                                                    & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U] 
+                                                       >> 4U)))) 
+           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req));
+    pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0 
+        = (((0x301000U < (0x3fffffU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U] 
+                                       >> 4U))) & (0x31ffffU 
+                                                   >= 
+                                                   (0x3fffffU 
+                                                    & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U] 
+                                                       >> 4U)))) 
+           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req));
+    pcore_tb__DOT__dut__DOT__mem_top_module__DOT____VdfgTmp_h951c8663__0 
+        = (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dmem_sel));
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__uart_sel = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__spi_sel = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel = 0U;
+    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)))) {
+        if ((1U & (~ (IData)(pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0)))) {
+            if ((1U & (~ (IData)(pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0)))) {
+                if (pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0) {
+                    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__uart_sel = 1U;
+                }
+                if ((1U & (~ (IData)(pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0)))) {
+                    if (pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0) {
+                        vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__spi_sel = 1U;
+                    }
+                    if ((1U & (~ (IData)(pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0)))) {
+                        if ((1U & (~ (IData)(pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0)))) {
+                            if ((1U & (~ (IData)(pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0)))) {
+                                if ((1U & (~ (IData)(pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0)))) {
+                                    if (pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0) {
+                                        vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel = 1U;
+                                    }
+                                    if ((1U & (~ (IData)(pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0)))) {
+                                        if ((IData)(
+                                                    ((0x2600000U 
+                                                      == 
+                                                      (0x3f00000U 
+                                                       & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) 
+                                                     & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req)))) {
+                                            vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel = 1U;
+                                        }
+                                    }
+                                }
+                                if (pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0) {
+                                    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel = 1U;
+                                }
+                            }
+                            if (pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0) {
+                                vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel = 1U;
+                            }
+                        }
+                        if (pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0) {
+                            vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel = 1U;
+                        }
+                    }
+                }
+            }
+            if (pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0) {
+                vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel = 1U;
+            }
+        }
+        if (pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0) {
+            vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel = 1U;
+        }
     }
+    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__store_req 
+        = ((IData)(pcore_tb__DOT__dut__DOT__mem_top_module__DOT____VdfgTmp_h951c8663__0) 
+           & (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+              >> 1U));
+    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__load_req 
+        = ((~ (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+               >> 1U)) & (IData)(pcore_tb__DOT__dut__DOT__mem_top_module__DOT____VdfgTmp_h951c8663__0));
+    pcore_tb__DOT__dut__DOT__clint_module__DOT____VdfgTmp_h7b251b97__0 
+        = (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel));
+    pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____VdfgTmp_hf58aaa35__0 
+        = (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[2U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[0U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[1U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[2U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[0U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[1U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[2U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[0U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[1U] = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[2U] = 0U;
+    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel)))) {
+        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel)))) {
+            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel)))) {
+                if (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel) 
+                     | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel))) {
+                    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+                        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U];
+                    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] 
+                        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U];
+                    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[2U] 
+                        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U];
+                }
+            }
+            if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel) {
+                vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[0U] 
+                    = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U];
+                vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[1U] 
+                    = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U];
+                vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[2U] 
+                    = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U];
+            }
+        }
+        if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel) {
+            vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[0U] 
+                = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U];
+            vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[1U] 
+                = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U];
+            vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[2U] 
+                = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U];
+        }
+    }
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus = 0ULL;
+    if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel) {
+        vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[0U] 
+            = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U];
+        vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[1U] 
+            = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U];
+        vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[2U] 
+            = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U];
+        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
+            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__gpio2dbus_ff;
+    } else if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel) {
+        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
+            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__gpio2dbus_ff;
+    } else if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel) {
+        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
+            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__gpio2dbus_ff;
+    } else if (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel) 
+                | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel))) {
+        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
+            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpio2dbus_ff;
+    }
+    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__n_state 
+        = ((0U == (IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state))
+            ? ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__store_req)
+                ? 1U : 0U) : ((1U == (IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state))
+                               ? 2U : 0U));
+    __Vtableidx3 = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__store_req) 
+                     << 2U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state));
+    vlSelf->pcore_tb__DOT__dut__DOT__store_busy = Vpcore_tb__ConstPool__TABLE_h64894f63_0
+        [__Vtableidx3];
+    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_read 
+        = Vpcore_tb__ConstPool__TABLE_h66910629_0[__Vtableidx3];
+    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_modify 
+        = Vpcore_tb__ConstPool__TABLE_hc2dc19fa_0[__Vtableidx3];
+    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_write 
+        = Vpcore_tb__ConstPool__TABLE_h006f755c_0[__Vtableidx3];
+    vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__r_req 
+        = ((~ (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+               >> 1U)) & (IData)(pcore_tb__DOT__dut__DOT__clint_module__DOT____VdfgTmp_h7b251b97__0));
+    vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__w_req 
+        = ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+            >> 1U) & (IData)(pcore_tb__DOT__dut__DOT__clint_module__DOT____VdfgTmp_h7b251b97__0));
+    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__reg_rd_req 
+        = ((~ (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+               >> 1U)) & (IData)(pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____VdfgTmp_hf58aaa35__0));
+    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__reg_wr_req 
+        = ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+            >> 1U) & (IData)(pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____VdfgTmp_hf58aaa35__0));
+    pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT____VdfgTmp_h32a1b980__0 
+        = (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel));
+    pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT____VdfgTmp_h2e79a1d4__0 
+        = (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[0U] 
+           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel));
+    pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT____VdfgTmp_h2e79a1d4__0 
+        = (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[0U] 
+           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel));
+    pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT____VdfgTmp_h2e79a1d4__0 
+        = (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[0U] 
+           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dmem_sel)
+            ? ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__load_req)
+                ? (1ULL | ((QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory
+                                           [(0x3fffffU 
+                                             & (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
+                                                >> 8U))])) 
+                           << 1U)) : 0ULL) : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel)
+                                               ? vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__clint2dbus_ff
+                                               : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel)
+                                                   ? vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic2dbus_ff
+                                                   : 
+                                                  ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__uart_sel)
+                                                    ? vlSelf->pcore_tb__DOT__dut__DOT__uart2dbus
+                                                    : 
+                                                   ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__spi_sel)
+                                                     ? vlSelf->pcore_tb__DOT__dut__DOT__spi2dbus
+                                                     : 
+                                                    (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel) 
+                                                      | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel) 
+                                                         | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel) 
+                                                            | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel) 
+                                                               | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel)))))
+                                                      ? vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus
+                                                      : 0ULL))))));
     vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__write_data 
-        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_read)
-            ? ((0x3fffffeU >= (0x3ffffffU & ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U] 
-                                              << 0x18U) 
-                                             | (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
-                                                >> 8U))))
-                ? vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory
-               [(0x3ffffffU & ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U] 
-                                << 0x18U) | (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
-                                             >> 8U)))]
-                : 0U) : 0U);
+        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__load_req)
+            ? 0U : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_read)
+                     ? vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory
+                    [(0x3fffffU & (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
+                                   >> 8U))] : 0U));
     __Vtemp_ha3c3e6fa__0 = ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U])
                              ? ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U])
                                  ? ((8U & vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U])
@@ -762,124 +498,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                                          : 0U))));
     vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__write_data 
         = __Vtemp_ha3c3e6fa__0;
-    pcore_tb__DOT__dut__DOT__clint_module__DOT____VdfgTmp_h7b251b97__0 
-        = (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
-           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[2U] = 0U;
-    pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____VdfgTmp_hf58aaa35__0 
-        = (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
-           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[0U] = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[1U] = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[2U] = 0U;
-    if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[0U] 
-            = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U];
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[1U] 
-            = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U];
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[2U] 
-            = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U];
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[0U] = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[1U] = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[2U] = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[0U] = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[1U] = 0U;
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[2U] = 0U;
-    if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel)))) {
-        if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel)))) {
-            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel)))) {
-                if (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel) 
-                     | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel))) {
-                    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-                        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U];
-                    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] 
-                        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U];
-                    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[2U] 
-                        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U];
-                }
-            }
-            if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel) {
-                vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[0U] 
-                    = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U];
-                vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[1U] 
-                    = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U];
-                vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[2U] 
-                    = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U];
-            }
-        }
-        if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel) {
-            vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[0U] 
-                = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U];
-            vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[1U] 
-                = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U];
-            vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[2U] 
-                = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U];
-        }
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__writeback_module__DOT__wrb_rd_data 
-        = ((8U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
-            ? ((4U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
-                ? 0U : ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
-                         ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_result_next
-                         : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__csr_rdata))
-            : ((4U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
-                ? ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
-                    ? ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
-                        << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U] 
-                                     >> 5U)) : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[2U] 
-                                                 << 0x1bU) 
-                                                | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
-                                                   >> 5U)))
-                : ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
-                    ? ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[3U] 
-                        << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[2U] 
-                                     >> 5U)) : 0U)));
-    pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h140467bf__0 
-        = (((0x1fU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
-                      >> 0x14U)) == (0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U])) 
-           & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl) 
-              & (0U != (0x1fU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
-                                 >> 0x14U)))));
-    pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hb3ea78f5__0 
-        = (((0x1fU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
-                      >> 0x19U)) == (0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U])) 
-           & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl) 
-              & (0U != (0x1fU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
-                                 >> 0x19U)))));
-    vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__r_req 
-        = ((~ (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
-               >> 1U)) & (IData)(pcore_tb__DOT__dut__DOT__clint_module__DOT____VdfgTmp_h7b251b97__0));
-    vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__w_req 
-        = ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
-            >> 1U) & (IData)(pcore_tb__DOT__dut__DOT__clint_module__DOT____VdfgTmp_h7b251b97__0));
-    pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT____VdfgTmp_h32a1b980__0 
-        = (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel));
-    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__reg_rd_req 
-        = ((~ (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
-               >> 1U)) & (IData)(pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____VdfgTmp_hf58aaa35__0));
-    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__reg_wr_req 
-        = ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
-            >> 1U) & (IData)(pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____VdfgTmp_hf58aaa35__0));
-    pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT____VdfgTmp_h2e79a1d4__0 
-        = (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[0U] 
-           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel));
-    pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT____VdfgTmp_h2e79a1d4__0 
-        = (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusB2gpio[0U] 
-           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel));
-    pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT____VdfgTmp_h2e79a1d4__0 
-        = (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[0U] 
-           & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe 
-        = (((IData)(pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h140467bf__0) 
-            << 3U) | (((IData)(pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hb3ea78f5__0) 
-                       << 2U) | ((((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_csr_req)) 
-                                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu2rs1_hazard)) 
-                                  << 1U) | ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_csr_req)) 
-                                            & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu2rs2_hazard)))));
     vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__r_data = 0U;
     if (vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__r_req) {
         vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__r_data 
@@ -935,12 +553,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
             vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__mtime_lo_wr_flag = 1U;
         }
     }
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_rd_req 
-        = ((~ (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-               >> 1U)) & (IData)(pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT____VdfgTmp_h32a1b980__0));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_wr_req 
-        = ((vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-            >> 1U) & (IData)(pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT____VdfgTmp_h32a1b980__0));
     vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__reg_r_data = 0U;
     vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__claim_req = 0U;
     if (vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__reg_rd_req) {
@@ -1153,6 +765,12 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                               >> 4U)));
         }
     }
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_rd_req 
+        = ((~ (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+               >> 1U)) & (IData)(pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT____VdfgTmp_h32a1b980__0));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_wr_req 
+        = ((vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+            >> 1U) & (IData)(pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT____VdfgTmp_h32a1b980__0));
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_rd_req 
         = ((~ (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[0U] 
                >> 1U)) & (IData)(pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT____VdfgTmp_h2e79a1d4__0));
@@ -1171,22 +789,114 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_wr_req 
         = ((vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusC2gpio[0U] 
             >> 1U) & (IData)(pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT____VdfgTmp_h2e79a1d4__0));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs2_data 
-        = ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe))
-            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U]
-            : ((4U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe))
-                ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__writeback_module__DOT__wrb_rd_data
-                : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[5U] 
-                    << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[4U] 
-                                 >> 5U))));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs1_data 
-        = ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe))
-            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U]
-            : ((8U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe))
-                ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__writeback_module__DOT__wrb_rd_data
-                : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[6U] 
-                    << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[5U] 
-                                 >> 5U))));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_data[0U] 
+        = (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                   >> 1U));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_data[1U] 
+        = (IData)((((QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U])) 
+                    << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_data[2U] 
+        = (IData)(((((QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U])) 
+                     << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))) 
+                   >> 0x20U));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_save = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2fwd 
+        = ((0xf8U & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                     >> 0xcU)) | ((4U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff) 
+                                  | (((IData)(vlSelf->__VdfgTmp_h240225d2__0) 
+                                      << 1U) | (1U 
+                                                & ((0U 
+                                                    != 
+                                                    (0xfU 
+                                                     & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                                                        >> 3U)))
+                                                    ? (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_done)
+                                                    : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))))));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_word = 0U;
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword = 0U;
+    if ((0x800U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
+        if ((1U & (~ (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                      >> 0xaU)))) {
+            if ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
+                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_word 
+                    = (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                               >> 1U));
+            }
+            if ((1U & (~ (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                          >> 9U)))) {
+                if ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) {
+                    if ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) {
+                        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword 
+                            = (0xffffU & (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                                  >> 0x11U)));
+                    }
+                } else {
+                    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword 
+                        = (0xffffU & (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                              >> 1U)));
+                }
+            }
+        }
+    } else if ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
+        if ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
+            if ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) {
+                if ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])) {
+                    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword 
+                        = (0xffffU & (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                              >> 0x11U)));
+                }
+            } else {
+                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword 
+                    = (0xffffU & (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                          >> 1U)));
+            }
+        }
+    }
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte = 0U;
+    if ((1U & (~ (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                  >> 0xbU)))) {
+        if ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
+            if ((1U & (~ (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                          >> 9U)))) {
+                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte 
+                    = (0xffU & ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
+                                 ? ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
+                                     ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                                >> 0x19U))
+                                     : (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                                >> 0x11U)))
+                                 : ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
+                                     ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                                >> 9U))
+                                     : (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                                >> 1U)))));
+            }
+        } else if ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) {
+            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte 
+                = (0xffU & ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
+                             ? ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
+                                 ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                            >> 0x19U))
+                                 : (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                            >> 0x11U)))
+                             : ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2dbus[1U])
+                                 ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                            >> 9U))
+                                 : (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                                            >> 1U)))));
+        }
+    }
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
+        = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__ld_req) 
+            & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))
+            ? (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
+                       >> 1U)) : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a_ff);
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_ctrl 
+        = ((0x78U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff) 
+           | (((IData)((0U != (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                                       >> 3U)))) << 2U) 
+              | (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_flush) 
+                  << 1U) | (1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu)))));
     vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__mtimecmp_next 
         = vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__mtimecmp_ff;
     if (vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__mtimecmp_lo_wr_flag) {
@@ -1218,23 +928,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                                     << 0x1aU) | (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
                                                  >> 6U)))) 
                   << 0x20U));
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_r_data = 0U;
-    if (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_rd_req) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_r_data 
-            = ((4U == (0xffU & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] 
-                                >> 6U))) ? (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_sw_data_ff)
-                : ((0U == (0xffU & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] 
-                                    >> 6U))) ? (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff)
-                    : 0U));
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpled_sel_data = 0U;
-    if (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_wr_req) 
-         & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpio2dbus_ff)))) {
-        if ((0U == (0xffU & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] 
-                             >> 6U)))) {
-            vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpled_sel_data = 1U;
-        }
     }
     vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic_reg_ie_next 
         = ((0xcU & (((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__ie_reg_wr_flag))
@@ -1314,6 +1007,23 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
         = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__claim_req) 
             << 6U) | (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__complete_req) 
                        << 4U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__complete_idx)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_r_data = 0U;
+    if (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_rd_req) {
+        vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_r_data 
+            = ((4U == (0xffU & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] 
+                                >> 6U))) ? (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_sw_data_ff)
+                : ((0U == (0xffU & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] 
+                                    >> 6U))) ? (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff)
+                    : 0U));
+    }
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpled_sel_data = 0U;
+    if (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_wr_req) 
+         & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpio2dbus_ff)))) {
+        if ((0U == (0xffU & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[1U] 
+                             >> 6U)))) {
+            vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpled_sel_data = 1U;
+        }
+    }
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_r_data = 0U;
     if (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_rd_req) {
         vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_r_data 
@@ -1473,97 +1183,28 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
             vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__gpio_sel_data = 1U;
         }
     }
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2 
-        = ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U])
-            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs2_data
-            : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[1U] 
-                << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[0U] 
-                             >> 5U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__cmp_operand_2 
-        = ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U])
-            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs2_data
-            : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[1U] 
-                << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[0U] 
-                             >> 5U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1 
-        = ((0x800U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U])
-            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs1_data
-            : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
-                << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[2U] 
-                             >> 5U)));
-    if (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_stall) {
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_next 
-            = (7U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_ff));
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_sign_next 
-            = (1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_sign_ff));
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_next 
-            = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_ff;
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_sign_next 
-            = (1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_sign_ff));
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_next 
-            = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_ff;
-    } else {
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_next 
-            = (7U & ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[2U] 
-                      << 2U) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[1U] 
-                                >> 0x1eU)));
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_sign_next 
-            = (1U & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2 
-                     >> 0x1fU));
-        if (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT____VdfgExtracted_hc559d527__1) {
-            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_next 
-                = ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2 
-                    >> 0x1fU) ? ((IData)(1U) + (~ vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2))
-                    : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2);
-            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_next 
-                = ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1 
-                    >> 0x1fU) ? ((IData)(1U) + (~ vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1))
-                    : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1);
-        } else {
-            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_next 
-                = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2;
-            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_next 
-                = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1;
-        }
-        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_sign_next 
-            = (1U & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1 
-                     >> 0x1fU));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_next 
+        = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_ff;
+    if ((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2fwd) 
+               | (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__store_busy))))) {
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_next = 0U;
+    } else if ((1U & (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2fwd) 
+                       >> 1U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__store_busy)))) {
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_next = 1U;
     }
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_next 
-        = (0xffffU & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpled_sel_data)
-                       ? ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
-                           ? ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
-                               ? ((8U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
-                                   ? ((4U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
-                                       ? ((vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-                                           << 0x1aU) 
-                                          | (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-                                             >> 6U))
-                                       : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff))
-                                   : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff))
-                               : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff))
-                           : ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
-                               ? (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff)
-                               : ((8U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
-                                   ? ((4U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
-                                       ? ((vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-                                           << 0x1aU) 
-                                          | (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-                                             >> 6U))
-                                       : ((0xff00U 
-                                           & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-                                              >> 5U)) 
-                                          | (0xffU 
-                                             & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff))))
-                                   : ((4U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
-                                       ? ((0xff00U 
-                                           & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff) 
-                                              << 1U)) 
-                                          | (0xffU 
-                                             & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
-                                                >> 6U)))
-                                       : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff)))))
-                       : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff)));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_slt_b 
+        = VL_LTS_III(32, vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a, 
+                     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]);
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_uslt_b 
+        = (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
+           < vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]);
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__sc_pass 
+        = (IData)((((0x10U == (0x78U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)) 
+                    & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_reserve_ff)) 
+                   & ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_buffer_addr_ff 
+                       == vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U]) 
+                      & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_buffer_data_ff 
+                         == vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a))));
     vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__complete = 0U;
     if ((((IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__regs2gateway) 
           >> 4U) & (0U != (3U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__complete_idx))))) {
@@ -1600,6 +1241,41 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                                                 >> 2U)) 
                                               - (IData)(1U))))));
     }
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_next 
+        = (0xffffU & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpled_sel_data)
+                       ? ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
+                           ? ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
+                               ? ((8U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
+                                   ? ((4U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
+                                       ? ((vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+                                           << 0x1aU) 
+                                          | (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+                                             >> 6U))
+                                       : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff))
+                                   : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff))
+                               : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff))
+                           : ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
+                               ? (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff)
+                               : ((8U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
+                                   ? ((4U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
+                                       ? ((vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+                                           << 0x1aU) 
+                                          | (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+                                             >> 6U))
+                                       : ((0xff00U 
+                                           & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+                                              >> 5U)) 
+                                          | (0xffU 
+                                             & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff))))
+                                   : ((4U & vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U])
+                                       ? ((0xff00U 
+                                           & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff) 
+                                              << 1U)) 
+                                          | (0xffU 
+                                             & (vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusSP2gpio[0U] 
+                                                >> 6U)))
+                                       : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff)))))
+                       : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_led_data_ff)));
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_next 
         = (0xffU & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__gpio_sel_int_lvl)
                      ? ((vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__dbusA2gpio[0U] 
@@ -1858,6 +1534,441 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                                             >> 7U))
                          : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpioC_io) 
                             >> 7U)) << 7U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_stall 
+        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__div_stall_next) 
+           | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_stall_next));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_result 
+        = ((0x40U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+            ? ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]
+                : ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                    ? ((8U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                        ? ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_uslt_b)
+                            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]
+                            : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a)
+                        : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_uslt_b)
+                            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a
+                            : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))
+                    : ((8U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                        ? ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_slt_b)
+                            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]
+                            : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a)
+                        : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__a_slt_b)
+                            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a
+                            : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))))
+            : ((0x20U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                ? ((0x10U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                    ? ((8U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                        ? (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
+                           | vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U])
+                        : (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
+                           & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))
+                    : ((8U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                        ? (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
+                           ^ vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U])
+                        : (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a 
+                           + vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U])))
+                : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next = 0U;
+    if ((4U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
+        if ((1U & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state) 
+                      >> 1U)))) {
+            if ((1U & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state)))) {
+                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next = 0U;
+            }
+        }
+    } else if ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next 
+            = ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))
+                ? ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))
+                    ? 4U : 3U) : (((1U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                                                   >> 3U))) 
+                                   | ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__sc_pass)) 
+                                      & (0x10U == (0x78U 
+                                                   & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff))))
+                                   ? 4U : 3U));
+    } else if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next 
+            = ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))
+                ? 2U : 1U);
+    } else if ((0U != (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                               >> 3U)))) {
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next = 1U;
+    }
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U] 
+        = (0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U]);
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
+        = (0xffffffe0U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U]);
+    if (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_done) {
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U] 
+            = ((0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U]) 
+               | (((2U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                                   >> 3U))) ? (1U & 
+                                               (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__sc_pass)))
+                    : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a) 
+                  << 5U));
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
+            = ((0xffffffe0U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U]) 
+               | (((2U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                                   >> 3U))) ? (1U & 
+                                               (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__sc_pass)))
+                    : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_operand_a) 
+                  >> 0x1bU));
+    } else if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))) {
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U] 
+            = ((0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U]) 
+               | (((0x800U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                    ? ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                        ? 0U : ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                                 ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_word
+                                 : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword)))
+                    : ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                        ? ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                            ? (((- (IData)((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword) 
+                                                  >> 0xfU)))) 
+                                << 0x10U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword))
+                            : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte))
+                        : ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                            ? (((- (IData)((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte) 
+                                                  >> 7U)))) 
+                                << 8U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte))
+                            : 0U))) << 5U));
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
+            = ((0xffffffe0U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U]) 
+               | (((0x800U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                    ? ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                        ? 0U : ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                                 ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_word
+                                 : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword)))
+                    : ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                        ? ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                            ? (((- (IData)((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword) 
+                                                  >> 0xfU)))) 
+                                << 0x10U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_hword))
+                            : (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte))
+                        : ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff)
+                            ? (((- (IData)((1U & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte) 
+                                                  >> 7U)))) 
+                                << 8U) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__rdata_byte))
+                            : 0U))) >> 0x1bU));
+    }
+    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_set_active 
+        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__irq_uart) 
+           & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_active_ff)));
+    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_active_next 
+        = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_active_ff) 
+            | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_set_active)) 
+           & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__complete)));
+    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_set_pending 
+        = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__irq_uart) 
+            & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_active_ff))) 
+           & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_pending_ff)));
+    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_pending_next 
+        = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_pending_ff) 
+            | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_set_pending)) 
+           & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__claim)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
+        = ((0xfeU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
+           | (1U & ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff)) 
+                    & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
+                          ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff))))));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
+        = ((0xfdU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
+           | (2U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
+                         >> 1U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
+                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
+                                       >> 1U))) << 1U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
+        = ((0xfbU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
+           | (4U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
+                         >> 2U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
+                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
+                                       >> 2U))) << 2U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
+        = ((0xf7U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
+           | (8U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
+                         >> 3U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
+                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
+                                       >> 3U))) << 3U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
+        = ((0xefU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
+           | (0x10U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
+                            >> 4U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
+                                          >> 4U))) 
+                       << 4U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
+        = ((0xdfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
+           | (0x20U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
+                            >> 5U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
+                                          >> 5U))) 
+                       << 5U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
+        = ((0xbfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
+           | (0x40U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
+                            >> 6U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
+                                          >> 6U))) 
+                       << 6U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
+        = ((0x7fU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
+           | (0x80U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
+                            >> 7U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
+                                          >> 7U))) 
+                       << 7U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
+        = ((0xfeU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
+           | (1U & ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff)) 
+                    & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
+                          ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff))))));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
+        = ((0xfdU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
+           | (2U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
+                         >> 1U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
+                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
+                                       >> 1U))) << 1U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
+        = ((0xfbU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
+           | (4U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
+                         >> 2U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
+                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
+                                       >> 2U))) << 2U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
+        = ((0xf7U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
+           | (8U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
+                         >> 3U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
+                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
+                                       >> 3U))) << 3U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
+        = ((0xefU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
+           | (0x10U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
+                            >> 4U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
+                                          >> 4U))) 
+                       << 4U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
+        = ((0xdfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
+           | (0x20U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
+                            >> 5U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
+                                          >> 5U))) 
+                       << 5U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
+        = ((0xbfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
+           | (0x40U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
+                            >> 6U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
+                                          >> 6U))) 
+                       << 6U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
+        = ((0x7fU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
+           | (0x80U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
+                            >> 7U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
+                                          >> 7U))) 
+                       << 7U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
+        = ((0xfeU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
+           | (1U & ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff)) 
+                    & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
+                          ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff))))));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
+        = ((0xfdU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
+           | (2U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
+                         >> 1U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
+                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
+                                       >> 1U))) << 1U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
+        = ((0xfbU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
+           | (4U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
+                         >> 2U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
+                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
+                                       >> 2U))) << 2U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
+        = ((0xf7U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
+           | (8U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
+                         >> 3U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
+                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
+                                       >> 3U))) << 3U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
+        = ((0xefU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
+           | (0x10U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
+                            >> 4U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
+                                          >> 4U))) 
+                       << 4U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
+        = ((0xdfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
+           | (0x20U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
+                            >> 5U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
+                                          >> 5U))) 
+                       << 5U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
+        = ((0xbfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
+           | (0x40U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
+                            >> 6U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
+                                          >> 6U))) 
+                       << 6U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
+        = ((0x7fU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
+           | (0x80U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
+                            >> 7U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
+                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
+                                          >> 7U))) 
+                       << 7U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__ld_use_hazard 
+        = ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_stall)) 
+           & (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu2rs1_hazard) 
+               & ((IData)((0U != (0x802U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U]))) 
+                  & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_csr_req))) 
+              | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu2rs2_hazard) 
+                 & ((IData)((0U != (0x3000402U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U]))) 
+                    & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_csr_req)))));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__w_data = 0U;
+    if ((1U & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state) 
+                  >> 2U)))) {
+        if ((1U & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state) 
+                      >> 1U)))) {
+            if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
+                if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu))) {
+                    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_save 
+                        = (1U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                                          >> 3U)));
+                }
+            }
+        }
+        if ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
+            if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state))) {
+                vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__w_data 
+                    = ((2U == (0xfU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_ctrl_pipe_ff 
+                                       >> 3U))) ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]
+                        : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__amo_result);
+            }
+        }
+    }
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__writeback_module__DOT__wrb_rd_data 
+        = ((8U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
+            ? ((4U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
+                ? 0U : ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
+                         ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_result_next
+                         : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__csr_rdata))
+            : ((4U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
+                ? ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
+                    ? ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
+                        << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U] 
+                                     >> 5U)) : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[2U] 
+                                                 << 0x1bU) 
+                                                | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[1U] 
+                                                   >> 5U)))
+                : ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl))
+                    ? ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[3U] 
+                        << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[2U] 
+                                     >> 5U)) : 0U)));
+    pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h140467bf__0 
+        = (((0x1fU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
+                      >> 0x14U)) == (0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U])) 
+           & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl) 
+              & (0U != (0x1fU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
+                                 >> 0x14U)))));
+    pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hb3ea78f5__0 
+        = (((0x1fU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
+                      >> 0x19U)) == (0x1fU & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_data[0U])) 
+           & ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2wrb_ctrl) 
+              & (0U != (0x1fU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
+                                 >> 0x19U)))));
+    __VdfgTmp_hc9213adb__0 = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__ld_use_hazard) 
+                              | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_flush));
+    pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0 
+        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__ld_use_hazard) 
+           | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_stall));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe 
+        = (((IData)(pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h140467bf__0) 
+            << 3U) | (((IData)(pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hb3ea78f5__0) 
+                       << 2U) | ((((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_csr_req)) 
+                                   & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu2rs1_hazard)) 
+                                  << 1U) | ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_csr_req)) 
+                                            & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu2rs2_hazard)))));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT____Vcellinp__divide_module__fwd2div_flush_i 
+        = ((IData)(__VdfgTmp_hc9213adb__0) | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__m_mode_irq_req));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__if_id_exe_stall 
+        = ((IData)(pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0) 
+           | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__store_busy));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs2_data 
+        = ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe))
+            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U]
+            : ((4U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe))
+                ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__writeback_module__DOT__wrb_rd_data
+                : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[5U] 
+                    << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[4U] 
+                                 >> 5U))));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs1_data 
+        = ((2U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe))
+            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U]
+            : ((8U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe))
+                ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__writeback_module__DOT__wrb_rd_data
+                : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[6U] 
+                    << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[5U] 
+                                 >> 5U))));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2 
+        = ((0x400U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U])
+            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs2_data
+            : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[1U] 
+                << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[0U] 
+                             >> 5U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__cmp_operand_2 
+        = ((0x200U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U])
+            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs2_data
+            : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[1U] 
+                << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[0U] 
+                             >> 5U)));
+    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1 
+        = ((0x800U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U])
+            ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__operand_rs1_data
+            : ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[3U] 
+                << 0x1bU) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_data[2U] 
+                             >> 5U)));
+    if (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_stall) {
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_next 
+            = (7U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_ff));
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_sign_next 
+            = (1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_sign_ff));
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_next 
+            = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_ff;
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_sign_next 
+            = (1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_sign_ff));
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_next 
+            = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_ff;
+    } else {
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_next 
+            = (7U & ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[2U] 
+                      << 2U) | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[1U] 
+                                >> 0x1eU)));
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_sign_next 
+            = (1U & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2 
+                     >> 0x1fU));
+        if (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT____VdfgExtracted_hc559d527__1) {
+            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_next 
+                = ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2 
+                    >> 0x1fU) ? ((IData)(1U) + (~ vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2))
+                    : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2);
+            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_next 
+                = ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1 
+                    >> 0x1fU) ? ((IData)(1U) + (~ vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1))
+                    : vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1);
+        } else {
+            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_next 
+                = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2;
+            vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_next 
+                = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1;
+        }
+        vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_sign_next 
+            = (1U & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1 
+                     >> 0x1fU));
+    }
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2_rev 
         = ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2 
             << 0x1fU) | ((0x40000000U & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2 
@@ -2064,174 +2175,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                                                                                 >> 0x1dU)) 
                                                                                 | (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1 
                                                                                 >> 0x1fU))))))))))))))))))))))))))))))));
-    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_set_active 
-        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__irq_uart) 
-           & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_active_ff)));
-    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_active_next 
-        = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_active_ff) 
-            | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_set_active)) 
-           & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__complete)));
-    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_set_pending 
-        = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__irq_uart) 
-            & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_active_ff))) 
-           & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_pending_ff)));
-    vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_pending_next 
-        = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_pending_ff) 
-            | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__irq_set_pending)) 
-           & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_gateway_module__DOT__claim)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
-        = ((0xfeU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
-           | (1U & ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff)) 
-                    & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
-                          ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff))))));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
-        = ((0xfdU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
-           | (2U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
-                         >> 1U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
-                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
-                                       >> 1U))) << 1U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
-        = ((0xfbU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
-           | (4U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
-                         >> 2U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
-                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
-                                       >> 2U))) << 2U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
-        = ((0xf7U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
-           | (8U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
-                         >> 3U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
-                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
-                                       >> 3U))) << 3U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
-        = ((0xefU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
-           | (0x10U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
-                            >> 4U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
-                                          >> 4U))) 
-                       << 4U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
-        = ((0xdfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
-           | (0x20U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
-                            >> 5U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
-                                          >> 5U))) 
-                       << 5U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
-        = ((0xbfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
-           | (0x40U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
-                            >> 6U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
-                                          >> 6U))) 
-                       << 6U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next 
-        = ((0x7fU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_ip_next)) 
-           | (0x80U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_dir_ff) 
-                            >> 7U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_int_lvl_ff)) 
-                                          >> 7U))) 
-                       << 7U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
-        = ((0xfeU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
-           | (1U & ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff)) 
-                    & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
-                          ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff))))));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
-        = ((0xfdU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
-           | (2U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
-                         >> 1U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
-                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
-                                       >> 1U))) << 1U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
-        = ((0xfbU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
-           | (4U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
-                         >> 2U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
-                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
-                                       >> 2U))) << 2U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
-        = ((0xf7U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
-           | (8U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
-                         >> 3U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
-                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
-                                       >> 3U))) << 3U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
-        = ((0xefU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
-           | (0x10U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
-                            >> 4U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
-                                          >> 4U))) 
-                       << 4U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
-        = ((0xdfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
-           | (0x20U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
-                            >> 5U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
-                                          >> 5U))) 
-                       << 5U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
-        = ((0xbfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
-           | (0x40U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
-                            >> 6U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
-                                          >> 6U))) 
-                       << 6U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next 
-        = ((0x7fU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ip_next)) 
-           | (0x80U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff) 
-                            >> 7U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff)) 
-                                          >> 7U))) 
-                       << 7U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
-        = ((0xfeU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
-           | (1U & ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff)) 
-                    & (~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
-                          ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff))))));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
-        = ((0xfdU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
-           | (2U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
-                         >> 1U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
-                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
-                                       >> 1U))) << 1U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
-        = ((0xfbU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
-           | (4U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
-                         >> 2U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
-                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
-                                       >> 2U))) << 2U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
-        = ((0xf7U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
-           | (8U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
-                         >> 3U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
-                                        ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
-                                       >> 3U))) << 3U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
-        = ((0xefU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
-           | (0x10U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
-                            >> 4U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
-                                          >> 4U))) 
-                       << 4U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
-        = ((0xdfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
-           | (0x20U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
-                            >> 5U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
-                                          >> 5U))) 
-                       << 5U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
-        = ((0xbfU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
-           | (0x40U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
-                            >> 6U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
-                                          >> 6U))) 
-                       << 6U)));
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next 
-        = ((0x7fU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_ip_next)) 
-           | (0x80U & (((~ ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff) 
-                            >> 7U)) & (~ (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_data_next) 
-                                           ^ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_int_lvl_ff)) 
-                                          >> 7U))) 
-                       << 7U)));
     if (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT____VdfgTmp_h267a80af__0) {
         vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__clmul_operand_2 
             = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2_rev;
@@ -2309,7 +2252,7 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                         ? vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_adder_output
                         : 0U))));
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__exe_new_pc_req 
-        = (1U & ((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0)) 
+        = (1U & ((~ (IData)(pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0)) 
                  & ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U] 
                      >> 2U) | ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U] 
                                 >> 1U) & ((0x800000U 
@@ -3297,7 +3240,7 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
                                              << 5U) 
                                             | (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__lsu_div_stall) 
                                                 << 4U) 
-                                               | (((IData)(vlSelf->__VdfgTmp_hc9213adb__0) 
+                                               | (((IData)(__VdfgTmp_hc9213adb__0) 
                                                    << 3U) 
                                                   | (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__m_mode_irq_req) 
                                                       << 2U) 
@@ -4054,10 +3997,10 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* v
     }
 }
 
-VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__2(Vpcore_tb___024root* vlSelf) {
+VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__0(Vpcore_tb___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_comb__TOP__2\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___act_comb__TOP__0\n"); );
     // Body
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__if2id_data[0U] 
         = ((((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__is_jal)
@@ -4072,22 +4015,22 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__2(Vpcore_tb___024root* v
             >> 0x1bU) | ((IData)((((QData)((IData)(
                                                    ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__irq_req_next)
                                                      ? 0x13U
-                                                     : vlSelf->__VdfgTmp_h72333958__0))) 
+                                                     : vlSelf->__VdfgTmp_h409023d6__0))) 
                                    << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff)))) 
                          << 5U));
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__if2id_data[2U] 
         = (((IData)((((QData)((IData)(((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__irq_req_next)
-                                        ? 0x13U : vlSelf->__VdfgTmp_h72333958__0))) 
+                                        ? 0x13U : vlSelf->__VdfgTmp_h409023d6__0))) 
                       << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff)))) 
             >> 0x1bU) | ((IData)(((((QData)((IData)(
                                                     ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__irq_req_next)
                                                       ? 0x13U
-                                                      : vlSelf->__VdfgTmp_h72333958__0))) 
+                                                      : vlSelf->__VdfgTmp_h409023d6__0))) 
                                     << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff))) 
                                   >> 0x20U)) << 5U));
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__if2id_data[3U] 
         = ((IData)(((((QData)((IData)(((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__irq_req_next)
-                                        ? 0x13U : vlSelf->__VdfgTmp_h72333958__0))) 
+                                        ? 0x13U : vlSelf->__VdfgTmp_h409023d6__0))) 
                       << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff))) 
                     >> 0x20U)) >> 0x1bU);
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__is_jal 
@@ -4137,18 +4080,18 @@ VL_INLINE_OPT void Vpcore_tb___024root___act_comb__TOP__2(Vpcore_tb___024root* v
         vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_next 
             = (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff 
                + (((- (IData)(((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__irq_req_next)) 
-                               & (vlSelf->__VdfgTmp_h72333958__0 
+                               & (vlSelf->__VdfgTmp_h409023d6__0 
                                   >> 0x1fU)))) << 0x14U) 
                   | ((((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__irq_req_next)
-                        ? 0U : (0xffU & (vlSelf->__VdfgTmp_h72333958__0 
+                        ? 0U : (0xffU & (vlSelf->__VdfgTmp_h409023d6__0 
                                          >> 0xcU))) 
                       << 0xcU) | ((0x800U & (((~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__irq_req_next)) 
                                               << 0xbU) 
-                                             & (vlSelf->__VdfgTmp_h72333958__0 
+                                             & (vlSelf->__VdfgTmp_h409023d6__0 
                                                 >> 9U))) 
                                   | (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__irq_req_next)
                                        ? 0U : (0x3ffU 
-                                               & (vlSelf->__VdfgTmp_h72333958__0 
+                                               & (vlSelf->__VdfgTmp_h409023d6__0 
                                                   >> 0x15U))) 
                                      << 1U)))));
     }
@@ -4159,49 +4102,12 @@ void Vpcore_tb___024root___eval_act(Vpcore_tb___024root* vlSelf) {
     Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___eval_act\n"); );
     // Body
-    if (vlSelf->__VactTriggered.at(8U)) {
+    if (vlSelf->__VactTriggered.at(1U)) {
         Vpcore_tb___024root___act_sequent__TOP__0(vlSelf);
-    }
-    if (vlSelf->__VactTriggered.at(9U)) {
-        Vpcore_tb___024root___act_sequent__TOP__1(vlSelf);
-    }
-    if (vlSelf->__VactTriggered.at(6U)) {
-        Vpcore_tb___024root___act_sequent__TOP__2(vlSelf);
-    }
-    if (vlSelf->__VactTriggered.at(7U)) {
-        Vpcore_tb___024root___act_sequent__TOP__3(vlSelf);
-    }
-    if (vlSelf->__VactTriggered.at(2U)) {
-        Vpcore_tb___024root___act_sequent__TOP__4(vlSelf);
-    }
-    if (vlSelf->__VactTriggered.at(3U)) {
-        Vpcore_tb___024root___act_sequent__TOP__5(vlSelf);
-    }
-    if (vlSelf->__VactTriggered.at(4U)) {
-        Vpcore_tb___024root___act_sequent__TOP__6(vlSelf);
-    }
-    if (vlSelf->__VactTriggered.at(5U)) {
-        Vpcore_tb___024root___act_sequent__TOP__7(vlSelf);
-    }
-    if (((((vlSelf->__VactTriggered.at(1U) | vlSelf->__VactTriggered.at(2U)) 
-           | vlSelf->__VactTriggered.at(3U)) | vlSelf->__VactTriggered.at(4U)) 
-         | vlSelf->__VactTriggered.at(5U))) {
-        Vpcore_tb___024root___act_comb__TOP__0(vlSelf);
-    }
-    if (((((((((vlSelf->__VactTriggered.at(1U) | vlSelf->__VactTriggered.at(2U)) 
-               | vlSelf->__VactTriggered.at(3U)) | vlSelf->__VactTriggered.at(4U)) 
-             | vlSelf->__VactTriggered.at(5U)) | vlSelf->__VactTriggered.at(6U)) 
-           | vlSelf->__VactTriggered.at(7U)) | vlSelf->__VactTriggered.at(8U)) 
-         | vlSelf->__VactTriggered.at(9U))) {
-        Vpcore_tb___024root___act_comb__TOP__1(vlSelf);
         vlSelf->__Vm_traceActivity[1U] = 1U;
     }
-    if ((((((((((vlSelf->__VactTriggered.at(0U) | vlSelf->__VactTriggered.at(1U)) 
-                | vlSelf->__VactTriggered.at(2U)) | vlSelf->__VactTriggered.at(3U)) 
-              | vlSelf->__VactTriggered.at(4U)) | vlSelf->__VactTriggered.at(5U)) 
-            | vlSelf->__VactTriggered.at(6U)) | vlSelf->__VactTriggered.at(7U)) 
-          | vlSelf->__VactTriggered.at(8U)) | vlSelf->__VactTriggered.at(9U))) {
-        Vpcore_tb___024root___act_comb__TOP__2(vlSelf);
+    if ((vlSelf->__VactTriggered.at(0U) | vlSelf->__VactTriggered.at(1U))) {
+        Vpcore_tb___024root___act_comb__TOP__0(vlSelf);
         vlSelf->__Vm_traceActivity[2U] = 1U;
     }
 }
@@ -4232,7 +4138,7 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__0(Vpcore_tb___024root
     __Vdly__pcore_tb__DOT__dut__DOT__clint_module__DOT__clint2dbus_ff = 0;
     QData/*32:0*/ __Vdly__pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic2dbus_ff;
     __Vdly__pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic2dbus_ff = 0;
-    IData/*25:0*/ __Vdlyvdim0__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0;
+    IData/*21:0*/ __Vdlyvdim0__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0;
     __Vdlyvdim0__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 = 0;
     IData/*31:0*/ __Vdlyvval__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0;
     __Vdlyvval__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 = 0;
@@ -4284,7 +4190,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__0(Vpcore_tb___024root
     __Vdly__pcore_tb__DOT__main_time[0x1dU] = vlSelf->pcore_tb__DOT__main_time[0x1dU];
     __Vdly__pcore_tb__DOT__main_time[0x1eU] = vlSelf->pcore_tb__DOT__main_time[0x1eU];
     __Vdly__pcore_tb__DOT__main_time[0x1fU] = vlSelf->pcore_tb__DOT__main_time[0x1fU];
-    __Vdlyvset__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 = 0U;
     __Vdly__pcore_tb__DOT__dut__DOT__m_7segcon1__DOT__r_digit 
         = vlSelf->pcore_tb__DOT__dut__DOT__m_7segcon1__DOT__r_digit;
     __Vdly__pcore_tb__DOT__dut__DOT__m_7segcon1__DOT__r_cnt 
@@ -4301,6 +4206,26 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__0(Vpcore_tb___024root
         = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__gpio2dbus_ff;
     __Vdly__pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic2dbus_ff 
         = vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic2dbus_ff;
+    if (VL_UNLIKELY((((0x1ffe68U == ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U] 
+                                      << 0x1aU) | (
+                                                   vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
+                                                   >> 6U))) 
+                      & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_write)) 
+                     & (0U != vlSelf->pcore_tb__DOT__write_sig)))) {
+        VL_FWRITEF(vlSelf->pcore_tb__DOT__write_sig,"%x\n",
+                   32,((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
+                        << 0x1aU) | (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[0U] 
+                                     >> 6U)));
+    } else if (VL_UNLIKELY(((0x1ffe6cU == ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U] 
+                                            << 0x1aU) 
+                                           | (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
+                                              >> 6U))) 
+                            & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_write)))) {
+        VL_WRITEF("Test Complete\n");
+        VL_FCLOSE_I(vlSelf->pcore_tb__DOT__write_sig); vlSelf->pcore_tb__DOT__write_sig = 0;
+        VL_FINISH_MT("../bench/pcore_tb.sv", 116, "");
+    }
+    __Vdlyvset__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 = 0U;
     if (VL_LIKELY(VL_LT_W(32, vlSelf->pcore_tb__DOT__main_time, vlSelf->pcore_tb__DOT__max_cycles))) {
         VL_ADD_W(32, __Vtemp_hdc3b4b5e__0, Vpcore_tb__ConstPool__CONST_h2ae7f32a_0, vlSelf->pcore_tb__DOT__main_time);
         __Vdly__pcore_tb__DOT__main_time[0U] = __Vtemp_hdc3b4b5e__0[0U];
@@ -4339,22 +4264,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__0(Vpcore_tb___024root
         VL_WRITEF("Timeout: Exiting after %0# cycles\n\n",
                   1024,vlSelf->pcore_tb__DOT__main_time.data());
         VL_FINISH_MT("../bench/pcore_tb.sv", 71, "");
-    }
-    if (vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_write) {
-        vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT____Vlvbound_hb8f82ae6__0 
-            = vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__write_data;
-        if ((0x3fffffeU >= (0x3ffffffU & ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U] 
-                                           << 0x18U) 
-                                          | (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
-                                             >> 8U))))) {
-            __Vdlyvval__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 
-                = vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT____Vlvbound_hb8f82ae6__0;
-            __Vdlyvset__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 = 1U;
-            __Vdlyvdim0__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 
-                = (0x3ffffffU & ((vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[2U] 
-                                  << 0x18U) | (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
-                                               >> 8U)));
-        }
     }
     __Vdly__pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpio2dbus_ff = 0ULL;
     if ((((IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_wr_req) 
@@ -4433,6 +4342,14 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__0(Vpcore_tb___024root
                    | ((QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__reg_r_data)) 
                       << 1U));
         }
+    }
+    if (vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_write) {
+        __Vdlyvval__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 
+            = vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__write_data;
+        __Vdlyvset__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 = 1U;
+        __Vdlyvdim0__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0 
+            = (0x3fffffU & (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri[1U] 
+                            >> 8U));
     }
     vlSelf->pcore_tb__DOT__r_sg = vlSelf->pcore_tb__DOT__dut__DOT__w_sg;
     vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__genblk1__BRA__1__KET____DOT__plic_target_module__DOT__irq_req_ff 
@@ -4665,10 +4582,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__0(Vpcore_tb___024root
     vlSelf->pcore_tb__DOT__main_time[0x1dU] = __Vdly__pcore_tb__DOT__main_time[0x1dU];
     vlSelf->pcore_tb__DOT__main_time[0x1eU] = __Vdly__pcore_tb__DOT__main_time[0x1eU];
     vlSelf->pcore_tb__DOT__main_time[0x1fU] = __Vdly__pcore_tb__DOT__main_time[0x1fU];
-    if (__Vdlyvset__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0) {
-        vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory[__Vdlyvdim0__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0] 
-            = __Vdlyvval__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0;
-    }
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpio2dbus_ff 
         = __Vdly__pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpio2dbus_ff;
     vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__clint2dbus_ff 
@@ -4681,6 +4594,10 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__0(Vpcore_tb___024root
         = __Vdly__pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__gpio2dbus_ff;
     vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic2dbus_ff 
         = __Vdly__pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic2dbus_ff;
+    if (__Vdlyvset__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0) {
+        vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory[__Vdlyvdim0__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0] 
+            = __Vdlyvval__pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory__v0;
+    }
     vlSelf->pcore_tb__DOT__dut__DOT__w_sg = (0xffU 
                                              & (~ (IData)(vlSelf->pcore_tb__DOT__dut__DOT__m_7segcon1__DOT__w_segments)));
     vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT____Vcellinp__plic_regs_module__claim_idx_i 
@@ -4733,15 +4650,9 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__0(Vpcore_tb___024root
         vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__genblk1__BRA__1__KET____DOT__plic_target_module__DOT__irq_idx_next = 1U;
         vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__genblk1__BRA__1__KET____DOT__plic_target_module__DOT__irq_req_next = 1U;
     }
-    vlSelf->__VdfgTmp_h72333958__0 = ((0x3fffffeU >= 
-                                       (0x3ffffffU 
-                                        & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff 
-                                           >> 2U)))
-                                       ? vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory
-                                      [(0x3ffffffU 
-                                        & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff 
-                                           >> 2U))]
-                                       : 0U);
+    vlSelf->__VdfgTmp_h409023d6__0 = vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory
+        [(0x3fffffU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff 
+                       >> 2U))];
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_misaligned 
         = (IData)((0U != (3U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff)));
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__gpio_io__out__strong__out0 
@@ -5375,18 +5286,10 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__1(Vpcore_tb___024root
     }
 }
 
-extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_h64894f63_0;
-extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_h66910629_0;
-extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_hc2dc19fa_0;
-extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_h006f755c_0;
-
 VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__2(Vpcore_tb___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___nba_sequent__TOP__2\n"); );
-    // Init
-    CData/*2:0*/ __Vtableidx3;
-    __Vtableidx3 = 0;
     // Body
     if (vlSelf->reset) {
         vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__ext_irq1_ff 
@@ -5508,19 +5411,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__2(Vpcore_tb___024root
     }
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ack_ff 
         = ((IData)(vlSelf->reset) & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ack_next));
-    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__n_state 
-        = ((0U == (IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state))
-            ? 0U : ((1U == (IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state))
-                     ? 2U : 0U));
-    __Vtableidx3 = vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state;
-    vlSelf->pcore_tb__DOT__dut__DOT__store_busy = Vpcore_tb__ConstPool__TABLE_h64894f63_0
-        [__Vtableidx3];
-    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_read 
-        = Vpcore_tb__ConstPool__TABLE_h66910629_0[__Vtableidx3];
-    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_modify 
-        = Vpcore_tb__ConstPool__TABLE_hc2dc19fa_0[__Vtableidx3];
-    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_write 
-        = Vpcore_tb__ConstPool__TABLE_h006f755c_0[__Vtableidx3];
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__uart_irq_req 
         = (1U & ((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__csr_mip_ff 
                   & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__csr_mie_ff) 
@@ -5557,54 +5447,6 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__2(Vpcore_tb___024root
         = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__uart_irq_req) 
            | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__spi_irq_req) 
               | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__gpio_irq_req)));
-}
-
-VL_INLINE_OPT void Vpcore_tb___024root___nba_comb__TOP__0(Vpcore_tb___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___nba_comb__TOP__0\n"); );
-    // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus = 0ULL;
-    if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
-            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__gpio2dbus_ff;
-    } else if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
-            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__gpio2dbus_ff;
-    } else if (vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
-            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__gpio2dbus_ff;
-    } else if (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel) 
-                | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel))) {
-        vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus 
-            = vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpio2dbus_ff;
-    }
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-        = ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel)
-            ? vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__clint2dbus_ff
-            : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel)
-                ? vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic2dbus_ff
-                : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__uart_sel)
-                    ? vlSelf->pcore_tb__DOT__dut__DOT__uart2dbus
-                    : ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__spi_sel)
-                        ? vlSelf->pcore_tb__DOT__dut__DOT__spi2dbus
-                        : (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioA_sel) 
-                            | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioB_sel) 
-                               | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel) 
-                                  | ((IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel) 
-                                     | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel)))))
-                            ? vlSelf->pcore_tb__DOT__dut__DOT__gpio2dbus
-                            : 0ULL)))));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_data[0U] 
-        = (IData)((vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__dbus2lsu 
-                   >> 1U));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_data[1U] 
-        = (IData)((((QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U])) 
-                    << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))));
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__lsu_module__DOT__lsu2amo_data[2U] 
-        = (IData)(((((QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[2U])) 
-                     << 0x20U) | (QData)((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2lsu_data_pipe_ff[0U]))) 
-                   >> 0x20U));
 }
 
 VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__3(Vpcore_tb___024root* vlSelf) {
@@ -5737,10 +5579,10 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_sequent__TOP__3(Vpcore_tb___024root
 
 extern const VlUnpacked<CData/*4:0*/, 64> Vpcore_tb__ConstPool__TABLE_hf52547b0_0;
 
-VL_INLINE_OPT void Vpcore_tb___024root___nba_comb__TOP__1(Vpcore_tb___024root* vlSelf) {
+VL_INLINE_OPT void Vpcore_tb___024root___nba_comb__TOP__0(Vpcore_tb___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___nba_comb__TOP__1\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___nba_comb__TOP__0\n"); );
     // Init
     CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT____VdfgExtracted_hf0bcfd92__0;
     pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT____VdfgExtracted_hf0bcfd92__0 = 0;
@@ -6374,10 +6216,10 @@ VL_INLINE_OPT void Vpcore_tb___024root___nba_comb__TOP__1(Vpcore_tb___024root* v
            | (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h41bfb133__0));
 }
 
-VL_INLINE_OPT void Vpcore_tb___024root___nba_comb__TOP__2(Vpcore_tb___024root* vlSelf) {
+VL_INLINE_OPT void Vpcore_tb___024root___nba_comb__TOP__1(Vpcore_tb___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vpcore_tb__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___nba_comb__TOP__2\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___nba_comb__TOP__1\n"); );
     // Body
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U] 
         = (0x200U | (1U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__id2exe_ctrl[0U]));

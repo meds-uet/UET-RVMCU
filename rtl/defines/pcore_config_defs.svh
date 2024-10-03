@@ -29,8 +29,8 @@
 // Memory related parameters
 `define IMEM_INST_REQ                1
 
-`define IDMEM_SIZE                   26'h3FFFFFF
-`define MEM_ADDR_WIDTH               26
+`define IDMEM_SIZE                   24'h400000 //22'h400000
+`define MEM_ADDR_WIDTH               22
 
 `define DMEM_SEL_ADDR_HIGH           21 
 `define DMEM_SEL_ADDR_LOW             0
@@ -41,7 +41,7 @@
 
 // Memory address map related definitions
 //`define IMEM_ADDR_MATCH              21'h100000 //1MB instruction memory
-`define DMEM_ADDR_MATCH              21'h200000 //2MB instruction + code memory
+`define DMEM_ADDR_MATCH              22'h200000 //2MB instruction + code memory
 `define UART_ADDR_MATCH              6'h20
 `define SPI_ADDR_MATCH               6'h21
 `define GPIOA_ADDR_MATCH             6'h22
@@ -49,10 +49,10 @@
 `define GPIOC_ADDR_MATCH             6'h24
 `define GPSW_ADDR_MATCH              6'h25
 `define GPLED_ADDR_MATCH             6'h26
-`define PLIC_ADDR_START              21'h300000
-`define PLIC_ADDR_END                21'h300FFF
-`define CLINT_ADDR_START             21'h301000
-`define CLINT_ADDR_END               21'h31FFFF
+`define PLIC_ADDR_START              22'h300000
+`define PLIC_ADDR_END                22'h300FFF
+`define CLINT_ADDR_START             22'h301000
+`define CLINT_ADDR_END               22'h31FFFF
 
 // Pipeline stage definitions
 `define IF2ID_PIPELINE_STAGE         1

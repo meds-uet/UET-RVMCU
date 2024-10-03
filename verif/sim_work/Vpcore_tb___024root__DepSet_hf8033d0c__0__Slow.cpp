@@ -14,7 +14,6 @@ VL_ATTR_COLD void Vpcore_tb___024root___eval_static(Vpcore_tb___024root* vlSelf)
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___eval_static\n"); );
     // Body
     Vpcore_tb___024root___eval_static__TOP(vlSelf);
-    vlSelf->__Vm_traceActivity[0xdU] = 1U;
     vlSelf->__Vm_traceActivity[0xcU] = 1U;
     vlSelf->__Vm_traceActivity[0xbU] = 1U;
     vlSelf->__Vm_traceActivity[0xaU] = 1U;
@@ -84,7 +83,6 @@ VL_ATTR_COLD void Vpcore_tb___024root___eval_initial(Vpcore_tb___024root* vlSelf
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpcore_tb___024root___eval_initial\n"); );
     // Body
     Vpcore_tb___024root___eval_initial__TOP(vlSelf);
-    vlSelf->__Vm_traceActivity[0xdU] = 1U;
     vlSelf->__Vm_traceActivity[0xcU] = 1U;
     vlSelf->__Vm_traceActivity[0xbU] = 1U;
     vlSelf->__Vm_traceActivity[0xaU] = 1U;
@@ -102,24 +100,8 @@ VL_ATTR_COLD void Vpcore_tb___024root___eval_initial(Vpcore_tb___024root* vlSelf
         = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_next;
     vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__is_jal 
         = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__is_jal;
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel 
-        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel;
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0 
-        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0;
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0 
-        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0;
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0 
-        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0;
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0 
-        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0;
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0 
-        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0;
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0 
-        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0;
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0 
-        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0;
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0 
-        = vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0;
+    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__w_data 
+        = vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__w_data;
     vlSelf->__Vtrigrprev__TOP__clk = vlSelf->clk;
     vlSelf->__Vtrigrprev__TOP__reset = vlSelf->reset;
 }
@@ -140,7 +122,7 @@ VL_ATTR_COLD void Vpcore_tb___024root___eval_initial__TOP(Vpcore_tb___024root* v
                                          vlSelf->pcore_tb__DOT__firmware))) {
         VL_WRITEF("Loading Instruction Memory from %0s\n",
                   1024,vlSelf->pcore_tb__DOT__firmware.data());
-        VL_READMEM_N(true, 32, 67108863, 0, VL_CVT_PACK_STR_NW(32, vlSelf->pcore_tb__DOT__firmware)
+        VL_READMEM_N(true, 32, 4194304, 0, VL_CVT_PACK_STR_NW(32, vlSelf->pcore_tb__DOT__firmware)
                      ,  &(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory)
                      , 0, ~0ULL);
     }
@@ -240,40 +222,12 @@ VL_ATTR_COLD void Vpcore_tb___024root___dump_triggers__stl(Vpcore_tb___024root* 
         VL_DBG_MSGF("         'stl' region trigger index 1 is active: @([hybrid] pcore_tb.dut.pipeline_top_module.fetch_module.pc_next or [hybrid] pcore_tb.dut.pipeline_top_module.fetch_module.is_jal)\n");
     }
     if (vlSelf->__VstlTriggered.at(2U)) {
-        VL_DBG_MSGF("         'stl' region trigger index 2 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.gpled_sel)\n");
-    }
-    if (vlSelf->__VstlTriggered.at(3U)) {
-        VL_DBG_MSGF("         'stl' region trigger index 3 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h2a973c82__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h82d29ac8__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hcb68f0f7__0)\n");
-    }
-    if (vlSelf->__VstlTriggered.at(4U)) {
-        VL_DBG_MSGF("         'stl' region trigger index 4 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h2a973c82__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h82d29ac8__0)\n");
-    }
-    if (vlSelf->__VstlTriggered.at(5U)) {
-        VL_DBG_MSGF("         'stl' region trigger index 5 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h2a973c82__0)\n");
-    }
-    if (vlSelf->__VstlTriggered.at(6U)) {
-        VL_DBG_MSGF("         'stl' region trigger index 6 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0)\n");
-    }
-    if (vlSelf->__VstlTriggered.at(7U)) {
-        VL_DBG_MSGF("         'stl' region trigger index 7 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0)\n");
-    }
-    if (vlSelf->__VstlTriggered.at(8U)) {
-        VL_DBG_MSGF("         'stl' region trigger index 8 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0)\n");
-    }
-    if (vlSelf->__VstlTriggered.at(9U)) {
-        VL_DBG_MSGF("         'stl' region trigger index 9 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0)\n");
-    }
-    if (vlSelf->__VstlTriggered.at(0xaU)) {
-        VL_DBG_MSGF("         'stl' region trigger index 10 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0)\n");
+        VL_DBG_MSGF("         'stl' region trigger index 2 is active: @([hybrid] pcore_tb.dut.pipeline_top_module.amo_module.w_data)\n");
     }
 }
 #endif  // VL_DEBUG
 
 extern const VlUnpacked<CData/*7:0*/, 16> Vpcore_tb__ConstPool__TABLE_h6255d787_0;
-extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_h64894f63_0;
-extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_h66910629_0;
-extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_hc2dc19fa_0;
-extern const VlUnpacked<CData/*0:0*/, 8> Vpcore_tb__ConstPool__TABLE_h006f755c_0;
 extern const VlUnpacked<CData/*4:0*/, 64> Vpcore_tb__ConstPool__TABLE_hf52547b0_0;
 
 VL_ATTR_COLD void Vpcore_tb___024root___stl_sequent__TOP__0(Vpcore_tb___024root* vlSelf) {
@@ -293,17 +247,11 @@ VL_ATTR_COLD void Vpcore_tb___024root___stl_sequent__TOP__0(Vpcore_tb___024root*
     __Vtableidx1 = 0;
     CData/*5:0*/ __Vtableidx2;
     __Vtableidx2 = 0;
-    CData/*2:0*/ __Vtableidx3;
-    __Vtableidx3 = 0;
     VlWide<3>/*95:0*/ __Vtemp_h752d34e8__0;
     VlWide<3>/*95:0*/ __Vtemp_h4da639fd__0;
     VlWide<3>/*95:0*/ __Vtemp_h752d34e8__1;
     VlWide<3>/*95:0*/ __Vtemp_h5fa677c5__0;
     // Body
-    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__n_state 
-        = ((0U == (IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state))
-            ? 0U : ((1U == (IData)(vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state))
-                     ? 2U : 0U));
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ack_next 
         = (((IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_ff) 
             >> 2U) & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__divider_module__DOT__done_ff));
@@ -542,15 +490,9 @@ VL_ATTR_COLD void Vpcore_tb___024root___stl_sequent__TOP__0(Vpcore_tb___024root*
         = (0xffU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_dir_ff));
     pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_io__en2 
         = (0xffU & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_dir_ff));
-    vlSelf->__VdfgTmp_h72333958__0 = ((0x3fffffeU >= 
-                                       (0x3ffffffU 
-                                        & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff 
-                                           >> 2U)))
-                                       ? vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory
-                                      [(0x3ffffffU 
-                                        & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff 
-                                           >> 2U))]
-                                       : 0U);
+    vlSelf->__VdfgTmp_h409023d6__0 = vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory
+        [(0x3fffffU & (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff 
+                       >> 2U))];
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_misaligned 
         = (IData)((0U != (3U & vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_ff)));
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__pipe_stall_flush 
@@ -576,15 +518,6 @@ VL_ATTR_COLD void Vpcore_tb___024root___stl_sequent__TOP__0(Vpcore_tb___024root*
     } else if ((0U != (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_ff))) {
         vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__div_stall_next = 1U;
     }
-    __Vtableidx3 = vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state;
-    vlSelf->pcore_tb__DOT__dut__DOT__store_busy = Vpcore_tb__ConstPool__TABLE_h64894f63_0
-        [__Vtableidx3];
-    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_read 
-        = Vpcore_tb__ConstPool__TABLE_h66910629_0[__Vtableidx3];
-    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_modify 
-        = Vpcore_tb__ConstPool__TABLE_hc2dc19fa_0[__Vtableidx3];
-    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_write 
-        = Vpcore_tb__ConstPool__TABLE_h006f755c_0[__Vtableidx3];
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__csr_module__DOT__csr_mip_wr_flag = 0U;
     if ((1U & (IData)(vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2csr_ctrl_pipe_ff))) {
         if ((1U & (~ (vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__exe2csr_data_pipe_ff[3U] 
@@ -2920,16 +2853,7 @@ VL_ATTR_COLD void Vpcore_tb___024root___stl_sequent__TOP__0(Vpcore_tb___024root*
 }
 
 void Vpcore_tb___024root___act_sequent__TOP__0(Vpcore_tb___024root* vlSelf);
-void Vpcore_tb___024root___act_sequent__TOP__1(Vpcore_tb___024root* vlSelf);
-void Vpcore_tb___024root___act_sequent__TOP__2(Vpcore_tb___024root* vlSelf);
-void Vpcore_tb___024root___act_sequent__TOP__3(Vpcore_tb___024root* vlSelf);
-void Vpcore_tb___024root___act_sequent__TOP__4(Vpcore_tb___024root* vlSelf);
-void Vpcore_tb___024root___act_sequent__TOP__5(Vpcore_tb___024root* vlSelf);
-void Vpcore_tb___024root___act_sequent__TOP__6(Vpcore_tb___024root* vlSelf);
-void Vpcore_tb___024root___act_sequent__TOP__7(Vpcore_tb___024root* vlSelf);
 void Vpcore_tb___024root___act_comb__TOP__0(Vpcore_tb___024root* vlSelf);
-void Vpcore_tb___024root___act_comb__TOP__1(Vpcore_tb___024root* vlSelf);
-void Vpcore_tb___024root___act_comb__TOP__2(Vpcore_tb___024root* vlSelf);
 
 VL_ATTR_COLD void Vpcore_tb___024root___eval_stl(Vpcore_tb___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -2938,7 +2862,6 @@ VL_ATTR_COLD void Vpcore_tb___024root___eval_stl(Vpcore_tb___024root* vlSelf) {
     // Body
     if (vlSelf->__VstlTriggered.at(0U)) {
         Vpcore_tb___024root___stl_sequent__TOP__0(vlSelf);
-        vlSelf->__Vm_traceActivity[0xdU] = 1U;
         vlSelf->__Vm_traceActivity[0xcU] = 1U;
         vlSelf->__Vm_traceActivity[0xbU] = 1U;
         vlSelf->__Vm_traceActivity[0xaU] = 1U;
@@ -2953,42 +2876,8 @@ VL_ATTR_COLD void Vpcore_tb___024root___eval_stl(Vpcore_tb___024root* vlSelf) {
         vlSelf->__Vm_traceActivity[1U] = 1U;
         vlSelf->__Vm_traceActivity[0U] = 1U;
     }
-    if (vlSelf->__VstlTriggered.at(9U)) {
+    if ((vlSelf->__VstlTriggered.at(0U) | vlSelf->__VstlTriggered.at(2U))) {
         Vpcore_tb___024root___act_sequent__TOP__0(vlSelf);
-    }
-    if (vlSelf->__VstlTriggered.at(0xaU)) {
-        Vpcore_tb___024root___act_sequent__TOP__1(vlSelf);
-    }
-    if (vlSelf->__VstlTriggered.at(7U)) {
-        Vpcore_tb___024root___act_sequent__TOP__2(vlSelf);
-    }
-    if (vlSelf->__VstlTriggered.at(8U)) {
-        Vpcore_tb___024root___act_sequent__TOP__3(vlSelf);
-    }
-    if (vlSelf->__VstlTriggered.at(3U)) {
-        Vpcore_tb___024root___act_sequent__TOP__4(vlSelf);
-    }
-    if (vlSelf->__VstlTriggered.at(4U)) {
-        Vpcore_tb___024root___act_sequent__TOP__5(vlSelf);
-    }
-    if (vlSelf->__VstlTriggered.at(5U)) {
-        Vpcore_tb___024root___act_sequent__TOP__6(vlSelf);
-    }
-    if (vlSelf->__VstlTriggered.at(6U)) {
-        Vpcore_tb___024root___act_sequent__TOP__7(vlSelf);
-    }
-    if ((((((vlSelf->__VstlTriggered.at(0U) | vlSelf->__VstlTriggered.at(2U)) 
-            | vlSelf->__VstlTriggered.at(3U)) | vlSelf->__VstlTriggered.at(4U)) 
-          | vlSelf->__VstlTriggered.at(5U)) | vlSelf->__VstlTriggered.at(6U))) {
-        Vpcore_tb___024root___act_comb__TOP__0(vlSelf);
-    }
-    if ((((((((((vlSelf->__VstlTriggered.at(0U) | vlSelf->__VstlTriggered.at(2U)) 
-                | vlSelf->__VstlTriggered.at(3U)) | vlSelf->__VstlTriggered.at(4U)) 
-              | vlSelf->__VstlTriggered.at(5U)) | vlSelf->__VstlTriggered.at(6U)) 
-            | vlSelf->__VstlTriggered.at(7U)) | vlSelf->__VstlTriggered.at(8U)) 
-          | vlSelf->__VstlTriggered.at(9U)) | vlSelf->__VstlTriggered.at(0xaU))) {
-        Vpcore_tb___024root___act_comb__TOP__1(vlSelf);
-        vlSelf->__Vm_traceActivity[0xdU] = 1U;
         vlSelf->__Vm_traceActivity[0xcU] = 1U;
         vlSelf->__Vm_traceActivity[0xbU] = 1U;
         vlSelf->__Vm_traceActivity[0xaU] = 1U;
@@ -3003,14 +2892,9 @@ VL_ATTR_COLD void Vpcore_tb___024root___eval_stl(Vpcore_tb___024root* vlSelf) {
         vlSelf->__Vm_traceActivity[1U] = 1U;
         vlSelf->__Vm_traceActivity[0U] = 1U;
     }
-    if (((((((((((vlSelf->__VstlTriggered.at(0U) | vlSelf->__VstlTriggered.at(1U)) 
-                 | vlSelf->__VstlTriggered.at(2U)) 
-                | vlSelf->__VstlTriggered.at(3U)) | vlSelf->__VstlTriggered.at(4U)) 
-              | vlSelf->__VstlTriggered.at(5U)) | vlSelf->__VstlTriggered.at(6U)) 
-            | vlSelf->__VstlTriggered.at(7U)) | vlSelf->__VstlTriggered.at(8U)) 
-          | vlSelf->__VstlTriggered.at(9U)) | vlSelf->__VstlTriggered.at(0xaU))) {
-        Vpcore_tb___024root___act_comb__TOP__2(vlSelf);
-        vlSelf->__Vm_traceActivity[0xdU] = 1U;
+    if (((vlSelf->__VstlTriggered.at(0U) | vlSelf->__VstlTriggered.at(1U)) 
+         | vlSelf->__VstlTriggered.at(2U))) {
+        Vpcore_tb___024root___act_comb__TOP__0(vlSelf);
         vlSelf->__Vm_traceActivity[0xcU] = 1U;
         vlSelf->__Vm_traceActivity[0xbU] = 1U;
         vlSelf->__Vm_traceActivity[0xaU] = 1U;
@@ -3040,40 +2924,16 @@ VL_ATTR_COLD void Vpcore_tb___024root___dump_triggers__act(Vpcore_tb___024root* 
         VL_DBG_MSGF("         'act' region trigger index 0 is active: @([hybrid] pcore_tb.dut.pipeline_top_module.fetch_module.pc_next or [hybrid] pcore_tb.dut.pipeline_top_module.fetch_module.is_jal)\n");
     }
     if (vlSelf->__VactTriggered.at(1U)) {
-        VL_DBG_MSGF("         'act' region trigger index 1 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.gpled_sel)\n");
+        VL_DBG_MSGF("         'act' region trigger index 1 is active: @([hybrid] pcore_tb.dut.pipeline_top_module.amo_module.w_data)\n");
     }
     if (vlSelf->__VactTriggered.at(2U)) {
-        VL_DBG_MSGF("         'act' region trigger index 2 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h2a973c82__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h82d29ac8__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hcb68f0f7__0)\n");
+        VL_DBG_MSGF("         'act' region trigger index 2 is active: @(posedge clk)\n");
     }
     if (vlSelf->__VactTriggered.at(3U)) {
-        VL_DBG_MSGF("         'act' region trigger index 3 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h2a973c82__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h82d29ac8__0)\n");
+        VL_DBG_MSGF("         'act' region trigger index 3 is active: @(negedge clk)\n");
     }
     if (vlSelf->__VactTriggered.at(4U)) {
-        VL_DBG_MSGF("         'act' region trigger index 4 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h2a973c82__0)\n");
-    }
-    if (vlSelf->__VactTriggered.at(5U)) {
-        VL_DBG_MSGF("         'act' region trigger index 5 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0)\n");
-    }
-    if (vlSelf->__VactTriggered.at(6U)) {
-        VL_DBG_MSGF("         'act' region trigger index 6 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0)\n");
-    }
-    if (vlSelf->__VactTriggered.at(7U)) {
-        VL_DBG_MSGF("         'act' region trigger index 7 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0)\n");
-    }
-    if (vlSelf->__VactTriggered.at(8U)) {
-        VL_DBG_MSGF("         'act' region trigger index 8 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0)\n");
-    }
-    if (vlSelf->__VactTriggered.at(9U)) {
-        VL_DBG_MSGF("         'act' region trigger index 9 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0)\n");
-    }
-    if (vlSelf->__VactTriggered.at(0xaU)) {
-        VL_DBG_MSGF("         'act' region trigger index 10 is active: @(posedge clk)\n");
-    }
-    if (vlSelf->__VactTriggered.at(0xbU)) {
-        VL_DBG_MSGF("         'act' region trigger index 11 is active: @(negedge clk)\n");
-    }
-    if (vlSelf->__VactTriggered.at(0xcU)) {
-        VL_DBG_MSGF("         'act' region trigger index 12 is active: @(posedge clk or negedge reset)\n");
+        VL_DBG_MSGF("         'act' region trigger index 4 is active: @(posedge clk or negedge reset)\n");
     }
 }
 #endif  // VL_DEBUG
@@ -3091,40 +2951,16 @@ VL_ATTR_COLD void Vpcore_tb___024root___dump_triggers__nba(Vpcore_tb___024root* 
         VL_DBG_MSGF("         'nba' region trigger index 0 is active: @([hybrid] pcore_tb.dut.pipeline_top_module.fetch_module.pc_next or [hybrid] pcore_tb.dut.pipeline_top_module.fetch_module.is_jal)\n");
     }
     if (vlSelf->__VnbaTriggered.at(1U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 1 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.gpled_sel)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 1 is active: @([hybrid] pcore_tb.dut.pipeline_top_module.amo_module.w_data)\n");
     }
     if (vlSelf->__VnbaTriggered.at(2U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 2 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h2a973c82__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h82d29ac8__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hcb68f0f7__0)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 2 is active: @(posedge clk)\n");
     }
     if (vlSelf->__VnbaTriggered.at(3U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 3 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h2a973c82__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h82d29ac8__0)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 3 is active: @(negedge clk)\n");
     }
     if (vlSelf->__VnbaTriggered.at(4U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 4 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h2a973c82__0)\n");
-    }
-    if (vlSelf->__VnbaTriggered.at(5U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 5 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_he002e276__0)\n");
-    }
-    if (vlSelf->__VnbaTriggered.at(6U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 6 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0)\n");
-    }
-    if (vlSelf->__VnbaTriggered.at(7U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 7 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0)\n");
-    }
-    if (vlSelf->__VnbaTriggered.at(8U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 8 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0)\n");
-    }
-    if (vlSelf->__VnbaTriggered.at(9U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 9 is active: @([hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_h377f770a__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_had691733__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hf3ba5765__0 or [hybrid] pcore_tb.dut.dbus_interconnect_module.__VdfgExtracted_hc33b6f81__0)\n");
-    }
-    if (vlSelf->__VnbaTriggered.at(0xaU)) {
-        VL_DBG_MSGF("         'nba' region trigger index 10 is active: @(posedge clk)\n");
-    }
-    if (vlSelf->__VnbaTriggered.at(0xbU)) {
-        VL_DBG_MSGF("         'nba' region trigger index 11 is active: @(negedge clk)\n");
-    }
-    if (vlSelf->__VnbaTriggered.at(0xcU)) {
-        VL_DBG_MSGF("         'nba' region trigger index 12 is active: @(posedge clk or negedge reset)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 4 is active: @(posedge clk or negedge reset)\n");
     }
 }
 #endif  // VL_DEBUG
@@ -3357,7 +3193,6 @@ VL_ATTR_COLD void Vpcore_tb___024root___ctor_var_reset(Vpcore_tb___024root* vlSe
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2ptop = VL_RAND_RESET_I(9);
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h46719089__0 = 0;
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h41bfb133__0 = 0;
-    vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0 = 0;
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_next = VL_RAND_RESET_I(3);
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_ff = VL_RAND_RESET_I(3);
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_next = VL_RAND_RESET_I(32);
@@ -3405,6 +3240,7 @@ VL_ATTR_COLD void Vpcore_tb___024root___ctor_var_reset(Vpcore_tb___024root* vlSe
     vlSelf->pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next = VL_RAND_RESET_I(3);
     VL_RAND_RESET_W(70, vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus2peri);
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req = VL_RAND_RESET_I(1);
+    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dmem_sel = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__uart_sel = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel = VL_RAND_RESET_I(1);
@@ -3414,14 +3250,6 @@ VL_ATTR_COLD void Vpcore_tb___024root___ctor_var_reset(Vpcore_tb___024root* vlSe
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel = VL_RAND_RESET_I(1);
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0 = VL_RAND_RESET_I(1);
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0 = VL_RAND_RESET_I(1);
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0 = VL_RAND_RESET_I(1);
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0 = VL_RAND_RESET_I(1);
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0 = VL_RAND_RESET_I(1);
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0 = VL_RAND_RESET_I(1);
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0 = VL_RAND_RESET_I(1);
-    vlSelf->pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0 = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__r_data = VL_RAND_RESET_I(32);
     vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__r_req = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__clint_module__DOT__w_req = VL_RAND_RESET_I(1);
@@ -3478,14 +3306,15 @@ VL_ATTR_COLD void Vpcore_tb___024root___ctor_var_reset(Vpcore_tb___024root* vlSe
     vlSelf->pcore_tb__DOT__dut__DOT__plic_top_module__DOT__genblk1__BRA__1__KET____DOT__plic_target_module__DOT__irq_idx_next = VL_RAND_RESET_I(2);
     vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state = VL_RAND_RESET_I(2);
     vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__n_state = VL_RAND_RESET_I(2);
+    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__load_req = VL_RAND_RESET_I(1);
+    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__store_req = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_read = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_modify = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_write = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__write_data = VL_RAND_RESET_I(32);
-    for (int __Vi0 = 0; __Vi0 < 67108863; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 4194304; ++__Vi0) {
         vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory[__Vi0] = VL_RAND_RESET_I(32);
     }
-    vlSelf->pcore_tb__DOT__dut__DOT__mem_top_module__DOT____Vlvbound_hb8f82ae6__0 = VL_RAND_RESET_I(32);
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpioA_io = VL_RAND_RESET_I(8);
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpioB_io = VL_RAND_RESET_I(8);
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpioC_io = VL_RAND_RESET_I(8);
@@ -3570,26 +3399,17 @@ VL_ATTR_COLD void Vpcore_tb___024root___ctor_var_reset(Vpcore_tb___024root* vlSe
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_r_data = VL_RAND_RESET_I(32);
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_rd_req = VL_RAND_RESET_I(1);
     vlSelf->pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_wr_req = VL_RAND_RESET_I(1);
-    vlSelf->__VdfgTmp_hc9213adb__0 = 0;
-    vlSelf->__VdfgTmp_h72333958__0 = 0;
+    vlSelf->__VdfgTmp_h409023d6__0 = 0;
     vlSelf->__VdfgTmp_hb736675d__0 = 0;
     vlSelf->__VdfgTmp_h240225d2__0 = 0;
     vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_next = VL_RAND_RESET_I(32);
     vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__is_jal = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0 = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0 = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0 = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0 = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0 = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0 = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0 = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0 = VL_RAND_RESET_I(1);
+    vlSelf->__Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__w_data = VL_RAND_RESET_I(32);
     vlSelf->__VstlDidInit = 0;
     vlSelf->__Vtrigrprev__TOP__clk = 0;
     vlSelf->__Vtrigrprev__TOP__reset = 0;
     vlSelf->__VactDidInit = 0;
-    for (int __Vi0 = 0; __Vi0 < 14; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 13; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }
 }

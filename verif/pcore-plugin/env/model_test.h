@@ -5,7 +5,8 @@
 #define RVMODEL_HALT                                          \
     la   a0, begin_signature;                                 \
     la   a1, end_signature;                                   \
-    li   a2, 0x8E000000;                                      \
+    addi a1, a1, -4;                                          \
+    li   a2, 0x001FFE68;                                      \
     signature_dump_loop:                                      \
       bge  a0, a1, signature_dump_end;                        \
       lw   t0, 0(a0);                                         \
@@ -15,7 +16,7 @@
     signature_dump_end:                                       \
       nop;                                                    \
     terminate_simulation:                                     \
-      li   a0, 0x8F000000;                                    \
+      li   a0, 0x001FFE6C;                                    \
       li   a1, 0xCAFECAFE;                                    \
       sw   a1, 0(a0);                                         \
       j    terminate_simulation;

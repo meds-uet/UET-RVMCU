@@ -92,8 +92,8 @@ end
 `else
 // ====================== For RISC-V architecture tests ========================== //
 
-wire sig_en  = (dut.dbus2peri.addr == 32'h8E000000) & dut.mem_top_module.store_req;
-wire halt_en = (dut.dbus2peri.addr == 32'h8F000000) & dut.mem_top_module.store_req;
+wire sig_en  = (dut.dbus2peri.addr == 32'h001FFE68) & dut.mem_top_module.mem_write;
+wire halt_en = (dut.dbus2peri.addr == 32'h001FFE6C) & dut.mem_top_module.mem_write;
   
 reg [1023:0] signature_file;
 

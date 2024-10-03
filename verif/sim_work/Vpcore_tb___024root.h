@@ -140,14 +140,13 @@ class Vpcore_tb___024root final : public VerilatedModule {
         CData/*3:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT__fwd2exe;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h46719089__0;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_h41bfb133__0;
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__forward_stall_module__DOT____VdfgTmp_hbf29b99b__0;
         CData/*2:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_next;
         CData/*2:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ops_ff;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_sign_next;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr1_sign_ff;
+        CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_sign_next;
     };
     struct {
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_sign_next;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_sign_ff;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ack_next;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_ack_ff;
@@ -168,6 +167,7 @@ class Vpcore_tb___024root final : public VerilatedModule {
         CData/*2:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state;
         CData/*2:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__state_next;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dbus_req;
+        CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__dmem_sel;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__uart_sel;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__clint_sel;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__plic_sel;
@@ -177,14 +177,6 @@ class Vpcore_tb___024root final : public VerilatedModule {
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpioC_sel;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpsw_sel;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel;
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0;
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0;
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0;
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0;
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0;
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0;
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0;
-        CData/*0:0*/ pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__clint_module__DOT__r_req;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__clint_module__DOT__w_req;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__clint_module__DOT__mtime_lo_wr_flag;
@@ -211,8 +203,6 @@ class Vpcore_tb___024root final : public VerilatedModule {
         CData/*1:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__prio_th_reg_wr_flag;
         CData/*1:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__prio_reg_wr_flag;
         CData/*1:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__ie_reg_wr_flag;
-    };
-    struct {
         CData/*5:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic_reg_prio_th_ff;
         CData/*5:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic_reg_prio_th_next;
         CData/*5:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic_reg_prio_ff;
@@ -221,6 +211,8 @@ class Vpcore_tb___024root final : public VerilatedModule {
         CData/*3:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__plic_reg_ie_next;
         CData/*2:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____Vlvbound_h06702582__0;
         CData/*2:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____Vlvbound_h06702582__1;
+    };
+    struct {
         CData/*2:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____Vlvbound_hbb644852__0;
         CData/*2:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT____Vlvbound_hbb644852__1;
         CData/*2:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__genblk1__BRA__0__KET____DOT__plic_target_module__DOT__prio_th;
@@ -235,6 +227,8 @@ class Vpcore_tb___024root final : public VerilatedModule {
         CData/*1:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__genblk1__BRA__1__KET____DOT__plic_target_module__DOT__irq_idx_next;
         CData/*1:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT__c_state;
         CData/*1:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT__n_state;
+        CData/*0:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT__load_req;
+        CData/*0:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT__store_req;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_read;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_modify;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT__mem_write;
@@ -277,14 +271,14 @@ class Vpcore_tb___024root final : public VerilatedModule {
         CData/*7:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_ie_next;
         CData/*7:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_ff;
         CData/*7:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_int_lvl_next;
-    };
-    struct {
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_rd_req;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_wr_req;
         CData/*7:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__gpio_io__out__strong__out0;
         CData/*7:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__gpio_io__out__strong__out1;
         CData/*7:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__gpio_io__out__strong__out2;
         CData/*7:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__gpio_io__out__strong__out3;
+    };
+    struct {
         CData/*7:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__gpio_pin_en;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__gpio_sel_data;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__gpio_sel_dir;
@@ -309,19 +303,9 @@ class Vpcore_tb___024root final : public VerilatedModule {
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpled_sel_data;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_rd_req;
         CData/*0:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_wr_req;
-        CData/*0:0*/ __VdfgTmp_hc9213adb__0;
         CData/*0:0*/ __VdfgTmp_hb736675d__0;
         CData/*0:0*/ __VdfgTmp_h240225d2__0;
         CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__is_jal;
-        CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT__gpled_sel;
-        CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h377f770a__0;
-        CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_had691733__0;
-        CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hf3ba5765__0;
-        CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hc33b6f81__0;
-        CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_he002e276__0;
-        CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h2a973c82__0;
-        CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_h82d29ac8__0;
-        CData/*0:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__dbus_interconnect_module__DOT____VdfgExtracted_hcb68f0f7__0;
         CData/*0:0*/ __VstlDidInit;
         CData/*0:0*/ __Vtrigrprev__TOP__clk;
         CData/*0:0*/ __Vtrigrprev__TOP__reset;
@@ -343,8 +327,6 @@ class Vpcore_tb___024root final : public VerilatedModule {
         VlWide<32>/*1023:0*/ pcore_tb__DOT__signature_file;
         IData/*31:0*/ pcore_tb__DOT__write_sig;
         IData/*23:0*/ pcore_tb__DOT__dut__DOT__gpio_io__en0;
-    };
-    struct {
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__m_7segcon1__DOT__r_val;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__m_7segcon1__DOT__r_cnt;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__m_7segcon1__DOT__i;
@@ -361,6 +343,8 @@ class Vpcore_tb___024root final : public VerilatedModule {
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_1;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_operand_2;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_result;
+    };
+    struct {
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__cmp_operand_2;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__alu_b_result;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__execute_module__DOT__cnt_data;
@@ -409,8 +393,6 @@ class Vpcore_tb___024root final : public VerilatedModule {
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_opr2_ff;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__alu_d_result_next;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__div;
-    };
-    struct {
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__rem;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__divider_module__DOT__opr2_ff;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__divide_module__DOT__divider_module__DOT__quo_ff;
@@ -425,13 +407,15 @@ class Vpcore_tb___024root final : public VerilatedModule {
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__clint_module__DOT__r_data;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__plic_top_module__DOT__plic_regs_module__DOT__reg_r_data;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT__write_data;
-        IData/*31:0*/ pcore_tb__DOT__dut__DOT__mem_top_module__DOT____Vlvbound_hb8f82ae6__0;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__reg_r_data;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__reg_r_data;
+    };
+    struct {
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__reg_r_data;
         IData/*31:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__reg_r_data;
-        IData/*31:0*/ __VdfgTmp_h72333958__0;
+        IData/*31:0*/ __VdfgTmp_h409023d6__0;
         IData/*31:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__fetch_module__DOT__pc_next;
+        IData/*31:0*/ __Vtrigrprev__TOP__pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__amo_module__DOT__w_data;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VactIterCount;
         QData/*32:0*/ pcore_tb__DOT__dut__DOT__uart2dbus;
@@ -475,17 +459,15 @@ class Vpcore_tb___024root final : public VerilatedModule {
         QData/*32:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_A__DOT__gpio2dbus_ff;
         QData/*32:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_B__DOT__gpio2dbus_ff;
         QData/*32:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gpio_C__DOT__gpio2dbus_ff;
-    };
-    struct {
         QData/*32:0*/ pcore_tb__DOT__dut__DOT__gpio_top_module__DOT__gp_sw_led__DOT__gpio2dbus_ff;
         VlUnpacked<CData/*7:0*/, 16> pcore_tb__DOT__dut__DOT__m_7segcon1__DOT__r_load_mem;
         VlUnpacked<IData/*31:0*/, 32> pcore_tb__DOT__dut__DOT__pipeline_top_module__DOT__decode_module__DOT__rf_module__DOT__register_file;
-        VlUnpacked<IData/*31:0*/, 67108863> pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory;
-        VlUnpacked<CData/*0:0*/, 14> __Vm_traceActivity;
+        VlUnpacked<IData/*31:0*/, 4194304> pcore_tb__DOT__dut__DOT__mem_top_module__DOT__dualport_memory;
+        VlUnpacked<CData/*0:0*/, 13> __Vm_traceActivity;
     };
-    VlTriggerVec<11> __VstlTriggered;
-    VlTriggerVec<13> __VactTriggered;
-    VlTriggerVec<13> __VnbaTriggered;
+    VlTriggerVec<3> __VstlTriggered;
+    VlTriggerVec<5> __VactTriggered;
+    VlTriggerVec<5> __VnbaTriggered;
 
     // INTERNAL VARIABLES
     Vpcore_tb__Syms* const vlSymsp;

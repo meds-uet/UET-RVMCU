@@ -60,7 +60,7 @@ class pcore(pluginTemplate):
         $(find ../rtl/ -type f -name "*v")\
         ../bench/{1}.sv  \
         -Wno-TIMESCALEMOD -Wno-MULTIDRIVEN -Wno-CASEOVERLAP \
-        -Wno-WIDTH -Wno-UNOPTFLAT -Wno-IMPLICIT -Wno-PINMISSING -Wno-CASEWITHX -Wno-UNSIGNED \
+        -Wno-WIDTH -Wno-UNOPTFLAT -Wno-IMPLICIT -Wno-PINMISSING -Wno-CASEWITHX -Wno-UNSIGNED -Wno-CASEINCOMPLETE \
         -I../rtl/defines/ --top-module {1} \
         --exe ../bench/pcore_tb.cpp --trace --trace-structs'.format(self.buidldir, self.toplevel)
        utils.shellCommand(comp_pcore).run()
