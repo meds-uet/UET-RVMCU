@@ -39,9 +39,9 @@ jobs:
 
     - name: Install Sail
       run: |
-        tar -xzf pcore/verif/bin/sail-riscv.tar.gz
+        tar -xzf rvmcu/verif/bin/sail-riscv.tar.gz
         echo $GITHUB_WORKSPACE/sail-riscv >> $GITHUB_PATH
-        
+
     - name: Install riscv-isac
       run: |
         cd rvmcu/verif/bin/riscv-isac
