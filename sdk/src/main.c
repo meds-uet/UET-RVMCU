@@ -70,6 +70,17 @@ int main(void) {
     for(count = 0; count < 10; count++) {
     Uetrv32_Uart_Tx((message[count])); }
 
+        Uetrv32_Uart_Tx(('\n')); 
+    Uetrv32_Uart_Tx(('\r')); 
+
+    var = Uetrv32_Uart_Rx();
+    Uetrv32_Uart_Tx(var);
+    rav = Uetrv32_Uart_Rx();
+    Uetrv32_Uart_Tx(rav);
+
+  }
+  }
+
 ////////////////////////////////////////////////////////////////////////////////////
   
   //   Uetrv32_Spi_Cs_Mode(HOLD);
@@ -145,15 +156,6 @@ int main(void) {
 //   Uetrv32_Uart_Tx((spi_mid+ 0x06));
 //  Uetrv32_Uart_Tx((spi_did+ 0x11));
 
-    Uetrv32_Uart_Tx(('\n')); 
-    Uetrv32_Uart_Tx(('\r')); 
-
-    var = Uetrv32_Uart_Rx();
-    Uetrv32_Uart_Tx(var);
-    rav = Uetrv32_Uart_Rx();
-    Uetrv32_Uart_Tx(rav);
-
-  }
 
  /* Uetrv32_Spi_CS_CTRL(CS_ON);
   spy = Uetrv32_Spi_Tx(0x66);

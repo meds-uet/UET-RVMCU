@@ -1,7 +1,7 @@
 rmdir -r build
 mkdir build
 
-riscv64-unknown-elf-as -c -o startup.o src/startup.s -march=rv32ima -mabi=ilp32
+riscv64-unknown-elf-as -c -o build/startup.o src/startup.s -march=rv32ima -mabi=ilp32
 
 riscv64-unknown-elf-gcc -c -O -o build/main.o src/main.c -march=rv32im -mabi=ilp32
 riscv64-unknown-elf-gcc -c -O -o build/uart.o interfaces/uart.c -march=rv32im -mabi=ilp32

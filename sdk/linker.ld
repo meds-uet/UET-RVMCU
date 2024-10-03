@@ -1,6 +1,6 @@
 OUTPUT_ARCH( "riscv" )
 ENTRY( reset_handler )
-STARTUP (startup.o)
+STARTUP (build/startup.o)
 
 MEMORY
 { 
