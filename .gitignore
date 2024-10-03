@@ -3,7 +3,6 @@ verif/riscof_work/
 __pycache__/
 verif/pcore-plugin/__pycache__/
 verif/sail_cSim-plugin/__pycache__/
-verif/simwork/
 riscv-arch-test/riscv-test-suite/rv32i_m/basic/
 
 
