@@ -26,7 +26,16 @@ jobs:
       run: |
         wget -c https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2024.09.03/riscv32-elf-ubuntu-20.04-gcc-nightly-2024.09.03-nightly.tar.gz
         tar -xzf riscv32-elf-ubuntu-20.04-gcc-nightly-2024.09.03-nightly.tar.gz
-        echo $GITHUB_WORKSPACE/riscv/bin >> $GITHUB_PATH
+        mv riscv riscv32  
+        echo $GITHUB_WORKSPACE/riscv32/bin >> $GITHUB_PATH
+
+    - name: Build RISCV-GNU Toolchain (64 bit)
+      run: |
+        wget -c https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2024.09.03/riscv64-elf-ubuntu-20.04-gcc-nightly-2024.09.03-nightly.tar.gz
+        tar -xzf riscv64-elf-ubuntu-20.04-gcc-nightly-2024.09.03-nightly.tar.gz
+        mv riscv riscv64  
+        echo $GITHUB_WORKSPACE/riscv64/bin >> $GITHUB_PATH
+
 
     - name: Setup SAIL-RISCV Model
       run: |
