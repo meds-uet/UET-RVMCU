@@ -22,10 +22,10 @@ jobs:
         sudo apt-get install verilator device-tree-compiler
         pip3 install git+https://github.com/riscv/riscof.git
 
-    - name: Setup toolchain
+    - name: Build RISCV-GNU Toolchain (32 bit)
       run: |
-        wget -c https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2023.04.29/riscv64-elf-ubuntu-20.04-nightly-2023.04.29-nightly.tar.gz
-        tar -xzf riscv64-elf-ubuntu-20.04-nightly-2023.04.29-nightly.tar.gz
+        wget -c https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2024.09.03/riscv32-elf-ubuntu-20.04-gcc-nightly-2024.09.03-nightly.tar.gz
+        tar -xzf riscv32-elf-ubuntu-20.04-gcc-nightly-2024.09.03-nightly.tar.gz
         echo $GITHUB_WORKSPACE/riscv/bin >> $GITHUB_PATH
 
     - name: Setup SAIL-RISCV Model
