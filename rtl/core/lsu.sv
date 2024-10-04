@@ -220,7 +220,7 @@ assign lsu2wrb_ctrl.rd_wrb_sel = exe2lsu_ctrl.rd_wrb_sel;
 assign lsu2fwd.rd_addr   = exe2lsu_ctrl.rd_addr; 
 assign lsu2fwd.rd_wr_req = exe2lsu_ctrl.rd_wr_req;       // For SC, forwarding loop will also be updated
 
-assign lsu_amo_req = is_amo;//ld_req | st_req | is_amo ;
+assign lsu_amo_req = ld_req | st_req | is_amo ;
 
 // Ack will be based on amo_done in case of amo_instruction
 assign lsu_amo_ack = is_amo ? amo2lsu_ctrl.amo_done : dbus2lsu.ack;    
