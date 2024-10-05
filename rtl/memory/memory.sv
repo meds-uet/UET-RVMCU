@@ -152,7 +152,7 @@ always_comb begin
         read_data = dualport_memory[exe2mem_i.addr[`XLEN-1:2]];
     end else begin
         mem2wrb_o = '0;
-        read_data = '0;
+        read_data = read_data;
     end
 end
 
