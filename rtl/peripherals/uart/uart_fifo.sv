@@ -8,11 +8,11 @@
  * Description:  FIFO for UART Module
  *********************************************************************/
 
-/*`ifndef VERILATOR
+`ifndef VERILATOR
 `include "../../defines/uart_defs.svh"
-`else*/
+`else
 `include "uart_defs.svh"
-//`endif
+`endif
 
 module uart_fifo (
     input  logic                                clk,

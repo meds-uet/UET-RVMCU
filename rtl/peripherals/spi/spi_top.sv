@@ -11,11 +11,11 @@
 
 `timescale 1ns / 1ps
 
-/*`ifndef VERILATOR
+`ifndef VERILATOR
 `include "../../defines/spi_defs.svh"
-`else*/
+`else
 `include "spi_defs.svh"
-//`endif
+`endif
 
 
 module spi_top (

@@ -9,11 +9,11 @@
 // Date: 13.7.2022
 // Updated: 02.7-2023
  
-/*`ifndef VERILATOR
+`ifndef VERILATOR
 `include "../../defines/uart_defs.svh"
-`else*/
+`else
 `include "uart_defs.svh"
-//`endif
+`endif
 
 module uart_rx (
     input  logic                                    rst_n,                    // reset
@@ -53,7 +53,7 @@ logic                               rx_pin_ff;
 logic [7:0]                         shifter_ff, shifter_next;
 
 //FIFO signals
-logic [ADDR_FIFO:0]                  rx_fifo_count;
+logic [UART_ADDR_FIFO:0]                  rx_fifo_count;
 logic rx_fifo_full, rx_busy;
 
 //============================ UART Receiver Controller ===========================//

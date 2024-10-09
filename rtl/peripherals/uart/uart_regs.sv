@@ -8,11 +8,11 @@
  * Description:  Uart Register updates
  *********************************************************************/
 
-/*`ifndef VERILATOR
+`ifndef VERILATOR
 `include "../../defines/uart_defs.svh"
-`else*/
+`else
 `include "uart_defs.svh"
-//`endif
+`endif
 
 
 module uart_regs ( 

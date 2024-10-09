@@ -11,8 +11,8 @@
 `timescale 1 ns / 100 ps
 
 `ifndef VERILATOR
-`include "/defines/mem_defs.svh"
-`include "/defines/plic_defs.svh"
+`include "defines/mem_defs.svh"
+`include "defines/plic_defs.svh"
 `else
 `include "mem_defs.svh"
 `include "plic_defs.svh"

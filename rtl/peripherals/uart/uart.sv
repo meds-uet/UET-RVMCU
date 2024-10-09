@@ -9,11 +9,11 @@
  *               buad register and 8*8 FIFO according to UART SiFive.
  *********************************************************************/
 
-/*`ifndef VERILATOR
+`ifndef VERILATOR
 `include "../../defines/uart_defs.svh"
-`else*/
+`else
 `include "uart_defs.svh"
-//`endif
+`endif
 
 
 module uart ( 

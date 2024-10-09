@@ -7,11 +7,11 @@
  * Description:  Uart transmitter module with 8*8 FIFO
  *********************************************************************/
 
-/*`ifndef VERILATOR
+`ifndef VERILATOR
 `include "../../defines/uart_defs.svh"
-`else*/
+`else
 `include "uart_defs.svh"
-//`endif
+`endif
  
 module uart_tx (
 
@@ -50,7 +50,7 @@ logic tx_busy;
 // FIFO signals
 logic tx_fifo_empty;
 logic [7:0] tx_fifo_data;
-logic [ADDR_FIFO:0]                  tx_fifo_count;
+logic [UART_ADDR_FIFO:0]                  tx_fifo_count;
 
 
 //============================ UART Transmitter Controller ===========================//

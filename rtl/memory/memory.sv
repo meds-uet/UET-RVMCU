@@ -50,9 +50,13 @@ end
 
 `else
 initial 
+// begin
+//     // Reading the contents of example imem.txt file to memory variable
+//      $readmemh("../../../imem.txt", dualport_memory);  
+// end
 begin
     // Reading the contents of example imem.txt file to memory variable
-     $readmemh("../../../imem.txt", dualport_memory);  
+     $readmemh("C:/Users/Hp/Desktop/MEDS/LFX/UET-RVMCU/rtl/memory/imem.txt", dualport_memory);  
 end
 `endif
 assign changed_data = dualport_memory[exe2mem_i.addr[`XLEN-1:2]];
