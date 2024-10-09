@@ -6,6 +6,7 @@
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 13.4.2022
+// Modified by: Shehzeen Malik, MEDS UET
 
 
 `ifndef PCORE_CONFIG_DEFS
@@ -29,8 +30,8 @@
 // Memory related parameters
 `define IMEM_INST_REQ                1
 
-`define IDMEM_SIZE                   24'h400000
-`define MEM_ADDR_WIDTH               22
+`define MEM_BANK_SIZE                20'h80000 //20 as always should be multiple of 4
+`define MEM_ADDR_WIDTH               24
 
 `define DMEM_SEL_ADDR_HIGH           21 
 `define DMEM_SEL_ADDR_LOW             0

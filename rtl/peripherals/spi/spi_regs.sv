@@ -13,7 +13,7 @@
 
 `ifndef VERILATOR
 `include "../../defines/spi_defs.svh"
-`else*/
+`else
 `include "spi_defs.svh"
 `endif
 

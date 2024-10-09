@@ -25,10 +25,4 @@ typedef struct packed {
     logic                ack;
 } type_mem2wrb_s;
 
-typedef enum logic [1:0] {
-    MEM_IDLE   = 2'b00,
-    MEM_MODIFY = 2'b01,
-    MEM_WRITE  = 2'b10
-  } type_mem_wr_states_e;
-
 `endif
