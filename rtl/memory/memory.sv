@@ -48,7 +48,7 @@ logic [7:0]          mem_bank_3[`MEM_BANK_SIZE];
 `ifdef COMPLIANCE
 initial
 begin
-     // Reading the contents of imem.txt file to memory variable
+     // Reading the contents of mem_bank file to memory variable
      // Not required to $readmem for COMPLIANCE Tests
 end
 
