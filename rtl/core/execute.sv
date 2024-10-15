@@ -6,7 +6,7 @@
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 11.8.2022
-
+// Modified by: Shehzeen Malik
  
 `ifndef VERILATOR
 `include "../defines/m_ext_defs.svh"
@@ -117,31 +117,17 @@ assign fwd2exe = fwd2exe_i;
 // assign operand_rs2_data = fwd2exe.fwd_wrb_rs2 ? wrb2exe_fb_rd_data : id2exe_data.rs2_data;
 
 always_comb begin
-    case (1'b1)
-        fwd2exe.fwd_lsu_rs1 : begin
-            operand_rs1_data = lsu2exe_fb_alu_result;
-        end
-        fwd2exe.fwd_wrb_rs1 : begin
-            operand_rs1_data = wrb2exe_fb_rd_data;
-        end
-        default             : begin
-            operand_rs1_data = id2exe_data.rs1_data;
-        end
-    endcase
+    if (fwd2exe.fwd_wrb_rs1)
+         operand_rs1_data = wrb2exe_fb_rd_data;
+    else
+         operand_rs1_data = id2exe_data.rs1_data;
 end
 
 always_comb begin
-    case (1'b1)
-        fwd2exe.fwd_lsu_rs2 : begin
-            operand_rs2_data = lsu2exe_fb_alu_result;
-        end
-        fwd2exe.fwd_wrb_rs2 : begin
-            operand_rs2_data = wrb2exe_fb_rd_data;
-        end
-        default             : begin
-            operand_rs2_data = id2exe_data.rs2_data;
-        end
-    endcase
+    if (fwd2exe.fwd_wrb_rs2)
+       operand_rs2_data = wrb2exe_fb_rd_data;
+    else
+       operand_rs2_data = id2exe_data.rs2_data;
 end
 
 //============================== Preparing signals for ALU operations ============================//

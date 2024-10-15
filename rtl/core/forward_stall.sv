@@ -6,6 +6,7 @@
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 11.8.2022
+// Modified by: Shehzeen Malik
 
 
 `ifndef VERILATOR
@@ -24,7 +25,7 @@ module forward_stall (
     input wire type_wrb2fwd_s             wrb2fwd_i,
 
     // Memory <---> Forward_stall interface signals
-    input wire type_lsu2fwd_s             lsu2fwd_i,
+    input wire type_lsu2fwd_s             lsu2fwd_i, 
 
     // M-extension <---> Forward_stall interface signals
     input wire type_div2fwd_s             div2fwd_i,
@@ -106,9 +107,7 @@ assign lsu_div_csr_req = lsu2fwd.lsu_req | div2fwd.div_req | csr2fwd.csr_read_re
 // Generate the forwarding signals from LSU and writeback stages. The load-use RAW hazard
 // can not be resolved by forwarding from LSU-2-execute stage. Rather one cycle stall is
 // generated and the data read using DBUS is forwarded from writeback stage to execute
-// stage to resolve the hazard. 
-assign fwd2exe.fwd_lsu_rs1 = lsu2rs1_hazard & (~lsu_div_csr_req); 
-assign fwd2exe.fwd_lsu_rs2 = lsu2rs2_hazard & (~lsu_div_csr_req); 
+// stage to resolve the hazard.
      
 assign fwd2exe.fwd_wrb_rs1 = ((exe2fwd.rs1_addr == wrb2fwd.rd_addr) & wrb2fwd.rd_wr_req) & rs1_valid; 
 assign fwd2exe.fwd_wrb_rs2 = ((exe2fwd.rs2_addr == wrb2fwd.rd_addr) & wrb2fwd.rd_wr_req) & rs2_valid; 
@@ -164,7 +163,7 @@ end
 always_comb begin 
     lsu_stall_next = lsu_stall_ff; 
 
-    if (lsu2fwd.lsu_ack ) begin
+    if (lsu2fwd.lsu_ack) begin
         lsu_stall_next = 1'b0;
     end else if (lsu2fwd.lsu_req) begin                         
         lsu_stall_next = 1'b1; 
