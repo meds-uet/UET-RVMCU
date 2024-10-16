@@ -32,6 +32,7 @@ logic [`XLEN-1:0]                     instr_read;
 logic                                 instr_ack;
 logic                                 load_req;
 logic                                 store_req;
+logic                                 store_done;
 logic [`XLEN-1:0]                     write_data;
 logic [`XLEN-3:0]                     mem_address;
 logic [3:0]                           write_sel_byte;
@@ -95,7 +96,9 @@ always_ff @(posedge clk) begin
                            mem_bank_3[mem_address] <= write_data[31:24]; 
                      end
         endcase
-    end
+        store_done <= 1'b1;
+    end else
+        store_done <= 1'b0;
 end
 
 //asynchronous data memory read
@@ -106,6 +109,9 @@ always_comb begin
                       mem_bank_1[mem_address],
                       mem_bank_0[mem_address] };
         read_ack    = 1'b1;
+    end else if (store_done) begin
+        read_data = 32'h00000000;
+        read_ack  = 1'b1;
     end else begin
         read_data = 32'h00000000;
         read_ack  = 1'b0;
