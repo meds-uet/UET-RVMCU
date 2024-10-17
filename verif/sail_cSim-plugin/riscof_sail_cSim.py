@@ -88,6 +88,15 @@ class sail_cSim(pluginTemplate):
             self.isa += 'f'
         if "D" in ispec["ISA"]:
             self.isa += 'd'
+        if "_Zba" in ispec["ISA"]:
+            self.isa += 'zba'
+        if "_Zbb" in ispec["ISA"]:
+            self.isa += 'zbb'
+        if "_Zbc" in ispec["ISA"]:
+            self.isa += 'zbc'
+        if "_Zbs" in ispec["ISA"]:
+            self.isa += 'zbs'
+
         objdump = "riscv{0}-unknown-elf-objdump".format(self.xlen)
         if not self.docker:
             if shutil.which(objdump) is None:
