@@ -104,31 +104,31 @@ end
 // Synchronous data memory read
 always_ff @(posedge clk) begin  
     if (load_req) begin
-        read_data = { mem_bank_3[mem_address],
+        read_data <= { mem_bank_3[mem_address],
                       mem_bank_2[mem_address],
                       mem_bank_1[mem_address],
                       mem_bank_0[mem_address] };
-        read_ack    = 1'b1;
+        read_ack    <= 1'b1;
     end else if (store_done) begin
-        read_data = 32'h00000000;
-        read_ack  = 1'b1;
+        read_data <= 32'h00000000;
+        read_ack  <= 1'b1;
     end else begin
-        read_data = 32'h00000000;
-        read_ack  = 1'b0;
+        read_data <= 32'h00000000;
+        read_ack  <= 1'b0;
     end
 end
 
 // Synchronous intruction fetch
 always_ff @(posedge clk) begin  
     if (instr_req) begin
-        instr_read = {mem_bank_3[instr_address],
+        instr_read <= {mem_bank_3[instr_address],
                       mem_bank_2[instr_address],
                       mem_bank_1[instr_address],
                       mem_bank_0[instr_address] };
-        instr_ack    = 1'b1;
+        instr_ack    <= 1'b1;
     end else begin
-        instr_read = 32'h00000000;
-        instr_ack  = 1'b0;
+        instr_read <= 32'h00000000;
+        instr_ack  <= 1'b0;
     end
 end
 
