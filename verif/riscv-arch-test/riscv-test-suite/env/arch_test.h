@@ -1420,6 +1420,9 @@ adj_\__MODE__\()epc_rtn:                // adj mepc so there is at least 4B of p
              the mode of the mstatus.mpp that is stored in Xtrampend_sv ****/
 
         csrr    T2, CSR_XTVAL
+        csrr    T5, CSR_XCAUSE
+        LI(T6, 3)
+        beq     T5, T6, skp_\__MODE__\()tval
 
 chk_\__MODE__\()tval:
         andi    T5, T5, EXCPT_CAUSE_MSK // ensures shift amt will be within range
