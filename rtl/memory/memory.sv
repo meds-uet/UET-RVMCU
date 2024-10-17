@@ -101,8 +101,8 @@ always_ff @(posedge clk) begin
         store_done <= 1'b0;
 end
 
-//asynchronous data memory read
-always_comb begin
+// Synchronous data memory read
+always_ff @(posedge clk) begin  
     if (load_req) begin
         read_data = { mem_bank_3[mem_address],
                       mem_bank_2[mem_address],
@@ -118,8 +118,8 @@ always_comb begin
     end
 end
 
-// Asynchronous intruction fetch
-always_comb begin
+// Synchronous intruction fetch
+always_ff @(posedge clk) begin  
     if (instr_req) begin
         instr_read = {mem_bank_3[instr_address],
                       mem_bank_2[instr_address],
