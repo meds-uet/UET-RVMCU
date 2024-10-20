@@ -171,7 +171,7 @@ always_comb begin
         if2id_ctrl_next.irq_req       = 1'b0;
         if2id_data_next.exc_code      = EXC_CODE_NO_EXCEPTION;
 
-    end else if (fwd2ptop.if2id_pipe_stall) begin
+    end else if (fwd2ptop.if2id_pipe_stall | !mem2if.ack) begin
         if2id_data_next = if2id_data_pipe_ff;
         if2id_ctrl_next = if2id_ctrl_pipe_ff;
     end   
@@ -378,6 +378,7 @@ forward_stall forward_stall_module (
     .div2fwd_i                  (div2fwd),
     .exe2fwd_i                  (exe2fwd),
  //   .if2fwd_stall_i             (if2fwd_stall),
+
     .fwd2if_o                   (fwd2if),
     .fwd2exe_o                  (fwd2exe),
     .fwd2csr_o                  (fwd2csr),
