@@ -4,8 +4,8 @@ STARTUP (build/startup.o)
 
 MEMORY
 { 
-  IDMEM (rwx)  : ORIGIN = 0x00000000, LENGTH = 2M
-  PERI  (rwx)  : ORIGIN = 0x00200000, LENGTH = 2M
+  IDMEM (rwx)  : ORIGIN = 0x00000000, LENGTH = 512k
+  PERI  (rwx)  : ORIGIN = 0x00200000, LENGTH = 512k
 }
 
 

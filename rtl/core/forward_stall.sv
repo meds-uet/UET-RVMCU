@@ -133,7 +133,7 @@ assign fwd2ptop.exe2lsu_pipe_flush = ld_use_hazard | lsu_flush;
 assign fwd2ptop.lsu2wrb_pipe_flush = csr2fwd.irq_flush_lsu;
 
 // Pipeline stall signals for different ppeline stages/modules 
-assign lsu_div_stall               = lsu_stall_ff | div_stall_next;
+assign lsu_div_stall               = lsu_stall_next | div_stall_next;
 assign if_id_exe_stall             = ld_use_hazard | lsu_div_stall; 
  
 assign fwd2ptop.if2id_pipe_stall   = if_id_exe_stall;
