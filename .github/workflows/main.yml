@@ -56,14 +56,12 @@ jobs:
        
     # Upload the riscof_work for rv32 folder
     - name: Upload Artifacts
-       # Proceed with upload only if the size is within limit  
       if: always()  
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
-        name: riscof-test-report-rv32
+        name: riscof-test-report
         path: rvmcu/verif/riscof_work/
         if-no-files-found: warn
         retention-days: 3
         compression-level: 6
         overwrite: true
-        include-hidden-files: false
