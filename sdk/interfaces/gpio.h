@@ -9,8 +9,6 @@
 
 #include <stdint.h>
 
-#define GPIO_Int_pin0       0x01
-#define GPIO_Int_Lvl_pin0   0x01
 #define NVIC_Enable         0x100
 #define IRQ_Enable          0x40800 //GPIO 11 bit and M_EXTERNAL 18 bit
 
@@ -40,5 +38,6 @@ void Uetrv32_Gpio_Init(void);
 void Uetrv32_Gpio_SetDirection(uint32_t pin, uint32_t direction);
 void Uetrv32_Gpio_WriteData(uint32_t pin, uint32_t value);
 uint32_t Uetrv32_Gpio_ReadData(uint32_t pin);
-void Uetrv32_Gpio_Interrupt(void);
+void Uetrv32_Gpio_Interrupt_Enable(uint32_t pin, uint32_t level);
+void Uetrv32_Gpio_Interrupt_Disable(uint32_t pin);
 

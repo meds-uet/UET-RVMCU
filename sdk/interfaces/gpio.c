@@ -15,7 +15,9 @@
 /**********************************************************************//**
  * Initialize GPIO module.
  **************************************************************************/
-
+uint32_t set_dir;
+uint32_t in_data, out_data;
+uint32_t intr_en, intr_lvl;
 void Uetrv32_Gpio_Init(void){
 }
 
@@ -24,12 +26,13 @@ void Uetrv32_Gpio_Init(void){
  **************************************************************************/
 
 void Uetrv32_Gpio_SetDirection(uint32_t pin, uint32_t direction) {
+    set_dir = 1 << pin;
     if (direction) {
         // Set direction of the specific pin to output
-        GPIO_Module.dir = GPIO_Module.dir | pin;
+        GPIO_Module.dir = GPIO_Module.dir | set_dir;
     } else {
         // Set direction of the specific pin to input
-        GPIO_Module.dir = GPIO_Module.dir & ~pin;
+        GPIO_Module.dir = GPIO_Module.dir & ~set_dir;
     }
 }
 
@@ -38,12 +41,13 @@ void Uetrv32_Gpio_SetDirection(uint32_t pin, uint32_t direction) {
  **************************************************************************/
 
 void Uetrv32_Gpio_WriteData(uint32_t pin, uint32_t data) {
+    out_data = 1 << pin;
     if (data) {
         // Set the specific pin to high
-        GPIO_Module.data = GPIO_Module.data | pin;
+        GPIO_Module.data = GPIO_Module.data | out_data;
     } else {
         // Set the specific pin to low
-        GPIO_Module.data = GPIO_Module.data & ~pin;
+        GPIO_Module.data = GPIO_Module.data & ~out_data;
     }
 }
 
@@ -53,18 +57,26 @@ void Uetrv32_Gpio_WriteData(uint32_t pin, uint32_t data) {
 
 uint32_t Uetrv32_Gpio_ReadData(uint32_t pin) {
     // Return the state of the specific pin
-    return GPIO_Module.data & pin;
+    in_data = 1 << pin;
+    return GPIO_Module.data & in_data;
 }
 
 /**********************************************************************//**
  * GPIO Interrupt Control. This is a blocking function.
  **************************************************************************/
 
-void Uetrv32_Gpio_Interrupt(void){
-    //GPIO Interupt enable fir Pin0
-    GPIO_Module.ie      = GPIO_Module.ie | GPIO_Int_pin0;
-    //GPIO Interupt Level Set for Pin0
-    GPIO_Module.int_lvl = GPIO_Module.int_lvl | GPIO_Int_Lvl_pin0;
+void Uetrv32_Gpio_Interrupt_Enable(uint32_t pin, uint32_t level){
+    intr_en  = 1 << pin;
+    intr_lvl = 1 << level;
+    //GPIO Interupt enable for given pin
+    GPIO_Module.ie      = GPIO_Module.ie | intr_en;
+    //GPIO Interupt Level Set for given pin
+    if (level){
+        GPIO_Module.int_lvl = GPIO_Module.int_lvl | intr_lvl;
+    } else {
+        GPIO_Module.int_lvl = GPIO_Module.int_lvl & (~intr_lvl);
+    }
+    
 
     //Inline assembly code block
     asm volatile (
@@ -75,6 +87,13 @@ void Uetrv32_Gpio_Interrupt(void){
           "r" (IRQ_Enable)           // Input operand: new value for mie
         :                            // No clobbered registers
     );
+}
+
+void Uetrv32_Gpio_Interrupt_Disable(uint32_t pin)
+{
+    intr_en  = 1 << pin;
+    //GPIO Interupt enable fir Pin0
+    GPIO_Module.ie      = GPIO_Module.ie & (~intr_en);
 }
 
 
