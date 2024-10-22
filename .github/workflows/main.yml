@@ -53,11 +53,17 @@ jobs:
         cd rvmcu/verif
         chmod +x run-tests.sh
         ./run-tests.sh
-    
+       
+    # Upload the riscof_work for rv32 folder
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+       # Proceed with upload only if the size is within limit  
+      if: always()  
+      uses: actions/upload-artifact@v4
       with:
-        name: Test_report
-        path: |
-          rvmcu/verif/riscof_work/report.html
-          rvmcu/verif/riscof_work/style.css
+        name: riscof-test-report-rv32
+        path: rvmcu/riscof_work/
+        if-no-files-found: warn
+        retention-days: 3
+        compression-level: 6
+        overwrite: true
+        include-hidden-files: false
