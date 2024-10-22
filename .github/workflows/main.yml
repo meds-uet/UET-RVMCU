@@ -61,7 +61,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: riscof-test-report-rv32
-        path: rvmcu/riscof_work/
+        path: rvmcu/verif/riscof_work/
         if-no-files-found: warn
         retention-days: 3
         compression-level: 6
