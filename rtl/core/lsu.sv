@@ -189,7 +189,7 @@ assign ld_st_addr = exe2lsu_data.alu_result;
 assign lsu2exe_fb_alu_result_o = exe2lsu_data.alu_result; 
 
 // Update data for CSR module
-assign lsu2csr_data.pc_next   = exe2lsu_data.pc_next;
+assign lsu2csr_data.pc_next   = exe2lsu_data.pc_ff; //_next;
 assign lsu2csr_data.dbus_addr = ld_st_addr;
 
 // Update control signals for CSR module
@@ -210,6 +210,7 @@ assign lsu2amo_data.r_data        = dbus2lsu.r_data;
 // Update signals for writeback  
 assign lsu2wrb_data.alu_result    = exe2lsu_data.alu_result;  
 assign lsu2wrb_data.pc_next       = exe2lsu_data.pc_next;
+assign lsu2wrb_data.pc_ff         = exe2lsu_data.pc_ff;
 assign lsu2wrb_data.rd_addr       = exe2lsu_ctrl.rd_addr;               
 
 // Update control signals for writeback
@@ -220,7 +221,7 @@ assign lsu2wrb_ctrl.rd_wrb_sel = exe2lsu_ctrl.rd_wrb_sel;
 assign lsu2fwd.rd_addr   = exe2lsu_ctrl.rd_addr; 
 assign lsu2fwd.rd_wr_req = exe2lsu_ctrl.rd_wr_req;       // For SC, forwarding loop will also be updated
 
-assign lsu_amo_req = is_amo;//ld_req | st_req | is_amo ;
+assign lsu_amo_req = is_amo | amo2lsu_ctrl.st_req | amo2lsu_ctrl.ld_req;
 
 // Ack will be based on amo_done in case of amo_instruction
 assign lsu_amo_ack = is_amo ? amo2lsu_ctrl.amo_done : dbus2lsu.ack;    
@@ -234,7 +235,6 @@ assign lsu2dbus.ld_req = ld_req;
 assign lsu2dbus.st_req = st_req;
 // MT: assign lsu2dbus.w_data = exe2lsu_data.rs2_data;
 assign lsu2dbus.st_ops = exe2lsu_ctrl.st_ops;
-
 
 // Update the output signals with proper assignment
 assign lsu_flush_o    = fwd2lsu_i.lsu_flush;

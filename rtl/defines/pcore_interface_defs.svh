@@ -258,6 +258,7 @@ typedef struct packed {
 typedef struct packed {                            
     logic [`XLEN-1:0]                alu_result;
     logic [`XLEN-1:0]                pc_next;
+    logic [`XLEN-1:0]                pc_ff; //new added
     logic [`XLEN-1:0]                rs2_data;
 } type_exe2lsu_data_s;
 
@@ -325,6 +326,7 @@ typedef struct packed {
 typedef struct packed {                            
     logic [`XLEN-1:0]                alu_result;
     logic [`XLEN-1:0]                pc_next;
+    logic [`XLEN-1:0]                pc_ff; //new added
     logic [`XLEN-1:0]                r_data;  
     logic [`RF_AWIDTH-1:0]           rd_addr; 
 } type_lsu2wrb_data_s;
@@ -430,7 +432,7 @@ typedef struct packed {
 // Forwarding-2-Execute interface signals
 typedef struct packed {                            
     logic                            fwd_wrb_rs1;
-    logic                            fwd_wrb_rs2;  
+    logic                            fwd_wrb_rs2; 
 } type_fwd2exe_s;
 
 // Forwarding-2-Pipeline top interface signals

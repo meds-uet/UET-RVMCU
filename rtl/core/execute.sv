@@ -6,7 +6,7 @@
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 11.8.2022
-// Modified by: Shehzeen Malik
+
  
 `ifndef VERILATOR
 `include "../defines/m_ext_defs.svh"
@@ -471,6 +471,7 @@ assign exe2div.alu_d_ops  = id2exe_ctrl.alu_d_ops;
 // Update the output data signals for LSU
 assign exe2lsu_data.alu_result = mul_cmd ? alu_m_result : (bitmanip_cmd ? alu_b_result : alu_result);
 assign exe2lsu_data.pc_next    = id2exe_data.pc_next;
+assign exe2lsu_data.pc_ff      = id2exe_data.pc;
 assign exe2lsu_data.rs2_data   = operand_rs2_data; // MT: This should be verified due to forwarding
 
 // Assign the output control signals for LSU
