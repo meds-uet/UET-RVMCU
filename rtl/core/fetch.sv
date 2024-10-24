@@ -63,9 +63,6 @@ logic [`XLEN-1:0]                    instr_word;
 logic                                if_stall;
 logic                                pc_misaligned;
 
-// Register to hold the instruction fetched from memory
-logic [`XLEN-1:0] instr_ff, pc_id_ff;
-
 assign mem2if = mem2if_i;
 
 assign exe2if_fb = exe2if_fb_i;
@@ -87,21 +84,9 @@ always_ff @(posedge clk) begin
     end
 end
 
-// Pipeline the instruction fetch process
-always_ff @(posedge clk) begin
-    if (~rst_n) begin
-        instr_ff <= `INSTR_NOP;
-        pc_id_ff <= `PC_RESET;
-    end else if (mem2if.ack) begin
-        instr_ff <= mem2if.r_data;
-        pc_id_ff <= pc_ff;
-    end
-end
-
 assign pc_plus_4 = pc_ff + 32'd4;
 
 ////////////////////////////////////////////////////////////////
-// logic [`XLEN-1:0]                    pc_new_jal; 
 logic [`XLEN-1:0]                    jal_imm;            
 logic                                is_jal;
 
@@ -121,8 +106,8 @@ always_comb begin
         if_stall              : begin  
             pc_next = pc_ff;
         end 
-        is_jal                : begin  // MT JAL
-            pc_next = pc_ff + jal_imm; // pc_new_jal;
+        is_jal                : begin
+            pc_next = pc_ff + jal_imm;
         end
         default                 : begin       end
     endcase
@@ -131,7 +116,6 @@ end
 
 
 assign jal_imm = {{12{instr_word[31]}}, instr_word[19:12], instr_word[20], instr_word[30:21], 1'b0};
-//assign pc_new_jal = pc_ff + jal_imm;
 
 assign is_jal = if2id_data.instr[6:2] == OPCODE_JAL_INST;
 
@@ -190,18 +174,18 @@ end
 // Kill request to kill an on going request
 assign kill_req = fwd2if.csr_new_pc_req | fwd2if.exe_new_pc_req;
 
-assign instr_word = (irq_req_next) ? `INSTR_NOP : mem2if.r_data; //(~mem2if.ack) |
+assign instr_word = ((~mem2if.ack) | irq_req_next) ? `INSTR_NOP : mem2if.r_data;
 
 // Update the outputs to Imem module
 
 assign if2mem_o.addr = pc_ff; 
+
+//request to memory will be zero if kill request so wrong pc instruction not fetched
 assign if2mem_o.req  = kill_req ? 1'b0 : `IMEM_INST_REQ;
 
 // Update the outputs to ID stage
-/*assign if2id_data.instr         = instr_word;
-assign if2id_data.pc            = pc_ff;*/
 assign if2id_data.instr         = instr_word;
-assign if2id_data.pc            = pc_id_ff;
+assign if2id_data.pc            = pc_ff;
 assign if2id_data.pc_next       = is_jal ? (pc_plus_4) : pc_next;
 assign if2id_data.instr_flushed = 1'b0;
 

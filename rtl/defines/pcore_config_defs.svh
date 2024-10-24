@@ -16,6 +16,7 @@
 //`define RTL_SIMULATION               1 
 `endif
 
+//`define FPGA                           1
 //============================= CORE PARAMETERS ========================//
 
 // Width of main registers and buses
@@ -30,7 +31,12 @@
 // Memory related parameters
 `define IMEM_INST_REQ                1
 
+`ifdef FPGA
+`define MEM_BANK_SIZE                20'h10000
+`else
 `define MEM_BANK_SIZE                20'h80000 //20 as always should be multiple of 4
+`endif
+
 `define MEM_ADDR_WIDTH               24
 
 `define DMEM_SEL_ADDR_HIGH           21 

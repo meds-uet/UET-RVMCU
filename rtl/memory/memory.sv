@@ -53,26 +53,34 @@ assign instr_req        = if2mem_i.req;
 assign instr_address    = if2mem_i.addr[`XLEN-1:2];
 
 // Dual port memory instantiation and initialization
+`ifdef FPGA
+(*ram_style = "block"*) reg [7:0]          mem_bank_0[`MEM_BANK_SIZE];
+(*ram_style = "block"*) reg [7:0]          mem_bank_1[`MEM_BANK_SIZE];
+(*ram_style = "block"*) reg [7:0]          mem_bank_2[`MEM_BANK_SIZE];
+(*ram_style = "block"*) reg [7:0]          mem_bank_3[`MEM_BANK_SIZE];
+
+`else
 logic [7:0]          mem_bank_0[`MEM_BANK_SIZE];
 logic [7:0]          mem_bank_1[`MEM_BANK_SIZE];
 logic [7:0]          mem_bank_2[`MEM_BANK_SIZE];
 logic [7:0]          mem_bank_3[`MEM_BANK_SIZE];
 
+`endif
+
+// Reading the contents of imem.txt file to memory variable
 `ifdef COMPLIANCE
 initial
 begin
-     // Reading the contents of imem.txt file to memory variable
      // Not required to $readmem for COMPLIANCE Tests
 end
 
 `else
 initial 
 begin
-    // Reading the contents of example imem.txt file to memory variable
-     $readmemh("F:/MEDS/PCore-controller/UET-RVMCU/rtl/memory/imem_1.txt", mem_bank_3);
-     $readmemh("F:/MEDS/PCore-controller/UET-RVMCU/rtl/memory/imem_2.txt", mem_bank_2);  
-     $readmemh("F:/MEDS/PCore-controller/UET-RVMCU/rtl/memory/imem_3.txt", mem_bank_1);  
-     $readmemh("F:/MEDS/PCore-controller/UET-RVMCU/rtl/memory/imem_4.txt", mem_bank_0);   
+     $readmemh("imem_1.txt", mem_bank_3);
+     $readmemh("imem_2.txt", mem_bank_2);  
+     $readmemh("imem_3.txt", mem_bank_1);  
+     $readmemh("imem_4.txt", mem_bank_0);   
 end
 `endif
 
@@ -121,73 +129,13 @@ always_ff @(posedge clk) begin
                            mem_bank_1[instr_address],
                            mem_bank_0[instr_address] };
             instr_ack    <= 1'b1;
-        end /* else if (instr_req & instr_ack)
-            instr_ack <= 1'b0;*/
+        end else if (instr_req & instr_ack)
+            instr_ack <= 1'b0;
         else begin
             instr_read <= `INSTR_NOP;
             instr_ack  <= 1'b0;
         end
     end
 end
-
-
-
-
-/* // Synchronous store operation for memory based on sel_byte
-always_ff @(posedge clk) begin  
-    if (store_req) begin
-        case (write_sel_byte)
-            4'b0001: mem_bank_0[mem_address] <= write_data[7:0];
-            4'b0010: mem_bank_1[mem_address] <= write_data[15:8];
-            4'b0100: mem_bank_2[mem_address] <= write_data[23:16];
-            4'b1000: mem_bank_3[mem_address] <= write_data[31:24];
-            4'b0011: begin mem_bank_0[mem_address] <= write_data[7:0];
-                           mem_bank_1[mem_address] <= write_data[15:8]; 
-                     end
-            4'b1100: begin mem_bank_2[mem_address] <= write_data[23:16];
-                           mem_bank_3[mem_address] <= write_data[31:24]; 
-                     end 
-            4'b1111: begin mem_bank_0[mem_address] <= write_data[7:0];
-                           mem_bank_1[mem_address] <= write_data[15:8];
-                           mem_bank_2[mem_address] <= write_data[23:16];
-                           mem_bank_3[mem_address] <= write_data[31:24]; 
-                     end
-        endcase
-        store_done <= 1'b1;
-    end
-    else
-        store_done <= 1'b0;
-end
-
-//asynchronous data memory read
-always_comb begin
-    if (load_req) begin
-        read_data = { mem_bank_3[mem_address],
-                      mem_bank_2[mem_address],
-                      mem_bank_1[mem_address],
-                      mem_bank_0[mem_address] };
-        read_ack    = 1'b1;
-    end else if (store_done) begin
-        read_data = 32'h00000000;
-        read_ack  = 1'b1;
-    end else begin
-        read_data = 32'h00000000;
-        read_ack  = 1'b0;
-    end
-end
-
-// Asynchronous intruction fetch
-always_comb begin
-    if (instr_req) begin
-        instr_read = {mem_bank_3[instr_address],
-                      mem_bank_2[instr_address],
-                      mem_bank_1[instr_address],
-                      mem_bank_0[instr_address] };
-        instr_ack    = 1'b1;
-    end else begin
-        instr_read = 32'h00000000;
-        instr_ack  = 1'b0;
-    end
-end */
 
 endmodule

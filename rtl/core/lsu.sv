@@ -210,7 +210,6 @@ assign lsu2amo_data.r_data        = dbus2lsu.r_data;
 // Update signals for writeback  
 assign lsu2wrb_data.alu_result    = exe2lsu_data.alu_result;  
 assign lsu2wrb_data.pc_next       = exe2lsu_data.pc_next;
-assign lsu2wrb_data.pc_ff         = exe2lsu_data.pc_ff;
 assign lsu2wrb_data.rd_addr       = exe2lsu_ctrl.rd_addr;               
 
 // Update control signals for writeback

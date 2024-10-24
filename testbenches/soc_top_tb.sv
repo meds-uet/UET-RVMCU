@@ -10,12 +10,57 @@ module soc_top_tb;
     logic [15:0] gp_switch_i;
     logic [15:0] gp_led_o;
 
+    wire [23:0] gpio_io;
     // Inout port
-	wire [23:0] gpio_io;   // bidirectional signal from DUT
-    reg  [23:0] gpio_io_drive;  // locally driven value
+	wire [7:0] gpio_io_a;   // bidirectional signal from DUT
+    reg  [7:0] gpio_io_out_a;  // locally driven value
+    wire [7:0] gpio_io_rec_a;  // locally received value (optional, but models typical pad)
 
-    assign gpio_io = gpio_io_drive;
+	wire [7:0] gpio_io_b;   // bidirectional signal from DUT
+    reg  [7:0] gpio_io_out_b;  // locally driven value
+    wire [7:0] gpio_io_rec_b;  // locally received value (optional, but models typical pad)
 
+	wire [7:0] gpio_io_c;   // bidirectional signal from DUT
+    reg  [7:0] gpio_io_out_c;  // locally driven value
+    wire [7:0] gpio_io_rec_c;  // locally received value (optional, but models typical pad)
+    
+    // Bidirectional control for gpio_io
+    // Update gpio_io pins to drive the inout net
+// ----------------------------
+assign gpio_io_a[0] = uut.gpio_top_module.gpio_A.reg_dir_ff[0] ? 1'bz : gpio_io_out_a[0];
+assign gpio_io_a[1] = uut.gpio_top_module.gpio_A.reg_dir_ff[1] ? 1'bz : gpio_io_out_a[1]; 
+assign gpio_io_a[2] = uut.gpio_top_module.gpio_A.reg_dir_ff[2] ? 1'bz : gpio_io_out_a[2]; 
+assign gpio_io_a[3] = uut.gpio_top_module.gpio_A.reg_dir_ff[3] ? 1'bz : gpio_io_out_a[3]; 
+assign gpio_io_a[4] = uut.gpio_top_module.gpio_A.reg_dir_ff[4] ? 1'bz : gpio_io_out_a[4]; 
+assign gpio_io_a[5] = uut.gpio_top_module.gpio_A.reg_dir_ff[5] ? 1'bz : gpio_io_out_a[5]; 
+assign gpio_io_a[6] = uut.gpio_top_module.gpio_A.reg_dir_ff[6] ? 1'bz : gpio_io_out_a[6]; 
+assign gpio_io_a[7] = uut.gpio_top_module.gpio_A.reg_dir_ff[7] ? 1'bz : gpio_io_out_a[7]; 
+
+assign gpio_io_rec_a = gpio_io_a;
+
+assign gpio_io_b[0] = uut.gpio_top_module.gpio_B.reg_dir_ff[0] ? 1'bz : gpio_io_out_b[0];
+assign gpio_io_b[1] = uut.gpio_top_module.gpio_B.reg_dir_ff[1] ? 1'bz : gpio_io_out_b[1]; 
+assign gpio_io_b[2] = uut.gpio_top_module.gpio_B.reg_dir_ff[2] ? 1'bz : gpio_io_out_b[2]; 
+assign gpio_io_b[3] = uut.gpio_top_module.gpio_B.reg_dir_ff[3] ? 1'bz : gpio_io_out_b[3]; 
+assign gpio_io_b[4] = uut.gpio_top_module.gpio_B.reg_dir_ff[4] ? 1'bz : gpio_io_out_b[4]; 
+assign gpio_io_b[5] = uut.gpio_top_module.gpio_B.reg_dir_ff[5] ? 1'bz : gpio_io_out_b[5]; 
+assign gpio_io_b[6] = uut.gpio_top_module.gpio_B.reg_dir_ff[6] ? 1'bz : gpio_io_out_b[6]; 
+assign gpio_io_b[7] = uut.gpio_top_module.gpio_B.reg_dir_ff[7] ? 1'bz : gpio_io_out_b[7]; 
+
+assign gpio_io_rec_b = gpio_io_b ;
+
+assign gpio_io_c[0] = uut.gpio_top_module.gpio_C.reg_dir_ff[0] ? 1'bz : gpio_io_out_c[0];
+assign gpio_io_c[1] = uut.gpio_top_module.gpio_C.reg_dir_ff[1] ? 1'bz : gpio_io_out_c[1]; 
+assign gpio_io_c[2] = uut.gpio_top_module.gpio_C.reg_dir_ff[2] ? 1'bz : gpio_io_out_c[2]; 
+assign gpio_io_c[3] = uut.gpio_top_module.gpio_C.reg_dir_ff[3] ? 1'bz : gpio_io_out_c[3]; 
+assign gpio_io_c[4] = uut.gpio_top_module.gpio_C.reg_dir_ff[4] ? 1'bz : gpio_io_out_c[4]; 
+assign gpio_io_c[5] = uut.gpio_top_module.gpio_C.reg_dir_ff[5] ? 1'bz : gpio_io_out_c[5]; 
+assign gpio_io_c[6] = uut.gpio_top_module.gpio_C.reg_dir_ff[6] ? 1'bz : gpio_io_out_c[6]; 
+assign gpio_io_c[7] = uut.gpio_top_module.gpio_C.reg_dir_ff[7] ? 1'bz : gpio_io_out_c[7]; 
+
+assign gpio_io_rec_c = gpio_io_c ;
+
+assign gpio_io = {gpio_io_a, gpio_io_b, gpio_io_c};
     // Instantiate the soc_top module
     soc_top uut (
         .rst_n(rst_n),
@@ -34,18 +79,40 @@ module soc_top_tb;
    end
 
     // Initial Setup and Test Scenarios
+    //reset sequence
     initial begin
         // Initialize inputs
-        rst_n         = 1'b1;  // Start with reset deasserted
+        rst_n = 1'b1;  // Start with reset deasserted
         // Reset sequence
         #1 rst_n = 1'b0;  // Assert reset
         #10 rst_n = 1'b1;  // Deassert reset
-
     end
+
+    //gpio sequence
+    initial begin
+        gpio_io_out_a = 8'h00;
+        gpio_io_out_b = 8'h00;
+        gpio_io_out_c = 8'h00;
+        repeat (30)@ (posedge clk);
+        gpio_io_out_a = 8'h00;
+        gpio_io_out_b = 8'hFF;
+        gpio_io_out_c = 8'h00;
+        repeat (50)@ (posedge clk);
+        gpio_io_out_a = 8'hFF;
+        gpio_io_out_b = 8'hAA;
+        gpio_io_out_c = 8'hBB;
+        repeat (50)@ (posedge clk);
+        gpio_io_out_a = 8'hCC;
+        gpio_io_out_b = 8'h99;
+        gpio_io_out_c = 8'hFF;
+        repeat (50)@ (posedge clk);
+        
+    end
+
 
     // Finish the simulation after enough time has passed
     initial begin
-        #10000 $finish;  // Adjust the simulation run time as necessary
+        #10000 $stop;  // Adjust the simulation run time as necessary
     end
 
 endmodule
