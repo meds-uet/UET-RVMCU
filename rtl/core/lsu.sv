@@ -189,7 +189,7 @@ assign ld_st_addr = exe2lsu_data.alu_result;
 assign lsu2exe_fb_alu_result_o = exe2lsu_data.alu_result; 
 
 // Update data for CSR module
-assign lsu2csr_data.pc_next   = exe2lsu_data.pc_ff; //_next;
+assign lsu2csr_data.pc_next   = exe2lsu_data.pc_next; //_next;
 assign lsu2csr_data.dbus_addr = ld_st_addr;
 
 // Update control signals for CSR module
