@@ -63,6 +63,8 @@ logic [`XLEN-1:0]                    instr_word;
 logic                                if_stall;
 logic                                pc_misaligned;
 
+// Register to hold the instruction fetched from memory
+logic [`XLEN-1:0] instr_ff, pc_id_ff;
 
 assign mem2if = mem2if_i;
 
@@ -82,6 +84,17 @@ always_ff @(posedge clk) begin
         pc_ff <= `PC_RESET;
     end else begin
         pc_ff <= pc_next;
+    end
+end
+
+// Pipeline the instruction fetch process
+always_ff @(posedge clk) begin
+    if (~rst_n) begin
+        instr_ff <= `INSTR_NOP;
+        pc_id_ff <= `PC_RESET;
+    end else if (mem2if.ack) begin
+        instr_ff <= mem2if.r_data;
+        pc_id_ff <= pc_ff;
     end
 end
 
@@ -185,8 +198,10 @@ assign if2mem_o.addr = pc_ff;
 assign if2mem_o.req  = kill_req ? 1'b0 : `IMEM_INST_REQ;
 
 // Update the outputs to ID stage
+/*assign if2id_data.instr         = instr_word;
+assign if2id_data.pc            = pc_ff;*/
 assign if2id_data.instr         = instr_word;
-assign if2id_data.pc            = pc_ff;
+assign if2id_data.pc            = pc_id_ff;
 assign if2id_data.pc_next       = is_jal ? (pc_plus_4) : pc_next;
 assign if2id_data.instr_flushed = 1'b0;
 

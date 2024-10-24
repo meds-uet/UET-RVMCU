@@ -121,8 +121,8 @@ always_ff @(posedge clk) begin
                            mem_bank_1[instr_address],
                            mem_bank_0[instr_address] };
             instr_ack    <= 1'b1;
-        end else if (instr_req & instr_ack)
-            instr_ack <= 1'b0;
+        end /* else if (instr_req & instr_ack)
+            instr_ack <= 1'b0;*/
         else begin
             instr_read <= `INSTR_NOP;
             instr_ack  <= 1'b0;
