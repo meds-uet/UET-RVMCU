@@ -9,7 +9,11 @@
 
 `timescale 1ns / 1ps
 
-`include "gpio_defs.svh"
+`ifndef VERILATOR
+`include "../rtl/defines/gpio_defs.svh"
+`else
+`include "../../defines/gpio_defs.svh"
+`endif
 
 module gpio_tb();
 
@@ -26,14 +30,20 @@ module gpio_tb();
 
     // Inout port
 	wire [7:0] gpio_io;   // bidirectional signal from DUT
-    reg [7:0] gpio_io_drive;  // locally driven value
+    reg [7:0] gpio_io_out;  // locally driven value
     wire [7:0] gpio_io_rec;  // locally received value (optional, but models typical pad)
 
-    assign gpio_io = gpio_io_drive;
     assign gpio_io_rec = gpio_io;
     
     // Bidirectional control for gpio_io
-   // assign gpio_io = gpio_io_drive ? gpio_io_out : 8'bz;
+assign gpio_io[0] = uut.reg_dir_ff[0] ? 1'bz : gpio_io_out[0];
+assign gpio_io[1] = uut.reg_dir_ff[1] ? 1'bz : gpio_io_out[1];
+assign gpio_io[2] = uut.reg_dir_ff[2] ? 1'bz : gpio_io_out[2];
+assign gpio_io[3] = uut.reg_dir_ff[3] ? 1'bz : gpio_io_out[3];
+assign gpio_io[4] = uut.reg_dir_ff[4] ? 1'bz : gpio_io_out[4];
+assign gpio_io[5] = uut.reg_dir_ff[5] ? 1'bz : gpio_io_out[5];
+assign gpio_io[6] = uut.reg_dir_ff[6] ? 1'bz : gpio_io_out[6];
+assign gpio_io[7] = uut.reg_dir_ff[7] ? 1'bz : gpio_io_out[7];
 
     // Outputs
     type_peri2dbus_s   gpio2dbus_o;
@@ -63,7 +73,6 @@ module gpio_tb();
         gpio_sel_i            = 1'b0;
         dbus2gpio_i.addr      = 32'h0;
         dbus2gpio_i           = '0;
-        gpio_io_drive         = 8'hzz;    // default high-Z
         repeat (2)@ (posedge clk);
         rst_n = 1;
         @ (posedge clk);
@@ -79,7 +88,7 @@ module gpio_tb();
         dbus2gpio_i.w_data    = 32'hAA; 
         dbus2gpio_i.w_en      = 1'b1;
         dbus2gpio_i.req       = 1'b1;
-		gpio_io_drive         = 8'h55;
+		gpio_io_out           = 8'h55;
         @ (posedge clk);
         gpio_sel_i = 1;
         dbus2gpio_i.addr      = 32'h08; //Interrupt Pending Register
@@ -105,8 +114,7 @@ module gpio_tb();
         dbus2gpio_i.addr      = 32'h00;
         dbus2gpio_i.w_en      = 1'b0;
         dbus2gpio_i.req       = 1'b1;
-        //gpio_io_drive         = 1'b1;
-        gpio_io_drive         = 8'hFF;
+        gpio_io_out           = 8'hFF;
         @ (posedge clk);
         gpio_sel_i = 0;
         dbus2gpio_i.req       = 1'b0;
@@ -117,14 +125,12 @@ module gpio_tb();
         dbus2gpio_i.w_en      = 1'b1;
         dbus2gpio_i.req       = 1'b1;
 		@ (posedge clk);
-		//gpio_io_drive         = 1'b0;
 		gpio_sel_i = 1;
         dbus2gpio_i.addr      = 32'h00; //Data Register
         dbus2gpio_i.w_data    = 32'hA0; 
         dbus2gpio_i.w_en      = 1'b1;
         dbus2gpio_i.req       = 1'b1;
         repeat (3)@ (posedge clk);
-        //gpio_io_drive         = 1'b0;
         
         // Finish the simulation
         @ (posedge clk);$stop;

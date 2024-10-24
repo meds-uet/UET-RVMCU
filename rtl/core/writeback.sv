@@ -63,7 +63,7 @@ always_comb begin
              wrb_rd_data = lsu2wrb_data.alu_result;
          end
          RD_WRB_INC_PC : begin
-             wrb_rd_data = lsu2wrb_data.pc_next;
+             wrb_rd_data = lsu2wrb_data.pc_next;//next;
          end
          RD_WRB_DMEM   : begin
              wrb_rd_data = lsu2wrb_data.r_data;

@@ -431,8 +431,6 @@ typedef struct packed {
 typedef struct packed {                            
     logic                            fwd_wrb_rs1;
     logic                            fwd_wrb_rs2; 
-    logic                            fwd_lsu_rs1;
-    logic                            fwd_lsu_rs2; 
 } type_fwd2exe_s;
 
 // Forwarding-2-Pipeline top interface signals
