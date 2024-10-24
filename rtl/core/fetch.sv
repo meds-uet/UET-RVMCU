@@ -177,7 +177,7 @@ end
 // Kill request to kill an on going request
 assign kill_req = fwd2if.csr_new_pc_req | fwd2if.exe_new_pc_req;
 
-assign instr_word = ((~mem2if.ack) | irq_req_next) ? `INSTR_NOP : mem2if.r_data;
+assign instr_word = (irq_req_next) ? `INSTR_NOP : mem2if.r_data; //(~mem2if.ack) |
 
 // Update the outputs to Imem module
 
