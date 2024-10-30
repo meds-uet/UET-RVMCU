@@ -11,3 +11,4 @@ vivado/*/
 rtl/memory/*.txt
 questa_proj/
 
+*.bak

@@ -41,8 +41,8 @@ soc_top dut (
   //  input wire type_debug_port_s         debug_port_i,
 
     //7-segment control
-  .r_sg(r_sg),
-  .r_an(r_an)
+  //.r_sg(r_sg),
+  //.r_an(r_an)
 
 ); 
 
@@ -55,22 +55,22 @@ initial begin
   // Load hex instructions
   if($value$plusargs("imem1=%s",firmware)) begin
     $display("Loading Instruction Memory from %0s", firmware);
-    $readmemh(firmware, dut.mem_top_module.mem_bank_3);
+    $readmemh(firmware, dut.mcu_top_module.mem_top_module.mem_bank_3);
   end
 
   if($value$plusargs("imem2=%s",firmware)) begin
     $display("Loading Instruction Memory from %0s", firmware);
-    $readmemh(firmware, dut.mem_top_module.mem_bank_2);
+    $readmemh(firmware, dut.mcu_top_module.mem_top_module.mem_bank_2);
   end
 
   if($value$plusargs("imem3=%s",firmware)) begin
     $display("Loading Instruction Memory from %0s", firmware);
-    $readmemh(firmware, dut.mem_top_module.mem_bank_1);
+    $readmemh(firmware, dut.mcu_top_module.mem_top_module.mem_bank_1);
   end
 
   if($value$plusargs("imem4=%s",firmware)) begin
     $display("Loading Instruction Memory from %0s", firmware);
-    $readmemh(firmware, dut.mem_top_module.mem_bank_0);
+    $readmemh(firmware, dut.mcu_top_module.mem_top_module.mem_bank_0);
   end
 
 
@@ -101,15 +101,15 @@ end
 // end
 
 // always_ff@(posedge clk) begin
-//   if (dut.uart_module.tx_valid_ff == 1)
-//     $fwrite(uartlog_filepointer, "%c", dut.uart_module.uart_reg_tx_ff);
+//   if (dut.mcu_top_module.uart_module.tx_valid_ff == 1)
+//     $fwrite(uartlog_filepointer, "%c", dut.mcu_top_module.uart_module.uart_reg_tx_ff);
 // end
 
 `else
 // ====================== For RISC-V architecture tests ========================== //
 
-wire sig_en  = (dut.dbus2peri.addr == 32'h001FFE68) & dut.mem_top_module.store_req;
-wire halt_en = (dut.dbus2peri.addr == 32'h001FFE6C) & dut.mem_top_module.store_req;
+wire sig_en  = (dut.mcu_top_module.dbus2peri.addr == 32'h001FFE68) & dut.mcu_top_module.mem_top_module.store_req;
+wire halt_en = (dut.mcu_top_module.dbus2peri.addr == 32'h001FFE6C) & dut.mcu_top_module.mem_top_module.store_req;
   
 reg [1023:0] signature_file;
 
@@ -125,7 +125,7 @@ end
   
 always_ff@(posedge clk) begin 
   if(sig_en & (write_sig!=0))
-    $fwrite(write_sig,"%h\n",dut.dbus2peri.w_data);
+    $fwrite(write_sig,"%h\n",dut.mcu_top_module.dbus2peri.w_data);
   else if(halt_en) begin
     $display("Test Complete");
     $fclose(write_sig);
