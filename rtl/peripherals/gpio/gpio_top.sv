@@ -53,7 +53,7 @@ type_dbus2peri_s                dbusSP2gpio;
 type_peri2dbus_s                gpioSP2dbus;
 
 assign gpio_irq_o = gpioA_irq | gpioB_irq | gpioC_irq;
-assign gpio_io    = {gpioA_io, gpioB_io, gpioC_io};
+//assign gpio_io    = {gpioA_io, gpioB_io, gpioC_io};
 
 always_comb begin
     dbusA2gpio  = '0;
@@ -101,7 +101,7 @@ gpio gpio_A(
     .dbus2gpio_i  (dbusA2gpio),
     .gpio2dbus_o  (gpioA2dbus),
     .gpio_irq_o   (gpioA_irq),
-    .gpio_io      (gpioA_io)
+    .gpio_io      (gpio_io[7:0])
 );
 
 gpio gpio_B(
@@ -111,7 +111,7 @@ gpio gpio_B(
     .dbus2gpio_i  (dbusB2gpio),
     .gpio2dbus_o  (gpioB2dbus),
     .gpio_irq_o   (gpioB_irq),
-    .gpio_io      (gpioB_io)
+    .gpio_io      (gpio_io[15:8])
 );
 
 gpio gpio_C(
@@ -121,7 +121,7 @@ gpio gpio_C(
     .dbus2gpio_i  (dbusC2gpio),
     .gpio2dbus_o  (gpioC2dbus),
     .gpio_irq_o   (gpioC_irq),
-    .gpio_io      (gpioC_io)
+    .gpio_io      (gpio_io[23:16])
 );
 
 gpio_special gp_sw_led(

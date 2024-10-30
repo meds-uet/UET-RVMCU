@@ -28,7 +28,7 @@ typedef struct __attribute__((packed,aligned(4))){
 /** GPIOC module hardware access */
 // #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00240000UL))) //GPIOC ADDRESS
 /** GPLED module hardware access */
-// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00250000UL))) //GPLED ADDRESS
+//#define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00250000UL))) //GPLED ADDRESS
 /** GPSW module hardware access */
 // #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00260000UL))) //GPSW ADDRESS
 

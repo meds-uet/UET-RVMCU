@@ -16,7 +16,7 @@
 //`define RTL_SIMULATION               1 
 `endif
 
-//`define FPGA                           1
+`define FPGA                           1
 //============================= CORE PARAMETERS ========================//
 
 // Width of main registers and buses
@@ -46,7 +46,12 @@
 `define PLCL_SEL_ADDR_HIGH           21
 `define PLCL_SEL_ADDR_LOW            0
 
+`ifdef FPGA
+`define DMEM_ADDR_MATCH              20'h40000 //256KB instruction + code memory
+`else
 `define DMEM_ADDR_MATCH              22'h200000 //2MB instruction + code memory
+`endif
+
 `define UART_ADDR_MATCH              6'h20
 `define SPI_ADDR_MATCH               6'h21
 `define GPIOA_ADDR_MATCH             6'h22

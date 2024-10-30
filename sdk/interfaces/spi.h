@@ -46,8 +46,8 @@ typedef struct __attribute__((packed,aligned(4))){
 // Function prototypes
 void Uetrv32_Spi_Init(uint32_t sclk);
 void Uetrv32_Spi_CS_CTRL(uint32_t cs_val);
-void Uetrv32_Spi_Tx(uint32_t  in);
-uint32_t  Uetrv32_Spi_Rx(void);
+uint32_t Uetrv32_Spi_Transfer(uint32_t  in);
+//uint32_t  Uetrv32_Spi_Rx(void);
 void Uetrv32_Spi_Cs_Mode(uint32_t mode);
 
 
