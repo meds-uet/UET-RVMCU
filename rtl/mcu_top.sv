@@ -27,10 +27,10 @@ module mcu_top (
     input   logic                        irq_soft_i,
 
     // SPI interface signals
-    output logic                         spi_clk_o,
-    output logic                         spi_cs_o,
-    input  logic                         spi_miso_i,
-    output logic                         spi_mosi_o,
+    output logic [1:0]                   spi_clk_o,
+    output logic [1:0]                   spi_cs_o,
+    input  logic [1:0]                   spi_miso_i,
+    output logic [1:0]                   spi_mosi_o,
 
     //GPIO interface signals
     inout  logic [23:0]                  gpio_io,
@@ -38,8 +38,8 @@ module mcu_top (
     output logic [15:0]                  gp_led_o,
 
     // Uart interface IO signals
-    input   logic                        uart_rxd_i,
-    output                               uart_txd_o
+    input   logic [1:0]                  uart_rxd_i,
+    output  logic [1:0]                  uart_txd_o
 );
 
 // Local signals
@@ -57,11 +57,13 @@ type_clint2csr_s                        clint2csr;
 
 // Peripheral module selection lines from the address decoder
 logic                                   dmem_sel;
-logic                                   uart_sel;
+logic                                   uart0_sel;
+logic                                   uart1_sel;
 logic                                   clint_sel;
 logic                                   plic_sel;
 logic                                   bmem_sel;
-logic                                   spi_sel;
+logic                                   spi0_sel;
+logic                                   spi1_sel;
 logic                                   gpioA_sel;
 logic                                   gpioB_sel;
 logic                                   gpioC_sel;
@@ -128,10 +130,12 @@ dbus_interconnect dbus_interconnect_module (
 
     // Peripheral (data memory and GPIO) selection signals
     .dmem_sel_o            (dmem_sel),
-    .uart_sel_o            (uart_sel),
+    .uart0_sel_o           (uart0_sel),
+    .uart1_sel_o           (uart1_sel),
     .clint_sel_o           (clint_sel), 
     .plic_sel_o            (plic_sel),
-    .spi_sel_o             (spi_sel),
+    .spi0_sel_o            (spi0_sel),
+    .spi1_sel_o            (spi1_sel),
     .gpioA_sel_o           (gpioA_sel),
     .gpioB_sel_o           (gpioB_sel),
     .gpioC_sel_o           (gpioC_sel),
@@ -151,13 +155,14 @@ dbus_interconnect dbus_interconnect_module (
 );
 
 
-uart uart_module (
+uart_top uart_top_module (
     .rst_n                 (rst_n    ),
     .clk                   (clk      ),
 
     // Data bus and IO interface signals 
     .dbus2uart_i           (dbus2peri),  // This should be updated after the WB/AHBL bus interface is used
-    .uart_sel_i            (uart_sel),
+    .uart0_sel_i           (uart0_sel),
+    .uart1_sel_i           (uart1_sel),
     .uart2dbus_o           (uart2dbus),
     .uart_irq_o            (irq_uart),
     .uart_rxd_i            (uart_rxd_i),
@@ -203,13 +208,11 @@ memory mem_top_module(
 spi_top spi_top_module (
     .rst_n                 (rst_n    ),
     .clk                   (clk      ),
-
-    // Data bus and IO interface signals 
-    .dbus2spi_i            (dbus2peri),  // This should be updated after the WB/AHBL bus interface is used
+    .dbus2spi_i            (dbus2peri),
     .spi2dbus_o            (spi2dbus),
-    .spi_sel_i             (spi_sel),
+    .spi0_sel_i            (spi0_sel),
+    .spi1_sel_i            (spi1_sel),
     .spi_irq_o             (irq_spi),
-
     .spi_clk_o             (spi_clk_o),
     .spi_cs_o              (spi_cs_o),
     .spi_miso_i            (spi_miso_i),

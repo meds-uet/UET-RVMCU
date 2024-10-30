@@ -44,7 +44,7 @@ assign gpio_io[13] = uut.gpio_top_module.gpio_B.reg_dir_ff[5] ? 1'bz : gpio_io_o
 assign gpio_io[14] = uut.gpio_top_module.gpio_B.reg_dir_ff[6] ? 1'bz : gpio_io_out_b[6]; 
 assign gpio_io[15] = uut.gpio_top_module.gpio_B.reg_dir_ff[7] ? 1'bz : gpio_io_out_b[7]; 
 
-assign gpio_io_rec_b = gpio_io[15:8] ;
+assign gpio_io_rec_b = gpio_io_b[15:8] ;
 
 assign gpio_io[16] = uut.gpio_top_module.gpio_C.reg_dir_ff[0] ? 1'bz : gpio_io_out_c[0];
 assign gpio_io[17] = uut.gpio_top_module.gpio_C.reg_dir_ff[1] ? 1'bz : gpio_io_out_c[1]; 

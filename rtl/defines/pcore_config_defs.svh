@@ -52,13 +52,15 @@
 `define DMEM_ADDR_MATCH              22'h200000 //2MB instruction + code memory
 `endif
 
-`define UART_ADDR_MATCH              6'h20
-`define SPI_ADDR_MATCH               6'h21
-`define GPIOA_ADDR_MATCH             6'h22
-`define GPIOB_ADDR_MATCH             6'h23
-`define GPIOC_ADDR_MATCH             6'h24
-`define GPSW_ADDR_MATCH              6'h25
-`define GPLED_ADDR_MATCH             6'h26
+`define UART0_ADDR_MATCH             6'h20
+`define UART1_ADDR_MATCH             6'h21
+`define SPI0_ADDR_MATCH              6'h22
+`define SPI1_ADDR_MATCH              6'h23
+`define GPIOA_ADDR_MATCH             6'h24
+`define GPIOB_ADDR_MATCH             6'h25
+`define GPIOC_ADDR_MATCH             6'h26
+`define GPSW_ADDR_MATCH              6'h27
+`define GPLED_ADDR_MATCH             6'h28
 `define PLIC_ADDR_START              22'h300000
 `define PLIC_ADDR_END                22'h300FFF
 `define CLINT_ADDR_START             22'h301000

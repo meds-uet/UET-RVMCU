@@ -21,17 +21,21 @@
 module soc_top (
 
     input   logic                        rst_n,                  // reset
+    `ifdef FPGA
     input   logic                        clk_100,                // fpga_clock
-
+    `else
+    input   logic                        clk,               
+    `endif
+    
     input   logic                        irq_ext_i,
     input   logic                        irq_soft_i,
     
 
     // SPI interface signals
-    output logic                         spi_clk_o,
-    output logic                         spi_cs_o,
-    input  logic                         spi_miso_i,
-    output logic                         spi_mosi_o,
+    output logic [1:0]                   spi_clk_o,
+    output logic [1:0]                   spi_cs_o,
+    input  logic [1:0]                   spi_miso_i,
+    output logic [1:0]                   spi_mosi_o,
 
     //GPIO interface signals
     inout  logic [23:0]                  gpio_io,
@@ -39,8 +43,8 @@ module soc_top (
     output logic [15:0]                  gp_led_o,
 
     // Uart interface IO signals
-    input   logic                        uart_rxd_i,
-    output                               uart_txd_o,
+    input   logic [1:0]                   uart_rxd_i,
+    output  logic [1:0]                   uart_txd_o,
 
   //  input wire type_debug_port_s         debug_port_i,
 
@@ -52,25 +56,45 @@ module soc_top (
 //Local Signals
 logic                        rst;   
 logic                        clk;
-wire  [7:0]                  w_sg;
-wire  [7:0]                  w_an;
-wire [31:0]                  sev_seg_display;
+logic                        locked;
+logic [31:0]                 sev_seg_display;
 
 assign rst = !rst_n;
 
+`ifdef FPGA
 // clock divider
-clk_wiz_0 clk_50
-   (
+clk_wiz_0 clk_mcu(
     // Clock out ports
-    .clk_out1(clk),     // output clk_out1
+    .clk_out1 (clk),     // output clk_out1
     // Status and control signals
-    .reset(rst), // input reset
-    .locked(locked),       // output locked
+    .reset (rst), // input reset
+    .locked (locked),       // output locked
    // Clock in ports
-    .clk_in1(clk_100));
+    .clk_in1 (clk_100)
+);
 
+//7-segment display
+m_7segcon m_7segcon(
+    .clk          (clk),
+    .rst_n        (rst_n),
+    .sev_seg_disp (sev_seg_display),
+    .sev_cathode  (r_sg),
+    .sev_anode    (r_an)
+);
+
+//7-segment data to be displayed
+assign sev_seg_display = {mcu_top_module.dbus2peri.addr[21:18],
+                          mcu_top_module.dbus2peri.addr[3:0],
+                          mcu_top_module.pipeline_top_module.writeback_module.wrb2id_fb.rd_data[11:8],
+                          mcu_top_module.pipeline_top_module.writeback_module.wrb2id_fb.rd_data[7:4],
+                          mcu_top_module.pipeline_top_module.writeback_module.wrb2id_fb.rd_data[3:0],
+                          mcu_top_module.if2mem.addr[11:8],
+                          mcu_top_module.if2mem.addr[7:4],
+                          mcu_top_module.if2mem.addr[3:0]};
+    
+`endif
 // Microcontroller 
-mcu_top mcu(
+mcu_top mcu_top_module(
     .rst_n      (rst_n),
     .clk        (clk),     
     .irq_ext_i  (irq_ext_i),
@@ -83,21 +107,8 @@ mcu_top mcu(
     .gp_switch_i(gp_switch_i),
     .gp_led_o   (gp_led_o),
     .uart_rxd_i (uart_rxd_i),
-    .uart_txd_o (uart_txd_o),
+    .uart_txd_o (uart_txd_o)
 );
-
-//7-segment display
-m_7segcon m_7segcon(clk, rst_n, sev_seg_display, r_sg, r_an);
-
-//7-segment data to be displayed  
-assign sev_seg_display = {mcu.dbus2peri.addr[21:18],
-                          mcu.dbus2peri.addr[3:0],
-                          mcu.dbus2per.w_data[11:8]
-                          mcu.dbus2per.w_data[7:4]
-                          mcu.dbus2per.w_data[3:0]
-                          mcu.if2mem.addr[11:8],
-                          mcu.if2mem.addr[7:4],
-                          mcu.if2mem.addr[3:0]};
 
 
 endmodule

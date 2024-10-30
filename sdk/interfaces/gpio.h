@@ -22,15 +22,15 @@ typedef struct __attribute__((packed,aligned(4))){
 } Uetrv32_Gpio_Struct;
 
 /** GPIOA module hardware access */
-#define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00220000UL))) //GPIOA ADDRESS
+//#define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00240000UL))) //GPIOA ADDRESS
 /** GPIOB module hardware access */
-// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00230000UL))) //GPIOB ADDRESS
+// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00250000UL))) //GPIOB ADDRESS
 /** GPIOC module hardware access */
-// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00240000UL))) //GPIOC ADDRESS
+// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00260000UL))) //GPIOC ADDRESS
 /** GPLED module hardware access */
-//#define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00250000UL))) //GPLED ADDRESS
+#define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00270000UL))) //GPLED ADDRESS
 /** GPSW module hardware access */
-// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00260000UL))) //GPSW ADDRESS
+// #define GPIO_Module (*((volatile Uetrv32_Gpio_Struct*) (0x00280000UL))) //GPSW ADDRESS
 
 
 // Function prototypes

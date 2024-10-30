@@ -1,5 +1,4 @@
-// #define UART_BAUD_DIV  0x10
-   #define UART_BAUD_DIV  0x36
+   #define UART_BAUD_DIV  259 //Baud 115200, System frequency 30MHz = 259
    #define Tx_Cntrl_En    0x01
    #define Rx_Cntrl_En    0x01
    #define TWO_STOP_BITS  0x02
@@ -19,7 +18,7 @@ typedef struct __attribute__((packed,aligned(4))) {
 	uint32_t baud;
 } Uetrv32_Uart_Struct;
 
-/** UART module hardware access */
+/** UART fpga prog-uart port hardware access */
 #define UART_Module (*((volatile Uetrv32_Uart_Struct*) (0x00200000UL)))
 
 // Function prototypes

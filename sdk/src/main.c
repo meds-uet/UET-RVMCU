@@ -24,6 +24,9 @@ int main(void) {
     uint32_t var,rav;
 
     Uetrv32_Uart_Init(UART_BAUD_DIV);
+    
+    for(count = 0; count < 10; count++) {
+    Uetrv32_Uart_Tx((message[count])); }
 
     Uetrv32_Spi_Init(SPI_SCLK_DIV);
 

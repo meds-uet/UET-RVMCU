@@ -9,4 +9,5 @@ riscv-arch-test/riscv-test-suite/rv32i_m/basic/
 sdk/build/
 vivado/*/
 rtl/memory/*.txt
+questa_proj/
 

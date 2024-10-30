@@ -1,5 +1,5 @@
 
- #define SPI_SCLK_DIV 0x4
+ #define SPI_SCLK_DIV 14 //Accelero 1MHz, system freq 30MHz
  #define HOLD 0x2
  #define AUTO 0x0
  // if chip select active low
@@ -40,8 +40,10 @@ typedef struct __attribute__((packed,aligned(4))){
     uint32_t  ip;
 } Uetrv32_Spi_Struct;
 
-/** SPI module hardware access */
-#define SPI_Module (*((volatile Uetrv32_Spi_Struct*) (0x00210000UL)))
+/** SPI module fpga accelerometer address */
+#define SPI_Module (*((volatile Uetrv32_Spi_Struct*) (0x00220000UL)))
+/** SPI module fpga pmod-D address */
+//#define SPI_Module (*((volatile Uetrv32_Spi_Struct*) (0x00230000UL)))
 
 // Function prototypes
 void Uetrv32_Spi_Init(uint32_t sclk);

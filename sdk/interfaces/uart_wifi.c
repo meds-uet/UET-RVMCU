@@ -80,7 +80,7 @@ void Uetrv32_Uart_Rx_String(char *pt ) {
       while(1){
           *pt = Uetrv32_Uart_Rx();
           Uetrv32_Uart_Tx((*pt));
-          if (*pt == 'n'){
+          if (*pt == '\n'){
             break;
           }
           pt++;
