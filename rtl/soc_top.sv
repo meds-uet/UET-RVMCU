@@ -22,6 +22,9 @@ module soc_top (
 
     input   logic                        rst_n,                  // reset
     `ifdef FPGA
+    //7-segment control
+    output reg   [7:0]                   r_sg,
+    output reg   [7:0]                   r_an,
     input   logic                        clk_100,                // fpga_clock
     `else
     input   logic                        clk,               
@@ -44,24 +47,19 @@ module soc_top (
 
     // Uart interface IO signals
     input   logic [1:0]                   uart_rxd_i,
-    output  logic [1:0]                   uart_txd_o,
-
-  //  input wire type_debug_port_s         debug_port_i,
-
-    //7-segment control
-    output reg   [7:0]                  r_sg,
-    output reg   [7:0]                  r_an
+    output  logic [1:0]                   uart_txd_o
+  
 );
 
 //Local Signals
-logic                        rst;   
+`ifdef FPGA 
+logic                        rst; 
 logic                        clk;
 logic                        locked;
 logic [31:0]                 sev_seg_display;
 
 assign rst = !rst_n;
 
-`ifdef FPGA
 // clock divider
 clk_wiz_0 clk_mcu(
     // Clock out ports
