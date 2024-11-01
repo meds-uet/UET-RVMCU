@@ -25,8 +25,6 @@ soc_top dut (
   .clk                     (clk),
   .rst_n                   (reset),
   .irq_soft_i              (irq_soft),
-  // .uart_rxd_i              (uart_rx),
-  // .uart_txd_o              (uart_tx),
   // .spi_clk_o               (spi_clk),
   // .spi_cs_o                (spi_cs),
   // .spi_miso_i              (spi_miso),
@@ -35,13 +33,9 @@ soc_top dut (
   .gpio_io(gpio_io),
   .gp_switch_i(gp_switch_i),
   .gp_led_o(gp_led_o),
-
-  //  input wire type_debug_port_s         debug_port_i,
-
-    //7-segment control
-  //.r_sg(r_sg),
-  //.r_an(r_an)
-
+  
+   .uart_rxd_i              (uart_rx),
+   .uart_txd_o              (uart_tx)
 ); 
 
 initial begin
