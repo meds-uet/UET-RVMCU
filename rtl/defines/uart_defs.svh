@@ -12,18 +12,6 @@
 
 `include "pcore_interface_defs.svh"
 
-`define UART_DATA_SIZE                        8
-localparam int unsigned UART_DATA_BIT_COUNT = $clog2(`UART_DATA_SIZE);
-localparam int unsigned UART_BAUD_DIV_SIZE  = 8;
-localparam int unsigned UART_1STOP_BIT      = 1;
-localparam int unsigned UART_2STOP_BITS     = 2;
-localparam int unsigned UART_OVERSAMPLE     = 2;
-
-    
-localparam UART_SBIT_DATA_SIZE   = `UART_DATA_SIZE + 1;
-localparam UART_8DATA_1STOP_BITS = UART_SBIT_DATA_SIZE + 1;
-localparam UART_8DATA_2STOP_BITS = UART_SBIT_DATA_SIZE + 2;
-localparam UART_FRAME_BIT_COUNT  = $clog2(UART_SBIT_DATA_SIZE + UART_2STOP_BITS);
 localparam int unsigned UART_DEPTH_FIFO = 8;
 localparam int unsigned UART_ADDR_FIFO  = $clog2 (UART_DEPTH_FIFO);
 
@@ -37,17 +25,6 @@ typedef enum logic [3:0] {
     UART_BAUD_R     = 4'h6
 } type_uart_regs_e;
 
-
-typedef enum logic [3:0] {
-    UART_TXRXDATA_R = 4'h0,
-    UART_IE_R       = 4'h1,
-    UART_IS_FIFO_R  = 4'h2,
-    UART_LINECTRL_R = 4'h3,
-    UART_MCTRL_R    = 4'h4,
-    UART_LSTATUS_R  = 4'h5,
-    UART_MSTATUS_R  = 4'h6,
-    UART_SCRATCH_R  = 4'h7
-} type_uart_ns_regs_e;
 
 typedef enum logic [1:0] {
     UART_TX_IDLE  = 2'h0,

@@ -9,9 +9,9 @@
 
 
 `ifndef VERILATOR
-`include "../defines/mem_defs.svh"
+`include "../defines/pcore_interface_defs.svh"
 `else
-`include "mem_defs.svh"
+`include "pcore_interface_defs.svh"
 `endif
 
 module fetch (
@@ -20,8 +20,8 @@ module fetch (
     input   logic                                   clk,             // clock
 
    // IF <---> IMEM interface
-    output type_if2mem_s                            if2mem_o,     // Instruction memory request
-    input wire type_mem2if_s                        mem2if_i,     // Instruction memory response
+    output type_if2imem_s                            if2mem_o,     // Instruction memory request
+    input wire type_imem2if_s                        mem2if_i,     // Instruction memory response
 
     // IF <---> ID interface
     output type_if2id_data_s                        if2id_data_o,
@@ -40,7 +40,7 @@ module fetch (
 
 
 // Local siganls       
-type_mem2if_s                        mem2if;
+type_imem2if_s                        mem2if;
 
 type_if2id_data_s                    if2id_data;
 type_if2id_ctrl_s                    if2id_ctrl;

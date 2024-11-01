@@ -9,10 +9,10 @@
 
 
 `ifndef VERILATOR
-`include "../defines/mem_defs.svh"
+`include "../defines/pcore_interface_defs.svh"
 `include "../defines/a_ext_defs.svh"
 `else
-`include "mem_defs.svh"
+`include "pcore_interface_defs.svh"
 `include "a_ext_defs.svh"
 `endif
 

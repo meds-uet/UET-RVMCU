@@ -3,7 +3,6 @@
 
 module pcore_tb(input bit clk, input bit reset);
 
-reg                       irq_ext;
 reg                       irq_soft;
 reg                       uart_rx;
 wire                      uart_tx;
@@ -12,7 +11,7 @@ reg [1023:0]              firmware;
 reg [1023:0]              max_cycles;
 reg [1023:0]              main_time = '0;
 //GPIO interface signals
-logic [23:0]              gpio_io;
+wire  [23:0]              gpio_io;
 logic [15:0]              gp_switch_i;
 logic [15:0]              gp_led_o;
 
@@ -25,7 +24,6 @@ reg   [7:0] r_an;
 soc_top dut (
   .clk                     (clk),
   .rst_n                   (reset),
-  .irq_ext_i               (irq_ext),
   .irq_soft_i              (irq_soft),
   // .uart_rxd_i              (uart_rx),
   // .uart_txd_o              (uart_tx),

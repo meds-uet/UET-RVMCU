@@ -2,11 +2,11 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE file for details.
 // SPDX-License-Identifier: Apache-2.0
 //
-// Description:  
+// Description: Macros defined
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 13.4.2022
-// Modified by: Shehzeen Malik, MEDS UET
+// Modified by: Shehzeen Malik, MEDS UET Lahore
 
 
 `ifndef PCORE_CONFIG_DEFS
@@ -59,8 +59,8 @@
 `define GPIOA_ADDR_MATCH             6'h24
 `define GPIOB_ADDR_MATCH             6'h25
 `define GPIOC_ADDR_MATCH             6'h26
-`define GPSW_ADDR_MATCH              6'h27
-`define GPLED_ADDR_MATCH             6'h28
+`define GPLED_ADDR_MATCH             6'h27
+`define GPSW_ADDR_MATCH              6'h28
 `define PLIC_ADDR_START              22'h300000
 `define PLIC_ADDR_END                22'h300FFF
 `define CLINT_ADDR_START             22'h301000

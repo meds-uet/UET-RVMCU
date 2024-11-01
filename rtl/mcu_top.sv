@@ -2,19 +2,18 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE file for details.
 // SPDX-License-Identifier: Apache-2.0
 //
-// Description: The SoC top module integrating the processor core and peripherals
+// Description: The MCU top module integrating the processor core and peripherals
 //              including the memory subsystem.
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 12.06.2023
+// Modified by: Shehzeen Malik, MEDS UET Lahore
 
 `timescale 1 ns / 100 ps
 
 `ifndef VERILATOR
-`include "defines/mem_defs.svh"
 `include "defines/plic_defs.svh"
 `else
-`include "mem_defs.svh"
 `include "plic_defs.svh"
 `endif
 
@@ -23,7 +22,6 @@ module mcu_top (
     input   logic                        rst_n,                  // reset
     input   logic                        clk,                    // mcu_clock
 
-    input   logic                        irq_ext_i,
     input   logic                        irq_soft_i,
 
     // SPI interface signals
@@ -43,8 +41,8 @@ module mcu_top (
 );
 
 // Local signals
-type_if2mem_s                           if2mem;
-type_mem2if_s                           mem2if;
+type_if2imem_s                           if2mem;
+type_imem2if_s                           mem2if;
 
 type_lsu2dbus_s                         lsu2dbus;           // Signal to data memory 
 type_dbus2lsu_s                         dbus2lsu; 
@@ -76,6 +74,7 @@ logic                                   lsu_flush;
 logic                                   irq_uart;
 logic                                   irq_spi;
 logic                                   irq_gpio;
+logic                                   irq_sw;
 
 logic                                   irq_clint_timer;
 logic                                   irq_plic_target_0, irq_plic_target_1;
@@ -97,6 +96,7 @@ assign core2pipe.soft_irq    = irq_soft_i;
 assign core2pipe.uart_irq    = irq_uart;
 assign core2pipe.spi_irq     = irq_spi;
 assign core2pipe.gpio_irq    = irq_gpio;
+assign core2pipe.sw_irq      = irq_sw;
 
 pipeline_top pipeline_top_module (
     .rst_n               (rst_n        ),
@@ -230,6 +230,7 @@ gpio_top gpio_top_module (
     .dbus2gpio_i           (dbus2peri),
     .gpio2dbus_o           (gpio2dbus),
     .gpio_irq_o            (irq_gpio),
+    .sw_irq_o              (irq_sw),
     .gpio_io               (gpio_io),
     .gp_switch_i           (gp_switch_i),
     .gp_led_o              (gp_led_o)

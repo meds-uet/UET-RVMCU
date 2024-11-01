@@ -6,6 +6,7 @@
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 10.5.2022
+// Modified by: Shehzeen Malik, MEDS UET Lahore
 
 
 `ifndef CSR_DEFS
@@ -106,6 +107,7 @@ localparam int unsigned M_EXT_INT_IDX   = 11;
 localparam int unsigned UART_INT_IDX    = 16;
 localparam int unsigned SPI_INT_IDX     = 17;
 localparam int unsigned GPIO_INT_IDX    = 18;
+localparam int unsigned GPSW_INT_IDX    = 19;
 
 localparam logic [`XLEN-1:0] MIE_SSIP = 1 << S_SOFT_INT_IDX;
 localparam logic [`XLEN-1:0] MIE_MSIP = 1 << M_SOFT_INT_IDX;
@@ -116,9 +118,10 @@ localparam logic [`XLEN-1:0] MIE_MEIP = 1 << M_EXT_INT_IDX;
 localparam logic [`XLEN-1:0] MIE_UART = 1 << UART_INT_IDX;
 localparam logic [`XLEN-1:0] MIE_SPI  = 1 << SPI_INT_IDX;
 localparam logic [`XLEN-1:0] MIE_GPIO = 1 << GPIO_INT_IDX;
+localparam logic [`XLEN-1:0] MIE_GPSW = 1 << GPSW_INT_IDX;
 
 //localparam logic [`XLEN-1:0] MIE_MASK = MIE_SSIP | MIE_STIP | MIE_SEIP | MIE_MSIP | MIE_MTIP | MIE_MEIP;
-localparam logic [`XLEN-1:0] MIE_MASK = MIE_MSIP | MIE_MTIP | MIE_MEIP | MIE_UART | MIE_SPI | MIE_GPIO;
+localparam logic [`XLEN-1:0] MIE_MASK = MIE_MSIP | MIE_MTIP | MIE_MEIP | MIE_UART | MIE_SPI | MIE_GPIO | MIE_GPSW;
 localparam logic [`XLEN-1:0] MIP_MASK = MIE_MASK;
 localparam logic [`XLEN-1:0] MSTATUS_MASK = 32'h1888; //MPP,MPIE,MIE
 
@@ -134,7 +137,8 @@ typedef enum logic [IRQ_CODE_WIDTH-1:0] {
     IRQ_CODE_M_EXTERNAL = 5'd11,    // M-mode external IRQ code
     IRQ_CODE_UART       = 5'd16,    // External UART interrupt
     IRQ_CODE_SPI        = 5'd17,    // External SPI interrupt
-    IRQ_CODE_GPIO       = 5'd18     // External GPIO interrupt
+    IRQ_CODE_GPIO       = 5'd18,     // External GPIO interrupt
+    IRQ_CODE_GPSW       = 5'd19     // External GPIO interrupt
 } type_irq_code_e;
 
 //=========================== Register bitfield definitions ==========================//
@@ -184,7 +188,8 @@ typedef struct packed {
 // Bitfield definitions for machine interrupt enable (mie) and machine interrupt
 // pending (mip) registers
 typedef struct packed {
-    logic [12:0]                warl7;   // write any read legal value
+    logic [11:0]                warl7;   // write any read legal value
+    logic                       gpsw_ie;
     logic                       gpio_ie;
     logic                       spi_ie;
     logic                       uart_ie;
@@ -204,7 +209,8 @@ typedef struct packed {
 } type_mie_reg_s;
 
 typedef struct packed {
-    logic [12:0]                warl7;   // write any read legal value
+    logic [11:0]                warl7;   // write any read legal value
+    logic                       gpsw_ip;
     logic                       gpio_ip;
     logic                       spi_ip;
     logic                       uart_ip;

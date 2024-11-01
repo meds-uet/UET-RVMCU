@@ -5,16 +5,14 @@
 // Description: The SoC top module integrating the processor core and peripherals
 //              including the memory subsystem.
 //
-// Author: Muhammad Tahir, UET Lahore
-// Date: 12.06.2023
+// Author: Shehzeen Malik, MEDS UET Lahore
+// Date: 30.10.2024
 
 `timescale 1 ns / 100 ps
 
 `ifndef VERILATOR
-`include "defines/mem_defs.svh"
 `include "defines/plic_defs.svh"
 `else
-`include "mem_defs.svh"
 `include "plic_defs.svh"
 `endif
 
@@ -30,10 +28,8 @@ module soc_top (
     input   logic                        clk,               
     `endif
     
-    input   logic                        irq_ext_i,
     input   logic                        irq_soft_i,
     
-
     // SPI interface signals
     output logic [1:0]                   spi_clk_o,
     output logic [1:0]                   spi_cs_o,
@@ -80,12 +76,12 @@ m_7segcon m_7segcon(
     .sev_anode    (r_an)
 );
 
-//7-segment data to be displayed
-assign sev_seg_display = {mcu_top_module.dbus2peri.addr[21:18],
+//7-segment data to be displayed 
+assign sev_seg_display = {mcu_top_module.pipeline_top_module.csr_module.irq_code[4:1],
                           mcu_top_module.dbus2peri.addr[3:0],
-                          mcu_top_module.pipeline_top_module.writeback_module.wrb2id_fb.rd_data[11:8],
-                          mcu_top_module.pipeline_top_module.writeback_module.wrb2id_fb.rd_data[7:4],
-                          mcu_top_module.pipeline_top_module.writeback_module.wrb2id_fb.rd_data[3:0],
+                          mcu_top_module.gpio_top_module.gp_sw_led.reg_sw_data_ff[3:0],
+                          mcu_top_module.gpio_top_module.gp_sw_led.reg_sw_data_ff[7:4],
+                          mcu_top_module.gpio_top_module.gpio_A.reg_data_ff[3:0],
                           mcu_top_module.if2mem.addr[11:8],
                           mcu_top_module.if2mem.addr[7:4],
                           mcu_top_module.if2mem.addr[3:0]};
@@ -95,7 +91,6 @@ assign sev_seg_display = {mcu_top_module.dbus2peri.addr[21:18],
 mcu_top mcu_top_module(
     .rst_n      (rst_n),
     .clk        (clk),     
-    .irq_ext_i  (irq_ext_i),
     .irq_soft_i (irq_soft_i),
     .spi_clk_o  (spi_clk_o),
     .spi_cs_o   (spi_cs_o),

@@ -28,6 +28,7 @@ module gpio_top(
     input  wire type_dbus2peri_s                dbus2gpio_i,
     output type_peri2dbus_s                     gpio2dbus_o,
     output logic                                gpio_irq_o,
+    output logic                                sw_irq_o,
     inout  logic [23:0]                         gpio_io,
     input  logic [15:0]                         gp_switch_i,
     output logic [15:0]                         gp_led_o
@@ -35,13 +36,13 @@ module gpio_top(
 
 //internal signals
 logic                                 gpioA_irq;
-wire [7:0]                            gpioA_io;
+//wire [7:0]                            gpioA_io;
 
 logic                                 gpioB_irq;
-wire [7:0]                            gpioB_io;
+//wire [7:0]                            gpioB_io;
 
 logic                                 gpioC_irq;
-wire [7:0]                            gpioC_io;
+//wire [7:0]                            gpioC_io;
 
 type_dbus2peri_s                dbusA2gpio;
 type_peri2dbus_s                gpioA2dbus;
@@ -131,6 +132,7 @@ gpio_special gp_sw_led(
     .gpled_sel_i(gpled_sel_i),
     .dbus2gpio_i(dbusSP2gpio),
     .gpio2dbus_o(gpioSP2dbus),
+    .sw_irq_o   (sw_irq_o),
     .gp_switch_i(gp_switch_i),
     .gp_led_o   (gp_led_o)
 );
