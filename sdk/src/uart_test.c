@@ -22,38 +22,24 @@ int main(void) {
   Uetrv32_Write_LED (0,1);
   Uetrv32_Uart0_Init(UART_BAUD_DIV);
   Uetrv32_Write_LED (1,1);
-  Uetrv32_Uart1_Init(UART_BAUD_DIV);
-  Uetrv32_Write_LED (2,1);
     
   while(1) 
   {
-    for(count = 0; count < 5; count++) 
+    for(count = 0; count < 10; count++) 
     {
       Uetrv32_Uart0_Tx((message[count])); 
     }
     Uetrv32_Uart0_Tx(('\n')); 
-    Uetrv32_Uart0_Tx(('\r'));
+    Uetrv32_Uart0_Tx(('\r')); 
 
-    Uetrv32_Write_LED(3,1);
-
-    for(count = 5; count < 10; count++) 
-    {
-      Uetrv32_Uart1_Tx((message[count])); 
-    }
-    Uetrv32_Uart1_Tx(('\n')); 
-    Uetrv32_Uart1_Tx(('\r')); 
-
-    Uetrv32_Write_LED(4,1);
+    Uetrv32_Write_LED(5,1);
 
     var = Uetrv32_Uart0_Rx();
     Uetrv32_Uart0_Tx(var);
-
     Uetrv32_Write_LED(7,1);
-    
     rav = Uetrv32_Uart0_Rx();
     Uetrv32_Uart0_Tx(rav);
     
-    Uetrv32_Write_LED(5,1);
    }
 
 }
