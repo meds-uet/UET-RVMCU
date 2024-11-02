@@ -11,7 +11,7 @@ reg [1023:0]              firmware;
 reg [1023:0]              max_cycles;
 reg [1023:0]              main_time = '0;
 //GPIO interface signals
-wire  [23:0]              gpio_io;
+logic  [23:0]              gpio_io;
 logic [15:0]              gp_switch_i;
 logic [15:0]              gp_led_o;
 
@@ -28,7 +28,7 @@ soc_top dut (
   // .spi_clk_o               (spi_clk),
   // .spi_cs_o                (spi_cs),
   // .spi_miso_i              (spi_miso),
-  // .spi_mosi_o              (spi_mosi)
+  // .spi_mosi_o              (spi_mosi),
       //GPIO interface signals
   .gpio_io(gpio_io),
   .gp_switch_i(gp_switch_i),

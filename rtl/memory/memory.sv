@@ -77,10 +77,10 @@ end
 initial 
 begin
     // Reading the contents of example imem.txt file to memory variable
-     $readmemh("F:/MEDS/UET-RVMCU/rtl/memory/imem_1.txt", mem_bank_3);
-     $readmemh("F:/MEDS/UET-RVMCU/rtl/memory/imem_2.txt", mem_bank_2);  
-     $readmemh("F:/MEDS/UET-RVMCU/rtl/memory/imem_3.txt", mem_bank_1);  
-     $readmemh("F:/MEDS/UET-RVMCU/rtl/memory/imem_4.txt", mem_bank_0);   
+     $readmemh("imem_1.txt", mem_bank_3);
+     $readmemh("imem_2.txt", mem_bank_2);  
+     $readmemh("imem_3.txt", mem_bank_1);  
+     $readmemh("imem_4.txt", mem_bank_0);   
 end
 `endif
 

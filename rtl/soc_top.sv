@@ -75,13 +75,15 @@ m_7segcon m_7segcon(
     .sev_cathode  (r_sg),
     .sev_anode    (r_an)
 );
-
+ 
 //7-segment data to be displayed 
 assign sev_seg_display = {mcu_top_module.pipeline_top_module.csr_module.irq_code[4:1],
-                          mcu_top_module.dbus2peri.addr[3:0],
-                          mcu_top_module.gpio_top_module.gp_sw_led.reg_sw_data_ff[3:0],
-                          mcu_top_module.gpio_top_module.gp_sw_led.reg_sw_data_ff[7:4],
-                          mcu_top_module.gpio_top_module.gpio_A.reg_data_ff[3:0],
+                          mcu_top_module.spi_top_module.spi0_module.spi_tx_fifo_data[7:0],
+                          mcu_top_module.spi_top_module.spi0_module.spi_tx_fifo_data[3:0],
+                          mcu_top_module.spi_top_module.spi0_module.spi_rx_fifo_data[7:4],
+                          mcu_top_module.spi_top_module.spi0_module.spi_rx_fifo_data[3:0],
+                          //mcu_top_module.gpio_top_module.gp_sw_led.reg_sw_data_ff[7:4],
+                          //mcu_top_module.gpio_top_module.gpio_A.reg_data_ff[3:0],
                           mcu_top_module.if2mem.addr[11:8],
                           mcu_top_module.if2mem.addr[7:4],
                           mcu_top_module.if2mem.addr[3:0]};
