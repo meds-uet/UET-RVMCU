@@ -39,7 +39,6 @@ soc_top dut (
 ); 
 
 initial begin
-  irq_ext   = 0;
   irq_soft  = 0;
   uart_rx   = 1;
   spi_miso  = 1;
