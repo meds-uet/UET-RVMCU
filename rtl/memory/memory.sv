@@ -8,17 +8,17 @@
 // Date: 05.4.2024
 
 `ifndef VERILATOR
-`include "../defines/mem_defs.svh"
+`include "../defines/pcore_interface_defs.svh"
 `else
-`include "mem_defs.svh"
+`include "pcore_interface_defs.svh"
 `endif
 
 module memory(
     input   logic                                rst_n,     // reset
     input   logic                                clk,       // clock
       // Instruction memory fetch stage
-    input  wire type_if2mem_s                    if2mem_i,  // Bus interface from IF to mem 
-    output type_mem2if_s                         mem2if_o,  // From mem to IF
+    input  wire type_if2imem_s                   if2mem_i,  // Bus interface from IF to mem 
+    output type_imem2if_s                        mem2if_o,  // From mem to IF
 
   // Data memory
     input  logic                                 dmem_sel,
@@ -32,7 +32,6 @@ logic [`XLEN-1:0]                     instr_read;
 logic                                 instr_ack;
 logic                                 load_req;
 logic                                 store_req;
-logic                                 store_done;
 logic [`XLEN-1:0]                     write_data;
 logic [`XLEN-3:0]                     mem_address;
 logic [3:0]                           write_sel_byte;
@@ -77,6 +76,7 @@ end
 `else
 initial 
 begin
+    // Reading the contents of example imem.txt file to memory variable
      $readmemh("imem_1.txt", mem_bank_3);
      $readmemh("imem_2.txt", mem_bank_2);  
      $readmemh("imem_3.txt", mem_bank_1);  

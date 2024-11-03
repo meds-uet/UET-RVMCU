@@ -2,7 +2,7 @@
 
 set -e
 
-riscof -v debug run --config=config.ini \
+riscof run --config=config.ini \
            --suite=riscv-arch-test/riscv-test-suite/rv32i_m \
            --env=riscv-arch-test/riscv-test-suite/env \
            --no-browser

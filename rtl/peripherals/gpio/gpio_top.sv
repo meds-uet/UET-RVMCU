@@ -28,6 +28,7 @@ module gpio_top(
     input  wire type_dbus2peri_s                dbus2gpio_i,
     output type_peri2dbus_s                     gpio2dbus_o,
     output logic                                gpio_irq_o,
+    output logic                                sw_irq_o,
     inout  logic [23:0]                         gpio_io,
     input  logic [15:0]                         gp_switch_i,
     output logic [15:0]                         gp_led_o
@@ -35,13 +36,13 @@ module gpio_top(
 
 //internal signals
 logic                                 gpioA_irq;
-wire [7:0]                            gpioA_io;
+//wire [7:0]                            gpioA_io;
 
 logic                                 gpioB_irq;
-wire [7:0]                            gpioB_io;
+//wire [7:0]                            gpioB_io;
 
 logic                                 gpioC_irq;
-wire [7:0]                            gpioC_io;
+//wire [7:0]                            gpioC_io;
 
 type_dbus2peri_s                dbusA2gpio;
 type_peri2dbus_s                gpioA2dbus;
@@ -53,7 +54,7 @@ type_dbus2peri_s                dbusSP2gpio;
 type_peri2dbus_s                gpioSP2dbus;
 
 assign gpio_irq_o = gpioA_irq | gpioB_irq | gpioC_irq;
-assign gpio_io    = {gpioA_io, gpioB_io, gpioC_io};
+//assign gpio_io    = {gpioA_io, gpioB_io, gpioC_io};
 
 always_comb begin
     dbusA2gpio  = '0;
@@ -101,7 +102,7 @@ gpio gpio_A(
     .dbus2gpio_i  (dbusA2gpio),
     .gpio2dbus_o  (gpioA2dbus),
     .gpio_irq_o   (gpioA_irq),
-    .gpio_io      (gpioA_io)
+    .gpio_io      (gpio_io[7:0])
 );
 
 gpio gpio_B(
@@ -111,7 +112,7 @@ gpio gpio_B(
     .dbus2gpio_i  (dbusB2gpio),
     .gpio2dbus_o  (gpioB2dbus),
     .gpio_irq_o   (gpioB_irq),
-    .gpio_io      (gpioB_io)
+    .gpio_io      (gpio_io[15:8])
 );
 
 gpio gpio_C(
@@ -121,7 +122,7 @@ gpio gpio_C(
     .dbus2gpio_i  (dbusC2gpio),
     .gpio2dbus_o  (gpioC2dbus),
     .gpio_irq_o   (gpioC_irq),
-    .gpio_io      (gpioC_io)
+    .gpio_io      (gpio_io[23:16])
 );
 
 gpio_special gp_sw_led(
@@ -131,6 +132,7 @@ gpio_special gp_sw_led(
     .gpled_sel_i(gpled_sel_i),
     .dbus2gpio_i(dbusSP2gpio),
     .gpio2dbus_o(gpioSP2dbus),
+    .sw_irq_o   (sw_irq_o),
     .gp_switch_i(gp_switch_i),
     .gp_led_o   (gp_led_o)
 );

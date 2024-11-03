@@ -9,15 +9,15 @@
 
 `timescale 1ns / 1ps
 
-`include "../rtl/defines/mem_defs.svh"
+`include "../rtl/defines/pcore_interface_defs.svh"
 
 module memory_tb();
 
     // Testbench signals
     logic                                rst_n;
     logic                                clk;
-    type_if2mem_s                        if2mem_i;
-    type_mem2if_s                        mem2if_o;
+    type_if2imem_s                        if2mem_i;
+    type_imem2if_s                        mem2if_o;
     logic                                dmem_sel;
     type_dbus2peri_s                     exe2mem_i;
     type_peri2dbus_s                     mem2wrb_o;

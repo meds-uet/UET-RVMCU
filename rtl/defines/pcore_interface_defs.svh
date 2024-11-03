@@ -6,6 +6,7 @@
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 13.4.2022
+// Modified by: Shehzeen Malik, MEDS UET Lahore
 
 
 `ifndef PCORE_INTERFACE_DEFS
@@ -317,7 +318,8 @@ typedef struct packed {
     logic                            soft_irq; 
     logic                            uart_irq;
     logic                            spi_irq; 
-    logic                            gpio_irq;     
+    logic                            gpio_irq;
+    logic                            sw_irq;   
 } type_pipe2csr_s;
 
 

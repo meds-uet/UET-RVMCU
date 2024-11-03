@@ -185,10 +185,8 @@ end
 // ----------------------------
 //gpio Interrupt Request
 // ----------------------------
-assign gpio_irq_o = ((reg_ie_ff[7] & reg_ip_ff[7]) | (reg_ie_ff[6] & reg_ip_ff[6]) |
-                     (reg_ie_ff[5] & reg_ip_ff[5]) | (reg_ie_ff[4] & reg_ip_ff[4]) |
-                     (reg_ie_ff[3] & reg_ip_ff[3]) | (reg_ie_ff[2] & reg_ip_ff[2]) |
-                     (reg_ie_ff[1] & reg_ip_ff[1]) | (reg_ie_ff[0] & reg_ip_ff[0]));
+
+assign gpio_irq_o = |(reg_ie_ff & reg_ip_ff);
 
 //================================= Dbus interface ==================================//
 

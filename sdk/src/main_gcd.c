@@ -20,5 +20,7 @@ int main(void) {
 	   z=0;
 
    // endless loop
-   while(1){}
+   while(1){
+    Uetrv32_Write_LED (gcd,1);
+   }
 }

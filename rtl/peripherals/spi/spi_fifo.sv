@@ -23,7 +23,7 @@ module spi_fifo (
     input  logic [7:0]                              in_data_i,
     output logic [7:0]                              out_data_o,
     //data_count_o in fifo
-    output logic [ADDR_FIFO:0]                      data_count_o,
+    output logic [SPI_DEPTH_FIFO:0]                 data_count_o,
     //read and write requests
     input  logic                                    fifo_read_i,
     input  logic                                    fifo_write_i,
@@ -34,15 +34,15 @@ module spi_fifo (
 
 
 //fifo
-logic [7:0]                         fifo_buffer[DEPTH_FIFO-1:0];
+logic [7:0]                         fifo_buffer[SPI_DEPTH_FIFO-1:0];
 
 //fifo pointers for read and write operations
-logic [ADDR_FIFO:0]                 read_ptr , write_ptr; 
+logic [SPI_DEPTH_FIFO:0]                 read_ptr , write_ptr; 
 
 
 //flags update
 assign fifo_empty_o = (data_count_o == 0);
-assign fifo_full_o  = (data_count_o == DEPTH_FIFO[ADDR_FIFO:0]);
+assign fifo_full_o  = (data_count_o == SPI_DEPTH_FIFO[SPI_DEPTH_FIFO:0]);
 
 //fifo operation
 always_ff @(posedge clk , negedge rst_n) begin
@@ -51,7 +51,7 @@ always_ff @(posedge clk , negedge rst_n) begin
         write_ptr    <= '0;
         data_count_o <= '0;
         out_data_o   <= '0;
-        for (int i = 0; i < DEPTH_FIFO; i = i+1)		    
+        for (int i = 0; i < SPI_DEPTH_FIFO; i = i+1)		    
             fifo_buffer[i] <= '0;
     end else begin
         //write operation

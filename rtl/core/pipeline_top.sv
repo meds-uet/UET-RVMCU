@@ -9,11 +9,9 @@
 
 
 `ifndef VERILATOR
-`include "../defines/mem_defs.svh"
 `include "../defines/m_ext_defs.svh"
 `include "../defines/a_ext_defs.svh"
 `else
-`include "mem_defs.svh"
 `include "m_ext_defs.svh"
 `include "a_ext_defs.svh"
 `endif
@@ -26,8 +24,8 @@ module pipeline_top (
     input   wire                        clk,                      // clock
 
    // IF <---> IMEM interface
-    output type_if2mem_s                if2mem_o,              // Instruction memory request
-    input wire type_mem2if_s            mem2if_i,              // Instruction memory response
+    output type_if2imem_s                if2mem_o,              // Instruction memory request
+    input wire type_imem2if_s            mem2if_i,              // Instruction memory response
 
    // Data bus interface
     output type_lsu2dbus_s              lsu2dbus_o,                // Signal to data bus 
@@ -75,8 +73,8 @@ type_lsu2dbus_s                         lsu2dbus;               // Signal to dat
 type_dbus2lsu_s                         dbus2lsu; 
 
 // Interfaces for instruction memory 
-type_if2mem_s                        if2mem;              
-type_mem2if_s                        mem2if;
+type_if2imem_s                        if2mem;              
+type_imem2if_s                        mem2if;
 
 // Interfaces for writeback module
 type_lsu2wrb_ctrl_s                     lsu2wrb_ctrl;

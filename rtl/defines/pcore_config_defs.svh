@@ -2,11 +2,11 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE file for details.
 // SPDX-License-Identifier: Apache-2.0
 //
-// Description:  
+// Description: Macros defined
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 13.4.2022
-// Modified by: Shehzeen Malik, MEDS UET
+// Modified by: Shehzeen Malik, MEDS UET Lahore
 
 
 `ifndef PCORE_CONFIG_DEFS
@@ -46,14 +46,21 @@
 `define PLCL_SEL_ADDR_HIGH           21
 `define PLCL_SEL_ADDR_LOW            0
 
+`ifdef FPGA
+`define DMEM_ADDR_MATCH              20'h40000 //256KB instruction + code memory
+`else
 `define DMEM_ADDR_MATCH              22'h200000 //2MB instruction + code memory
-`define UART_ADDR_MATCH              6'h20
-`define SPI_ADDR_MATCH               6'h21
-`define GPIOA_ADDR_MATCH             6'h22
-`define GPIOB_ADDR_MATCH             6'h23
-`define GPIOC_ADDR_MATCH             6'h24
-`define GPSW_ADDR_MATCH              6'h25
-`define GPLED_ADDR_MATCH             6'h26
+`endif
+
+`define UART0_ADDR_MATCH             6'h20
+`define UART1_ADDR_MATCH             6'h21
+`define SPI0_ADDR_MATCH              6'h22
+`define SPI1_ADDR_MATCH              6'h23
+`define GPIOA_ADDR_MATCH             6'h24
+`define GPIOB_ADDR_MATCH             6'h25
+`define GPIOC_ADDR_MATCH             6'h26
+`define GPLED_ADDR_MATCH             6'h27
+`define GPSW_ADDR_MATCH              6'h28
 `define PLIC_ADDR_START              22'h300000
 `define PLIC_ADDR_END                22'h300FFF
 `define CLINT_ADDR_START             22'h301000

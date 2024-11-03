@@ -2,7 +2,7 @@
  * Filename   :  uart_top.sv
  * Date       :  13-05-2023
  * Updated    :  25-06-2023
- * Author     :  
+ * Author     :  Shehzeen Malik
  * Adopted from uart.scala by Dr. Muhammad Tahir
  
  * Description:  Uart top module with configurable baud rate using

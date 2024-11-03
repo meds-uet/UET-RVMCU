@@ -1,0 +1,61 @@
+# Directory paths
+INTERFACE_DIR = interfaces
+SRC_DIR = src
+BUILD_DIR = build
+RTL_DIR = ../rtl/memory
+
+# Compiler options
+COMPILER = riscv64-unknown-elf-gcc
+ASSEMBLER = riscv64-unknown-elf-as
+OBJCOPY = riscv64-unknown-elf-objcopy
+OBJDUMP = riscv64-unknown-elf-objdump
+CFLAGS = -c -march=rv32im -mabi=ilp32
+LINKER_SCRIPT = linker.ld
+
+# Source files and object files
+INTERFACE_SRCS := $(wildcard $(INTERFACE_DIR)/*.c)
+INTERFACE_OBJS := $(patsubst $(INTERFACE_DIR)/%.c, $(BUILD_DIR)/%.o, $(INTERFACE_SRCS))
+MAIN_OBJ = $(BUILD_DIR)/main.o
+STARTUP_OBJ = $(BUILD_DIR)/startup.o
+
+# Make build directory if it doesn't exist
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Compile the startup file
+$(STARTUP_OBJ): $(SRC_DIR)/startup.s | $(BUILD_DIR)
+	$(ASSEMBLER) -c -o $@ $< -march=rv32ima -mabi=ilp32
+
+# Compile interface files
+$(BUILD_DIR)/%.o: $(INTERFACE_DIR)/%.c | $(BUILD_DIR)
+	$(COMPILER) $(CFLAGS) -o $@ $<
+
+# Compile main.c file
+$(MAIN_OBJ): $(SRC_DIR)/main.c | $(BUILD_DIR)
+	$(COMPILER) $(CFLAGS) -o $@ $<
+
+# Link the object files into an ELF executable
+$(BUILD_DIR)/program.elf: $(STARTUP_OBJ) $(INTERFACE_OBJS) $(MAIN_OBJ)
+	$(COMPILER) -O -o $@ $(filter-out $(STARTUP_OBJ), $^) -T $(LINKER_SCRIPT) -nostdlib -march=rv32i -mabi=ilp32
+
+# Create binary and text files from ELF
+$(BUILD_DIR)/main.bin: $(BUILD_DIR)/program.elf
+	$(OBJCOPY) -O binary --only-section=.data* --only-section=.text* $< $@
+	python3 maketxt.py $@ > $(BUILD_DIR)/imem.txt
+
+# Create the program dump
+$(BUILD_DIR)/program.dump: $(BUILD_DIR)/program.elf
+	$(OBJDUMP) -S -s $< > $@
+
+# Copy and process the imem.txt file
+$(RTL_DIR)/imem.txt: $(BUILD_DIR)/imem.txt
+	cp $< $(RTL_DIR)
+	cd $(RTL_DIR) && python3 split_hex.py imem.txt
+
+# Default target
+all: $(BUILD_DIR)/program.elf $(BUILD_DIR)/main.bin $(BUILD_DIR)/program.dump $(RTL_DIR)/imem.txt
+	@echo "Process completed!"
+
+# Clean build files
+clean:
+	rm -rf $(BUILD_DIR)/* $(RTL_DIR)/imem.txt

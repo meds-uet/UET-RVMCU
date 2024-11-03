@@ -1,11 +1,12 @@
-/*********************************************************************
- * Filename   :  uart_tx.sv
- * Date       :  14-05-2023
- * Updated    :  21-06-2023
- * Author     :  
- *
- * Description:  Uart transmitter module with 8*8 FIFO
- *********************************************************************/
+// Copyright 2023 University of Engineering and Technology Lahore.
+// Licensed under the Apache License, Version 2.0, see LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Description: Uart transmitter module with 8*8 FIFO
+//               
+// Author: Shehzeen Malik, UET Lahore
+// Date: 21.06.2023
+
 
 `ifndef VERILATOR
 `include "../../defines/uart_defs.svh"

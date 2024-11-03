@@ -57,8 +57,8 @@ logic [7:0]                         rx_shift_data_ff,rx_shift_data_next;
 logic [7:0]                         tx_shift_data_ff,tx_shift_data_next;
 logic                               mosi_next;
 // FIFO signals
-logic [ADDR_FIFO:0]                 tx_fifo_count;
-logic [ADDR_FIFO:0]                 rx_fifo_count;
+logic [SPI_DEPTH_FIFO:0]            tx_fifo_count;
+logic [SPI_DEPTH_FIFO:0]            rx_fifo_count;
 logic [7:0]                         reg_tx_data;
 
 

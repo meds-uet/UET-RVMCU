@@ -13,8 +13,8 @@
 
 `include "pcore_interface_defs.svh"
 
-localparam int unsigned DEPTH_FIFO = 8;
-localparam int unsigned ADDR_FIFO  = $clog2 (DEPTH_FIFO);
+localparam int unsigned SPI_DEPTH_FIFO = 8;
+localparam int unsigned SPI_ADDR_FIFO  = $clog2 (SPI_DEPTH_FIFO);
 
 /* SPI FLASH Registers are present only on controllers with
  the direct-map flash interface, i.e., SPI0.*/
