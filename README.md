@@ -1,23 +1,54 @@
 # UET-RVMCU
-
 ## Overview
 
-The UET-RVMCU project is funded under [LFX Mentorship Program Spring 2024]([url](https://mentorship.lfx.linuxfoundation.org/project/a658f72f-c2e9-44a5-8f2f-76da3892644a)). This project aims to enhance the capabilities of the existing [UETRV_Pcore RISC-V core]([url](https://github.com/ee-uet/UETRV-PCore)), transforming it into a versatile and feature-rich open-source microcontroller. The core (UETRV_Pcore) is RV32IMA Linux-compatible and Privilege Architecture 1.10 compliant. Our vision includes integrating essential extensions such as bitmanip, floating point, debug, trace, and GPIO peripherals. This initiative aligns with the broader goal of providing a comprehensive RISC-V MCU solution accessible to the open-source community.
+The UET-RVMCU project is funded under [LFX Mentorship Program Spring 2024]([url](https://mentorship.lfx.linuxfoundation.org/project/a658f72f-c2e9-44a5-8f2f-76da3892644a)). This project aims to enhance the capabilities of the existing [UETRV_Pcore RISC-V core]([url](https://github.com/ee-uet/UETRV-PCore)), transforming it into a versatile and feature-rich open-source microcontroller. The core (UETRV_Pcore) is RV32IMA Linux-compatible and Privilege Architecture 1.10 compliant. Our vision is to provide a comprehensive RISC-V MCU solution accessible to the open-source community.
 
-## Key Features taken from UETRV_Pcore
+<p align="center">
+<img width=200 height=200
+src='https://github.com/user-attachments/assets/aa4b2a58-3c5e-4148-b6b4-2713afd6102c'>
+</p>
+
+## Description
+UETRV-PCore with a few modifications has been used as the Processor Core.
+
+<p align="center">
+<img width=300 height=300
+src='https://github.com/user-attachments/assets/6edfd5fa-91e6-48a0-bb72-453718e6c7c1'>
+</p>
+
+### Key Features taken from UETRV_PCore
 
 - **RV32IMA Compatibility**: Ensuring the core supports the RV32I base integer instruction set with the M (multiply), A (atomic), and I (integer) extensions. 
 
-## Project Tasks
+#### Modifications to UETRV_PCore
+- Pipeline converted from 5-stages to 3-stages
+- Only M-mode supported
+- MMU and Virtual Memory removed
+- Block Memory integrated
+
+### GPIO Peripherals
+
+GPIO peripherals will facilitate easy interfacing with external devices.
+
+**Features**:
+- GPIO port A, B and C, each having 8 pins.
+- Configurable level interrupts
+- GP-Special, 16 LEDs and 16 switches, of NexysA-7 board interfaced, with configurable interrupts.
+
+<p align="center">
+<img height=200
+src='https://github.com/user-attachments/assets/38ef5a68-d8a2-4c83-9fc4-078f41eb56d4'>
+</p>
 
 ### Bitmanip Extension Integration
 
 The Bitmanip extension offers advanced bitwise manipulation instructions, enhancing performance for tasks requiring intensive bit-level operations.
 
-**Goals**:
-- Integrate the Bitmanip extension into UET_RVMCU.
-- Optimize the extension's usage for various applications.
-- Ensure compatibility with existing codebases.
+**Features**:
+- Zba
+- Zbb
+- Zbc
+- Zbs
 
 ### Floating Point Extension Integration
 
@@ -28,14 +59,14 @@ Incorporating the Floating Point extension will enable hardware-accelerated floa
 - Optimize floating-point operations for performance.
 - Ensure compliance with the RISC-V standard.
 
-### Debug, Trace, and GPIO Peripherals
+### Debug, Trace Extension
 
-Enhancing the microcontroller's capabilities through debug and trace functionalities improves development and debugging processes. Additionally, GPIO peripherals will facilitate easy interfacing with external devices.
+Enhancing the microcontroller's capabilities through debug and trace functionalities improves development and debugging processes. 
 
 **Goals**:
 - Integrate comprehensive debug functionalities.
 - Implement trace capabilities to track and analyze core execution.
-- Integrate GPIO peripherals to expand interfacing options.
+
 
 ## Getting Started
 
