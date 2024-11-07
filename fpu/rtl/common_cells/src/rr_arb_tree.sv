@@ -44,9 +44,6 @@
 /// If it is `1'b1` two `lzc`, a masking logic stage and a two input multiplexer are instantiated.
 /// However these are small in respect of the data multiplexers needed, as the width of the `req_i`
 /// signal is usually less as than `DataWidth`.
-`define SYNTHESIS
-`define COMMON_CELLS_ASSERTS_OFF
-`define XSIM
 module rr_arb_tree #(
   /// Number of inputs to be arbitrated.
   parameter int unsigned NumIn      = 64,
@@ -112,16 +109,14 @@ module rr_arb_tree #(
   output idx_t                idx_o
 );
 
-  `ifndef SYNTHESIS
-  `ifndef COMMON_CELLS_ASSERTS_OFF
+  // pragma translate_off
   `ifndef VERILATOR
   `ifndef XSIM
   // Default SVA reset
   default disable iff (!rst_ni || flush_i);
   `endif
   `endif
-  `endif
-  `endif
+  // pragma translate_on
 
   // just pass through in this corner case
   if (NumIn == unsigned'(1)) begin : gen_pass_through
@@ -173,23 +168,21 @@ module rr_arb_tree #(
           end
         end
 
-        `ifndef SYNTHESIS
-        `ifndef COMMON_CELLS_ASSERTS_OFF
+        // pragma translate_off
+        `ifndef VERILATOR
           lock: assert property(
-            @(posedge clk_i) disable iff (!rst_ni || flush_i)
-                LockIn |-> req_o && (!gnt_i && !flush_i) |=> idx_o == $past(idx_o)) else
+            @(posedge clk_i) LockIn |-> req_o && !gnt_i |=> idx_o == $past(idx_o)) else
                 $fatal (1, "Lock implies same arbiter decision in next cycle if output is not \
                             ready.");
 
           logic [NumIn-1:0] req_tmp;
           assign req_tmp = req_q & req_i;
           lock_req: assume property(
-            @(posedge clk_i) disable iff (!rst_ni || flush_i)
-                LockIn |-> lock_d |=> req_tmp == req_q) else
+            @(posedge clk_i) LockIn |-> lock_d |=> req_tmp == req_q) else
                 $fatal (1, "It is disallowed to deassert unserved request signals when LockIn is \
                             enabled.");
         `endif
-        `endif
+        // pragma translate_on
 
         always_ff @(posedge clk_i or negedge rst_ni) begin : p_req_regs
           if (!rst_ni) begin
@@ -313,8 +306,8 @@ module rr_arb_tree #(
       end
     end
 
-    `ifndef SYNTHESIS
-    `ifndef COMMON_CELLS_ASSERTS_OFF
+    // pragma translate_off
+    `ifndef VERILATOR
     `ifndef XSIM
     initial begin : p_assert
       assert(NumIn)
@@ -324,31 +317,31 @@ module rr_arb_tree #(
     end
 
     hot_one : assert property(
-      @(posedge clk_i) disable iff (!rst_ni || flush_i) $onehot0(gnt_o))
+      @(posedge clk_i) $onehot0(gnt_o))
         else $fatal (1, "Grant signal must be hot1 or zero.");
 
     gnt0 : assert property(
-      @(posedge clk_i) disable iff (!rst_ni || flush_i) |gnt_o |-> gnt_i)
+      @(posedge clk_i) |gnt_o |-> gnt_i)
         else $fatal (1, "Grant out implies grant in.");
 
     gnt1 : assert property(
-      @(posedge clk_i) disable iff (!rst_ni || flush_i) req_o |-> gnt_i |-> |gnt_o)
+      @(posedge clk_i) req_o |-> gnt_i |-> |gnt_o)
         else $fatal (1, "Req out and grant in implies grant out.");
 
     gnt_idx : assert property(
-      @(posedge clk_i) disable iff (!rst_ni || flush_i) req_o |->  gnt_i |-> gnt_o[idx_o])
+      @(posedge clk_i) req_o |->  gnt_i |-> gnt_o[idx_o])
         else $fatal (1, "Idx_o / gnt_o do not match.");
 
     req0 : assert property(
-      @(posedge clk_i) disable iff (!rst_ni || flush_i) |req_i |-> req_o)
+      @(posedge clk_i) |req_i |-> req_o)
         else $fatal (1, "Req in implies req out.");
 
     req1 : assert property(
-      @(posedge clk_i) disable iff (!rst_ni || flush_i) req_o |-> |req_i)
+      @(posedge clk_i) req_o |-> |req_i)
         else $fatal (1, "Req out implies req in.");
     `endif
     `endif
-    `endif
+    // pragma translate_on
   end
 
 endmodule : rr_arb_tree

@@ -259,9 +259,11 @@ FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8
           .reg_ena_i
         );
 
-      end else if (OpGroup == fpnew_pkg::DIVSQRT) begin : lane_instance
+      end 
+        /*
+        else if (OpGroup == fpnew_pkg::DIVSQRT) begin : lane_instance
          if (DivSqrtSel == fpnew_pkg::TH32 && LANE_FORMATS[0] && (LANE_FORMATS[1:fpnew_pkg::NUM_FP_FORMATS-1] == '0)) begin : gen_th32_e906_divsqrt
-          // The T-head-based DivSqrt unit is supported only in FP32-only configurations
+          //The T-head-based DivSqrt unit is supported only in FP32-only configurations
           fpnew_divsqrt_th_32 #(
             .NumPipeRegs ( NumPipeRegs          ),
             .PipeConfig  ( PipeConfig           ),
@@ -366,7 +368,9 @@ FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8
             .reg_ena_i
           );
         end
-      end else if (OpGroup == fpnew_pkg::NONCOMP) begin : lane_instance
+      end 
+      */
+      else if (OpGroup == fpnew_pkg::NONCOMP) begin : lane_instance
 
       end else if (OpGroup == fpnew_pkg::CONV) begin : lane_instance
         fpnew_cast_multi #(

@@ -37,7 +37,7 @@ module fpnew_opgroup_block #(
   // Input signals
   input logic [NUM_OPERANDS-1:0][Width-1:0]       operands_i,
   input logic [NUM_FORMATS-1:0][NUM_OPERANDS-1:0] is_boxed_i,
-  input fpnew_pkg::roundmode_e                    rnd_mode_i,-
+  input fpnew_pkg::roundmode_e                    rnd_mode_i,
   input fpnew_pkg::operation_e                    op_i,
   input logic                                     op_mod_i,
   input fpnew_pkg::fp_format_e                    src_fmt_i,

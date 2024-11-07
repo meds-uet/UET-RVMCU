@@ -1,6 +1,16 @@
-// Copyright 2018 ETH Zurich and University of Bologna.
-// Solderpad Hardware License, Version 0.51, see LICENSE for details.
-// SPDX-License-Identifier: SHL-0.51
+// Copyright (c) 2018 - 2019 ETH Zurich, University of Bologna
+// All rights reserved.
+//
+// This code is under development and not yet released to the public.
+// Until it is released, the code is under the copyright of ETH Zurich and
+// the University of Bologna, and may contain confidential and/or unpublished
+// work. Any reuse/redistribution is strictly forbidden without written
+// permission from ETH Zurich.
+//
+// Bug fixes and contributions will eventually be released under the
+// SolderPad open hardware license in the context of the PULP platform
+// (http://www.pulp-platform.org), under the copyright of ETH Zurich and the
+// University of Bologna.
 
 /// A trailing zero counter / leading zero counter.
 /// Set MODE to 0 for trailing zero counter => cnt_o is the number of trailing zeros (from the LSB)
@@ -39,13 +49,11 @@ module lzc #(
 
     localparam int unsigned NumLevels = $clog2(WIDTH);
 
-  `ifndef COMMON_CELLS_ASSERTS_OFF
-    `ifndef SYNTHESIS
+    // pragma translate_off
     initial begin
       assert(WIDTH > 0) else $fatal(1, "input must be at least one bit wide");
     end
-    `endif
-  `endif
+    // pragma translate_on
 
     logic [WIDTH-1:0][NumLevels-1:0] index_lut;
     logic [2**NumLevels-1:0] sel_nodes;
@@ -100,14 +108,5 @@ module lzc #(
     assign empty_o = NumLevels > unsigned'(0) ? ~sel_nodes[0] : ~(|in_i);
 
   end : gen_lzc
-
-`ifndef SYNTHESIS
-`ifndef COMMON_CELLS_ASSERTS_OFF
-  initial begin: validate_params
-    assert (WIDTH >= 1)
-      else $fatal(1, "The WIDTH must at least be one bit wide!");
-  end
-`endif
-`endif
 
 endmodule : lzc
