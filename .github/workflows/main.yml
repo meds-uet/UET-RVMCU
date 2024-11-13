@@ -46,6 +46,7 @@ jobs:
       run: |
         cd rvmcu/verif/bin/riscv-isac
         pip3 install --editable .
+        pip show riscv_isac
 
 
     - name: Run Verification Framework
