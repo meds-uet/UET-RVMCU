@@ -14,6 +14,37 @@ defines     ?= COMPLIANCE
 max_cycles ?= 100
 vcd        ?= 0
 
+# Variables
+VIVADO = vivado -mode batch -source
+TCL_SCRIPT = ../run.tcl
+BOARD ?= NexysA7
+SDK_DIR = sdk
+BUILD_IMEM_SCRIPT = build_imem.sh
+FPGA_DIR = fpga
+
+# Default target: run the Vivado script
+fpga: clean build_imem run
+
+
+build_imem:
+	@echo "Running build_imem.sh..."
+	cd $(SDK_DIR) && bash $(BUILD_IMEM_SCRIPT)
+# Run the Vivado script for the selected board
+run:
+	@echo "Running Vivado script with board: $(BOARD)"
+	cd $(FPGA_DIR) &&  $(VIVADO) $(TCL_SCRIPT) $(BOARD)
+
+# Clean the project directory
+clean:
+	cd $(FPGA_DIR) && rm -rf project/ .Xil/ *.jou *.log
+
+# Usage instructions
+help:
+	@echo "Usage:"
+	@echo "  make all BOARD=<BoardName>   # Run for a specific board (e.g., NexysA7, Nexys-4)"
+	@echo "  make clean                  # Clean the generated files"
+
+
 
 src := bench/pcore_tb.sv							\
 	   $(wildcard rtl/*.sv)							\
