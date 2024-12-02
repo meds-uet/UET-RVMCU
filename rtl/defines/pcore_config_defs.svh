@@ -16,7 +16,10 @@
 //`define RTL_SIMULATION               1 
 `endif
 
+`ifndef COMPLIANCE
 `define FPGA                           1
+`endif
+
 //============================= CORE PARAMETERS ========================//
 
 // Width of main registers and buses
