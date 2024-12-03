@@ -50,4 +50,4 @@ if __name__ == "__main__":
 
     # Run the hex splitting function
     split_hex_values_by_bytes(input_file)
-    print(f"Hex values successfully split into files in the '{os.path.dirname(input_file)}' directory.")
+    print(f"Hex values successfully split into files")

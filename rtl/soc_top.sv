@@ -57,14 +57,10 @@ logic [31:0]                 sev_seg_display;
 assign rst = !rst_n;
 
 // clock divider
-clk_wiz_0 clk_mcu(
-    // Clock out ports
-    .clk_out1 (clk),     // output clk_out1
-    // Status and control signals
-    .reset (rst), // input reset
-    .locked (locked),       // output locked
-   // Clock in ports
-    .clk_in1 (clk_100)
+clock_divider clk_mcu (
+    .clk_in(clk_100),  // Input clock
+    .rst(rst),         // Reset
+    .clk_out(clk)      // Output clock
 );
 
 //7-segment display
@@ -106,4 +102,30 @@ mcu_top mcu_top_module(
 );
 
 
+endmodule
+
+module clock_divider(
+    input logic clk_in,       // Input clock (100 MHz)
+    input logic rst,          // Reset signal (active high)
+    output logic clk_out      // Output clock (approx. 30 MHz)
+);
+    // Parameters for dividing the clock
+    localparam integer DIV_FACTOR = 3; // Divide by 3 (to approximate 30 MHz)
+
+    // Counter and output clock
+    integer counter = 0;
+
+    always_ff @(posedge clk_in or posedge rst) begin
+        if (rst) begin
+            counter <= 0;
+            clk_out <= 0;
+        end else begin
+            if (counter == DIV_FACTOR - 1) begin
+                counter <= 0;
+                clk_out <= ~clk_out; // Toggle output clock
+            end else begin
+                counter <= counter + 1;
+            end
+        end
+    end
 endmodule
