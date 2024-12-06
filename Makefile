@@ -6,6 +6,7 @@
 #  * Description:  Makefile for simulating and testing UETRV_PCORE
 #  *********************************************************************
 
+
 verilator   ?= verilator
 ver-library ?= ver_work
 defines     ?= COMPLIANCE
@@ -22,18 +23,45 @@ SDK_DIR = sdk
 BUILD_IMEM_SCRIPT = build_imem.sh
 FPGA_DIR = fpga
 
+MEM_TCL_SCRIPT = ../mem.tcl
+BITSTREAM = project/mcu_nexys.runs/impl_1/soc_top.bit
+
+# Default memory files
+MEM_BANK_0 = ../rtl/memory/MEM_BANK_0.txt
+MEM_BANK_1 = ../rtl/memory/MEM_BANK_1.txt
+MEM_BANK_2 = ../rtl/memory/MEM_BANK_2.txt
+MEM_BANK_3 = ../rtl/memory/MEM_BANK_3.txt
+
 # Default target: run the Vivado script
-fpga: clean build_imem run
+fpga: clean build_imem bitstream
+
+
+
+update_memory:
+	@echo "Updating FPGA memory..."
+	cd $(FPGA_DIR) &&  vivado -mode batch -source $(MEM_TCL_SCRIPT) -tclargs \
+		--mem_bank_0=$(MEM_BANK_0) \
+		--mem_bank_1=$(MEM_BANK_1) \
+		--mem_bank_2=$(MEM_BANK_2) \
+		--mem_bank_3=$(MEM_BANK_3)
+
+# Usage example
+# make update_memory MEM_BANK_0=mem_bank_0_alt.txt MEM_BANK_1=mem_bank_1_alt.txt
 
 
 build_imem:
 	@echo "Running build_imem.sh..."
 	cd $(SDK_DIR) && bash $(BUILD_IMEM_SCRIPT)
 # Run the Vivado script for the selected board
-run:
-	@echo "Running Vivado script with board: $(BOARD)"
-	cd $(FPGA_DIR) &&  $(VIVADO) $(TCL_SCRIPT) $(BOARD)
-
+	
+bitstream:
+	@if [ "$(BOARD)" = "Nexys4" ] || [ "$(BOARD)" = "NexysA7" ]; then \
+		echo "Building FPGA project for board: $(BOARD)"; \
+		cd $(FPGA_DIR) &&  $(VIVADO) $(TCL_SCRIPT) -notrace -tclargs $(BOARD); \
+	else \
+		echo "Error: Please specify a valid BOARD (Nexys4 or NexysA7)"; \
+		exit 1; \
+	fi	
 # Clean the project directory
 clean:
 	cd $(FPGA_DIR) && rm -rf project/ .Xil/ *.jou *.log
