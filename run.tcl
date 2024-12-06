@@ -1,22 +1,40 @@
-# Vivado TCL script to automate FPGA build process
+# Vivado TCL script to automate FPGA build process for multiple boards
 # Variables
 set project_name "mcu_nexys"
 set rtl_dir "../rtl"
 set constraints_dir "../constraints"
 set top_module_name "soc_top"
 
-# Extract the board name
-set board_name [lindex $argv 0]
+# Get board selection from command-line arguments
+if {[llength $argv] == 0} {
+    puts "Error: No board specified. Run 'make fpga BOARD=Nexys4' or 'make fpga BOARD=NexysA7'."
+    exit 1
+}
+set board_selection [lindex $argv 0]
 
-# Board-specific part numbers
-set part_number "xc7a100tcsg324-1"
+# Board-specific configurations
+if { $board_selection == "Nexys4" } {
+    set board_name "Nexys4"
+    set part_number "xc7a100tcsg324-1"
+    set constraints_file "$constraints_dir/mcu_nexys4.xdc"
+    set board_part "digilentinc.com:nexys4:part0:1.1"
+} elseif { $board_selection == "NexysA7" } {
+    set board_name "Nexys A7"
+    set part_number "xc7a100tcsg324-1"
+    set constraints_file "$constraints_dir/mcu_nexysA7.xdc"
+    set board_part "digilentinc.com:nexys-a7-100t:part0:1.3"
+} else {
+    puts "Error: Invalid board specified. Use 'Nexys4' or 'NexysA7'."
+    exit 1
+}
 
-puts "Board name: $board_name"
+puts "Using board: $board_name"
 puts "Using part number: $part_number"
+puts "Using constraints file: $constraints_file"
 
 # Create a new project
 create_project $project_name ./project -part $part_number
-set_property board_part digilentinc.com:nexys-a7-100t:part0:1.3 [current_project]
+set_property board_part $board_part [current_project]
 
 add_files -scan_for_includes {../rtl/core/pipeline_top.sv ../rtl/peripherals/spi/spi_top.sv ../rtl/core/reg_file.sv 
                 ../rtl/core/forward_stall.sv ../rtl/peripherals/spi/spi_controller.sv ../rtl/defines/gpio_defs.svh 
@@ -36,27 +54,23 @@ add_files -scan_for_includes {../rtl/core/pipeline_top.sv ../rtl/peripherals/spi
                 ../rtl/memory/memory.sv ../rtl/peripherals/uart/uart.sv ../rtl/mcu_top.sv ../rtl/core/divider.sv 
                 ../rtl/core/amo.sv ../rtl/defines/plic_defs.svh}
 
-
-update_compile_order -fileset sources_1
-file mkdir ../fpga/project/mcu_nexys.srcs/constrs_1
-
-update_compile_order -fileset sources_1
-add_files -fileset constrs_1 -norecurse ../constraints/uetmcu.xdc
-
+# Set constraints file
+add_files -fileset constrs_1 -norecurse $constraints_file
 
 # Set the top module
 set_property top $top_module_name [current_fileset]
 
 # Run synthesis
-synth_design -top $top_module_name
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
 
 # Run implementation
-opt_design
-place_design
-route_design
+launch_runs impl_1 -jobs 8
+wait_on_run impl_1
 
 # Generate bitstream
-write_bitstream
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
 
 puts "Process complete. Bitstream generated for $board_name."
 exit
