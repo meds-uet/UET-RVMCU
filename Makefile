@@ -53,7 +53,6 @@ build_imem:
 	@echo "Running build_imem.sh..."
 	cd $(SDK_DIR) && bash $(BUILD_IMEM_SCRIPT)
 # Run the Vivado script for the selected board
-	
 bitstream:
 	@if [ "$(BOARD)" = "Nexys4" ] || [ "$(BOARD)" = "NexysA7" ]; then \
 		echo "Building FPGA project for board: $(BOARD)"; \

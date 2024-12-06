@@ -36,7 +36,6 @@ puts "Using constraints file: $constraints_file"
 create_project $project_name ./project -part $part_number
 set_property board_part $board_part [current_project]
 
-# Add RTL files
 add_files -scan_for_includes {../rtl/core/pipeline_top.sv ../rtl/peripherals/spi/spi_top.sv ../rtl/core/reg_file.sv 
                 ../rtl/core/forward_stall.sv ../rtl/peripherals/spi/spi_controller.sv ../rtl/defines/gpio_defs.svh 
                 ../rtl/defines/m_ext_defs.svh ../rtl/peripherals/spi/spi_datapath.sv ../rtl/soc_top.sv 
