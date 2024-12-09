@@ -14,7 +14,7 @@
 #include "../interfaces/spi.h"
 
 // Adjust this value for desired LED toggle rate
-#define LED_TOGGLE_RATE 100000
+#define LED_TOGGLE_RATE 1000000
 
 // Adjust this value for display refresh rate
 #define DISPLAY_REFRESH_RATE 1000
@@ -27,8 +27,8 @@ void Delay(unsigned int delay) {
 
 // Segment data for "HELLO" (assuming common anode logic with active-low)
 uint8_t charMap[8] = {
-    0b10001001, // H
-    0b10110000, // E
+    0b10000011, // H
+    0b11101011, // E
     0b11000111, // L
     0b11000111, // L
     0b10111111, // O
@@ -42,7 +42,6 @@ int main(void) {
     uint32_t ledCounter = 0;     // Counter for LED toggling
     uint32_t displayCounter = 0; // Counter for seven-segment display
     static uint8_t ledState = 0;
-    uint8_t value;
     int display, segment, selector;
 
     // Initialize GPIO pins in Port B (8-15) as output for segments a-g and dot
@@ -70,20 +69,19 @@ int main(void) {
     while (1) {
         // Handle LED toggling at a slower rate
         if (ledCounter >= LED_TOGGLE_RATE) { 
+            for (i = 0; i <= 15; i++) {
+                Uetrv32_Write_LED(i, ledState); // Toggle LEDs
+            }
             ledCounter = 0; // Reset LED counter
-            ledState = ~ledState;
         }
-        else
-            ledCounter++;
-        for (i = 0; i <= 15; i++) {
-            Uetrv32_Write_LED(i, ledState); // Toggle LEDs
-        }
+        ledCounter++;
 
         // Handle seven-segment display refresh
+        if (displayCounter >= DISPLAY_REFRESH_RATE) { 
             for (display = 0; display < 8; display++) {
                 // Set segment data (a-g and dot) in Port B
                 for (segment = 0; segment < 8; segment++) {
-                    value = (charMap[display] >> segment) & 1;
+                    uint8_t value = (charMap[display] >> segment) & 1;
                     Uetrv32_GpioB_WriteData(segment, value);
                 }
 
@@ -98,6 +96,8 @@ int main(void) {
             }
             displayCounter = 0; // Reset display counter
         }
+        displayCounter++;
+    }
 
     return 0;
 }

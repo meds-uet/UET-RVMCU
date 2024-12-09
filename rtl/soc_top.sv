@@ -21,8 +21,8 @@ module soc_top (
     input   logic                        rst_n,                  // reset
     `ifdef FPGA
     //7-segment control
-    output reg   [7:0]                   r_sg,
-    output reg   [7:0]                   r_an,
+//    output reg   [7:0]                   r_sg,
+//    output reg   [7:0]                   r_an,
     input   logic                        clk_100,                // fpga_clock
     `else
     input   logic                        clk,               
@@ -37,7 +37,7 @@ module soc_top (
     output logic [1:0]                   spi_mosi_o,
 
     //GPIO interface signals
-    inout  logic [23:0]                  gpio_io,
+    inout  logic [23:0]                  gpio_io,       // Some of the GPIOs are going to be hardwired to seven segement
     input  logic [15:0]                  gp_switch_i,
     output logic [15:0]                  gp_led_o,
 
@@ -63,26 +63,26 @@ clock_divider clk_mcu (
     .clk_out(clk)      // Output clock
 );
 
-//7-segment display
-m_7segcon m_7segcon(
-    .clk          (clk),
-    .rst_n        (rst_n),
-    .sev_seg_disp (sev_seg_display),
-    .sev_cathode  (r_sg),
-    .sev_anode    (r_an)
-);
+////7-segment display
+//m_7segcon m_7segcon(
+//    .clk          (clk),
+//    .rst_n        (rst_n),
+//    .sev_seg_disp (sev_seg_display),
+//    .sev_cathode  (r_sg),
+//    .sev_anode    (r_an)
+//);
  
-//7-segment data to be displayed 
-assign sev_seg_display = {mcu_top_module.pipeline_top_module.csr_module.irq_code[4:1],
-                          mcu_top_module.spi_top_module.spi0_module.spi_tx_fifo_data[7:0],
-                          mcu_top_module.spi_top_module.spi0_module.spi_tx_fifo_data[3:0],
-                          mcu_top_module.spi_top_module.spi0_module.spi_rx_fifo_data[7:4],
-                          mcu_top_module.spi_top_module.spi0_module.spi_rx_fifo_data[3:0],
-                          //mcu_top_module.gpio_top_module.gp_sw_led.reg_sw_data_ff[7:4],
-                          //mcu_top_module.gpio_top_module.gpio_A.reg_data_ff[3:0],
-                          mcu_top_module.if2mem.addr[11:8],
-                          mcu_top_module.if2mem.addr[7:4],
-                          mcu_top_module.if2mem.addr[3:0]};
+////7-segment data to be displayed 
+//assign sev_seg_display = {mcu_top_module.pipeline_top_module.csr_module.irq_code[4:1],
+//                          mcu_top_module.spi_top_module.spi0_module.spi_tx_fifo_data[7:0],
+//                          mcu_top_module.spi_top_module.spi0_module.spi_tx_fifo_data[3:0],
+//                          mcu_top_module.spi_top_module.spi0_module.spi_rx_fifo_data[7:4],
+//                          mcu_top_module.spi_top_module.spi0_module.spi_rx_fifo_data[3:0],
+//                          //mcu_top_module.gpio_top_module.gp_sw_led.reg_sw_data_ff[7:4],
+//                          //mcu_top_module.gpio_top_module.gpio_A.reg_data_ff[3:0],
+//                          mcu_top_module.if2mem.addr[11:8],
+//                          mcu_top_module.if2mem.addr[7:4],
+//                          mcu_top_module.if2mem.addr[3:0]};
     
 `endif
 // Microcontroller 

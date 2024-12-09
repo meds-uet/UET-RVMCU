@@ -70,13 +70,123 @@ Enhancing the microcontroller's capabilities through debug and trace functionali
 
 ## Getting Started
 
-To get started with the UETRV PicoCore project, follow these steps:
+# UETRVMCU Core: FPGA and Verilator Guide
 
-1. **Clone the Repository**:
-   ```sh
-   git clone [https://github.com/linuxfoundation/uertrv_picocore.git](https://github.com/meds-uet/UET-RVMCU.git)
-   cd UET-RVMCU
-   ```
+## Overview
+
+This guide provides step-by-step instructions for running the UETRVMCU core on an FPGA and simulating it using Verilator. The Makefile simplifies building, simulating, and programming the FPGA.
+
+## Prerequisites
+
+1. **Hardware**
+   - Supported FPGA board: `NexysA7` or `Nexys4`.
+
+2. **Software**
+   - [Vivado](https://www.xilinx.com/products/design-tools/vivado.html)
+   - [Verilator](https://verilator.org/)
+   - Bash shell for running scripts
+   - GNU Make utility
+
+3. **Directory Structure**
+   Our project directory is organized as follows:
+/bench 
+└── pcore_tb.sv 
+/rtl 
+├── core/ 
+├── defines/ 
+├── interconnect/ 
+├── memory/ 
+├── peripherals/ 
+/fpga 
+└── project/ 
+/sdk 
+└── build_imem.sh
+└── interfaces
+└── src
+mem.tcl
+run.tcl
+
+---
+
+## Running the Core on FPGA
+
+### 1. Clean the Project Directory
+Run the following command to remove previous build files:
+```bash
+make clean
+```
+### 2. Build Instruction Memory
+To generate the instruction memory:
+```bash
+make build_imem
+```
+### 3. Generate the Bitstream
+Specify the target FPGA board (`NexysA7` or `Nexys4`) and run:
+```bash
+make bitstream BOARD=NexysA7
+```
+### 4. Update the FPGA Memory
+Once the bitstream is generated, ensure the FPGA is connected to your computer and run
+```bash
+make update_bit
+```
+
+### S. Do Everything in a single command
+You can do all the above steps in a single command by running
+```bash
+make fpga BOARD=NexysA7
+```
+
+
+## Simulating with Verilator
+### 1. Build the Verilator Model
+To compile the Verilog source files for simulation:
+
+```bash
+make verilate
+```
+### 2. Run the Simulation
+Simulate the core with specific parameters. For example:
+
+```bash
+make sim-verilate-uart
+```
+This generates an output log (uart_logdata.log) and optional waveform files (* .vcd) if enabled. Waveforms (* .vcd) can be enabled by setting vcd=1:
+```bash
+make sim-verilate-uart vcd=1
+```
+
+## Makefile Targets
+
+| Command                  | Description                                                                                 |
+|--------------------------|---------------------------------------------------------------------------------------------|
+| `make clean`             | Cleans the project directory by removing all generated files.                               |
+| `make build_imem`        | Generates the instruction memory required for the core.                                     |
+| `make bitstream BOARD=<BoardName>` | Builds the FPGA project for the specified board (e.g., `NexysA7`, `Nexys4`).               |
+| `make update_bit`        | Updates the memory on the FPGA using Vivado batch mode.                                     |
+| `make verilate`          | Builds the Verilator model of the UETRVMCU core for simulation.                             |
+| `make sim-verilate-uart` | Simulates the core with Verilator and logs UART output in `uart_logdata.log`.               |
+| `make clean-all`         | Removes all Verilator-related files, logs, and waveform files from the directory.           |
+
+## Troubleshooting
+
+### Invalid Board Name Error
+If you see an error like: `Error: Please specify a valid BOARD (Nexys4 or NexysA7)`. Ensure you specify the `BOARD` variable when running the Makefile. For example:
+```bash
+make fpga BOARD=NexysA7
+```
+## Missing Dependencies
+
+Ensure the following dependencies are installed and correctly configured:
+
+1. **Hardware**
+   - Supported FPGA board: `NexysA7` or `Nexys4`.
+
+2. **Software**
+   - [Vivado](https://www.xilinx.com/products/design-tools/vivado.html)
+   - [Verilator](https://verilator.org/)
+   - Bash shell for running scripts
+   - GNU Make utility
 
 ## Contributing
 We welcome contributions from the open-source community! To contribute:
@@ -85,8 +195,11 @@ We welcome contributions from the open-source community! To contribute:
 2. Create a new branch for your feature or bug fix.
 3. Submit a pull request with a detailed description of your changes.
 
+## Notes
+Ensure that Vivado and Verilator paths are correctly set in your environment variables. The `build_imem.sh` script and `.tcl` scripts should be adapted as per project-specific requirements.
+
 ## License
 This project is licensed under the Apache License 2.0. See the LICENSE file for more details.
 
 ## Contact
-For questions, suggestions, or feedback, please reach out to us via GitHub Issues.
+For questions, suggestions, or feedback, please reach out to us via GitHub Issues, or for further assistance, contact the author: Umer Shahid (@umershahidengr)

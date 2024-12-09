@@ -1,9 +1,9 @@
 #*********************************************************************
 #  * Filename :    Makefile
-#  * Date     :    02-5-2023
-#  * Author   :    @abdulwadoodd
+#  * Date     :    09-12-2024
+#  * Author   :    Umer Shahid (@umershahidengr)
 #  *
-#  * Description:  Makefile for simulating and testing UETRV_PCORE
+#  * Description:  Makefile for simulating and testing UET_RVMCU
 #  *********************************************************************
 
 
@@ -26,27 +26,18 @@ FPGA_DIR = fpga
 MEM_TCL_SCRIPT = ../mem.tcl
 BITSTREAM = project/mcu_nexys.runs/impl_1/soc_top.bit
 
-# Default memory files
-MEM_BANK_0 = ../rtl/memory/MEM_BANK_0.txt
-MEM_BANK_1 = ../rtl/memory/MEM_BANK_1.txt
-MEM_BANK_2 = ../rtl/memory/MEM_BANK_2.txt
-MEM_BANK_3 = ../rtl/memory/MEM_BANK_3.txt
 
 # Default target: run the Vivado script
-fpga: clean build_imem bitstream
+fpga: clean build_imem bitstream update_bit
 
 
 
-update_memory:
+update_bit:
 	@echo "Updating FPGA memory..."
-	cd $(FPGA_DIR) &&  vivado -mode batch -source $(MEM_TCL_SCRIPT) -tclargs \
-		--mem_bank_0=$(MEM_BANK_0) \
-		--mem_bank_1=$(MEM_BANK_1) \
-		--mem_bank_2=$(MEM_BANK_2) \
-		--mem_bank_3=$(MEM_BANK_3)
+	cd $(FPGA_DIR) &&  vivado -mode batch -source $(MEM_TCL_SCRIPT) 
 
 # Usage example
-# make update_memory MEM_BANK_0=mem_bank_0_alt.txt MEM_BANK_1=mem_bank_1_alt.txt
+# make update_bit
 
 
 build_imem:
@@ -113,20 +104,6 @@ sim-verilate-uart: verilate
 	@echo
 	$(ver-library)/Vpcore_tb +imem=$(imem_uart) +max_cycles=$(max_cycles) +vcd=$(vcd)
 
-sim-verilate-linux: verilate
-	@echo
-	@echo "Extracting Linux Image..."
-	@echo
-	rm -f ./sdk/example-linux/imem.txt
-	unzip ./sdk/example-linux/imem.zip -d ./sdk/example-linux/
-	@echo
-	@echo
-	@echo "Output is captured in uart_logdata.log"
-	@echo "Press ctrl+c to exit to the simulation"
-	@echo
-	@echo "Initiating Linux Bootup in Verilator Simulation..."
-	@echo
-	$(ver-library)/Vpcore_tb +imem=$(imem_linux) +max_cycles=300000000 +vcd=$(vcd)
 
 clean-all:
 	rm -rf ver_work/ *.log *.vcd \
