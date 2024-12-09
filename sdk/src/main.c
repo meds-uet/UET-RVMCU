@@ -14,10 +14,8 @@
 #include "../interfaces/spi.h"
 
 // Adjust this value for desired LED toggle rate
-#define LED_TOGGLE_RATE 100000
+#define LED_TOGGLE_RATE     100000
 
-// Adjust this value for display refresh rate
-#define DISPLAY_REFRESH_RATE 1000
 
 // Delay function (adjust the value for desired delay time)
 void Delay(unsigned int delay) {
@@ -28,10 +26,10 @@ void Delay(unsigned int delay) {
 // Segment data for "HELLO" (assuming common anode logic with active-low)
 uint8_t charMap[8] = {
     0b10001001, // H
-    0b10110000, // E
+    0b10000110, // E
     0b11000111, // L
     0b11000111, // L
-    0b10111111, // O
+    0b11000000, // O
     0b11111111, // Blank (for unused displays)
     0b11111111, // Blank
     0b11111111  // Blank
@@ -39,9 +37,9 @@ uint8_t charMap[8] = {
 
 int main(void) {
     int i;
-    uint32_t ledCounter = 0;     // Counter for LED toggling
+    int ledCounter = 0;     // Counter for LED toggling
     uint32_t displayCounter = 0; // Counter for seven-segment display
-    static uint8_t ledState = 0;
+    int ledState = 1;
     uint8_t value;
     int display, segment, selector;
 
@@ -57,7 +55,7 @@ int main(void) {
 
     // Initialize LEDs as outputs (assuming a function for this exists)
     for (i = 0; i <= 15; i++) {
-        Uetrv32_Write_LED(i, 0); // Ensure all LEDs are initially off
+        Uetrv32_Write_LED(i, 1); // Ensure all LEDs are initially on
     }
 
     // Ensure all GPIO pins in Port B and Port C are initially high (active-low logic)
@@ -68,13 +66,15 @@ int main(void) {
 
 
     while (1) {
+        ledCounter = ledCounter + 1;
         // Handle LED toggling at a slower rate
         if (ledCounter >= LED_TOGGLE_RATE) { 
             ledCounter = 0; // Reset LED counter
-            ledState = ~ledState;
+            if (ledState==0)
+                ledState = 1;
+            else
+                ledState = 0;
         }
-        else
-            ledCounter++;
         for (i = 0; i <= 15; i++) {
             Uetrv32_Write_LED(i, ledState); // Toggle LEDs
         }
@@ -94,9 +94,8 @@ int main(void) {
                 Uetrv32_GpioC_WriteData(display, 0); // Activate the current selector
 
                 // Small delay to ensure visibility for the current digit
-                Delay(5000);
+                Delay(1000);
             }
-            displayCounter = 0; // Reset display counter
         }
 
     return 0;
