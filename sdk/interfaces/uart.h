@@ -1,4 +1,8 @@
-#define UART_BAUD_DIV  259 //Baud 115200, System frequency 30MHz = 259
+/** baud divisor = (system frequency/baudrate)-1                       *
+*   system frequency = 25MHz, baudrate = 115200, baud divisor =  216*
+*   system frequency = 25MHz, baudrate = 1M, baud divisor = 24      *
+*   system frequency = 30MHz, baudrate = 115200, baud divisor = 259   **/
+#define UART_BAUD_DIV  216
 #define TX_CNTRL_EN    0x01
 #define RX_CNTRL_EN    0x01
 #define TWO_STOP_BITS  0x02
@@ -6,9 +10,9 @@
 #define TX_INT         0x01
 #define RX_INT         0x02
 #define BOTH_INT       0x03
-#define CR										13
-#define BS										8
-#define LF										10
+#define CR		13
+#define BS		8
+#define LF		10
    
 /** UART module prototype */
 typedef struct __attribute__((packed,aligned(4))) {

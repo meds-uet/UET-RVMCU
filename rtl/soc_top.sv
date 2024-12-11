@@ -16,6 +16,34 @@
 `include "plic_defs.svh"
 `endif
 
+module clock_divider(
+    input logic clk_in,       // Input clock (100 MHz)
+    input logic rst,          // Reset signal (active high)
+    output logic clk_out      // Output clock (25 MHz)
+);
+    // Parameters for dividing the clock
+    localparam integer DIV_FACTOR = 2; // Divide by 2 (25 MHz)
+
+    // Counter and output clock
+    integer counter = 0;
+
+    always_ff @(posedge clk_in or posedge rst) begin
+        if (rst) begin
+            counter <= 0;
+            clk_out <= 0;
+        end else begin
+            if (counter == DIV_FACTOR - 1) begin
+                counter <= 0;
+                clk_out <= ~clk_out; // Toggle output clock
+            end else begin
+                counter <= counter + 1;
+            end
+        end
+    end
+endmodule
+
+
+
 module soc_top (
 
     input   logic                        rst_n,                  // reset
@@ -104,28 +132,3 @@ mcu_top mcu_top_module(
 
 endmodule
 
-module clock_divider(
-    input logic clk_in,       // Input clock (100 MHz)
-    input logic rst,          // Reset signal (active high)
-    output logic clk_out      // Output clock (approx. 30 MHz)
-);
-    // Parameters for dividing the clock
-    localparam integer DIV_FACTOR = 3; // Divide by 3 (to approximate 30 MHz)
-
-    // Counter and output clock
-    integer counter = 0;
-
-    always_ff @(posedge clk_in or posedge rst) begin
-        if (rst) begin
-            counter <= 0;
-            clk_out <= 0;
-        end else begin
-            if (counter == DIV_FACTOR - 1) begin
-                counter <= 0;
-                clk_out <= ~clk_out; // Toggle output clock
-            end else begin
-                counter <= counter + 1;
-            end
-        end
-    end
-endmodule

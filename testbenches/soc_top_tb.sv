@@ -4,7 +4,7 @@ module soc_top_tb;
 
     // Input and Output Declarations
     logic rst_n;
-    logic clk;
+    logic clk_100;
     logic irq_soft_i;
     logic [15:0] gp_switch_i;
     logic [15:0] gp_led_o;
@@ -61,7 +61,7 @@ assign gpio_io_rec_c = gpio_io[23:16] ;
     // Instantiate the soc_top module
     soc_top uut (
         .rst_n(rst_n),
-        .clk(clk),
+        .clk_100(clk_100),
         .irq_soft_i(irq_soft_i),
         .gpio_io(gpio_io),
         .gp_switch_i(gp_switch_i),
@@ -72,8 +72,8 @@ assign gpio_io_rec_c = gpio_io[23:16] ;
 
    // Clock generation
    initial begin
-    clk = 0;
-    forever #5 clk = ~clk; // 100 MHz clock
+    clk_100 = 0;
+    forever #5 clk_100 = ~clk_100; // 100 MHz clock
    end
 
     // Initial Setup and Test Scenarios
@@ -86,30 +86,6 @@ assign gpio_io_rec_c = gpio_io[23:16] ;
         #10 rst_n = 1'b1;  // Deassert reset
     end
 
-    //gpio sequence
-    initial begin
-        gpio_io_out_a = 8'h00;
-        gpio_io_out_b = 8'h00;
-        gpio_io_out_c = 8'h00;
-        uart_rxd_i    = 1'b0;
-        repeat (30)@ (posedge clk);
-        gpio_io_out_a = 8'h00;
-        gpio_io_out_b = 8'hFF;
-        gpio_io_out_c = 8'h00;
-        uart_rxd_i    = 1'b1;
-        repeat (50)@ (posedge clk);
-        gpio_io_out_a = 8'hFF;
-        gpio_io_out_b = 8'hAA;
-        gpio_io_out_c = 8'hBB;
-        uart_rxd_i    = 1'b0;
-        repeat (50)@ (posedge clk);
-        gpio_io_out_a = 8'hCC;
-        gpio_io_out_b = 8'h99;
-        gpio_io_out_c = 8'hFF;
-        uart_rxd_i    = 1'b1;
-        repeat (50)@ (posedge clk);
-        
-    end
 
 
     // Finish the simulation after enough time has passed
