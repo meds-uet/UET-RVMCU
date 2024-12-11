@@ -28,7 +28,7 @@ BITSTREAM = project/mcu_nexys.runs/impl_1/soc_top.bit
 
 
 # Default target: run the Vivado script
-fpga: clean build_imem bitstream # update_bit
+fpga: clean build_imem bitstream  update_bit
 
 
 
