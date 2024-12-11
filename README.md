@@ -45,8 +45,9 @@ Memory has been updated to four memory banks to support byte addressable accesse
 
 <p align="center">
 <img width=1000 height=500
-src='https://github.com/user-attachments/assets/98517ddc-fccc-4607-961d-312f5f29dc9e'>
+src='https://github.com/user-attachments/assets/19c026db-1d49-4524-894f-e4d2789ecc8f'>
 </p>
+
 
 ### Bitmanip Extension Integration
 
