@@ -44,7 +44,7 @@ src='https://github.com/user-attachments/assets/5c384013-56bb-4446-922b-e94a9653
 Memory has been updated to four memory banks to support byte addressable accesses.
 
 <p align="center">
-<img width=600 height=400
+<img width=1000 height=500
 src='https://github.com/user-attachments/assets/98517ddc-fccc-4607-961d-312f5f29dc9e'>
 </p>
 
