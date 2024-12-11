@@ -13,7 +13,7 @@ UETRV-PCore with a few modifications has been used as the Processor Core.
 
 <p align="center">
 <img width=300 height=300
-src='https://github.com/user-attachments/assets/6edfd5fa-91e6-48a0-bb72-453718e6c7c1'>
+src='https://github.com/user-attachments/assets/c9f7bb0d-fefb-481e-9e27-e6fd678aeddf'>
 </p>
 
 ### Key Features taken from UETRV_PCore
@@ -37,7 +37,15 @@ GPIO peripherals will facilitate easy interfacing with external devices.
 
 <p align="center">
 <img height=200
-src='https://github.com/user-attachments/assets/38ef5a68-d8a2-4c83-9fc4-078f41eb56d4'>
+src='https://github.com/user-attachments/assets/5c384013-56bb-4446-922b-e94a96538387'>
+</p>
+
+### Memory
+Memory has been updated to four memory banks to support byte addressable accesses.
+
+<p align="center">
+<img height=200
+src='https://github.com/user-attachments/assets/98517ddc-fccc-4607-961d-312f5f29dc9e'>
 </p>
 
 ### Bitmanip Extension Integration
