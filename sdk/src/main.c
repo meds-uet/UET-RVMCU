@@ -13,7 +13,6 @@
 #include "../interfaces/uart.h"
 #include "../interfaces/spi.h"
 
-#include <stdint.h>
 
 void Delay(unsigned int delay)
 {
