@@ -7,6 +7,7 @@
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 11.8.2022
+// Modified By: Shehzeen Malik
 // Updated: 11.4.2024
 
 
@@ -152,18 +153,11 @@ logic                            m_mode_exc_req;
 logic                            m_mode_irq_req;
 logic                            m_mode_pc_req;
 logic                            m_mode_misalign_exc_req;
-logic                            m_mode_lsu_pf_exc_req;
 logic                            m_mode_ileg_inst_exc_req;
-logic                            m_mode_i_pf_exc_req;
 logic                            m_mode_break_exc_req;
 logic                            mret_pc_req;
 
 
-//// Exception requests from MMU
-//logic                            st_pf_exc_req;
-//logic                            ld_pf_exc_req;
-//logic                            i_pf_exc_req;
-//logic                            lsu_pf_exc_req;
 logic                            break_exc_req;
 
 // System operation related signals
@@ -705,10 +699,8 @@ end
 
 // Make sure the misalign request is in machine mode
 assign m_mode_misalign_exc_req  = (m_mode_exc_req) & (ld_misalign_exc_req | st_misalign_exc_req);
-//assign m_mode_lsu_pf_exc_req    = m_mode_exc_req & lsu_pf_exc_req;
-//assign m_mode_ileg_inst_exc_req = m_mode_exc_req & csr_exc_req;
-//assign m_mode_i_pf_exc_req      = m_mode_exc_req & i_pf_exc_req;
-//assign m_mode_break_exc_req     = m_mode_exc_req & break_exc_req;
+assign m_mode_ileg_inst_exc_req = m_mode_exc_req & csr_exc_req;
+assign m_mode_break_exc_req     = m_mode_exc_req & break_exc_req;
 
 always_comb begin
     case (1'b1)
@@ -720,12 +712,6 @@ always_comb begin
         end
         m_mode_ileg_inst_exc_req: begin
             csr_mtval_next = exe2csr_data.instr;
-        end
-        m_mode_lsu_pf_exc_req   : begin
-            csr_mtval_next = lsu2csr_data.dbus_addr;
-        end
-        m_mode_i_pf_exc_req : begin
-            csr_mtval_next = csr_pc_next;
         end
         (m_mode_break_exc_req | m_mode_irq_req) : begin
             csr_mtval_next = '0;
@@ -776,8 +762,6 @@ end
 
 // Exception requests from any source including CSR and earlier stages
 assign csr_exc_req     = csr_rd_exc_req | csr_wr_exc_req ;  
-//assign lsu_pf_exc_req  = ld_pf_exc_req | st_pf_exc_req;
-assign i_pf_exc_req    = exe2csr_ctrl.exc_req;
 
 assign exc_req       = exe2csr_ctrl.exc_req | csr_exc_req 
                      | ld_misalign_exc_req  | st_misalign_exc_req;
