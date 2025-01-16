@@ -25,15 +25,13 @@ module mcu_top (
     input   logic                        irq_soft_i,
 
     // SPI interface signals
-    output logic [1:0]                   spi_clk_o,
-    output logic [1:0]                   spi_cs_o,
-    input  logic [1:0]                   spi_miso_i,
-    output logic [1:0]                   spi_mosi_o,
+    output logic                         spi_clk_o,
+    output logic                         spi_cs_o,
+    input  logic                         spi_miso_i,
+    output logic                         spi_mosi_o,
 
     //GPIO interface signals
     inout  logic [23:0]                  gpio_io,
-    input  logic [15:0]                  gp_switch_i,
-    output logic [15:0]                  gp_led_o,
 
     // Uart interface IO signals
     input   logic [1:0]                  uart_rxd_i,
@@ -61,12 +59,9 @@ logic                                   clint_sel;
 logic                                   plic_sel;
 logic                                   bmem_sel;
 logic                                   spi0_sel;
-logic                                   spi1_sel;
 logic                                   gpioA_sel;
 logic                                   gpioB_sel;
 logic                                   gpioC_sel;
-logic                                   gpsw_sel; 
-logic                                   gpled_sel;
 
 logic                                   lsu_flush;
 
@@ -74,7 +69,6 @@ logic                                   lsu_flush;
 logic                                   irq_uart;
 logic                                   irq_spi;
 logic                                   irq_gpio;
-logic                                   irq_sw;
 
 logic                                   irq_clint_timer;
 logic                                   irq_plic_target_0, irq_plic_target_1;
@@ -96,7 +90,6 @@ assign core2pipe.soft_irq    = irq_soft_i;
 assign core2pipe.uart_irq    = irq_uart;
 assign core2pipe.spi_irq     = irq_spi;
 assign core2pipe.gpio_irq    = irq_gpio;
-assign core2pipe.sw_irq      = irq_sw;
 
 pipeline_top pipeline_top_module (
     .rst_n               (rst_n        ),
@@ -135,12 +128,9 @@ dbus_interconnect dbus_interconnect_module (
     .clint_sel_o           (clint_sel), 
     .plic_sel_o            (plic_sel),
     .spi0_sel_o            (spi0_sel),
-    .spi1_sel_o            (spi1_sel),
     .gpioA_sel_o           (gpioA_sel),
     .gpioB_sel_o           (gpioB_sel),
     .gpioC_sel_o           (gpioC_sel),
-    .gpsw_sel_o            (gpsw_sel),
-    .gpled_sel_o           (gpled_sel),
 
     // Signals from dbus to peripherals
     .dbus2peri_o           (dbus2peri),
@@ -211,7 +201,6 @@ spi_top spi_top_module (
     .dbus2spi_i            (dbus2peri),
     .spi2dbus_o            (spi2dbus),
     .spi0_sel_i            (spi0_sel),
-    .spi1_sel_i            (spi1_sel),
     .spi_irq_o             (irq_spi),
     .spi_clk_o             (spi_clk_o),
     .spi_cs_o              (spi_cs_o),
@@ -225,14 +214,9 @@ gpio_top gpio_top_module (
     .gpioA_sel_i           (gpioA_sel),
     .gpioB_sel_i           (gpioB_sel),
     .gpioC_sel_i           (gpioC_sel),
-    .gpsw_sel_i            (gpsw_sel),
-    .gpled_sel_i           (gpled_sel),
     .dbus2gpio_i           (dbus2peri),
     .gpio2dbus_o           (gpio2dbus),
     .gpio_irq_o            (irq_gpio),
-    .sw_irq_o              (irq_sw),
-    .gpio_io               (gpio_io),
-    .gp_switch_i           (gp_switch_i),
-    .gp_led_o              (gp_led_o)
+    .gpio_io               (gpio_io)
 );
 endmodule : mcu_top

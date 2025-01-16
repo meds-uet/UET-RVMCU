@@ -318,8 +318,7 @@ typedef struct packed {
     logic                            soft_irq; 
     logic                            uart_irq;
     logic                            spi_irq; 
-    logic                            gpio_irq;
-    logic                            sw_irq;   
+    logic                            gpio_irq;  
 } type_pipe2csr_s;
 
 

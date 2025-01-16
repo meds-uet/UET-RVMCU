@@ -59,13 +59,11 @@ assign gpio_io[23] = uut.mcu_top_module.gpio_top_module.gpio_C.reg_dir_ff[7] ? 1
 assign gpio_io_rec_c = gpio_io[23:16] ;
 
     // Instantiate the soc_top module
-    soc_top uut (
+    mcu_top uut (
         .rst_n(rst_n),
         .clk_100(clk_100),
         .irq_soft_i(irq_soft_i),
-        .gpio_io(gpio_io),
-        .gp_switch_i(gp_switch_i),
-        .gp_led_o(gp_led_o),   
+        .gpio_io(gpio_io),  
         .uart_rxd_i (uart_rxd_i),
         .uart_txd_o (uart_txd_o)
     );
