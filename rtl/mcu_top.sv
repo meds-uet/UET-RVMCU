@@ -185,7 +185,7 @@ plic_top plic_top_module (
     .irq_targets_o         ({irq_plic_target_1, irq_plic_target_0})
 );
 
-memory mem_top_module(
+mem_top mem_top_module(
     .rst_n                (rst_n),     // reset
     .clk                  (clk),       // clock
     .dmem_sel             (dmem_sel),

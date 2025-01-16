@@ -1,141 +1,108 @@
-// Copyright 2023 University of Engineering and Technology Lahore.
-// Licensed under the Apache License, Version 2.0, see LICENSE file for details.
-// SPDX-License-Identifier: Apache-2.0
-//
-// Description: 
-//
-// Author: Shehzeen Malik, UET Lahore
-// Date: 05.4.2024
+// OpenRAM SRAM model
+// Words: 1024
+// Word size: 8
+// Write size: 8
 
-`ifndef VERILATOR
-`include "../defines/pcore_interface_defs.svh"
-`else
-`include "pcore_interface_defs.svh"
+module sky130_sram_1kbyte_1rw1r_8x1024_8(
+`ifdef USE_POWER_PINS
+    vccd1,
+    vssd1,
 `endif
+// Port 0: RW
+    clk0,csb0,web0,wmask0,addr0,din0,dout0,
+// Port 1: R
+    clk1,csb1,addr1,dout1
+  );
 
-module memory(
-    input   logic                                rst_n,     // reset
-    input   logic                                clk,       // clock
-      // Instruction memory fetch stage
-    input  wire type_if2imem_s                   if2mem_i,  // Bus interface from IF to mem 
-    output type_imem2if_s                        mem2if_o,  // From mem to IF
+  parameter NUM_WMASKS = 1 ;
+  parameter DATA_WIDTH = 8 ;
+  parameter ADDR_WIDTH = 10 ;
+  parameter RAM_DEPTH = 1 << ADDR_WIDTH;
+  // FIXME: This delay is arbitrary.
+  parameter DELAY = 3 ;
+  parameter VERBOSE = 1 ; //Set to 0 to only display warnings
+  parameter T_HOLD = 1 ; //Delay to hold dout value after posedge. Value is arbitrary
 
-  // Data memory
-    input  logic                                 dmem_sel,
-    input  type_dbus2peri_s                      exe2mem_i, // Interface from execute to data memory 
-    output type_peri2dbus_s                      mem2wrb_o  // From data memory to writeback
-);
-    //============================= Main memory and its memory interface =============================//
-logic                                 instr_req;
-logic [`XLEN-3:0]                     instr_address;
-logic [`XLEN-1:0]                     instr_read;
-logic                                 instr_ack;
-logic                                 load_req;
-logic                                 store_req;
-logic [`XLEN-1:0]                     write_data;
-logic [`XLEN-3:0]                     mem_address;
-logic [3:0]                           write_sel_byte;
-logic [`XLEN-1:0]                     read_data;
-logic                                 read_ack;
-
-
-assign load_req         = exe2mem_i.req & dmem_sel & !exe2mem_i.w_en;
-assign store_req        = exe2mem_i.req & dmem_sel & exe2mem_i.w_en;
-assign write_data       = exe2mem_i.w_data;
-assign write_sel_byte   = exe2mem_i.sel_byte;
-assign mem_address      = exe2mem_i.addr[`XLEN-1:2];
-assign mem2wrb_o.r_data = read_data;
-assign mem2wrb_o.ack    = read_ack;
-assign mem2if_o.r_data  = instr_read;
-assign mem2if_o.ack     = instr_ack; 
-assign instr_req        = if2mem_i.req;
-assign instr_address    = if2mem_i.addr[`XLEN-1:2];
-
-// Dual port memory instantiation and initialization
-`ifdef FPGA
-(*ram_style = "block"*) reg [7:0]          mem_bank_0[`MEM_BANK_SIZE];
-(*ram_style = "block"*) reg [7:0]          mem_bank_1[`MEM_BANK_SIZE];
-(*ram_style = "block"*) reg [7:0]          mem_bank_2[`MEM_BANK_SIZE];
-(*ram_style = "block"*) reg [7:0]          mem_bank_3[`MEM_BANK_SIZE];
-
-`else
-logic [7:0]          mem_bank_0[`MEM_BANK_SIZE];
-logic [7:0]          mem_bank_1[`MEM_BANK_SIZE];
-logic [7:0]          mem_bank_2[`MEM_BANK_SIZE];
-logic [7:0]          mem_bank_3[`MEM_BANK_SIZE];
-
+`ifdef USE_POWER_PINS
+    inout vccd1;
+    inout vssd1;
 `endif
+  input  clk0; // clock
+  input   csb0; // active low chip select
+  input  web0; // active low write control
+  input [NUM_WMASKS-1:0]   wmask0; // write mask
+  input [ADDR_WIDTH-1:0]  addr0;
+  input [DATA_WIDTH-1:0]  din0;
+  output [DATA_WIDTH-1:0] dout0;
+  input  clk1; // clock
+  input   csb1; // active low chip select
+  input [ADDR_WIDTH-1:0]  addr1;
+  output [DATA_WIDTH-1:0] dout1;
 
-// Reading the contents of imem.txt file to memory variable
-`ifdef COMPLIANCE
-initial
-begin
-     // Not required to $readmem for COMPLIANCE Tests
-end
+  reg  csb0_reg;
+  reg  web0_reg;
+  reg [NUM_WMASKS-1:0]   wmask0_reg;
+  reg [ADDR_WIDTH-1:0]  addr0_reg;
+  reg [DATA_WIDTH-1:0]  din0_reg;
+  reg [DATA_WIDTH-1:0]  dout0;
 
-`else
-initial 
-begin
-    // Reading the contents of example imem.txt file to memory variable
-     $readmemh("imem_1.txt", mem_bank_3);
-     $readmemh("imem_2.txt", mem_bank_2);  
-     $readmemh("imem_3.txt", mem_bank_1);  
-     $readmemh("imem_4.txt", mem_bank_0);   
-end
-`endif
+  // All inputs are registers
+  always @(posedge clk0)
+  begin
+    csb0_reg = csb0;
+    web0_reg = web0;
+    wmask0_reg = wmask0;
+    addr0_reg = addr0;
+    din0_reg = din0;
+    #(T_HOLD) dout0 = 8'bx;
+    if ( !csb0_reg && web0_reg && VERBOSE ) 
+      $display($time," Reading %m addr0=%b dout0=%b",addr0_reg,mem[addr0_reg]);
+    if ( !csb0_reg && !web0_reg && VERBOSE )
+      $display($time," Writing %m addr0=%b din0=%b wmask0=%b",addr0_reg,din0_reg,wmask0_reg);
+  end
 
-// Synchronous load-store operation for memory based on sel_byte
-always_ff @(posedge clk) begin  
-    if (store_req) begin
-        case (write_sel_byte)
-            4'b0001: mem_bank_0[mem_address] <= write_data[7:0];
-            4'b0010: mem_bank_1[mem_address] <= write_data[15:8];
-            4'b0100: mem_bank_2[mem_address] <= write_data[23:16];
-            4'b1000: mem_bank_3[mem_address] <= write_data[31:24];
-            4'b0011: begin mem_bank_0[mem_address] <= write_data[7:0];
-                           mem_bank_1[mem_address] <= write_data[15:8]; 
-                     end
-            4'b1100: begin mem_bank_2[mem_address] <= write_data[23:16];
-                           mem_bank_3[mem_address] <= write_data[31:24]; 
-                     end 
-            4'b1111: begin mem_bank_0[mem_address] <= write_data[7:0];
-                           mem_bank_1[mem_address] <= write_data[15:8];
-                           mem_bank_2[mem_address] <= write_data[23:16];
-                           mem_bank_3[mem_address] <= write_data[31:24]; 
-                     end
-        endcase
-        read_ack <= 1'b1;
+  reg  csb1_reg;
+  reg [ADDR_WIDTH-1:0]  addr1_reg;
+  reg [DATA_WIDTH-1:0]  dout1;
+
+  // All inputs are registers
+  always @(posedge clk1)
+  begin
+    csb1_reg = csb1;
+    addr1_reg = addr1;
+    if (!csb0 && !web0 && !csb1 && (addr0 == addr1))
+         $display($time," WARNING: Writing and reading addr0=%b and addr1=%b simultaneously!",addr0,addr1);
+    #(T_HOLD) dout1 = 8'bx;
+    if ( !csb1_reg && VERBOSE ) 
+      $display($time," Reading %m addr1=%b dout1=%b",addr1_reg,mem[addr1_reg]);
+  end
+
+reg [DATA_WIDTH-1:0]    mem [0:RAM_DEPTH-1];
+
+  // Memory Write Block Port 0
+  // Write Operation : When web0 = 0, csb0 = 0
+  always @ (negedge clk0)
+  begin : MEM_WRITE0
+    if ( !csb0_reg && !web0_reg ) begin
+        if (wmask0_reg[0])
+                mem[addr0_reg][7:0] = din0_reg[7:0];
     end
-    else if (load_req) begin
-        read_data <= {mem_bank_3[mem_address],
-                      mem_bank_2[mem_address],
-                      mem_bank_1[mem_address],
-                      mem_bank_0[mem_address] };
-        read_ack    <= 1'b1;
-    end else begin
-        read_ack  <= 1'b0;
-    end
-end
+  end
 
-// synchronous intruction fetch
-always_ff @(posedge clk) begin
-    if (!rst_n) begin
-        instr_read <= `INSTR_NOP;
-        instr_ack  <= 1'b0;
-    end else begin
-        if (instr_req & !instr_ack) begin
-            instr_read <= {mem_bank_3[instr_address],
-                           mem_bank_2[instr_address],
-                           mem_bank_1[instr_address],
-                           mem_bank_0[instr_address] };
-            instr_ack    <= 1'b1;
-        end else if (instr_req & instr_ack)
-            instr_ack <= 1'b0;
-        else begin
-            instr_read <= `INSTR_NOP;
-            instr_ack  <= 1'b0;
-        end
-    end
-end
+  // Memory Read Block Port 0
+  // Read Operation : When web0 = 1, csb0 = 0
+  always @ (negedge clk0)
+  begin : MEM_READ0
+    if (!csb0_reg && web0_reg)
+       dout0 <= #(DELAY) mem[addr0_reg];
+  end
+
+  // Memory Read Block Port 1
+  // Read Operation : When web1 = 1, csb1 = 0
+  always @ (negedge clk1)
+  begin : MEM_READ1
+    if (!csb1_reg)
+       dout1 <= #(DELAY) mem[addr1_reg];
+  end
 
 endmodule
