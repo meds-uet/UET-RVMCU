@@ -17,7 +17,7 @@
 `include "plic_defs.svh"
 `endif
 
-module mcu_top (
+module soc_top (
 
     input   logic                        rst_n,                  // reset
     input   logic                        clk,                    // mcu_clock
