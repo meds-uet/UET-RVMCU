@@ -25,17 +25,18 @@ module mcu_top (
     input   logic                        irq_soft_i,
 
     // SPI interface signals
-    output logic                         spi_clk_o,
+    /*output logic                         spi_clk_o,
     output logic                         spi_cs_o,
     input  logic                         spi_miso_i,
     output logic                         spi_mosi_o,
-
-    //GPIO interface signals
-    inout  logic [23:0]                  gpio_io,
-
+    
     // Uart interface IO signals
     input   logic [1:0]                  uart_rxd_i,
-    output  logic [1:0]                  uart_txd_o
+    output  logic [1:0]                  uart_txd_o,*/
+
+    //GPIO interface signals
+    inout  logic [23:0]                  gpio_io
+
 );
 
 // Local signals
@@ -53,12 +54,12 @@ type_clint2csr_s                        clint2csr;
 
 // Peripheral module selection lines from the address decoder
 logic                                   dmem_sel;
-logic                                   uart0_sel;
-logic                                   uart1_sel;
+/*logic                                   uart0_sel;
+logic                                   uart1_sel;*/
 logic                                   clint_sel;
 logic                                   plic_sel;
 logic                                   bmem_sel;
-logic                                   spi0_sel;
+/*logic                                   spi0_sel;*/
 logic                                   gpioA_sel;
 logic                                   gpioB_sel;
 logic                                   gpioC_sel;
@@ -66,8 +67,8 @@ logic                                   gpioC_sel;
 logic                                   lsu_flush;
 
 // IRQ ignals
-logic                                   irq_uart;
-logic                                   irq_spi;
+/*logic                                   irq_uart;
+logic                                   irq_spi;*/
 logic                                   irq_gpio;
 
 logic                                   irq_clint_timer;
@@ -75,10 +76,10 @@ logic                                   irq_plic_target_0, irq_plic_target_1;
 
 // Interfaces for different peripheral modules (for read mux)
 type_peri2dbus_s                        mem2dbus;              // Signals from data memory 
-type_peri2dbus_s                        uart2dbus; 
+/*type_peri2dbus_s                        uart2dbus; */
 type_peri2dbus_s                        clint2dbus;
 type_peri2dbus_s                        plic2dbus;              // Signals from boot memory 
-type_peri2dbus_s                        spi2dbus;
+/*type_peri2dbus_s                        spi2dbus;*/
 type_peri2dbus_s                        gpio2dbus;
 
 
@@ -87,8 +88,8 @@ assign core2pipe.csr_mhartid = `CSR_MHARTID;
 assign core2pipe.ext_irq     = {irq_plic_target_1, irq_plic_target_0};
 assign core2pipe.timer_irq   = irq_clint_timer;
 assign core2pipe.soft_irq    = irq_soft_i;
-assign core2pipe.uart_irq    = irq_uart;
-assign core2pipe.spi_irq     = irq_spi;
+/*assign core2pipe.uart_irq    = irq_uart;
+assign core2pipe.spi_irq     = irq_spi;*/
 assign core2pipe.gpio_irq    = irq_gpio;
 
 pipeline_top pipeline_top_module (
@@ -123,11 +124,11 @@ dbus_interconnect dbus_interconnect_module (
 
     // Peripheral (data memory and GPIO) selection signals
     .dmem_sel_o            (dmem_sel),
-    .uart0_sel_o           (uart0_sel),
-    .uart1_sel_o           (uart1_sel),
+    /*.uart0_sel_o           (uart0_sel),
+    .uart1_sel_o           (uart1_sel),*/
     .clint_sel_o           (clint_sel), 
     .plic_sel_o            (plic_sel),
-    .spi0_sel_o            (spi0_sel),
+    /*.spi0_sel_o            (spi0_sel),*/
     .gpioA_sel_o           (gpioA_sel),
     .gpioB_sel_o           (gpioB_sel),
     .gpioC_sel_o           (gpioC_sel),
@@ -137,15 +138,15 @@ dbus_interconnect dbus_interconnect_module (
 
    // Data memory and peripheral interface signals 
     .mem2dbus_i            (mem2dbus),
-    .uart2dbus_i           (uart2dbus),
+    /*.uart2dbus_i           (uart2dbus),*/
     .clint2dbus_i          (clint2dbus),
     .plic2dbus_i           (plic2dbus),
-    .spi2dbus_i            (spi2dbus),
+    /*.spi2dbus_i            (spi2dbus),*/
     .gpio2dbus_i           (gpio2dbus)
 );
 
 
-uart_top uart_top_module (
+/*uart_top uart_top_module (
     .rst_n                 (rst_n    ),
     .clk                   (clk      ),
 
@@ -157,7 +158,7 @@ uart_top uart_top_module (
     .uart_irq_o            (irq_uart),
     .uart_rxd_i            (uart_rxd_i),
     .uart_txd_o            (uart_txd_o)
-);
+);*/
 
 clint clint_module (
     .rst_n                 (rst_n    ),
@@ -181,7 +182,7 @@ plic_top plic_top_module (
     .plic_sel_i            (plic_sel),
     .plic2dbus_o           (plic2dbus),
     .edge_select_i         (PLIC_SOURCE_COUNT'(0)),
-    .irq_src_i             ({'0, irq_uart}),
+    .irq_src_i             ({'0, irq_gpio}),
     .irq_targets_o         ({irq_plic_target_1, irq_plic_target_0})
 );
 
@@ -195,7 +196,7 @@ mem_top mem_top_module(
     .mem2wrb_o            (mem2dbus)  // From data memory to writeback
 );
 
-spi_top spi_top_module (
+/*spi_top spi_top_module (
     .rst_n                 (rst_n    ),
     .clk                   (clk      ),
     .dbus2spi_i            (dbus2peri),
@@ -206,7 +207,7 @@ spi_top spi_top_module (
     .spi_cs_o              (spi_cs_o),
     .spi_miso_i            (spi_miso_i),
     .spi_mosi_o            (spi_mosi_o)
-);
+);*/
 
 gpio_top gpio_top_module (
     .clk                   (clk),

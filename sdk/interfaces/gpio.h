@@ -10,7 +10,7 @@
 #include <stdint.h>
 
 #define GLOBAL_INTR_ENABLE         0x100
-#define GPIO_IRQ_ENABLE            0x40800 //GPIO 18 bit and M_EXTERNAL 11 bit
+#define GPIO_IRQ_ENABLE            0x10800 //GPIO 16 bit and M_EXTERNAL 11 bit
 
 /** GPIO module prototype */
 typedef struct __attribute__((packed,aligned(4))){

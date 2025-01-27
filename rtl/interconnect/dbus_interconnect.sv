@@ -25,18 +25,18 @@ module dbus_interconnect (
 
     // dbus <----> Peripheral module interface
     input wire type_peri2dbus_s                    mem2dbus_i,               // Signals from DATA memory 
-    input wire type_peri2dbus_s                    uart2dbus_i,              // Signals from UART module
+    /*input wire type_peri2dbus_s                    uart2dbus_i,              // Signals from UART module */
     input wire type_peri2dbus_s                    clint2dbus_i,             // Signals from CLINT module
     input wire type_peri2dbus_s                    plic2dbus_i,              // Signals from PLIC module
-    input wire type_peri2dbus_s                    spi2dbus_i,               // Signals from SPI module
+    /*input wire type_peri2dbus_s                    spi2dbus_i,               // Signals from SPI module */
     input wire type_peri2dbus_s                    gpio2dbus_i,              // Signals from GPIO module
 
     output logic                                   dmem_sel_o,               // DATA memory selection line
-    output logic                                   uart0_sel_o,               // UART0 selection line
-    output logic                                   uart1_sel_o,               // UART0 selection line
+    /*output logic                                   uart0_sel_o,               // UART0 selection line
+    output logic                                   uart1_sel_o,               // UART0 selection line*/
     output logic                                   clint_sel_o,              // CLINT selection line
     output logic                                   plic_sel_o,               // PLIC selection line
-    output logic                                   spi0_sel_o,                // SPI0 selection line
+    /*output logic                                   spi0_sel_o,                // SPI0 selection line*/
     output logic                                   gpioA_sel_o,              // GPIOA selection line
     output logic                                   gpioB_sel_o,              // GPIOB selection line
     output logic                                   gpioC_sel_o,              // GPIOC selection line
@@ -54,23 +54,23 @@ logic                                 st_req;
 logic                                 dbus_req;
 
 logic                                 dmem_addr_match;
-logic                                 uart0_addr_match;
-logic                                 uart1_addr_match;
+/*logic                                 uart0_addr_match;
+logic                                 uart1_addr_match;*/
 logic                                 clint_addr_match;
 logic                                 plic_addr_match;
-logic                                 spi0_addr_match;
+/*logic                                 spi0_addr_match;*/
 logic                                 gpioA_addr_match;
 logic                                 gpioB_addr_match;
 logic                                 gpioC_addr_match;
 
 logic                                 dmem_sel;
-logic                                 uart_sel;
+/*logic                                 uart_sel;
 logic                                 uart0_sel;
-logic                                 uart1_sel;
+logic                                 uart1_sel;*/
 logic                                 clint_sel;
 logic                                 plic_sel;
-logic                                 spi0_sel;
-logic                                 spi_sel;
+/*logic                                 spi0_sel;
+logic                                 spi_sel;*/
 logic                                 gpioA_sel;
 logic                                 gpioB_sel;
 logic                                 gpioC_sel;
@@ -88,9 +88,9 @@ assign dbus_req  = st_req | ld_req;
 // Decode the device address
 assign dmem_addr_match  = (dbus_addr[`DMEM_SEL_ADDR_HIGH:`DMEM_SEL_ADDR_LOW] < `DMEM_ADDR_MATCH); //22'h200000
 
-assign uart0_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `UART0_ADDR_MATCH);
+/*assign uart0_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `UART0_ADDR_MATCH);
 assign uart1_addr_match  = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `UART1_ADDR_MATCH);
-assign spi0_addr_match   = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `SPI0_ADDR_MATCH);
+assign spi0_addr_match   = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `SPI0_ADDR_MATCH);*/
 assign gpioA_addr_match = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `GPIOA_ADDR_MATCH);
 assign gpioB_addr_match = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `GPIOB_ADDR_MATCH);
 assign gpioC_addr_match = (dbus_addr[`PERI_SEL_ADDR_HIGH:`PERI_SEL_ADDR_LOW] == `GPIOC_ADDR_MATCH);
@@ -159,9 +159,9 @@ always_comb begin
     dmem_sel  = 1'b0;
     clint_sel = 1'b0;
     plic_sel  = 1'b0;
-    uart0_sel = 1'b0;
+    /*uart0_sel = 1'b0;
     uart1_sel = 1'b0;
-    spi0_sel  = 1'b0;
+    spi0_sel  = 1'b0;*/
     gpioA_sel = 1'b0;
     gpioB_sel = 1'b0;
     gpioC_sel = 1'b0;
@@ -172,12 +172,12 @@ always_comb begin
         clint_sel = 1'b1;
     end else if (plic_addr_match & dbus_req) begin
         plic_sel = 1'b1;
-    end else if (uart0_addr_match & dbus_req) begin
+    /*end else if (uart0_addr_match & dbus_req) begin
         uart0_sel  = 1'b1;
     end else if (uart1_addr_match & dbus_req) begin
         uart1_sel  = 1'b1;
     end else if (spi0_addr_match & dbus_req) begin
-        spi0_sel  = 1'b1;
+        spi0_sel  = 1'b1;*/
     end else if (gpioA_addr_match & dbus_req) begin
         gpioA_sel  = 1'b1;
     end else if (gpioB_addr_match & dbus_req) begin
@@ -197,25 +197,25 @@ assign dbus2peri_o = dbus2peri;
 
 // Peripheral module selection signals from address decoder 
 assign dmem_sel_o  = dmem_sel;
-assign uart0_sel_o = uart0_sel;
-assign uart1_sel_o = uart1_sel;
+/*assign uart0_sel_o = uart0_sel;
+assign uart1_sel_o = uart1_sel;*/
 assign clint_sel_o = clint_sel;
 assign plic_sel_o  = plic_sel;
-assign spi0_sel_o  = spi0_sel;
-assign spi1_sel_o  = spi1_sel;
+/*assign spi0_sel_o  = spi0_sel;
+assign spi1_sel_o  = spi1_sel;*/
 assign gpioA_sel_o = gpioA_sel;
 assign gpioB_sel_o = gpioB_sel;
 assign gpioC_sel_o = gpioC_sel;
 
 assign gpio_sel = gpioA_sel | gpioB_sel | gpioC_sel;
-assign uart_sel = uart0_sel | uart1_sel;
-assign spi_sel  = spi0_sel;
+/*assign uart_sel = uart0_sel | uart1_sel;
+assign spi_sel  = spi0_sel;*/
 // Mux for the peripheral module read data
 assign dbus2lsu_o = dmem_sel  ? type_dbus2lsu_s'(mem2dbus_i) 
                   : clint_sel ? type_dbus2lsu_s'(clint2dbus_i)
                   : plic_sel  ? type_dbus2lsu_s'(plic2dbus_i)
-                  : uart_sel  ? type_dbus2lsu_s'(uart2dbus_i)  
-                  : spi_sel   ? type_dbus2lsu_s'(spi2dbus_i) 
+                  /*: uart_sel  ? type_dbus2lsu_s'(uart2dbus_i)  
+                  : spi_sel   ? type_dbus2lsu_s'(spi2dbus_i) */
                   : gpio_sel  ? type_dbus2lsu_s'(gpio2dbus_i) 
                   : '0;
 
