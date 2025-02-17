@@ -81,7 +81,7 @@ package fpnew_pkg;
     INT16,
     INT32,
     INT64
-    // add new formats here divsqrt_unit_t
+    // add new formats here
   } int_format_e;
 
   // Returns the width of an INT format by index
@@ -120,18 +120,8 @@ package fpnew_pkg;
     FMADD, FNMSUB, ADD, MUL,     // ADDMUL operation group
     DIV, SQRT,                   // DIVSQRT operation group
     SGNJ, MINMAX, CMP, CLASSIFY, // NONCOMP operation group
-    F2F, F2I, I2F, CPKAB, CPKCD, // CONV operation group
-    ADDS                         // ADDMUL operation group (ADDS is added here to preserve bit encoding of operations)
+    F2F, F2I, I2F, CPKAB, CPKCD  // CONV operation group
   } operation_e;
-
-  // -------------
-  // DIVSQRT UNIT
-  // -------------
-  typedef enum logic[1:0] {
-    PULP,    // "PULP" instantiates the PULP DivSqrt unit supports FP64, FP32, FP16, FP16ALT, FP8 and SIMD operations
-    TH32,    // "TH32" instantiates the E906 DivSqrt unit supports only FP32 (no SIMD support)
-    THMULTI  // "THMULTI" instantiates the C910 DivSqrt unit supports FP64, FP32, FP16, FP16ALT and SIMD operations
-  } divsqrt_unit_t;
 
   // -------------------
   // RISC-V FP-SPECIFIC
@@ -377,11 +367,11 @@ package fpnew_pkg;
   // Returns the operation group of the given operation
   function automatic opgroup_e get_opgroup(operation_e op);
     unique case (op)
-      FMADD, FNMSUB, ADD, ADDS, MUL: return ADDMUL;
-      DIV, SQRT:                     return DIVSQRT;
-      SGNJ, MINMAX, CMP, CLASSIFY:   return NONCOMP;
-      F2F, F2I, I2F, CPKAB, CPKCD:   return CONV;
-      default:                       return NONCOMP;
+      FMADD, FNMSUB, ADD, MUL:     return ADDMUL;
+      DIV, SQRT:                   return DIVSQRT;
+      SGNJ, MINMAX, CMP, CLASSIFY: return NONCOMP;
+      F2F, F2I, I2F, CPKAB, CPKCD: return CONV;
+      default:                     return NONCOMP;
     endcase
   endfunction
 
@@ -404,13 +394,6 @@ package fpnew_pkg;
   // Returns the maximum number of lanes in the FPU according to width, format config and vectors
   function automatic int unsigned max_num_lanes(int unsigned width, fmt_logic_t cfg, logic vec);
     return vec ? width / min_fp_width(cfg) : 1; // if no vectors, only one lane
-  endfunction
-
-    // Returns the maximum number of lanes in the FPU according to width, format config and vectors
-  function automatic int unsigned num_divsqrt_lanes(int unsigned width, fmt_logic_t cfg, logic vec, divsqrt_unit_t DivSqrtSel);
-    automatic fmt_logic_t cfg_tmp;
-    cfg_tmp = (DivSqrtSel == THMULTI) ? cfg & 5'b11101 : cfg;
-    return vec ? width / min_fp_width(cfg_tmp) : 1; // if no vectors, only one lane
   endfunction
 
   // Returns a mask of active FP formats that are present in lane lane_no of a multiformat slice

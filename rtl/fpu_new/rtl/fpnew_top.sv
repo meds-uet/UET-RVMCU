@@ -15,10 +15,10 @@
 
 module fpnew_top #(
   // FPU configuration
-  parameter fpnew_pkg::fpu_features_t       Features  ,     
-  parameter fpnew_pkg::fpu_implementation_t Implementation,
-  // DivSqrtSel chooses among PULP, TH32, or THMULTI (see documentation and fpnew_pkg.sv for further details)
-  parameter fpnew_pkg::divsqrt_unit_t       DivSqrtSel     = fpnew_pkg::THMULTI,
+  parameter fpnew_pkg::fpu_features_t       Features       = fpnew_pkg::RV64D_Xsflt,
+  parameter fpnew_pkg::fpu_implementation_t Implementation = fpnew_pkg::DEFAULT_NOREGS,
+  // PulpDivSqrt = 0 enables T-head-based DivSqrt unit. Supported only for FP32-only instances of Fpnew
+  parameter logic                           PulpDivsqrt    = 1'b0,
   parameter type                            TagType        = logic,
   parameter int unsigned                    TrueSIMDClass  = 0,
   parameter int unsigned                    EnableSIMDMask = 0,
@@ -103,13 +103,6 @@ module fpnew_top #(
   // -------------------------
   for (genvar opgrp = 0; opgrp < int'(NUM_OPGROUPS); opgrp++) begin : gen_operation_groups
     localparam int unsigned NUM_OPS = fpnew_pkg::num_operands(fpnew_pkg::opgroup_e'(opgrp));
-    localparam fpnew_pkg::opgroup_e OpGroup = fpnew_pkg::opgroup_e'(opgrp);
-    localparam logic EnableVectors = Features.EnableVectors;
-    localparam fpnew_pkg::fmt_logic_t FpFmtMask = Features.FpFmtMask;
-    localparam fpnew_pkg::ifmt_logic_t IntFmtMask = Features.IntFmtMask;
-    localparam fpnew_pkg::fmt_unsigned_t FmtPipeRegs = Implementation.PipeRegs[opgrp];
-    localparam fpnew_pkg::fmt_unit_types_t FmtUnitTypes = Implementation.UnitTypes[opgrp];
-    localparam fpnew_pkg::pipe_config_t PipeConfig = Implementation.PipeConfig;
 
     logic in_valid;
     logic [NUM_FORMATS-1:0][NUM_OPS-1:0] input_boxed;
@@ -123,17 +116,17 @@ module fpnew_top #(
     end
 
     fpnew_opgroup_block #(
-      .OpGroup       ( OpGroup       ),
-      .Width         ( WIDTH         ),
-      .EnableVectors ( EnableVectors ),
-      .DivSqrtSel    ( DivSqrtSel    ),
-      .FpFmtMask     ( FpFmtMask     ),
-      .IntFmtMask    ( IntFmtMask    ),
-      .FmtPipeRegs   ( FmtPipeRegs   ),
-      .FmtUnitTypes  ( FmtUnitTypes  ),
-      .PipeConfig    ( PipeConfig    ),
-      .TagType       ( TagType       ),
-      .TrueSIMDClass ( TrueSIMDClass )
+      .OpGroup       ( fpnew_pkg::opgroup_e'(opgrp)    ),
+      .Width         ( WIDTH                           ),
+      .EnableVectors ( Features.EnableVectors          ),
+      .PulpDivsqrt   ( PulpDivsqrt                     ),
+      .FpFmtMask     ( Features.FpFmtMask              ),
+      .IntFmtMask    ( Features.IntFmtMask             ),
+      .FmtPipeRegs   ( Implementation.PipeRegs[opgrp]  ),
+      .FmtUnitTypes  ( Implementation.UnitTypes[opgrp] ),
+      .PipeConfig    ( Implementation.PipeConfig       ),
+      .TagType       ( TagType                         ),
+      .TrueSIMDClass ( TrueSIMDClass                   )
     ) i_opgroup_block (
       .clk_i,
       .rst_ni,

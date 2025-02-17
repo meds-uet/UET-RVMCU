@@ -1,7 +1,12 @@
 package fpu_parameters;
 
   // APU interface
-    parameter bit C_RVF = 1'b1;  // Is F extension enabled
+  parameter APU_NARGS_CPU = 3;
+  parameter APU_WOP_CPU = 6;
+  parameter APU_NDSFLAGS_CPU = 15;
+  parameter APU_NUSFLAGS_CPU = 5;
+  // Floating-point extensions configuration
+  parameter bit C_RVF = 1'b1;  // Is F extension enabled
   parameter bit C_RVD = 1'b0;  // Is D extension enabled - NOT SUPPORTED CURRENTLY
 
   // Transprecision floating-point extensions configuration
@@ -32,14 +37,5 @@ package fpu_parameters;
 
   parameter C_FFLAG = 5;
   parameter C_RM = 3;
-  // APU interface
-  parameter APU_NARGS_CPU = 3;
-  parameter APU_WOP_CPU = 6;
-  parameter APU_NDSFLAGS_CPU = 15;
-  parameter APU_NUSFLAGS_CPU = 5;
-
-
-  parameter FPU_ADDMUL_LAT = 0;
-  parameter FPU_OTHERS_LAT = 0;
 
 endpackage  

@@ -14,18 +14,18 @@
 // Author: Stefan Mach <smach@iis.ee.ethz.ch>
 
 module fpnew_opgroup_block #(
-  parameter fpnew_pkg::opgroup_e        OpGroup        ,
-  // FPU configuratio,
-  parameter int unsigned                Width          ,
-  parameter logic                       EnableVectors  ,
-  parameter fpnew_pkg::divsqrt_unit_t   DivSqrtSel     ,
-  parameter fpnew_pkg::fmt_logic_t      FpFmtMask      ,
-  parameter fpnew_pkg::ifmt_logic_t     IntFmtMask     ,
-  parameter fpnew_pkg::fmt_unsigned_t   FmtPipeRegs    ,
-  parameter fpnew_pkg::fmt_unit_types_t FmtUnitTypes   ,
-  parameter fpnew_pkg::pipe_config_t    PipeConfig     ,
-  parameter type                        TagType        ,
-  parameter int unsigned                TrueSIMDClass  ,
+  parameter fpnew_pkg::opgroup_e        OpGroup       = fpnew_pkg::ADDMUL,
+  // FPU configuration
+  parameter int unsigned                Width         = 32,
+  parameter logic                       EnableVectors = 1'b1,
+  parameter logic                       PulpDivsqrt   = 1'b0,
+  parameter fpnew_pkg::fmt_logic_t      FpFmtMask     = '1,
+  parameter fpnew_pkg::ifmt_logic_t     IntFmtMask    = '1,
+  parameter fpnew_pkg::fmt_unsigned_t   FmtPipeRegs   = '{default: 0},
+  parameter fpnew_pkg::fmt_unit_types_t FmtUnitTypes  = '{default: fpnew_pkg::PARALLEL},
+  parameter fpnew_pkg::pipe_config_t    PipeConfig    = fpnew_pkg::BEFORE,
+  parameter type                        TagType       = logic,
+  parameter int unsigned                TrueSIMDClass = 0,
   // Do not change
   localparam int unsigned NUM_FORMATS  = fpnew_pkg::NUM_FP_FORMATS,
   localparam int unsigned NUM_OPERANDS = fpnew_pkg::num_operands(OpGroup),
@@ -92,7 +92,6 @@ module fpnew_opgroup_block #(
 
     // Generate slice only if format enabled
     if (FpFmtMask[fmt] && (FmtUnitTypes[fmt] == fpnew_pkg::PARALLEL)) begin : active_format
-      localparam fpnew_pkg::fp_format_e FpFormat = fpnew_pkg::fp_format_e'(fmt);
 
       logic in_valid;
 
@@ -104,14 +103,14 @@ module fpnew_opgroup_block #(
       always_comb for (int b = 0; b < INTERNAL_LANES; b++) mask_slice[b] = simd_mask_i[(NUM_LANES/INTERNAL_LANES)*b];
 
       fpnew_opgroup_fmt_slice #(
-        .OpGroup       ( OpGroup          ),
-        .FpFormat      ( FpFormat         ),
-        .Width         ( Width            ),
-        .EnableVectors ( EnableVectors    ),
-        .NumPipeRegs   ( FmtPipeRegs[fmt] ),
-        .PipeConfig    ( PipeConfig       ),
-        .TagType       ( TagType          ),
-        .TrueSIMDClass ( TrueSIMDClass    )
+        .OpGroup       ( OpGroup                      ),
+        .FpFormat      ( fpnew_pkg::fp_format_e'(fmt) ),
+        .Width         ( Width                        ),
+        .EnableVectors ( EnableVectors                ),
+        .NumPipeRegs   ( FmtPipeRegs[fmt]             ),
+        .PipeConfig    ( PipeConfig                   ),
+        .TagType       ( TagType                      ),
+        .TrueSIMDClass ( TrueSIMDClass                )
       ) i_fmt_slice (
         .clk_i,
         .rst_ni,
@@ -181,7 +180,7 @@ module fpnew_opgroup_block #(
       .FpFmtConfig   ( FpFmtMask        ),
       .IntFmtConfig  ( IntFmtMask       ),
       .EnableVectors ( EnableVectors    ),
-      .DivSqrtSel    ( DivSqrtSel       ),
+      .PulpDivsqrt   ( PulpDivsqrt      ),
       .NumPipeRegs   ( REG              ),
       .PipeConfig    ( PipeConfig       ),
       .TagType       ( TagType          )

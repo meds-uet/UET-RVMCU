@@ -16,17 +16,17 @@
 `include "common_cells/registers.svh"
 
 module fpnew_opgroup_multifmt_slice #(
-  parameter fpnew_pkg::opgroup_e      OpGroup       = fpnew_pkg::CONV,
-  parameter int unsigned              Width         = 64,
+  parameter fpnew_pkg::opgroup_e     OpGroup       = fpnew_pkg::CONV,
+  parameter int unsigned             Width         = 64,
   // FPU configuration
-  parameter fpnew_pkg::fmt_logic_t    FpFmtConfig   = '1,
-  parameter fpnew_pkg::ifmt_logic_t   IntFmtConfig  = '1,
-  parameter logic                     EnableVectors = 1'b1,
-  parameter fpnew_pkg::divsqrt_unit_t DivSqrtSel    = fpnew_pkg::THMULTI,
-  parameter int unsigned              NumPipeRegs   = 0,
-  parameter fpnew_pkg::pipe_config_t  PipeConfig    = fpnew_pkg::BEFORE,
-  parameter logic                     ExtRegEna     = 1'b0,
-  parameter type                      TagType       = logic,
+  parameter fpnew_pkg::fmt_logic_t   FpFmtConfig   = '1,
+  parameter fpnew_pkg::ifmt_logic_t  IntFmtConfig  = '1,
+  parameter logic                    EnableVectors = 1'b1,
+  parameter logic                    PulpDivsqrt   = 1'b0,
+  parameter int unsigned             NumPipeRegs   = 0,
+  parameter fpnew_pkg::pipe_config_t PipeConfig    = fpnew_pkg::BEFORE,
+  parameter logic                    ExtRegEna     = 1'b0,
+  parameter type                     TagType       = logic,
   // Do not change
   localparam int unsigned NUM_OPERANDS = fpnew_pkg::num_operands(OpGroup),
   localparam int unsigned NUM_FORMATS  = fpnew_pkg::NUM_FP_FORMATS,
@@ -66,20 +66,16 @@ module fpnew_opgroup_multifmt_slice #(
   input  logic [ExtRegEnaWidth-1:0]               reg_ena_i
 );
 
-  if ((OpGroup == fpnew_pkg::DIVSQRT)) begin
-    if ((DivSqrtSel == fpnew_pkg::TH32) && !((FpFmtConfig[0] == 1) && (FpFmtConfig[1:NUM_FORMATS-1] == '0))) begin
-      $fatal(1, "T-Head-based DivSqrt unit supported only in FP32-only configurations. \
-Set DivSqrtSel = THMULTI or DivSqrtSel = PULP to use a multi-format divider");
-    end else if ((DivSqrtSel == fpnew_pkg::THMULTI) && (FpFmtConfig[3] == 1'b1)) begin
-      $warning("The DivSqrt unit of C910 (instantiated by DivSqrtSel = THMULTI) does not support \
-FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8.");
-    end
+  if ((OpGroup == fpnew_pkg::DIVSQRT) && !PulpDivsqrt &&
+      !((FpFmtConfig[0] == 1) && (FpFmtConfig[1:NUM_FORMATS-1] == '0))) begin
+    $fatal(1, "T-Head-based DivSqrt unit supported only in FP32-only configurations. \
+Set PulpDivsqrt to 1 not to use the PULP DivSqrt unit \
+or set Features.FpFmtMask to support only FP32");
   end
 
   localparam int unsigned MAX_FP_WIDTH   = fpnew_pkg::max_fp_width(FpFmtConfig);
   localparam int unsigned MAX_INT_WIDTH  = fpnew_pkg::max_int_width(IntFmtConfig);
   localparam int unsigned NUM_LANES = fpnew_pkg::max_num_lanes(Width, FpFmtConfig, 1'b1);
-  localparam int unsigned NUM_DIVSQRT_LANES = fpnew_pkg::num_divsqrt_lanes(Width, FpFmtConfig, 1'b1, DivSqrtSel);
   localparam int unsigned NUM_INT_FORMATS = fpnew_pkg::NUM_INT_FORMATS;
   // We will send the format information along with the data
   localparam int unsigned FMT_BITS =
@@ -183,7 +179,7 @@ FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8
     logic [LANE_WIDTH-1:0] local_result; // lane-local results
 
     // Generate instances only if needed, lane 0 always generated
-    if ((lane == 0) || (EnableVectors & (!(OpGroup == fpnew_pkg::DIVSQRT && (lane >= NUM_DIVSQRT_LANES))))) begin : active_lane
+    if ((lane == 0) || EnableVectors) begin : active_lane
       logic in_valid, out_valid, out_ready; // lane-local handshake
 
       logic [NUM_OPERANDS-1:0][LANE_WIDTH-1:0] local_operands;  // lane-local oprands
@@ -196,7 +192,7 @@ FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8
       always_comb begin : prepare_input
         for (int unsigned i = 0; i < NUM_OPERANDS; i++) begin
           if (i == 2) begin
-            local_operands[i] = operands_i[i] >> LANE*fpnew_pkg::fp_width(op_i == fpnew_pkg::ADDS ? src_fmt_i : dst_fmt_i);
+            local_operands[i] = operands_i[i] >> LANE*fpnew_pkg::fp_width(dst_fmt_i);
           end else begin
             local_operands[i] = operands_i[i] >> LANE*fpnew_pkg::fp_width(src_fmt_i);
           end
@@ -233,37 +229,34 @@ FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8
         ) i_fpnew_fma_multi (
           .clk_i,
           .rst_ni,
-          .operands_i      ( local_operands                                  ),
+          .operands_i      ( local_operands  ),
           .is_boxed_i,
           .rnd_mode_i,
           .op_i,
           .op_mod_i,
           .src_fmt_i,
-          .src2_fmt_i      ( op_i == fpnew_pkg::ADDS ? src_fmt_i : dst_fmt_i ),
           .dst_fmt_i,
           .tag_i,
-          .mask_i          ( simd_mask_i[lane]                               ),
-          .aux_i           ( aux_data                                        ),
-          .in_valid_i      ( in_valid                                        ),
-          .in_ready_o      ( lane_in_ready[lane]                             ),
+          .mask_i          ( simd_mask_i[lane]   ),
+          .aux_i           ( aux_data            ),
+          .in_valid_i      ( in_valid            ),
+          .in_ready_o      ( lane_in_ready[lane] ),
           .flush_i,
-          .result_o        ( op_result                                       ),
-          .status_o        ( op_status                                       ),
-          .extension_bit_o ( lane_ext_bit[lane]                              ),
-          .tag_o           ( lane_tags[lane]                                 ),
-          .mask_o          ( lane_masks[lane]                                ),
-          .aux_o           ( lane_aux[lane]                                  ),
-          .out_valid_o     ( out_valid                                       ),
-          .out_ready_i     ( out_ready                                       ),
-          .busy_o          ( lane_busy[lane]                                 ),
+          .result_o        ( op_result           ),
+          .status_o        ( op_status           ),
+          .extension_bit_o ( lane_ext_bit[lane]  ),
+          .tag_o           ( lane_tags[lane]     ),
+          .mask_o          ( lane_masks[lane]    ),
+          .aux_o           ( lane_aux[lane]      ),
+          .out_valid_o     ( out_valid           ),
+          .out_ready_i     ( out_ready           ),
+          .busy_o          ( lane_busy[lane]     ),
           .reg_ena_i
         );
 
-      end 
-        /*
-        else if (OpGroup == fpnew_pkg::DIVSQRT) begin : lane_instance
-         if (DivSqrtSel == fpnew_pkg::TH32 && LANE_FORMATS[0] && (LANE_FORMATS[1:fpnew_pkg::NUM_FP_FORMATS-1] == '0)) begin : gen_th32_e906_divsqrt
-          //The T-head-based DivSqrt unit is supported only in FP32-only configurations
+      end else if (OpGroup == fpnew_pkg::DIVSQRT) begin : lane_instance
+        if (!PulpDivsqrt && LANE_FORMATS[0] && (LANE_FORMATS[1:fpnew_pkg::NUM_FP_FORMATS-1] == '0)) begin
+          // The T-head-based DivSqrt unit is supported only in FP32-only configurations
           fpnew_divsqrt_th_32 #(
             .NumPipeRegs ( NumPipeRegs          ),
             .PipeConfig  ( PipeConfig           ),
@@ -293,44 +286,7 @@ FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8
             .busy_o          ( lane_busy[lane]     ),
             .reg_ena_i
           );
-        end else if(DivSqrtSel == fpnew_pkg::THMULTI) begin : gen_thmulti_c910_divsqrt
-          fpnew_divsqrt_th_64_multi #(
-            .FpFmtConfig ( LANE_FORMATS         ),
-            .NumPipeRegs ( NumPipeRegs          ),
-            .PipeConfig  ( PipeConfig           ),
-            .TagType     ( TagType              ),
-            .AuxType     ( logic [AUX_BITS-1:0] )
-          ) i_fpnew_divsqrt_th_64_c910 (
-           .clk_i,
-            .rst_ni,
-            .operands_i       ( local_operands[1:0] ), // 2 operands
-            .is_boxed_i       ( is_boxed_2op        ), // 2 operands
-            .rnd_mode_i,
-            .op_i,
-            .dst_fmt_i,
-            .tag_i,
-            .mask_i           ( simd_mask_i[lane]   ),
-            .aux_i            ( aux_data            ),
-            .vectorial_op_i   ( vectorial_op        ), // synchronize only vectorial operations
-            .in_valid_i       ( in_valid            ),
-            .in_ready_o       ( lane_in_ready[lane] ),
-            .divsqrt_done_o   ( divsqrt_done[lane]  ),
-            .simd_synch_done_i( simd_synch_done     ),
-            .divsqrt_ready_o  ( divsqrt_ready[lane] ),
-            .simd_synch_rdy_i ( simd_synch_rdy      ),
-            .flush_i,
-            .result_o         ( op_result           ),
-            .status_o         ( op_status           ),
-            .extension_bit_o  ( lane_ext_bit[lane]  ),
-            .tag_o            ( lane_tags[lane]     ),
-            .mask_o           ( lane_masks[lane]    ),
-            .aux_o            ( lane_aux[lane]      ),
-            .out_valid_o      ( out_valid           ),
-            .out_ready_i      ( out_ready           ),
-            .busy_o           ( lane_busy[lane]     ),
-            .reg_ena_i
-          );
-        end else begin : gen_pulp_divsqrt
+        end else begin
           fpnew_divsqrt_multi #(
             .FpFmtConfig ( LANE_FORMATS         ),
             .NumPipeRegs ( NumPipeRegs          ),
@@ -348,7 +304,7 @@ FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8
             .tag_i,
             .mask_i           ( simd_mask_i[lane]   ),
             .aux_i            ( aux_data            ),
-            .vectorial_op_i   ( vectorial_op        ),
+            //.vectorial_op_i   ( vectorial_op        ),
             .in_valid_i       ( in_valid            ),
             .in_ready_o       ( lane_in_ready[lane] ),
             .divsqrt_done_o   ( divsqrt_done[lane]  ),
@@ -364,13 +320,11 @@ FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8
             .aux_o            ( lane_aux[lane]      ),
             .out_valid_o      ( out_valid           ),
             .out_ready_i      ( out_ready           ),
-            .busy_o           ( lane_busy[lane]     ),
-            .reg_ena_i
+            .busy_o           ( lane_busy[lane]     )
+            //.reg_ena_i        (reg_ena_i)
           );
         end
-      end 
-      */
-      else if (OpGroup == fpnew_pkg::NONCOMP) begin : lane_instance
+      end else if (OpGroup == fpnew_pkg::NONCOMP) begin : lane_instance
 
       end else if (OpGroup == fpnew_pkg::CONV) begin : lane_instance
         fpnew_cast_multi #(
@@ -530,12 +484,12 @@ FP8. Please use the PULP DivSqrt unit when in need of div/sqrt operations on FP8
     assign conv_target_q = '0;
   end
 
-  if ((DivSqrtSel != fpnew_pkg::TH32) && !ExtRegEna) begin
+  if (PulpDivsqrt) begin
     // Synch lanes if there is more than one
-    assign simd_synch_rdy  = EnableVectors ? &divsqrt_ready[NUM_DIVSQRT_LANES-1:0] : divsqrt_ready[0];
-    assign simd_synch_done = EnableVectors ? &divsqrt_done[NUM_DIVSQRT_LANES-1:0]  : divsqrt_done[0];
+    assign simd_synch_rdy  = EnableVectors ? &divsqrt_ready : divsqrt_ready[0];
+    assign simd_synch_done = EnableVectors ? &divsqrt_done  : divsqrt_done[0];
   end else begin
-    // Unused (TH32 divider only supported for scalar FP32 divsqrt)
+    // Unused (alternative divider only supported for scalar FP32 divsqrt)
     assign simd_synch_rdy  = '0;
     assign simd_synch_done = '0;
   end

@@ -12,8 +12,11 @@
 // Contributor: Davide Schiavone <davide@openhwgroup.org>
 
 module fp_wrapper
-  import fpu_parameters::*;
-(
+   import fpu_parameters::*;
+#(
+    parameter FPU_ADDMUL_LAT = 0, // Floating-Point ADDition/MULtiplication computing lane pipeline registers number
+    parameter FPU_OTHERS_LAT = 0  // Floating-Point COMParison/CONVersion computing lanes pipeline registers number
+) (
     // Clock and Reset
     input logic clk_i,
     input logic rst_ni,
@@ -78,11 +81,11 @@ module fp_wrapper
       '{default: FPU_OTHERS_LAT}
   },  // CONV
   UnitTypes: '{
-  '{default: PARALLEL}, // ADDMUL
-  '{default: MERGED},   // DIVSQRT
-  '{default: PARALLEL}, // NONCOMP
-  '{default: MERGED}
-  },  // CONV`
+      '{default: fpnew_pkg::MERGED},  // ADDMUL
+      '{default: fpnew_pkg::MERGED},  // DIVSQRT
+      '{default: fpnew_pkg::PARALLEL},  // NONCOMP
+      '{default: fpnew_pkg::MERGED}
+  },  // CONV
   PipeConfig: fpnew_pkg::AFTER};
 
   //---------------
@@ -92,7 +95,7 @@ module fp_wrapper
   fpnew_top #(
       .Features      (FPU_FEATURES),
       .Implementation(FPU_IMPLEMENTATION),
-      .DivSqrtSel   (1'b0),
+    //  .PulpDivsqrt   (1'b0),
       .TagType       (logic)
   ) i_fpnew_bulk (
       .clk_i         (clk_i),
@@ -118,5 +121,5 @@ module fp_wrapper
       .busy_o        (  /* unused */)
   );
 
-endmodule  // fp_wrapper
+endmodule  //fp_wrapper
 
