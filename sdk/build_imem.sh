@@ -22,4 +22,4 @@ cp build/imem.txt ../rtl/memory
 
 cd ..
 cd rtl/memory
-python3 split_hex.py imem.txt
+# python3 split_hex.py imem.txt

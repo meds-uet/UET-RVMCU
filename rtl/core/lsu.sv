@@ -235,6 +235,7 @@ assign lsu2dbus.st_req = st_req;
 // MT: assign lsu2dbus.w_data = exe2lsu_data.rs2_data;
 assign lsu2dbus.st_ops = exe2lsu_ctrl.st_ops;
 
+
 // Update the output signals with proper assignment
 assign lsu_flush_o    = fwd2lsu_i.lsu_flush;
 

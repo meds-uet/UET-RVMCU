@@ -81,6 +81,7 @@ verilate_command := $(verilator) +define+$(defines) 				\
 					-Wno-TIMESCALEMOD 			\
 					-Wno-MULTIDRIVEN 			\
 					-Wno-CASEOVERLAP 			\
+					-Wno-LATCH				\
         				-Wno-WIDTH  				\
 					-Wno-UNOPTFLAT 				\
 					-Wno-IMPLICIT 				\

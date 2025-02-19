@@ -52,8 +52,7 @@ class pcore(pluginTemplate):
        self.objcopy_cmd = 'riscv64-unknown-elf-objcopy -O binary {0} {1}.bin'
        self.objdump_cmd = 'riscv64-unknown-elf-objdump -D {0} > {1}.disasm'
        self.hexgen_cmd  = 'python3 makehex.py {0}/{1}.bin > {0}/{1}.hex'
-       self.hexsplit_cmd  = 'python3 split_hex.py {0}/{1}.hex'
-
+       
        # build simulation model
        self.toplevel = 'pcore_tb'
        self.buidldir = 'sim_work'
@@ -71,10 +70,7 @@ class pcore(pluginTemplate):
        # Simulate
        self.sim_pcore = './{0}/V{1} \
         +max_cycles=1000000 \
-        +imem1={2}/imem_1.txt \
-        +imem2={2}/imem_2.txt \
-        +imem3={2}/imem_3.txt \
-        +imem4={2}/imem_4.txt'
+        +imem={2}/imem.txt'
 
     def build(self, isa_yaml, platform_yaml):
 
@@ -122,8 +118,6 @@ class pcore(pluginTemplate):
           hexgen_run     = self.hexgen_cmd.format(test_dir,file_name)
           utils.shellCommand(hexgen_run).run()
 
-          hexsplit_run     = self.hexsplit_cmd.format(test_dir,file_name)
-          utils.shellCommand(hexsplit_run).run()
 
           run_sim        = self.sim_pcore.format(self.buidldir,self.toplevel,test_dir)
           utils.shellCommand(run_sim).run()

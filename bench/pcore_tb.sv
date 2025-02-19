@@ -44,24 +44,9 @@ initial begin
   spi_miso  = 1;
 
   // Load hex instructions
-  if($value$plusargs("imem1=%s",firmware)) begin
+  if($value$plusargs("imem=%s",firmware)) begin
     $display("Loading Instruction Memory from %0s", firmware);
-    $readmemh(firmware, dut.mcu_top_module.mem_top_module.mem_bank_3);
-  end
-
-  if($value$plusargs("imem2=%s",firmware)) begin
-    $display("Loading Instruction Memory from %0s", firmware);
-    $readmemh(firmware, dut.mcu_top_module.mem_top_module.mem_bank_2);
-  end
-
-  if($value$plusargs("imem3=%s",firmware)) begin
-    $display("Loading Instruction Memory from %0s", firmware);
-    $readmemh(firmware, dut.mcu_top_module.mem_top_module.mem_bank_1);
-  end
-
-  if($value$plusargs("imem4=%s",firmware)) begin
-    $display("Loading Instruction Memory from %0s", firmware);
-    $readmemh(firmware, dut.mcu_top_module.mem_top_module.mem_bank_0);
+    $readmemh(firmware, dut.mcu_top_module.mem_top_module.dualport_memory);
   end
 
 
@@ -99,8 +84,8 @@ end
 `else
 // ====================== For RISC-V architecture tests ========================== //
 
-wire sig_en  = (dut.mcu_top_module.dbus2peri.addr == 32'h001FFE68) & dut.mcu_top_module.mem_top_module.store_req;
-wire halt_en = (dut.mcu_top_module.dbus2peri.addr == 32'h001FFE6C) & dut.mcu_top_module.mem_top_module.store_req;
+wire sig_en  = (dut.mcu_top_module.dbus2peri.addr == 32'h001FFE68) & dut.mcu_top_module.mem_top_module.mem_write;
+wire halt_en = (dut.mcu_top_module.dbus2peri.addr == 32'h001FFE6C) & dut.mcu_top_module.mem_top_module.mem_write;
   
 reg [1023:0] signature_file;
 

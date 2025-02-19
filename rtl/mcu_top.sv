@@ -67,6 +67,7 @@ logic                                   gpioB_sel;
 logic                                   gpioC_sel;
 logic                                   gpsw_sel; 
 logic                                   gpled_sel;
+logic                                   store_busy;
 
 logic                                   lsu_flush;
 
@@ -110,6 +111,7 @@ pipeline_top pipeline_top_module (
     .lsu2dbus_o          (lsu2dbus),       // Signal to data bus 
     .dbus2lsu_i          (dbus2lsu),
     .lsu_flush_o         (),
+    .store_busy          (store_busy),
 
     .clint2csr_i         (clint2csr),
 
@@ -199,6 +201,7 @@ memory mem_top_module(
     .rst_n                (rst_n),     // reset
     .clk                  (clk),       // clock
     .dmem_sel             (dmem_sel),
+    .store_busy           (store_busy),
     .if2mem_i             (if2mem),  // Bus interface from IF to mem 
     .mem2if_o             (mem2if),  // From mem to IF
     .exe2mem_i            (dbus2peri), // Interface from execute to data memory 

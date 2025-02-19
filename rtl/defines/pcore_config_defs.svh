@@ -35,12 +35,12 @@
 `define IMEM_INST_REQ                1
 
 `ifdef FPGA
-`define MEM_BANK_SIZE                20'h10000
+`define IDMEM_SIZE                24'h10000
 `else
-`define MEM_BANK_SIZE                20'h80000 //20 as always should be multiple of 4
+`define IDMEM_SIZE                24'h400000 //20 as always should be multiple of 4
 `endif
 
-`define MEM_ADDR_WIDTH               24
+`define MEM_ADDR_WIDTH               22
 
 `define DMEM_SEL_ADDR_HIGH           21 
 `define DMEM_SEL_ADDR_LOW             0
