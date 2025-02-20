@@ -70,7 +70,7 @@ class pcore(pluginTemplate):
        # Simulate
        self.sim_pcore = './{0}/V{1} \
         +max_cycles=1000000 \
-        +imem={2}/imem.txt'
+        +imem={2}/{3}.hex'
 
     def build(self, isa_yaml, platform_yaml):
 
@@ -119,7 +119,7 @@ class pcore(pluginTemplate):
           utils.shellCommand(hexgen_run).run()
 
 
-          run_sim        = self.sim_pcore.format(self.buidldir,self.toplevel,test_dir)
+          run_sim        = self.sim_pcore.format(self.buidldir,self.toplevel,test_dir,file_name)
           utils.shellCommand(run_sim).run()
           
           cp_sig = 'cp -f *.signature {0}/.'.format(test_dir)

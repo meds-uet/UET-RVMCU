@@ -82,13 +82,13 @@ verilate_command := $(verilator) +define+$(defines) 				\
 					-Wno-MULTIDRIVEN 			\
 					-Wno-CASEOVERLAP 			\
 					-Wno-LATCH				\
+					-Wno-ALWCOMBORDER			\
         				-Wno-WIDTH  				\
 					-Wno-UNOPTFLAT 				\
 					-Wno-IMPLICIT 				\
 					-Wno-PINMISSING 			\
-					-Wno-PINMISSING 			\
 					-Wno-CASEWITHX				\
-					 -Wno-UNSIGNED				\
+					-Wno-UNSIGNED				\
 					--Mdir $(ver-library)			\
 					--exe bench/pcore_tb.cpp		\
 					--trace-structs --trace

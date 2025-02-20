@@ -4,8 +4,7 @@ set -e
 
 riscof -v debug run --config=config.ini \
            --suite=riscv-arch-test/riscv-test-suite/rv32i_m \
-           --env=riscv-arch-test/riscv-test-suite/env \
-           --no-browser
+           --env=riscv-arch-test/riscv-test-suite/env
 
 if grep -rniq riscof_work/report.html -e '>0failed<'
 then
