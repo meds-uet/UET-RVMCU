@@ -12,7 +12,7 @@
 // Contributor: Davide Schiavone <davide@openhwgroup.org>
 
 module fp_wrapper
-   import UET-RVMCU-fpu-mcu/rtl/defines/fpu_parameters::*;
+   import ../defines/fpu_parameters::*;
 #(
     parameter FPU_ADDMUL_LAT = 0, // Floating-Point ADDition/MULtiplication computing lane pipeline registers number
     parameter FPU_OTHERS_LAT = 0  // Floating-Point COMParison/CONVersion computing lanes pipeline registers number
