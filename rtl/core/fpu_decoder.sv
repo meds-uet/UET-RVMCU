@@ -30,7 +30,7 @@ module rv32f_decoder
         funct7 = instr[31:25];
         rs2    = instr[24:20];
         // Default values
-        fp_rnd_mode              = 3'b000;
+        fp_rnd_mode              = funct3;
         fp_op                    = 4'b0000;
         op_mod_i                 = 1'b0;
         imm                      = 12'b0;
