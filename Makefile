@@ -72,8 +72,20 @@ src := bench/pcore_tb.sv							\
 	   $(wildcard rtl/memory/*.sv)						\
        	   $(wildcard rtl/peripherals/*/*.sv)
 
-incdir 	:= 	rtl/defines/
-list_incdir := $(foreach dir, ${incdir}, +incdir+$(dir))
+# incdir 	:= 	rtl/defines/
+# list_incdir := $(foreach dir, ${incdir}, +incdir+$(dir))
+
+incdir := rtl/defines/
+
+# fpu directory and its subdirectories
+fpudir := rtl/core/cvfpu/
+fpudir_subdirs := $(shell find $(fpudir) -type d)
+
+# Combine all directories
+all_incdirs := $(incdir) $(fpudir_subdirs)
+
+# Prepend +incdir+ to each directory
+list_incdir := $(foreach dir, $(all_incdirs), +incdir+$(dir))
 
 verilate_command := $(verilator) +define+$(defines) 				\
 					--cc $(src) $(list_incdir)		\
