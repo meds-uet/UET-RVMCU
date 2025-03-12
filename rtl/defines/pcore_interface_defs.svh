@@ -15,6 +15,9 @@
 `include "pcore_config_defs.svh"
 `include "csr_defs.svh"
 `include "a_ext_defs.svh"
+`ifdef FPU
+`include "fpu_defs.svh"
+`endif
 
 //============================== ISA related definitions ================================//
 

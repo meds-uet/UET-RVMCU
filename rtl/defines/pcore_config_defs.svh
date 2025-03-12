@@ -30,6 +30,9 @@
 
 `define PC_RESET                     32'h00000000
 
+//comment if fpu (RV-32 F-extension) not required
+`define FPU                          1
+
 
 // Memory related parameters
 `define IMEM_INST_REQ                1

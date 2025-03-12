@@ -2,7 +2,7 @@ module rv32f_decoder
     import fpnew_pkg::*;
     (
     input  logic [31:0] instr,                // 32-bit instruction input
-    output logic [2:0] fp_rnd_mode,           // Rounding mode
+    output roundmode_e fp_rnd_mode,           // Rounding mode
     output logic [11:0] imm,                  // Immediate field
     output logic rs1_sel,imm_sel,rs2_sel,     // rs1 and rs2 are integer or float,immediate sel
     output logic [4:0] apu_op_i,              // Combined operation and modifier
@@ -14,21 +14,12 @@ module rv32f_decoder
     output logic write_back_sel                 // select data from register file or memory
 );
 
-    // Enumerations for opcodes
-    typedef enum logic [6:0] {
-        FLW     = 7'b0000111,   // Load Floating-Point Word
-        FSW     = 7'b0100111,   // Store Floating-Point Word
-        FADD   = 7'b1000011,   // Fused Multiply-Add
-        FSUB   = 7'b1000111,   // Fused Multiply-Subtract
-        FNMSUB  = 7'b1001011,   // Negated Fused Multiply-Subtract
-        FNMADD  = 7'b1001111,   // Negated Fused Multiply-Add
-        FP_ARITH= 7'b1010011    // Floating-Point Arithmetic Instructions
-    } fpu_opcodes_e;
+   
     // Internal signals
-    logic [6:0] opcode;
+    type_rv_f_opcodes_e opcode;
     logic [2:0] funct3;
     logic [6:0] funct7;
-    logic [3:0] fp_op;
+    operation_e fp_op;
     logic op_mod_i;
     logic [4:0] rs2;
     // Decode instruction fields

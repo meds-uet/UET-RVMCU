@@ -10,9 +10,16 @@
 
 // Wrapper for a fpnew
 // Contributor: Davide Schiavone <davide@openhwgroup.org>
+// Modified by: Muhammad Boota, MEDS UET
+
+`ifndef VERILATOR
+`include "../defines/fpu_defs.svh"
+`else
+`include "fpu_defs.svh"
+`endif
+
 
 module fp_wrapper
-   import ../defines/fpu_parameters::*;
 #(
     parameter FPU_ADDMUL_LAT = 0, // Floating-Point ADDition/MULtiplication computing lane pipeline registers number
     parameter FPU_OTHERS_LAT = 0  // Floating-Point COMParison/CONVersion computing lanes pipeline registers number
@@ -36,7 +43,7 @@ module fp_wrapper
     output logic [APU_NUSFLAGS_CPU-1:0] apu_rflags_o
 );
 
-  import fpnew_pkg::*;
+
 
   logic [        fpnew_pkg::OP_BITS-1:0] fpu_op;
   logic                                  fpu_op_mod;
@@ -47,46 +54,10 @@ module fp_wrapper
   logic [fpnew_pkg::INT_FORMAT_BITS-1:0] fpu_int_fmt;
   logic [                      C_RM-1:0] fp_rnd_mode;
 
-
-
   // assign apu_rID_o = '0;
   assign {fpu_vec_op, fpu_op_mod, fpu_op}                     = apu_op_i;
 
   assign {fpu_int_fmt, fpu_src_fmt, fpu_dst_fmt, fp_rnd_mode} = apu_flags_i;
-
-
-
-  // -----------
-  // FPU Config
-  // -----------
-  // Features (enabled formats, vectors etc.)
-  localparam fpnew_pkg::fpu_features_t FPU_FEATURES = '{
-      Width: C_FLEN,
-      EnableVectors: C_XFVEC,
-      EnableNanBox: 1'b0,
-      FpFmtMask: {
-    C_RVF, C_RVD, C_XF16, C_XF8, C_XF16ALT
-  }, IntFmtMask: {
-    C_XFVEC && C_XF8, C_XFVEC && (C_XF16 || C_XF16ALT), 1'b1, 1'b0
-  }};
-
-  // Implementation (number of registers etc)
-  localparam fpnew_pkg::fpu_implementation_t FPU_IMPLEMENTATION = '{
-      PipeRegs: '{  // FP32, FP64, FP16, FP8, FP16alt
-      '{
-          FPU_ADDMUL_LAT, C_LAT_FP64, C_LAT_FP16, C_LAT_FP8, C_LAT_FP16ALT
-      },  // ADDMUL
-      '{default: C_LAT_DIVSQRT},  // DIVSQRT
-      '{default: FPU_OTHERS_LAT},  // NONCOMP
-      '{default: FPU_OTHERS_LAT}
-  },  // CONV
-  UnitTypes: '{
-      '{default: fpnew_pkg::MERGED},  // ADDMUL
-      '{default: fpnew_pkg::MERGED},  // DIVSQRT
-      '{default: fpnew_pkg::PARALLEL},  // NONCOMP
-      '{default: fpnew_pkg::MERGED}
-  },  // CONV
-  PipeConfig: fpnew_pkg::AFTER};
 
   //---------------
   // FPU instance
