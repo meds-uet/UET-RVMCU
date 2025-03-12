@@ -230,7 +230,13 @@ typedef struct packed {
     logic [`XLEN-1:0]                pc_next;
     logic [`XLEN-1:0]                imm;  
     type_exc_code_e                  exc_code;
-    logic                            instr_flushed;   
+    logic                            instr_flushed;
+    //define data signals for FPU for decode to execute stage
+    `ifdef FPU
+    logic  [`XLEN-1:0]                     apu_operands_i_2;
+    logic  [`XLEN-1:0]                     apu_operands_i_2;
+    logic  [`XLEN-1:0]                     apu_operands_i_2;
+    `endif
 } type_id2exe_data_s;
 
 typedef struct packed {                           
@@ -256,6 +262,12 @@ typedef struct packed {
     logic                            jump_req;
     logic                            branch_req;
     logic                            irq_req;
+    //define control signals for FPU for decode to execute stage
+    `ifdef FPU
+    logic                            fpu_enable;
+    logic  [4:0]                     apu_op_i;
+    logic  [2:0]                     fp_rnd_mode;
+    `endif 
 } type_id2exe_ctrl_s;
 
 // Execute-2-Memory data and control signals
@@ -284,7 +296,11 @@ typedef struct packed {
     logic [`XLEN-1:0]                instr;
     logic [`XLEN-1:0]                csr_wdata;  
     type_exc_code_e                  exc_code; 
-    logic                            instr_flushed;     
+    logic                            instr_flushed;
+    //fpu CSR signal
+    `ifdef FPU
+    logic [4:0]                      apu_rflags_o; 
+    `endif 
 } type_exe2csr_data_s;
 
 typedef struct packed {                           
@@ -414,6 +430,10 @@ typedef struct packed {
     logic                            new_pc_req;  
     logic                            use_rs1;
     logic                            use_rs2; 
+    //for fpu
+    `ifdef FPU
+    logic                            apu_gnt_o
+    `endif 
 } type_exe2fwd_s;
 
 // CSR-2-Forward interface signals

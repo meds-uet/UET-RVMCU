@@ -94,7 +94,13 @@ logic  [4:0]                         shift_amt;
 
 logic [`RF_AWIDTH-1:0]               rs1_addr;            
 logic [`RF_AWIDTH-1:0]               rs2_addr;           
-logic [`RF_AWIDTH-1:0]               rd_addr;            
+logic [`RF_AWIDTH-1:0]               rd_addr;    
+
+`ifdef FPU
+logic [`XLEN-1:0]                    alu_f_result;
+logic [`XLEN]                        apu_rdata_o;
+logic                                apu_rvalid_o
+`endif
 
 // Instantiate input control and data structures and get the ALU operator
 assign alu_i_operator = type_alu_i_ops_e'(id2exe_ctrl_i.alu_i_ops);
@@ -457,8 +463,25 @@ always_comb begin
     endcase
   
 end
+`ifdef FPU
+logic  [2:0] [`XLEN:0] apu_operands_i;  
+  
+always_comb apu_operands_i = ((apu_op_i == 5'h02) || (apu_op_i == 5'h12)) ? {id2exe_data.apu_operands_i_2, id2exe_data.apu_operands_i_1, id2exe_data.apu_operands_i_3} : {id2exe_data.apu_operands_i_3, id2exe_data.apu_operands_i_2, id2exe_data.apu_operands_i_1};
 
-
+  // Instantiate the floating-point wrapper
+  fp_wrapper fpu_unit (
+      .clk_i(clk),
+      .rst_ni(rst_n),
+      .apu_req_i(id2exe_ctrl.fpu_enable),
+      .apu_gnt_o(exe2fwd.apu_gnt_o),
+      .apu_operands_i,
+      .apu_op_i({1'b0,id2exe_ctrl.apu_op_i}),
+      .apu_flags_i({2'b10, 3'b0, 3'b0, id2exe_ctrl.fp_rnd_mode}),
+      .apu_rvalid_o,
+      .apu_rdata_o,
+      .apu_rflags_o(exe2csr_data.apu_rflags_o)
+  );
+  `endif
 //==================================== Output signals update ======================================// 
 
 // Update the output data signals for M-Extension
@@ -469,7 +492,13 @@ assign exe2div.alu_operand_2 = alu_operand_2;
 assign exe2div.alu_d_ops  = id2exe_ctrl.alu_d_ops;
 
 // Update the output data signals for LSU
+`ifndef FPU
 assign exe2lsu_data.alu_result = mul_cmd ? alu_m_result : (bitmanip_cmd ? alu_b_result : alu_result);
+`else
+assign alu_f_result = (id2exe_ctrl.fpu_enable) ?  apu_rdata_o: alu_result;
+assign exe2lsu_data.alu_result = mul_cmd ? alu_m_result : (bitmanip_cmd ? alu_b_result : alu_f_result);
+`endif
+
 assign exe2lsu_data.pc_next    = id2exe_data.pc_next;
 assign exe2lsu_data.rs2_data   = operand_rs2_data; // MT: This should be verified due to forwarding
 
