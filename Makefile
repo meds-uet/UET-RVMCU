@@ -88,6 +88,8 @@ all_incdirs := $(incdir) $(fpudir_subdirs)
 # Prepend +incdir+ to each directory
 list_incdir := $(foreach dir, $(all_incdirs), +incdir+$(dir))
 
+vlog +incdir+$(list_incdir) $(src)
+
 verilate_command := $(verilator) +define+$(defines) 				\
 					--cc $(src) $(list_incdir)		\
 					--top-module pcore_tb			\
