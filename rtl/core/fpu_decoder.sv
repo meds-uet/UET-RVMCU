@@ -139,17 +139,13 @@ module rv32f_decoder
                         fp_op = F2I;   // FP to Integer cast
                         register_file_int_enable = 1'b1;
                         rs1_sel = 1'b0; // rs1 is float
-                        case (rs2)
-                            5'h0: op_mod_i=1'b0; // FP to signed integer cast
-                            5'h1: op_mod_i=1'b1; // FP to unsigned integer cast
-                            default: op_mod_i=1'b0; // FP to signed integer cast
-                        endcase
+                        op_mod_i=rs2[0];
                     end
                     7'b1101000:begin 
                         fp_op = I2F;   // Integer to FP cast
                         rs1_sel = 1'b1; // rs1  is integer
                         register_file_float_enable = 1'b1;
-                        op_mod_i = rs2;
+                        op_mod_i = rs2[0];
                     end
                     7'b1111000:begin 
                         register_file_int_enable = 1'b1;
