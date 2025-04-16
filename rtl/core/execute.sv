@@ -96,10 +96,12 @@ logic [`RF_AWIDTH-1:0]               rs1_addr;
 logic [`RF_AWIDTH-1:0]               rs2_addr;           
 logic [`RF_AWIDTH-1:0]               rd_addr;    
 
+//FPU related signals
 `ifdef FPU
 logic [`XLEN-1:0]                    alu_f_result;
-logic [`XLEN]                        apu_rdata_o;
-logic                                apu_rvalid_o
+logic [`XLEN-1 :0]                   apu_rdata;
+logic                                apu_rvalid;
+logic  [2:0] [`XLEN-1:0]             apu_operands;
 `endif
 
 // Instantiate input control and data structures and get the ALU operator
@@ -463,23 +465,26 @@ always_comb begin
     endcase
   
 end
+
+
 `ifdef FPU
-logic  [2:0] [`XLEN:0] apu_operands_i;  
-  
-always_comb apu_operands_i = ((apu_op_i == 5'h02) || (apu_op_i == 5'h12)) ? {id2exe_data.apu_operands_i_2, id2exe_data.apu_operands_i_1, id2exe_data.apu_operands_i_3} : {id2exe_data.apu_operands_i_3, id2exe_data.apu_operands_i_2, id2exe_data.apu_operands_i_1};
+
+assign apu_operands = ((apu_op_i == 5'h02) || (apu_op_i == 5'h12)) ? 
+                        {id2exe_data.apu_operands_i_2, id2exe_data.apu_operands_i_1, id2exe_data.apu_operands_i_3} 
+                      : {id2exe_data.apu_operands_i_3, id2exe_data.apu_operands_i_2, id2exe_data.apu_operands_i_1};
 
   // Instantiate the floating-point wrapper
   fp_wrapper fpu_unit (
-      .clk_i(clk),
-      .rst_ni(rst_n),
-      .apu_req_i(id2exe_ctrl.fpu_enable),
-      .apu_gnt_o(exe2fwd.apu_gnt_o),
-      .apu_operands_i,
-      .apu_op_i({1'b0,id2exe_ctrl.apu_op_i}),
-      .apu_flags_i({2'b10, 3'b0, 3'b0, id2exe_ctrl.fp_rnd_mode}),
-      .apu_rvalid_o,
-      .apu_rdata_o,
-      .apu_rflags_o(exe2csr_data.apu_rflags_o)
+      .clk_i            (clk),
+      .rst_ni           (rst_n),
+      .apu_req_i        (id2exe_ctrl.fpu_enable),
+      .apu_gnt_o        (exe2fwd.apu_gnt),
+      .apu_operands_i   (apu_operands),
+      .apu_op_i         ({1'b0,id2exe_ctrl.apu_op}),
+      .apu_flags_i      ({2'b10, 3'b0, 3'b0, id2exe_ctrl.fp_rnd_mode}),
+      .apu_rvalid_o     (apu_rvalid),
+      .apu_rdata_o      (apu_rdata),
+      .apu_rflags_o     (exe2csr_data.apu_rflags)
   );
   `endif
 //==================================== Output signals update ======================================// 
@@ -495,7 +500,7 @@ assign exe2div.alu_d_ops  = id2exe_ctrl.alu_d_ops;
 `ifndef FPU
 assign exe2lsu_data.alu_result = mul_cmd ? alu_m_result : (bitmanip_cmd ? alu_b_result : alu_result);
 `else
-assign alu_f_result = (id2exe_ctrl.fpu_enable) ?  apu_rdata_o: alu_result;
+assign alu_f_result = (id2exe_ctrl.fpu_enable) ?  (apu_rvalid ? apu_rdata : 32'h00000000 ): alu_result;
 assign exe2lsu_data.alu_result = mul_cmd ? alu_m_result : (bitmanip_cmd ? alu_b_result : alu_f_result);
 `endif
 

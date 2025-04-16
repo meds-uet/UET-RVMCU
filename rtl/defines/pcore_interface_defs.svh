@@ -33,7 +33,14 @@ typedef enum logic [4:0] {
     OPCODE_JALR_INST      = 5'b11001,
     OPCODE_JAL_INST       = 5'b11011,
     OPCODE_AMO_INST       = 5'b01011,
-    OPCODE_SYSTEM_INST    = 5'b11100
+    OPCODE_SYSTEM_INST    = 5'b11100,
+    OPCODE_FLW_INST       = 5'b00001,   // Load Floating-Point Word
+    OPCODE_FSW_INST       = 5'b01001,   // Store Floating-Point Word
+    OPCODE_FADD_INST      = 5'b10000,   // Fused Multiply-Add
+    OPCODE_FSUB_INST      = 5'b10001,   // Fused Multiply-Subtract
+    OPCODE_FNMSUB_INST    = 5'b10010,   // Negated Fused Multiply-Subtract
+    OPCODE_FNMADD_INST    = 5'b10011,   // Negated Fused Multiply-Add
+    OPCODE_FP_ARITH_INST  = 5'b10100    // Floating-Point Arithmetic Instructions
 } type_rv_opcode_e;
 
 // ALU operand 1 selection
@@ -233,9 +240,9 @@ typedef struct packed {
     logic                            instr_flushed;
     //define data signals for FPU for decode to execute stage
     `ifdef FPU
-    logic  [`XLEN-1:0]                     apu_operands_i_2;
-    logic  [`XLEN-1:0]                     apu_operands_i_2;
-    logic  [`XLEN-1:0]                     apu_operands_i_2;
+    logic  [`XLEN-1:0]               fpu_rs1_data;
+    logic  [`XLEN-1:0]               fpu_rs2_data;
+    logic  [`XLEN-1:0]               fpu_rs3_data;
     `endif
 } type_id2exe_data_s;
 
@@ -265,7 +272,7 @@ typedef struct packed {
     //define control signals for FPU for decode to execute stage
     `ifdef FPU
     logic                            fpu_enable;
-    logic  [4:0]                     apu_op_i;
+    logic  [4:0]                     apu_op;
     logic  [2:0]                     fp_rnd_mode;
     `endif 
 } type_id2exe_ctrl_s;
@@ -299,7 +306,7 @@ typedef struct packed {
     logic                            instr_flushed;
     //fpu CSR signal
     `ifdef FPU
-    logic [4:0]                      apu_rflags_o; 
+    logic [4:0]                      apu_rflags; 
     `endif 
 } type_exe2csr_data_s;
 
@@ -406,7 +413,8 @@ typedef struct packed {
 typedef struct packed {                            
     logic [`XLEN-1:0]                rd_data;
     logic [`RF_AWIDTH-1:0]           rd_addr;
-    logic                            rd_wr_req;  
+    logic                            rd_wr_req;
+    logic                            fpu_rd_wr_req;  
 } type_wrb2id_fb_s;
 
 // LSU-2-Forward_stall interface signals
@@ -432,7 +440,7 @@ typedef struct packed {
     logic                            use_rs2; 
     //for fpu
     `ifdef FPU
-    logic                            apu_gnt_o
+    logic                            apu_gnt;
     `endif 
 } type_exe2fwd_s;
 

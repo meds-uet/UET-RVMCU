@@ -14,17 +14,6 @@
 `include "pcore_interface_defs.svh"
 import fpnew_pkg::*;
 
- // F-extension opcodes
-typedef enum logic [6:0] {
-    FLW      = 7'b0000111,   // Load Floating-Point Word
-    FSW      = 7'b0100111,   // Store Floating-Point Word
-    FADD     = 7'b1000011,   // Fused Multiply-Add
-    FSUB     = 7'b1000111,   // Fused Multiply-Subtract
-    FNMSUB   = 7'b1001011,   // Negated Fused Multiply-Subtract
-    FNMADD   = 7'b1001111,   // Negated Fused Multiply-Add
-    FP_ARITH = 7'b1010011    // Floating-Point Arithmetic Instructions
-} type_rv_f_opcodes_e;
-
   // APU interface
   parameter APU_NARGS_CPU = 3;
   parameter APU_WOP_CPU = 6;

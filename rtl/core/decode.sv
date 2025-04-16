@@ -6,6 +6,8 @@
 //
 // Author: Muhammad Tahir, UET Lahore
 // Date: 11.8.2022
+// Modified by: Muhammad Boota, MEDS UET
+// Date: 19.2.2025
 
 
 `ifndef VERILATOR
@@ -604,6 +606,34 @@ reg_file rf_module (
    .id2rf_rd_data_i      (wrb2id_fb_i.rd_data)
  //  .debug_port_i         (debug_port_i)        
 );
+
+// Instantiation of floating-point register file
+`ifdef FPU
+
+logic [`RF_AWIDTH-1:0]               id2f_rf_rs3_addr; 
+logic [`XLEN-1:0]                    fpu_rs1_data;
+logic [`XLEN-1:0]                    fpu_rs2_data;
+logic [`XLEN-1:0]                    fpu_rs3_data;
+
+// Register file third address decodings
+assign id2f_rf_rs3_addr = instr_codeword[31:27];
+
+fpu_reg_file fpu_rf_module (
+   .rst_n                  (rst_n),
+   .clk                    (clk),
+    // ID <---> FPU-RF interface
+   .id2f_rf_rs1_addr_i     (id2rf_rs1_addr),
+   .f_rf2id_rs1_data_o     (fpu_rs1_data),
+   .id2f_rf_rs2_addr_i     (id2rf_rs2_addr),
+   .f_rf2id_rs2_data_o     (fpu_rs2_data),
+   .id2f_rf_rs3_addr_i     (id2f_rf_rs3_addr),
+   .f_rf2id_rs3_data_o     (fpu_rs3_data),
+    // WB <---> FPU-RF interface
+   .id2f_rf_rd_wr_req_i    (wrb2id_fb_i.fpu_rd_wr_req),
+   .id2f_rf_rd_addr_i      (wrb2id_fb_i.rd_addr ),
+   .id2f_rf_rd_data_i      (wrb2id_fb_i.rd_data)
+    );
+`endif
 
 
 endmodule : decode
