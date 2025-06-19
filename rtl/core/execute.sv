@@ -98,8 +98,6 @@ logic [`RF_AWIDTH-1:0]               rd_addr;
 
 //FPU related signals
 `ifdef FPU
-logic [`XLEN-1:0]                    alu_f_result;
-logic [`XLEN-1 :0]                   apu_rdata;
 logic                                apu_rvalid;
 logic  [2:0] [`XLEN-1:0]             apu_operands;
 `endif
@@ -468,10 +466,15 @@ end
 
 
 `ifdef FPU
-
+//preparing signals for FPU
+logic [XLEN-1] apu_operands_i_1;
+//selection between int reg data or fpu reg
+assign apu_operands_i_1=(id2exe_ctrl.fpu_opr1_sel==FPU_OPR1_FPU_REG)? id2exe_data.fpu_rs1_data:id2exe_data.rs1_data;
+// assign fpu or int rs2 data selection
+assign exe2lsu_data.rs2_data=(id2exe_ctrl.mem_opr2_sel==OPR2_INT_REG)? id2exe_data.rs2_data:id2exe_data.fpu_rs2_data;
 assign apu_operands = ((apu_op_i == 5'h02) || (apu_op_i == 5'h12)) ? 
-                        {id2exe_data.apu_operands_i_2, id2exe_data.apu_operands_i_1, id2exe_data.apu_operands_i_3} 
-                      : {id2exe_data.apu_operands_i_3, id2exe_data.apu_operands_i_2, id2exe_data.apu_operands_i_1};
+                        {id2exe_data.fpu_rs2_data, apu_operands_i_1, id2exe_data.fpu_rs3_data} 
+                      : {id2exe_data.fpu_rs3_data, id2exe_data.fpu_rs2_data, apu_operands_i_1};
 
   // Instantiate the floating-point wrapper
   fp_wrapper fpu_unit (
@@ -483,9 +486,10 @@ assign apu_operands = ((apu_op_i == 5'h02) || (apu_op_i == 5'h12)) ?
       .apu_op_i         ({1'b0,id2exe_ctrl.apu_op}),
       .apu_flags_i      ({2'b10, 3'b0, 3'b0, id2exe_ctrl.fp_rnd_mode}),
       .apu_rvalid_o     (apu_rvalid),
-      .apu_rdata_o      (apu_rdata),
+      .apu_rdata_o      (exe2lsu_data.fpu_result),
       .apu_rflags_o     (exe2csr_data.apu_rflags)
   );
+  assign exe2lsu_ctrl.fpu_enable=id2exe_ctrl.fpu_enable;
   `endif
 //==================================== Output signals update ======================================// 
 
@@ -497,12 +501,7 @@ assign exe2div.alu_operand_2 = alu_operand_2;
 assign exe2div.alu_d_ops  = id2exe_ctrl.alu_d_ops;
 
 // Update the output data signals for LSU
-`ifndef FPU
 assign exe2lsu_data.alu_result = mul_cmd ? alu_m_result : (bitmanip_cmd ? alu_b_result : alu_result);
-`else
-assign alu_f_result = (id2exe_ctrl.fpu_enable) ?  (apu_rvalid ? apu_rdata : 32'h00000000 ): alu_result;
-assign exe2lsu_data.alu_result = mul_cmd ? alu_m_result : (bitmanip_cmd ? alu_b_result : alu_f_result);
-`endif
 
 assign exe2lsu_data.pc_next    = id2exe_data.pc_next;
 assign exe2lsu_data.rs2_data   = operand_rs2_data; // MT: This should be verified due to forwarding

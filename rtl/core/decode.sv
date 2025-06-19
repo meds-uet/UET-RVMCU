@@ -115,13 +115,13 @@ always_comb begin
     id2exe_ctrl.exc_req          = 1'b0;
 
     // Default values for datapath signals
-    id2exe_data.imm      = {{21{instr_codeword[31]}}, instr_codeword[30:20]};
-    id2exe_data.rs1_data = rf2id_rs1_data;   // These operands need to be updated in case of forwarding
-    id2exe_data.rs2_data = rf2id_rs2_data;   // These operands need to be updated in case of forwarding
-    id2exe_data.instr    = instr_codeword;
-    id2exe_data.pc       = if2id_data.pc;
-    id2exe_data.pc_next  = if2id_data.pc_next;
-    id2exe_data.exc_code = EXC_CODE_NO_EXCEPTION;
+    id2exe_data.imm           = {{21{instr_codeword[31]}}, instr_codeword[30:20]};
+    id2exe_data.rs1_data      = rf2id_rs1_data;   // These operands need to be updated in case of forwarding
+    id2exe_data.rs2_data      = rf2id_rs2_data;   // These operands need to be updated in case of forwarding
+    id2exe_data.instr         = instr_codeword;
+    id2exe_data.pc            = if2id_data.pc;
+    id2exe_data.pc_next       = if2id_data.pc_next;
+    id2exe_data.exc_code      = EXC_CODE_NO_EXCEPTION;
     id2exe_data.instr_flushed = if2id_data.instr_flushed;
     
     // Default values for local signals
@@ -617,7 +617,6 @@ logic [`XLEN-1:0]                    fpu_rs3_data;
 
 // Register file third address decodings
 assign id2f_rf_rs3_addr = instr_codeword[31:27];
-
 fpu_reg_file fpu_rf_module (
    .rst_n                  (rst_n),
    .clk                    (clk),
@@ -633,6 +632,11 @@ fpu_reg_file fpu_rf_module (
    .id2f_rf_rd_addr_i      (wrb2id_fb_i.rd_addr ),
    .id2f_rf_rd_data_i      (wrb2id_fb_i.rd_data)
     );
+    
+// default values for datapath 
+assign id2exe_data.fpu_rs1_data  = fpu_rs1_data;
+assign id2exe_data.fpu_rs2_data  = fpu_rs2_data;
+assign id2exe_data.fpu_rs3_data  = fpu_rs3_data;
 `endif
 
 

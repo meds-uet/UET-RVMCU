@@ -211,7 +211,9 @@ assign lsu2amo_data.r_data        = dbus2lsu.r_data;
 assign lsu2wrb_data.alu_result    = exe2lsu_data.alu_result;  
 assign lsu2wrb_data.pc_next       = exe2lsu_data.pc_next;
 assign lsu2wrb_data.rd_addr       = exe2lsu_ctrl.rd_addr;               
-
+`ifdef FPU
+assign lsu2amo_data.fpu_result    = exe2lsu_data.fpu_result;
+`endif 
 // Update control signals for writeback
 // If instruction is SC, then write back control signals will be updated to propagate 1 or 0 into rd
 assign lsu2wrb_ctrl.rd_wrb_sel = exe2lsu_ctrl.rd_wrb_sel;

@@ -74,6 +74,11 @@ always_comb begin
          RD_WRB_D_ALU  : begin
              wrb_rd_data = div2wrb.alu_d_result;
          end
+         `ifdef FPU                            // writeback from FPU result
+         RD_WRB_FPU  : begin
+             wrb_rd_data = div2wrb.fpu_result;
+         end
+          `endif 
          default       : wrb_rd_data  = '0;              // default case 
      endcase
 end

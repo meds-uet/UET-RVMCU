@@ -374,6 +374,9 @@ typedef struct packed {
 // LSU-2-Writeback data and control signals
 typedef struct packed {                            
     logic [`XLEN-1:0]                alu_result;
+    `ifdef FPU
+    logic [`XLEN-1:0]                fpu_result;
+    `endif 
     logic [`XLEN-1:0]                pc_next;
     logic [`XLEN-1:0]                r_data;  
     logic [`RF_AWIDTH-1:0]           rd_addr; 
