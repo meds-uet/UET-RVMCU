@@ -61,6 +61,20 @@ typedef enum logic {
     ALU_CMP_OPR2_REG       // opr2 = rs2
 } type_alu_cmp_opr2_sel_e;
 
+`ifdef FPU
+//FPU operand 1 selection
+typedef enum logic { 
+    FPU_OPR1_FPU_REG = '0,
+    FPU_OPR1_INT_REG
+} type_fpu_opr1_sel_e;
+
+//FPU operand 2 or INT operand 2 selection for memory data
+typedef enum logic { 
+    OPR2_INT_REG = '0,
+    OPR2_FPU_REG 
+} type_mem_opr2_sel_e;
+
+`endif
 
 typedef enum logic [3:0] {
     ALU_I_OPS_NONE = '0,   // ALU is idle 
@@ -171,7 +185,10 @@ typedef enum logic [2:0] {
     RD_WRB_INC_PC,                        // Writeback PC (return address) for JAL/JALR
     RD_WRB_DMEM,                          // Writeback selection for Load operation from DMEM
     RD_WRB_CSR,                           // Writeback for reading CSR
-    RD_WRB_D_ALU                          // Writeback from M-Extension for divide
+    `ifdef FPU                            // writeback from FPU result
+    RD_WRB_FPU,
+    `endif 
+    RD_WRB_D_ALU                         // Writeback from M-Extension for divide
 } type_rd_wrb_sel_e;
 
 
@@ -271,6 +288,8 @@ typedef struct packed {
     logic                            irq_req;
     //define control signals for FPU for decode to execute stage
     `ifdef FPU
+    type_fpu_opr1_sel_e              fpu_opr1_sel;
+    type_mem_opr2_sel_e              mem_opr2_sel;
     logic                            fpu_enable;
     logic  [4:0]                     apu_op;
     logic  [2:0]                     fp_rnd_mode;
@@ -282,6 +301,9 @@ typedef struct packed {
     logic [`XLEN-1:0]                alu_result;
     logic [`XLEN-1:0]                pc_next;
     logic [`XLEN-1:0]                rs2_data;
+    `ifdef FPU
+    logic [`XLEN-1:0]                fpu_result;
+    `endif 
 } type_exe2lsu_data_s;
 
 typedef struct packed {  
