@@ -483,12 +483,13 @@ assign apu_operands = ((apu_op_i == 5'h02) || (apu_op_i == 5'h12)) ?
       .apu_req_i        (id2exe_ctrl.fpu_enable),
       .apu_gnt_o        (exe2fwd.apu_gnt),
       .apu_operands_i   (apu_operands),
-      .apu_op_i         ({1'b0,id2exe_ctrl.apu_op}),
+      .apu_op_i         ({1'b0,id2exe_ctrl.apu_op_i}),
       .apu_flags_i      ({2'b10, 3'b0, 3'b0, id2exe_ctrl.fp_rnd_mode}),
       .apu_rvalid_o     (apu_rvalid),
       .apu_rdata_o      (exe2lsu_data.fpu_result),
       .apu_rflags_o     (exe2csr_data.apu_rflags)
   );
+  assign exe2lsu_ctrl.fpu_rd_wr_req=id2exe_ctrl.fpu_rd_wr_req;
   assign exe2lsu_ctrl.fpu_enable=id2exe_ctrl.fpu_enable;
   `endif
 //==================================== Output signals update ======================================// 

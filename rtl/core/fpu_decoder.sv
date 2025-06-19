@@ -9,9 +9,9 @@ module rv32f_decoder
     output logic fpu_enable,                  // Floating-point unit enable
     output logic data_mem_enable,             // Data memory enable
     output logic register_file_float_enable,  // Register file of floating-point enable
-    output logic register_file_int_enable,     // Register file of integer enable
-    output logic alu_add,                       // for adding immediate and rs1
-    output logic write_back_sel                 // select data from register file or memory
+    output logic register_file_int_enable,    // Register file of integer enable
+    output logic alu_add,                     // for adding immediate and rs1
+    output logic write_back_sel               // select data from register file or memory
 );
 
    

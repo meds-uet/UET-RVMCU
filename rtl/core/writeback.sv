@@ -53,7 +53,7 @@ assign lsu2wrb_data = lsu2wrb_data_i;
 assign lsu2wrb_ctrl = lsu2wrb_ctrl_i;
 assign csr2wrb_data = csr2wrb_data_i;
 assign div2wrb      = div2wrb_i;
- 
+
 // Writeback MUX for output signal selection
 always_comb begin
      wrb_rd_data = '0;
@@ -84,9 +84,12 @@ always_comb begin
 end
 
 // Prepare the signals for output 
-assign wrb2id_fb.rd_data   = wrb_rd_data; 
-assign wrb2id_fb.rd_addr   = lsu2wrb_data.rd_addr; 
-assign wrb2id_fb.rd_wr_req = lsu2wrb_ctrl.rd_wr_req;
+assign wrb2id_fb.rd_data       = wrb_rd_data; 
+assign wrb2id_fb.rd_addr       = lsu2wrb_data.rd_addr; 
+assign wrb2id_fb.rd_wr_req     = lsu2wrb_ctrl.rd_wr_req;
+`ifdef FPU
+assign wrb2id_fb.fpu_rd_wr_req = lsu2wrb_ctrl.fpu_rd_wr_req;
+`endif 
 
 // Update the module output signals
 assign wrb2fwd_o.rd_addr    = lsu2wrb_data.rd_addr; 

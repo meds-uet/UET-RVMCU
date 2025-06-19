@@ -280,7 +280,9 @@ typedef struct packed {
     type_alu_cmp_opr2_sel_e          alu_cmp_opr2_sel;
     type_csr_opr_sel_e               csr_opr_sel;
     type_rd_wrb_sel_e                rd_wrb_sel;
-
+    `ifdef FPU
+    logic                            fpu_rd_wr_req;  
+    `endif 
     logic                            exc_req;
     logic                            rd_wr_req;
     logic                            jump_req;
@@ -291,7 +293,7 @@ typedef struct packed {
     type_fpu_opr1_sel_e              fpu_opr1_sel;
     type_mem_opr2_sel_e              mem_opr2_sel;
     logic                            fpu_enable;
-    logic  [4:0]                     apu_op;
+    logic  [4:0]                     apu_op_i;
     logic  [2:0]                     fp_rnd_mode;
     `endif 
 } type_id2exe_ctrl_s;
@@ -313,6 +315,9 @@ typedef struct packed {
     type_st_ops_e                    st_ops;
     type_amo_ops_e                   amo_ops;
     logic                            rd_wr_req;
+    `ifdef FPU
+    logic                            fpu_rd_wr_req;  
+    `endif 
     logic                            jump_req;
     logic                            branch_req;
 } type_exe2lsu_ctrl_s;
@@ -385,6 +390,9 @@ typedef struct packed {
 typedef struct packed {                           
     type_rd_wrb_sel_e                rd_wrb_sel;
     logic                            rd_wr_req;
+    `ifdef FPU
+    logic                            fpu_rd_wr_req;  
+    `endif 
 } type_lsu2wrb_ctrl_s;
 
 
@@ -439,7 +447,9 @@ typedef struct packed {
     logic [`XLEN-1:0]                rd_data;
     logic [`RF_AWIDTH-1:0]           rd_addr;
     logic                            rd_wr_req;
+    `ifdef FPU
     logic                            fpu_rd_wr_req;  
+    `endif   
 } type_wrb2id_fb_s;
 
 // LSU-2-Forward_stall interface signals
