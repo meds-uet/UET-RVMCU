@@ -582,7 +582,7 @@ always_comb begin
             FADD: begin // Fused Multiply-Add/Subtract
                 fp_op                     = FMADD;
                 op_mod_i                  = 1'b0; // Modifier (bit 27)
-                // fp_rnd_mode            = funct3;
+                // fp_rnd_mode            = funct3_opcode ;
                 id2exe_ctrl.fpu_enable    =  1'b1;
                 id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG;
                 id2exe_ctrl.fpu_rd_wr_req = 1'b1;
@@ -590,7 +590,7 @@ always_comb begin
             FSUB:begin
                 fp_op                     = FMADD;
                 op_mod_i                  = 1'b1; // Modifier (bit 27)
-               // fp_rnd_mode             = funct3;
+               // fp_rnd_mode             = funct3_opcode ;
                 id2exe_ctrl.fpu_enable    =  1'b1;
                 id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
                 id2exe_ctrl.fpu_rd_wr_req = 1'b1;
@@ -598,7 +598,7 @@ always_comb begin
             FNMSUB:begin
                 fp_op       = FNMSUB;
                 op_mod_i    = 1'b1; // Modifier (bit 27)
-                //fp_rnd_mode = funct3;
+                //fp_rnd_mode = funct3_opcode ;
                 id2exe_ctrl.fpu_enable    =  1'b1;
                 id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
                 id2exe_ctrl.fpu_rd_wr_req = 1'b1;
@@ -606,15 +606,15 @@ always_comb begin
             FNMADD: begin // Negated Fused Multiply-Add/Subtract
                 fp_op       = FNMSUB;
                 op_mod_i    = 1'b0; // Modifier (bit 27)
-                //fp_rnd_mode = funct3;
+                //fp_rnd_mode = funct3_opcode ;
                 id2exe_ctrl.fpu_enable    =  1'b1;
                 id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
                 id2exe_ctrl.fpu_rd_wr_req = 1'b1;
             end
             FP_ARITH: begin // Floating-Point Arithmetic Instructions
                 id2exe_ctrl.fpu_enable    =  1'b1;
-                //fp_rnd_mode = funct3;
-                case (funct7)
+                //fp_rnd_mode = funct3_opcode ;
+                case (funct7_opcode)
                     7'b0000000: begin
                         fp_op    = ADD; // ADD or SUB based on op_mod_i
                         op_mod_i = 1'b0; // add
