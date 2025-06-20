@@ -76,7 +76,7 @@ incdir 	:= 	rtl/defines/
 list_incdir := $(foreach dir, ${incdir}, +incdir+$(dir))
 
 verilate_command := $(verilator) +define+$(defines) 				\
-					--cc $(src) $(list_incdir)		\
+					--cc $(list_incdir) $(src)		\
 					--top-module pcore_tb			\
 					-Wno-TIMESCALEMOD 			\
 					-Wno-MULTIDRIVEN 			\
