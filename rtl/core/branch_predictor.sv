@@ -153,7 +153,7 @@ module branch_predictor #(
 
 			for (int i = 0; i < TABLE_DEPTH; i++) begin
                 bht[i] = {2'b01, (TAG_BITS)'(0)};						// Weak Not Taken at reset
-                btb[i] = {(BTB_ENTRY_SIZE)'(0)};
+                btb[i] = (BTB_ENTRY_SIZE)'(0);
             end
 		end
 
