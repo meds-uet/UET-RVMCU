@@ -3,6 +3,11 @@
 // Date   : 27/4/2025
 
 
+`ifndef VERILATOR
+`include "../defines/pcore_interface_defs.svh"
+`else
+`include "pcore_interface_defs.svh"
+`endif
 
 module branch_predictor #(
 	`ifdef FPGA
@@ -147,8 +152,8 @@ module branch_predictor #(
 			opposite_dir <= 32'b0;
 
 			for (int i = 0; i < TABLE_DEPTH; i++) begin
-                bht[i] <= {2'b01, (TAG_BITS)'(0)};						// Weak Not Taken at reset
-                btb[i] <= (BTB_ENTRY_SIZE)'(0);
+                bht[i] = {2'b01, (TAG_BITS)'(0)};						// Weak Not Taken at reset
+                btb[i] = {(BTB_ENTRY_SIZE)'(0)};
             end
 		end
 

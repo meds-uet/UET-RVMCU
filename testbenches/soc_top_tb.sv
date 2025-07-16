@@ -61,7 +61,7 @@ assign gpio_io_rec_c = gpio_io[23:16] ;
     // Instantiate the soc_top module
     soc_top uut (
         .rst_n(rst_n),
-        .clk_100(clk_100),
+        .clk(clk_100),
         .irq_soft_i(irq_soft_i),
         .gpio_io(gpio_io),
         .gp_switch_i(gp_switch_i),
