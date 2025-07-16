@@ -44,7 +44,9 @@ module execute (
 
     // WB/LSU <---> EXE feedback interface
     input logic [`XLEN-1:0]              lsu2exe_fb_alu_result_i,
-    input logic [`XLEN-1:0]              wrb2exe_fb_rd_data_i
+    input logic [`XLEN-1:0]              wrb2exe_fb_rd_data_i,
+    // EXE <---> Branchpredictor interface
+    output logic                         branch_res
 
 );
 
@@ -88,7 +90,7 @@ logic  [`XLEN:0]                     cmp_output;
 logic                                cmp_not_zero;
 logic                                cmp_neg;
 logic                                cmp_overflow;
-logic                                branch_res;
+//logic                                branch_res;
 
 logic  [4:0]                         shift_amt;
 

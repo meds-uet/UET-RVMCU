@@ -61,7 +61,7 @@ This is a System Verilog implementation of a **2-bit dynamic branch predictor** 
 | Signal            | Direction | Width     | Description |
 |------------------|-----------|-----------|-------------|
 | `clk`            | input     | 1         | Clock       |
-| `reset`          | input     | 1         | Active-high synchronous reset |
+| `reset`          | input     | 1         | Active-low synchronous reset |
 | `stall`          | input     | 1         | Pipeline stall signal D -x-> E         |
 | `pc_f`           | input     | 32        | Program counter at fetch stage |
 | `instruction`    | input     | 32        | Instruction at fetch stage    |

@@ -70,7 +70,7 @@
 `define CLINT_ADDR_END               22'h31FFFF
 
 // Pipeline stage definitions
-`define IF2ID_PIPELINE_STAGE         1
+//`define IF2ID_PIPELINE_STAGE         1
 `define ID2EXE_PIPELINE_STAGE        1
 `define EXE2LSU_PIPELINE_STAGE       1
 `define LSU2WRB_PIPELINE_STAGE       1

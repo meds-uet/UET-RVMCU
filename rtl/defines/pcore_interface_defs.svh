@@ -218,6 +218,13 @@ typedef struct packed {
     logic                            irq_req;
 } type_if2id_ctrl_s;
 
+//Branch predictor 2 fetch signals
+typedef struct packed {
+    logic                            flush,
+    logic                            pc_req,
+    logic [`XLEN-1:0]                pc_new
+} type_bp2if_s;
+
 // Decode-2-Execute data and control signals
 typedef struct packed {                            
     logic [`XLEN-1:0]                rs1_data;     
@@ -476,5 +483,23 @@ typedef struct packed {
     logic                            reg_wr_req;  
 } type_debug_port_s;
 
+//-----ahb structures----------------//
+typedef struct packed {
+    logic [`XLEN-1:0]                h_r_data;
+    logic                            h_resp;
+    logic                            h_ready;
+} type_ahb_s2m;
+
+typedef struct packed {
+    logic [`XLEN-1:0]                h_addr;  
+    logic                            h_w_en;
+    logic [2:0]                      h_size;
+    logic [3:0]                      h_strb;
+    logic [2:0]                      h_brust;
+    logic [3:0]                      h_prot; 
+    logic [1:0]                      h_trans; 
+    logic                            h_mast_lock;
+    logic [`XLEN-1:0]                h_w_data;
+} type_ahb_m2s;
 
 `endif // PCORE_INTERFACE_DEFS

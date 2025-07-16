@@ -34,8 +34,10 @@ module fetch (
     input wire type_csr2if_fb_s                     csr2if_fb_i,
     
     // Forward <---> Fetch interface
-    input wire type_fwd2if_s                        fwd2if_i
+    input wire type_fwd2if_s                        fwd2if_i,
    // output logic                                    if2fwd_stall_o
+   // Branch predictor <---> Fetch interface
+    input wire type_bp2if_s                         bp2if_i
 );
 
 
@@ -49,6 +51,7 @@ type_exe2if_fb_s                     exe2if_fb;
 type_csr2if_fb_s                     csr2if_fb;
 
 type_fwd2if_s                        fwd2if;
+type_bp2if_s                         bp2if;
 
 // Exception related signals
 type_exc_code_e                      exc_code_next, exc_code_ff;
@@ -68,6 +71,7 @@ assign mem2if = mem2if_i;
 assign exe2if_fb = exe2if_fb_i;
 assign csr2if_fb = csr2if_fb_i;
 assign fwd2if    = fwd2if_i;
+assign bp2if     = bp2if_i;
 
 // Evaluation for misaligned address
 assign pc_misaligned = pc_ff[1] | pc_ff[0];
@@ -99,6 +103,9 @@ always_comb begin
         end
         fwd2if.wfi_req        : begin
             pc_next = csr2if_fb.pc_new;  
+        end
+        bp2if.pc_req          : begin
+            pc_next = bp2if.pc_new; 
         end
         fwd2if.exe_new_pc_req : begin
             pc_next = exe2if_fb.pc_new;  
@@ -187,7 +194,7 @@ assign if2mem_o.req  = kill_req ? 1'b0 : `IMEM_INST_REQ;
 assign if2id_data.instr         = instr_word;
 assign if2id_data.pc            = pc_ff;
 assign if2id_data.pc_next       = is_jal ? (pc_plus_4) : pc_next;
-assign if2id_data.instr_flushed = 1'b0;
+assign if2id_data.instr_flushed = bp2if.flush;
 
 assign if2id_data.exc_code      = exc_code_next;
 assign if2id_ctrl.exc_req       = exc_req_next;

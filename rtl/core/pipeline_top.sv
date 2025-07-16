@@ -96,6 +96,9 @@ type_wrb2id_fb_s                        wrb2id_fb;
 logic [`XLEN-1:0]                       lsu2exe_fb_alu_result;
 logic [`XLEN-1:0]                       wrb2exe_fb_rd_data;
 //logic                                   if2fwd_stall;
+logic                                   bp2if_flush;
+logic                                   exe2bp_branch_res;
+logic [`XLEN-1:0]                       bp_pc_new;
 
 // Interfaces for forwarding module
 // To forwarding module
@@ -111,6 +114,7 @@ type_fwd2if_s                           fwd2if;
 type_fwd2csr_s                          fwd2csr;
 type_fwd2lsu_s                          fwd2lsu;
 type_fwd2ptop_s                         fwd2ptop;
+type_bp2if_s                            bp2if;
 
 
 // Inputs assignment to local signals
@@ -122,18 +126,19 @@ assign mem2if = mem2if_i;
 
 // Instruction Fetch module instantiation
 fetch fetch_module (
-    .rst_n                      (rst_n),
-    .clk                        (clk),
+    .rst_n                   (rst_n),
+    .clk                     (clk),
 
     // IF module interface signals 
     .if2mem_o                (if2mem),
     .mem2if_i                (mem2if),
 
-    .if2id_data_o               (if2id_data),
-    .if2id_ctrl_o               (if2id_ctrl),
-    .exe2if_fb_i                (exe2if_fb),
-    .csr2if_fb_i                (csr2if_fb),
-    .fwd2if_i                   (fwd2if)
+    .if2id_data_o            (if2id_data),
+    .if2id_ctrl_o            (if2id_ctrl),
+    .exe2if_fb_i             (exe2if_fb),
+    .csr2if_fb_i             (csr2if_fb),
+    .fwd2if_i                (fwd2if),
+    .bp2if_i                 (bp2if)        
  //   .if2fwd_stall_o             (if2fwd_stall)
 );
 
@@ -164,7 +169,7 @@ always_comb begin
 
     if (fwd2ptop.if2id_pipe_flush) begin
         if2id_data_next.instr         = `INSTR_NOP;
-        if2id_data_next.instr_flushed = 1'b1;
+        if2id_data_next.instr_flushed = 1'b1; //?would we need it if branch predictor flush added
         if2id_ctrl_next.exc_req       = 1'b0;
         if2id_ctrl_next.irq_req       = 1'b0;
         if2id_data_next.exc_code      = EXC_CODE_NO_EXCEPTION;
@@ -197,16 +202,81 @@ decode decode_module (
    // .debug_port_i               (debug_port_i)
 );
 
+branch_predictor bp(
+	.clk          (clk),
+	.reset        (rst_n),
+	.pc_f         (if2id_data.pc),   
+	.instruction  (if2id_data.instr),
+	.offset       (id2exe_data.imm),
+	.pc_e         (id2exe_data_pipe_ff.pc), 
+	.alu_result_e (exe2lsu_data.alu_result),	
+	.br_actual    (exe2bp_branch_res),
+	.stall        (fwd2ptop.id2exe_pipe_stall),
+	.bp2if_o      (bp2if)
+)
 
 //================================= Decode to execute interface ==================================//
+// Decode <-----> Execute pipeline/nopipeline  
+`ifdef ID2EXE_PIPELINE_STAGE
+type_id2exe_data_s                      id2exe_data_pipe_ff;
+type_id2exe_ctrl_s                      id2exe_ctrl_pipe_ff;
+
+always_ff @(posedge clk) begin
+    if (~rst_n) begin
+        id2exe_data_pipe_ff <= '0;
+        id2exe_ctrl_pipe_ff <= '0;
+    end else begin
+        id2exe_data_pipe_ff <= id2exe_data_next;
+        id2exe_ctrl_pipe_ff <= id2exe_ctrl_next;
+    end
+end
+
+always_comb begin
+    id2exe_data_next = id2exe_data;
+    id2exe_ctrl_next = id2exe_ctrl;
+
+    if (fwd2ptop.id2exe_pipe_flush) begin
+        id2exe_ctrl_next = '0;
+
+        // When pipeline decode and execute stages are flushed in case of jump/branch
+        // instructions or incase of interrupt/return-from-interrupt, the PC in those 
+        // flushed states should have a valid value to ensure that proper value of PC  
+        // is saved in case of an interrupt (high-priority) occurence. This is achieved 
+        // using instruction flushed flag signal.
+    
+        id2exe_data_next.instr_flushed = 1'b1;
+     //   id2exe_data_next.pc_next = '0;
+
+    end else if (fwd2ptop.id2exe_pipe_stall) begin
+        id2exe_data_next = id2exe_data_pipe_ff;
+        id2exe_ctrl_next = id2exe_ctrl_pipe_ff;
+
+        // Due to pipeline stall the updated register values are not available
+        // in the following cycle and are rather forwarded from writeback
+        // stage here.
+        if (fwd2ptop.pipe_fwd_wrb_rs1) begin
+            id2exe_data_next.rs1_data = wrb2id_fb.rd_data;
+        end
+        if (fwd2ptop.pipe_fwd_wrb_rs2) begin
+            id2exe_data_next.rs2_data = wrb2id_fb.rd_data;
+        end 
+    end 
+end 
+`endif // ID2EXE_PIPELINE_STAGE
+
 // Instruction Execute module instantiation
 execute execute_module (
     .rst_n                      (rst_n),
     .clk                        (clk),
 
     // Decode <---> EXE module interface signals 
+`ifdef ID2EXE_PIPELINE_STAGE
+    .id2exe_data_i              (id2exe_data_pipe_ff),
+    .id2exe_ctrl_i              (id2exe_ctrl_pipe_ff),
+`else
     .id2exe_data_i              (id2exe_data),
     .id2exe_ctrl_i              (id2exe_ctrl),
+`endif
 
     // EXE <---> M-Extension interface signals
     .exe2div_o                  (exe2div),
@@ -228,7 +298,9 @@ execute execute_module (
 
     // LSU/WB <---> EXE feedback interface
     .lsu2exe_fb_alu_result_i    (lsu2exe_fb_alu_result),
-    .wrb2exe_fb_rd_data_i       (wrb2exe_fb_rd_data)
+    .wrb2exe_fb_rd_data_i       (wrb2exe_fb_rd_data),
+    // EXE <---> Branchpredictor interface
+    .branch_res                 (exe2bp_branch_res)
  
 );
 
