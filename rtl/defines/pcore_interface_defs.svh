@@ -220,9 +220,9 @@ typedef struct packed {
 
 //Branch predictor 2 fetch signals
 typedef struct packed {
-    logic                            flush,
-    logic                            pc_req,
-    logic [`XLEN-1:0]                pc_new
+    logic                            flush;
+    logic                            pc_req;
+    logic [`XLEN-1:0]                pc_new;
 } type_bp2if_s;
 
 // Decode-2-Execute data and control signals
