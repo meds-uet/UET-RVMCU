@@ -213,7 +213,7 @@ branch_predictor bp(
 	.br_actual    (exe2bp_branch_res),
 	.stall        (fwd2ptop.id2exe_pipe_stall),
 	.bp2if_o      (bp2if)
-)
+);
 
 //================================= Decode to execute interface ==================================//
 // Decode <-----> Execute pipeline/nopipeline  

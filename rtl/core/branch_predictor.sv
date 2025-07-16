@@ -54,7 +54,7 @@ module branch_predictor #(
 	logic 							is_branch;
 	logic							is_jal;
 	logic							is_jalr;
-	logic					        flush_f,
+	logic					        flush_f;
     logic [31:0] 			        target_pc;
 
 
