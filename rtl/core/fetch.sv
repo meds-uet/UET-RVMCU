@@ -104,15 +104,15 @@ always_comb begin
         fwd2if.wfi_req        : begin
             pc_next = csr2if_fb.pc_new;  
         end
+        if_stall              : begin  
+            pc_next = pc_ff;
+        end 
         bp2if.pc_req          : begin
             pc_next = bp2if.pc_new; 
         end
         fwd2if.exe_new_pc_req : begin
             pc_next = exe2if_fb.pc_new;  
         end
-        if_stall              : begin  
-            pc_next = pc_ff;
-        end 
         is_jal                : begin
             pc_next = pc_ff + jal_imm;
         end
