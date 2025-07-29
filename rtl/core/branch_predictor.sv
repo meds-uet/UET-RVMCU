@@ -23,160 +23,200 @@ module branch_predictor #(
 
 )(
 
-	input 	logic 					clk,
-	input 	logic					reset,
-	input 	logic [31:0] 			pc_f,
-	input 	logic [31:0]			instruction,
-	input 	logic [31:0]			offset,
-	input 	logic [31:0] 			pc_e, 
-	input 	logic [31:0]			alu_result_e,	
-	input 	logic					br_actual,
-	input	logic					stall,
-	output 	type_bp2if_s            bp2if_o 	
+	input 	logic 					             clk,
+	input 	logic					             reset,
+	// Branch predictor <---> Fetch interface
+	input 	logic [`XLEN-1:0] 			         pc_f,
+	input 	logic [`XLEN-1:0]			         instruction,
+	output 	type_bp2if_s                         bp2if_o,
+	//input 	logic [31:0]		             	offset,
+	// Branch predictor <---> Execute interface
+	input 	logic [`XLEN-1:0] 			         pc_e, 
+	input 	logic [`XLEN-1:0]			         alu_result_e,	
+	input 	logic					             br_actual,
+	input	logic					             stall 	
 );
 
-
-	logic [BHT_ENTRY_SIZE-1:0] 		bht [TABLE_DEPTH-1:0];
-	logic [BTB_ENTRY_SIZE-1:0] 		btb [TABLE_DEPTH-1:0];
-	logic [6:0] 					opcode;
-	logic [INDEX_BITS-1:0] 			index_f;
-	logic [INDEX_BITS-1:0]			index_e;
-	logic [BTB_ENTRY_SIZE-1:0] 		buffer_entry;
-	logic [31:0] 					addr_from_btb;
-	logic [31:0]					opposite_dir;
-	logic [TAG_BITS-1:0] 			tag;
-	logic [2:0]						mux_sel;
-	logic [1:0] 					new_state;
-	logic [1:0]		 				state_f;
-	logic [1:0] 					state_e;
-	logic 							prediction_made_f;
-	logic 							prediction_made_e;
-	logic							jalr_addr_reqd_f;
-	logic							jalr_addr_reqd_e;
-	logic							prediction_wrong;
-	logic 							valid;
-	logic							predict_taken;
-	logic 							is_branch;
-	logic							is_jal;
-	logic							is_jalr;
-	logic					        flush_f;
-    logic [31:0] 			        target_pc;
-
-
-	assign opcode = instruction[6:0];
-	assign index_f = pc_f[INDEX_BITS+1:2];
-	assign index_e = pc_e[INDEX_BITS+1:2];
-
-	assign is_branch = (opcode == 7'b1100011);
-	assign is_jal = (opcode == 7'b1101111);
-	assign is_jalr = (opcode == 7'b1100111);
-
-	assign buffer_entry = (is_jalr) ? btb[index_f] : {(BTB_ENTRY_SIZE-BHT_ENTRY_SIZE)'(0), bht[index_f]};
-	assign tag = buffer_entry[TAG_BITS-1:0];
-	assign tag_matched = (tag == pc_f[NUM_INSTRS+1:INDEX_BITS+2]);
-	assign state_f = (tag_matched) ? buffer_entry[TAG_BITS+1:TAG_BITS] : 2'b01;
-	assign predict_taken = state_f[1];
-	assign addr_from_btb = {(32-NUM_INSTRS)'(0), buffer_entry[NUM_INSTRS+TAG_BITS-1:TAG_BITS]} << 2;
-	assign valid = buffer_entry[BTB_ENTRY_SIZE-1];
-	assign prediction_wrong = state_e[1] != br_actual;
-	assign flush_f = prediction_wrong | jalr_addr_reqd_e;
+    // Branch History Table and Branch Target Buffer
+	logic [BHT_ENTRY_SIZE-1:0]               bht [TABLE_DEPTH-1:0];
+	logic [BTB_ENTRY_SIZE-1:0]               btb [TABLE_DEPTH-1:0];
+	
+	// Local Signals
+	type_rv_opcode_e                         opcode;
+	logic [`XLEN-1:0]                        offset;
+    logic [`XLEN-1:0]                        target_pc;
+	logic [`XLEN-1:0]                        addr_from_btb;
+	logic [`XLEN-1:0]                        opposite_dir;
+	logic [INDEX_BITS-1:0]                   index_f;
+	logic [INDEX_BITS-1:0]			         index_e;
+	logic [BTB_ENTRY_SIZE-1:0] 		         buffer_entry;
+	logic [TAG_BITS-1:0] 			         tag;
+	logic [2:0]						         mux_sel;
+	logic [1:0] 					         new_state;
+	logic [1:0]		 				         state_f;
+	logic [1:0] 					         state_e;
+	// control signals
+	logic 							         prediction_made_f;
+	logic 							         prediction_made_e;
+	logic							         prediction_wrong;
+	logic							         predict_taken;
+	logic							         jalr_addr_reqd_f;
+	logic							         jalr_addr_reqd_e;
+	logic 							         valid;
+	logic 							         is_branch;
+	logic							         is_jal;
+	logic							         is_jalr;
+	logic					                 flush_f;
 	
 
-	always_comb begin
 
-        if (prediction_made_e & prediction_wrong) begin			// If branch prediction was wrong
-			mux_sel = 3'b011;
-			prediction_made_f = 1'b0;
-			jalr_addr_reqd_f = 1'b0;
-		end
-		else if (jalr_addr_reqd_e) begin						// If we want calculated address of JALR
-			mux_sel = 3'b010;
-			prediction_made_f = 1'b0;
-			jalr_addr_reqd_f = 1'b0;
-		end
-		else if (is_jal) begin
-			mux_sel = 3'b000;
-			prediction_made_f = 1'b0;
-			jalr_addr_reqd_f = 1'b0;
-		end
-		else if (is_branch) begin
-			if (tag_matched & predict_taken)
-				mux_sel = 3'b000;
-			else
-				mux_sel = 3'b100;
-			prediction_made_f = 1'b1;
-			jalr_addr_reqd_f = 1'b0;
-		end
-		else if (is_jalr) begin
-			if (tag_matched & valid) begin
-				mux_sel = 3'b001;
-				jalr_addr_reqd_f = 1'b0;
-			end
-			else begin
-				mux_sel = 3'b100;
-				jalr_addr_reqd_f = 1'b1;
-			end
-			prediction_made_f = 1'b0;
-		end
-		else begin
-			mux_sel = 3'b100;
-			prediction_made_f = 1'b0;
-			jalr_addr_reqd_f = 1'b0;
-		end
+// branch and jump selection signals
+assign opcode = type_rv_opcode_e' (instruction[6:2]);
+assign is_branch = (opcode == OPCODE_BRANCH_INST); // 7'b1100011);
+assign is_jal =    (opcode == OPCODE_JAL_INST); //7'b1101111);
+assign is_jalr =   (opcode == OPCODE_JALR_INST); //7'b1100111);
 
-		case (mux_sel)
-            3'b000: target_pc = pc_f + offset;
-            3'b001: target_pc = addr_from_btb;
-            3'b010: target_pc = alu_result_e;
-            3'b011: target_pc = opposite_dir;
-            3'b100: target_pc = pc_f + 4;
-        endcase
+// immediate generation for branch and jal.
+//other than that not required so even if calculated, has no affect
+assign offset = is_branch ? {{20{instruction[31]}}, instruction[7], instruction[30:25], instruction[11:8], 1'b0} 
+                :{{12{instruction[31]}}, instruction[19:12], instruction[20], instruction[30:21], 1'b0};
 
-		// Updating BHT Entry State
-		if (state_e == 2'b00)
-			new_state = (br_actual) ? 2'b01 : 2'b00;
-		else if (state_e == 2'b01)
-			new_state = (br_actual) ? 2'b10 : 2'b00;
-		else if (state_e == 2'b10)
-			new_state = (br_actual) ? 2'b11 : 2'b01;
-		else if (state_e == 2'b11)
-			new_state = (br_actual) ? 2'b11 : 2'b10;
-    end
-
-    always_ff @ (posedge clk)
-	begin
-		if (!reset) begin
-			state_e <= 2'b0;
-			prediction_made_e <= 1'b0;
-			jalr_addr_reqd_e <= 1'b0;
-			opposite_dir <= 32'b0;
-
-			for (int i = 0; i < TABLE_DEPTH; i++) begin
-                bht[i] = {2'b01, (TAG_BITS)'(0)};						// Weak Not Taken at reset
-                btb[i] = (BTB_ENTRY_SIZE)'(0);
-            end
-		end
-
-        else if (~stall) begin
-	        if (jalr_addr_reqd_e)
-	        	btb[index_e] <= {1'b1, alu_result_e[NUM_INSTRS+1:2], pc_e[NUM_INSTRS+1:INDEX_BITS+2]};
-	        if (prediction_made_e)
-	        	bht[index_e] <= {new_state, pc_e[NUM_INSTRS+1:INDEX_BITS+2]};
-
-	        state_e <= state_f;							// Move signals from fetch to execute stage
-	        prediction_made_e <= prediction_made_f;
-	        jalr_addr_reqd_e <= jalr_addr_reqd_f;
-
-			if (is_branch) begin	
-				if (predict_taken)
-					opposite_dir <= pc_f + 4;
-				else
-					opposite_dir <= pc_f + offset;
-			end
-		end
+// PC storage for branch incase of wrong prediction
+always_ff @ (posedge clk) begin
+	if (!reset) begin
+		opposite_dir <= 32'h00000000;
 	end
+    else if (!stall & is_branch) begin
+		if (predict_taken)
+			opposite_dir <= pc_f + 4;
+		else
+			opposite_dir <= pc_f + offset;
+	end
+end
 
 
+assign index_f = pc_f[INDEX_BITS+1:2];
+assign index_e = pc_e[INDEX_BITS+1:2];
+assign buffer_entry = (is_jalr) ? btb[index_f] : {(BTB_ENTRY_SIZE-BHT_ENTRY_SIZE)'(0), bht[index_f]};
+assign tag = buffer_entry[TAG_BITS-1:0];
+assign tag_matched = (tag == pc_f[NUM_INSTRS+1:INDEX_BITS+2]);
+assign state_f = (tag_matched) ? buffer_entry[TAG_BITS+1:TAG_BITS] : 2'b01;
+assign predict_taken = state_f[1];
+assign addr_from_btb = {(32-NUM_INSTRS)'(0), buffer_entry[NUM_INSTRS+TAG_BITS-1:TAG_BITS]} << 2;
+assign valid = buffer_entry[BTB_ENTRY_SIZE-1];
+assign prediction_wrong = state_e[1] != br_actual;
+assign flush_f = prediction_wrong | jalr_addr_reqd_e;
+
+
+always_comb begin
+    if (prediction_made_e & prediction_wrong) begin			// If branch prediction was wrong
+		prediction_made_f = 1'b0;
+		jalr_addr_reqd_f = 1'b0;
+	end
+	else if (jalr_addr_reqd_e) begin						// If we want calculated address of JALR
+		prediction_made_f = 1'b0;
+		jalr_addr_reqd_f = 1'b0;
+	end
+	else if (is_jal) begin
+		prediction_made_f = 1'b0;
+		jalr_addr_reqd_f = 1'b0;
+	end
+	else if (is_branch) begin
+		prediction_made_f = 1'b1;
+		jalr_addr_reqd_f = 1'b0;
+	end
+	else if (is_jalr) begin
+		if (tag_matched & valid)
+			jalr_addr_reqd_f = 1'b0;
+		else
+			jalr_addr_reqd_f = 1'b1;
+		prediction_made_f = 1'b0;
+	end
+	else begin
+		prediction_made_f = 1'b0;
+		jalr_addr_reqd_f = 1'b0;
+	end
+end
+
+
+// Target-PC-Mux selector values
+always_comb begin
+    if (prediction_made_e & prediction_wrong)		// If branch prediction was wrong
+		mux_sel = 3'b011;
+	else if (jalr_addr_reqd_e)						// If we want calculated address of JALR
+		mux_sel = 3'b010;
+	else if (is_jal)
+		mux_sel = 3'b000;
+	else if (is_branch) begin
+		if (tag_matched & predict_taken)
+			mux_sel = 3'b000;
+		else
+			mux_sel = 3'b100;
+	end
+	else if (is_jalr) begin
+		if (tag_matched & valid)
+			mux_sel = 3'b001;
+		else
+			mux_sel = 3'b100;
+	end
+	else
+		mux_sel = 3'b100;
+end
+
+// Target PC calculation mux
+always_comb begin
+	case (mux_sel)
+        3'b000: target_pc = pc_f + offset;
+        3'b001: target_pc = addr_from_btb;
+        3'b010: target_pc = alu_result_e;
+        3'b011: target_pc = opposite_dir;
+        3'b100: target_pc = pc_f + 4;
+    endcase
+end
+
+// Updating BHT Entry State
+always_comb begin
+	if (state_e == 2'b00)
+		new_state = (br_actual) ? 2'b01 : 2'b00;
+	else if (state_e == 2'b01)
+		new_state = (br_actual) ? 2'b10 : 2'b00;
+	else if (state_e == 2'b10)
+		new_state = (br_actual) ? 2'b11 : 2'b01;
+	else if (state_e == 2'b11)
+		new_state = (br_actual) ? 2'b11 : 2'b10;
+end
+
+
+// Move signals from fetch to execute stage
+always_ff @ (posedge clk) begin
+	if (!reset) begin
+		state_e           <= 2'b00;
+		prediction_made_e <= 1'b0;
+		jalr_addr_reqd_e  <= 1'b0;
+	end
+    else if (!stall) begin
+	    state_e           <= state_f;
+	    prediction_made_e <= prediction_made_f;
+	    jalr_addr_reqd_e  <= jalr_addr_reqd_f;
+	end
+end
+
+// BHT, BTB update
+always_ff @ (posedge clk) begin
+	if (!reset) begin
+		for (int i = 0; i < TABLE_DEPTH; i++) begin
+            bht[i] = {2'b01, (TAG_BITS)'(0)};						// Weak Not Taken at reset
+            btb[i] = (BTB_ENTRY_SIZE)'(0);
+        end
+	end else if (!stall) begin
+        if (jalr_addr_reqd_e)
+        	btb[index_e] <= {1'b1, alu_result_e[NUM_INSTRS+1:2], pc_e[NUM_INSTRS+1:INDEX_BITS+2]};
+        if (prediction_made_e)
+        	bht[index_e] <= {new_state, pc_e[NUM_INSTRS+1:INDEX_BITS+2]};
+	end
+end
+
+// Update the outputs to IF stage
 assign bp2if_o.pc_new = target_pc;
 assign bp2if_o.flush  = flush_f;
 assign bp2if_o.pc_req = ((mux_sel == 3'b000) | (mux_sel == 3'b001) |(mux_sel == 3'b010) |
