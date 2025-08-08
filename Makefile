@@ -112,4 +112,3 @@ sim-verilate-uart: verilate
 clean-all:
 	rm -rf ver_work/ *.log *.vcd \
 	verif/*work/
-FPU_SIM_FILES = \
