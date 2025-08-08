@@ -541,7 +541,6 @@ end
 always_comb begin
     csr_mstatus_next = csr_mstatus_ff & MSTATUS_MASK;
     csr_mstatus_next.mpp  = PRIV_MODE_M;
-    
 
     case (1'b1)
         m_mode_exc_req,
@@ -560,6 +559,14 @@ always_comb begin
         end
         default            : begin        end
     endcase
+
+    `ifdef FPU
+        // FPU Register File/Flags implicit update or modified by CSR instructions
+    if ((exe2csr_ctrl.fpu_rd_wr_req && !(csr_mstatus_wr_flag && csr_mstatus_next.fs != FS_DIRTY)) || exe2csr_ctrl.fpu_valid || (csr_frm_wr_flag | csr_fflags_wr_flag | csr_fcsr_wr_flag)) begin
+        csr_mstatus_next.fs = FS_DIRTY;
+    end
+    `endif
+
 end
 
 // Update the mie/sie (machine/supervisor interrupt enable) CSR 

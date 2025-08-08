@@ -129,7 +129,7 @@ localparam logic [`XLEN-1:0] MIE_GPSW = 1 << GPSW_INT_IDX;
 //localparam logic [`XLEN-1:0] MIE_MASK = MIE_SSIP | MIE_STIP | MIE_SEIP | MIE_MSIP | MIE_MTIP | MIE_MEIP;
 localparam logic [`XLEN-1:0] MIE_MASK = MIE_MSIP | MIE_MTIP | MIE_MEIP | MIE_UART | MIE_SPI | MIE_GPIO | MIE_GPSW;
 localparam logic [`XLEN-1:0] MIP_MASK = MIE_MASK;
-localparam logic [`XLEN-1:0] MSTATUS_MASK = 32'h1888; //MPP,MPIE,MIE
+localparam logic [`XLEN-1:0] MSTATUS_MASK = 32'h7888; //MPP,MPIE,MIE
 
 localparam int unsigned IRQ_CODE_WIDTH = 5;
 
@@ -185,9 +185,9 @@ typedef enum logic[1:0] {
 //Floating point csr
 `ifdef FPU
 typedef struct packed {
-    logic  [4:0]     fflags;
-    logic  [2:0]     frm;
     logic  [23:0]    reserved;
+    logic  [2:0]     frm;
+    logic  [4:0]     fflags;
 } type_float_reg_s;
 `endif 
 

@@ -330,7 +330,6 @@ typedef struct packed {
     //fpu CSR signal
     `ifdef FPU
     logic [4:0]                      fpu_fflags;
-     
     `endif 
 } type_exe2csr_data_s;
 
