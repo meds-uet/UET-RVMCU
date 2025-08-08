@@ -67,11 +67,14 @@ help:
 src := bench/pcore_tb.sv							\
 	   $(wildcard rtl/*.sv)							\
 	   $(wildcard rtl/core/*.sv)						\
-	   $(wildcard rtl/core/fpu_new/rtl/*.sv)						\
+       $(wildcard rtl/core/fpu_new/rtl/*.sv)         \
+       $(wildcard rtl/core/fpu_new/rtl/opene906/E906_RTL_FACTORY/gen_rtl/fdsu/rtl/*.v)          \
+       $(wildcard rtl/core/fpu_new/rtl/opene906/E906_RTL_FACTORY/gen_rtl/clk/rtl/*.v)            \
+       $(wildcard rtl/core/fpu_new/rtl/common_cells/src/*.sv)                                    \
 	   $(wildcard rtl/core/*/*.sv)						\
 	   $(wildcard rtl/interconnect/*.sv)					\
 	   $(wildcard rtl/memory/*.sv)						\
-       	   $(wildcard rtl/peripherals/*/*.sv)
+       $(wildcard rtl/peripherals/*/*.sv)
 
 incdir 	:= 	rtl/defines/
 list_incdir := $(foreach dir, ${incdir}, +incdir+$(dir))
@@ -109,4 +112,4 @@ sim-verilate-uart: verilate
 clean-all:
 	rm -rf ver_work/ *.log *.vcd \
 	verif/*work/
-
+FPU_SIM_FILES = \
