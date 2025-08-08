@@ -11,13 +11,9 @@
 
 `ifndef PCORE_INTERFACE_DEFS
 `define PCORE_INTERFACE_DEFS
-
 `include "pcore_config_defs.svh"
 `include "csr_defs.svh"
 `include "a_ext_defs.svh"
-`ifdef FPU
-`include "fpu_defs.svh"
-`endif
 
 //============================== ISA related definitions ================================//
 
@@ -316,7 +312,7 @@ typedef struct packed {
     type_amo_ops_e                   amo_ops;
     logic                            rd_wr_req;
     `ifdef FPU
-    logic                            fpu_rd_wr_req;  
+    logic                            fpu_rd_wr_req; 
     `endif 
     logic                            jump_req;
     logic                            branch_req;
@@ -333,7 +329,8 @@ typedef struct packed {
     logic                            instr_flushed;
     //fpu CSR signal
     `ifdef FPU
-    logic [4:0]                      apu_rflags; 
+    logic [4:0]                      fpu_fflags;
+     
     `endif 
 } type_exe2csr_data_s;
 
@@ -342,6 +339,11 @@ typedef struct packed {
     type_sys_ops_e                   sys_ops;
     logic                            exc_req;
     logic                            irq_req;
+        //fpu CSR signal
+    `ifdef FPU
+    logic                            fpu_rd_wr_req;
+    logic                            fpu_valid; 
+    `endif
     logic                            csr_rd_req;
     logic                            csr_wr_req;
 } type_exe2csr_ctrl_s;
@@ -356,6 +358,7 @@ typedef struct packed {
     logic [`XLEN-1:0]                dbus_addr;
     logic [`XLEN-1:0]                pc_next; 
 } type_lsu2csr_data_s;
+
 
 // CSR-2-Writeback data and control signals
 typedef struct packed {                            
@@ -391,7 +394,7 @@ typedef struct packed {
     type_rd_wrb_sel_e                rd_wrb_sel;
     logic                            rd_wr_req;
     `ifdef FPU
-    logic                            fpu_rd_wr_req;  
+    logic                            fpu_rd_wr_req; 
     `endif 
 } type_lsu2wrb_ctrl_s;
 
@@ -440,6 +443,10 @@ typedef struct packed {
 // CSR-2-Decode interface feedback signals
 typedef struct packed {                            
     type_priv_mode_e                 priv_mode;
+    `ifdef FPU
+    logic  [2:0]                     frm;
+    logic                            fs_off;
+    `endif 
 } type_csr2id_fb_s;
 
 // Writeback-2-Decode interface feedback signals

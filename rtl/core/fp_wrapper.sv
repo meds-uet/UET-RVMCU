@@ -16,14 +16,12 @@
 `include "../defines/fpu_defs.svh"
 `else
 `include "fpu_defs.svh"
+`include "../defines/fpu_defs.svh"
 `endif
-
+`include "../defines/fpnew_pkg.svh"
 
 module fp_wrapper
-#(
-    parameter FPU_ADDMUL_LAT = 0, // Floating-Point ADDition/MULtiplication computing lane pipeline registers number
-    parameter FPU_OTHERS_LAT = 0  // Floating-Point COMParison/CONVersion computing lanes pipeline registers number
-) (
+(
     // Clock and Reset
     input logic clk_i,
     input logic rst_ni,
@@ -42,7 +40,7 @@ module fp_wrapper
     output logic [                31:0] apu_rdata_o,
     output logic [APU_NUSFLAGS_CPU-1:0] apu_rflags_o
 );
-
+  
 
 
   logic [        fpnew_pkg::OP_BITS-1:0] fpu_op;

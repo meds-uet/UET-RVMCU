@@ -12,6 +12,10 @@
 
 `ifndef VERILATOR
 `include "../defines/pcore_interface_defs.svh"
+`ifdef FPU
+`include "../defines/fpnew_pkg.svh"
+`include "../defines/fpu_defs.svh"
+`endif 
 `else
 `include "pcore_interface_defs.svh"
 `endif
@@ -56,8 +60,8 @@ logic [6:0]                          funct7_opcode;
 logic [4:0]                          funct5_opcode;
 logic [4:0]                          shift_amt;
 `ifdef FPU
-logic [3:0] fpu_op;
-logic op_mod_i ;
+logic [3:0]                          fp_op;
+logic                                op_mod_i ;
 `endif 
 // Control and data signal structures
 type_if2id_ctrl_s                    if2id_ctrl;
@@ -126,7 +130,29 @@ always_comb begin
     id2exe_data.pc_next       = if2id_data.pc_next;
     id2exe_data.exc_code      = EXC_CODE_NO_EXCEPTION;
     id2exe_data.instr_flushed = if2id_data.instr_flushed;
-    
+    `ifdef FPU
+        // Default values
+
+        fp_op                             = 4'b0000;
+        op_mod_i                          = 1'b0;
+        //data_mem_enable                 = 1'b0;
+        id2exe_ctrl.fpu_rd_wr_req         = 1'b0;
+        id2exe_ctrl.fpu_enable            = 1'b0;
+        id2exe_ctrl.mem_opr2_sel          = OPR2_INT_REG; //default to integer
+        case (funct3_opcode )
+            3'b000, 3'b001, 3'b010, 3'b011, 3'b100: id2exe_ctrl.fp_rnd_mode           = funct3_opcode ; //legal rounding modes
+            3'b111: begin
+              // rounding mode from frm csr
+              case (csr2id_fb.frm)
+                3'b000, 3'b001, 3'b010, 3'b011, 3'b100 : id2exe_ctrl.fp_rnd_mode = csr2id_fb.frm; //legal rounding modes
+                default : illegal_instr= 1'b1;
+              endcase
+            end
+            default : illegal_instr= 1'b1;
+        endcase
+    `endif 
+    // Combine operation and modifier
+    id2exe_ctrl.apu_op_i = {op_mod_i, fp_op};
     // Default values for local signals
     illegal_instr       = 1'b0;
 
@@ -553,143 +579,168 @@ always_comb begin
             default : begin
                 illegal_instr = 1'b1;
             end
-        // for Floating point unit
-        `ifdef FPU
-        // Default values
-        id2exe_ctrl.fp_rnd_mode           = funct3_opcode ;
-        fp_op                             = 4'b0000;
-        op_mod_i                          = 1'b0;
-        //data_mem_enable                 = 1'b0;
-        id2exe_ctrl.fpu_rd_wr_req         = 1'b0;
-        id2exe_ctrl.fpu_enable            = 1'b0;
-        id2exe_ctrl.mem_opr2_sel          = OPR2_INT_REG; //default to integer
+            // for Floating point unit
+            `ifdef FPU
+            OPCODE_FLW_INST: begin // Load Floating-Point Word
+                if (csr2id_fb.fs_off) begin
+                    illegal_instr = 1'b1;
+                end else begin
+                    id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                    id2exe_ctrl.alu_i_ops     = ALU_I_OPS_ADD; //add
+                    id2exe_ctrl.alu_opr2_sel  = ALU_OPR2_IMM; //immediate select instand of rs2 in alu 
+                    id2exe_ctrl.rd_wrb_sel    = RD_WRB_DMEM;//data from memory
+                    id2exe_ctrl.ld_ops        = LD_OPS_LW;                
+                end
+            end
+            OPCODE_FSW_INST: begin // Store Floating-Point Word
+                if (csr2id_fb.fs_off) begin
+                    illegal_instr = 1'b1;
+                end else begin
+                    id2exe_data.imm           = {{21{instr_codeword[31]}}, instr_codeword[30:25], instr_codeword[11:7]};
+                    //data_mem_enable         = 1'b1;
+                    id2exe_ctrl.st_ops        = ST_OPS_SW; 
+                    id2exe_ctrl.mem_opr2_sel  = OPR2_FPU_REG; // store float number
+                    id2exe_ctrl.alu_opr2_sel  = ALU_OPR2_IMM; //immediate select instand of rs2 in alu 
+                    id2exe_ctrl.alu_i_ops     = ALU_I_OPS_ADD; //add                   
+                end
 
-            FLW: begin // Load Floating-Point Word
-                id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-                id2exe_ctrl.alu_i_ops     = ALU_I_OPS_ADD; //add
-                id2exe_ctrl.alu_opr2_sel  = ALU_CMP_OPR2_IMM; //immediate select instand of rs2 in alu 
-                id2exe_ctrl.rd_wrb_sel    = RD_WRB_DMEM;//data from memory
-                id2exe_ctrl.ld_ops        = LD_OPS_LW;
             end
-            FSW: begin // Store Floating-Point Word
-                id2exe_data.imm           = {{21{instr_codeword[31]}}, instr_codeword[30:25], instr_codeword[11:7]};
-                //data_mem_enable         = 1'b1;
-                id2exe_ctrl.st_ops        = ST_OPS_SW; 
-                id2exe_ctrl.mem_opr2_sel  = OPR2_FPU_REG; // store float number
-                id2exe_ctrl.alu_opr2_sel  = ALU_CMP_OPR2_IMM; //immediate select instand of rs2 in alu 
-                id2exe_ctrl.alu_i_ops     = ALU_I_OPS_ADD; //add
+            OPCODE_FADD_INST: begin // Fused Multiply-Add/Subtract
+                if (csr2id_fb.fs_off) begin
+                    illegal_instr = 1'b1;
+                end else begin
+                    fp_op                     = FMADD;
+                    op_mod_i                  = 1'b0; // Modifier (bit 27)
+                    // fp_rnd_mode            = funct3_opcode ;
+                    id2exe_ctrl.fpu_enable    =  1'b1;
+                    id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG;
+                    id2exe_ctrl.fpu_rd_wr_req = 1'b1; 
+                    id2exe_ctrl.rd_wrb_sel    = RD_WRB_FPU;
+                end
             end
-            FADD: begin // Fused Multiply-Add/Subtract
-                fp_op                     = FMADD;
-                op_mod_i                  = 1'b0; // Modifier (bit 27)
-                // fp_rnd_mode            = funct3_opcode ;
-                id2exe_ctrl.fpu_enable    =  1'b1;
-                id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG;
-                id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-            end
-            FSUB:begin
-                fp_op                     = FMADD;
-                op_mod_i                  = 1'b1; // Modifier (bit 27)
-               // fp_rnd_mode             = funct3_opcode ;
-                id2exe_ctrl.fpu_enable    =  1'b1;
-                id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-            end 
-            FNMSUB:begin
-                fp_op       = FNMSUB;
-                op_mod_i    = 1'b1; // Modifier (bit 27)
-                //fp_rnd_mode = funct3_opcode ;
-                id2exe_ctrl.fpu_enable    =  1'b1;
-                id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-            end 
-            FNMADD: begin // Negated Fused Multiply-Add/Subtract
-                fp_op       = FNMSUB;
-                op_mod_i    = 1'b0; // Modifier (bit 27)
-                //fp_rnd_mode = funct3_opcode ;
-                id2exe_ctrl.fpu_enable    =  1'b1;
-                id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-            end
-            FP_ARITH: begin // Floating-Point Arithmetic Instructions
-                id2exe_ctrl.fpu_enable    =  1'b1;
-                //fp_rnd_mode = funct3_opcode ;
-                case (funct7_opcode)
-                    7'b0000000: begin
-                        fp_op    = ADD; // ADD or SUB based on op_mod_i
-                        op_mod_i = 1'b0; // add
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                        id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-                    end
-                    7'b0000100: begin
-                        fp_op    = ADD; // ADD or SUB based on op_mod_i
-                        op_mod_i = 1'b1; // sub
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                        id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-                    end
-                    7'b0001000:begin
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                        fp_op = MUL;   // Multiplication
-                        op_mod_i = 1'b0;
-                        id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-                    end
-                 // 7'b0001100: fp_op = DIV;           // Division
-                 // 7'b0101100: fp_op = SQRT;          // Square root
-                    7'b0010000:begin
-                        fp_op = SGNJ;  // Sign injection
-                        op_mod_i=1'b0;
-                        id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-                        //fp_rnd_mode= funct3;
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                    end          
-                    7'b0010100:begin
-                        fp_op = MINMAX; // Minimum/Maximum
-                        op_mod_i=1'b0;
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                        id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-                    end         
-                    7'b1010000:begin
-                        fp_op = CMP;           // Comparison
-                        op_mod_i=1'b0;
-                        id2exe_ctrl.rd_wr_req      = 1'b1;
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                        //fp_rnd_mode = funct3;
-                    end
-                    7'b1110000: fp_op = CLASSIFY;      // Classification
-                    7'b1100000:begin
-                        fp_op = F2I;   // FP to Integer cast
-                        id2exe_ctrl.rd_wr_req      = 1'b1;
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
-                        op_mod_i=rs2[0];
-                    end
-                    7'b1101000:begin 
-                        fp_op = I2F;   // Integer to FP cast
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_INT_REG; // rs1  is integer
-                        id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-                        op_mod_i = rs2[0];
-                    end
-                    7'b1111000:begin 
-                        id2exe_ctrl.rd_wr_req      = 1'b1;
-                        fp_rnd_mode=RUP; //  op[0] (passthrough)
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float          
-                        case (funct3)
-                          3'b001:fp_op = CLASSIFY; // Classification, returns RISC-V classification block
-                          3'b000:fp_op = SGNJ; // FMV.X.W = move floating-point register to integer register:  rd = rs1
-                            default: fp_op = SGNJ;
-                        endcase
+            OPCODE_FSUB_INST:begin
+                if (csr2id_fb.fs_off) begin
+                    illegal_instr = 1'b1;
+                end else begin
+                    fp_op                     = FMADD;
+                    op_mod_i                  = 1'b1; // Modifier (bit 27)
+                   // fp_rnd_mode             = funct3_opcode ;
+                    id2exe_ctrl.fpu_enable    =  1'b1;
+                    id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                    id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                    id2exe_ctrl.rd_wrb_sel    = RD_WRB_FPU;
+                end
 
-                    end
-                    7'b1111000:begin
-                        fp_op=SGNJ;// FMV.W.X = Move integer to floating-point register: rd = rs1
-                        fp_rnd_mode=RUP; //  op[0] (passthrough)
-                        id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_INT_REG;  // rs1  is integer
-                        id2exe_ctrl.fpu_rd_wr_req = 1'b1;
-                    end
-                        default:fp_op = 4'b0000;      // Default NOP
-                endcase
+            end 
+            OPCODE_FNMSUB_INST:begin
+                if (csr2id_fb.fs_off) begin
+                    illegal_instr = 1'b1;
+                end else begin
+                    fp_op       = FNMSUB;
+                    op_mod_i    = 1'b1; // Modifier (bit 27)
+                    //fp_rnd_mode = funct3_opcode ;
+                    id2exe_ctrl.fpu_enable    =  1'b1;
+                    id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                    id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                    id2exe_ctrl.rd_wrb_sel    = RD_WRB_FPU;
+                end
+
+            end 
+            OPCODE_FNMADD_INST: begin // Negated Fused Multiply-Add/Subtract
+                if (csr2id_fb.fs_off) begin
+                    illegal_instr = 1'b1;
+                end else begin
+                    fp_op       = FNMSUB;
+                    op_mod_i    = 1'b0; // Modifier (bit 27)
+                    //fp_rnd_mode = funct3_opcode ;
+                    id2exe_ctrl.fpu_enable    =  1'b1;
+                    id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                    id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                    id2exe_ctrl.rd_wrb_sel    = RD_WRB_FPU;
+                end
             end
-            // Combine operation and modifier
-            assign id2exe_ctrl.apu_op_i = {op_mod_i, fp_op};
+            OPCODE_FP_ARITH_INST: begin // Floating-Point Arithmetic Instructions
+                if (csr2id_fb.fs_off) begin
+                   illegal_instr = 1'b1;
+                end else begin
+                    id2exe_ctrl.fpu_enable    =  1'b1;
+                    id2exe_ctrl.rd_wrb_sel    = RD_WRB_FPU;
+                    //fp_rnd_mode = funct3_opcode ;
+                    case (funct7_opcode)
+                        7'b0000000: begin
+                            fp_op    = ADD; // ADD or SUB based on op_mod_i
+                            op_mod_i = 1'b0; // add
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                            id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                        end
+                        7'b0000100: begin
+                            fp_op    = ADD; // ADD or SUB based on op_mod_i
+                            op_mod_i = 1'b1; // sub
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                            id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                        end
+                        7'b0001000:begin
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                            fp_op = MUL;   // Multiplication
+                            op_mod_i = 1'b0;
+                            id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                        end
+                     // 7'b0001100: fp_op = DIV;           // Division
+                     // 7'b0101100: fp_op = SQRT;          // Square root
+                        7'b0010000:begin
+                            fp_op = SGNJ;  // Sign injection
+                            op_mod_i=1'b0;
+                            id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                            //fp_rnd_mode= funct3;
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                        end          
+                        7'b0010100:begin
+                            fp_op = MINMAX; // Minimum/Maximum
+                            op_mod_i=1'b0;
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                            id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                        end         
+                        7'b1010000:begin
+                            fp_op = CMP;           // Comparison
+                            op_mod_i=1'b0;
+                            id2exe_ctrl.rd_wr_req      = 1'b1;
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                            //fp_rnd_mode = funct3;
+                        end
+                        7'b1110000: fp_op = CLASSIFY;      // Classification
+                        7'b1100000:begin
+                            fp_op = F2I;   // FP to Integer cast
+                            id2exe_ctrl.rd_wr_req      = 1'b1;
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float
+                            op_mod_i=id2rf_rs2_addr[0];
+                        end
+                        7'b1101000:begin 
+                            fp_op = I2F;   // Integer to FP cast
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_INT_REG; // rs1  is integer
+                            id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                            op_mod_i = id2rf_rs2_addr[0];
+                        end
+                        7'b1111000:begin 
+                            id2exe_ctrl.rd_wr_req      = 1'b1;
+                            id2exe_ctrl.fp_rnd_mode=RUP; //  op[0] (passthrough)
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_FPU_REG; // rs1 is float          
+                            case (funct3_opcode)
+                              3'b001:fp_op = CLASSIFY; // Classification, returns RISC-V classification block
+                              3'b000:fp_op = SGNJ; // FMV.X.W = move floating-point register to integer register:  rd = rs1
+                                default: fp_op = SGNJ;
+                            endcase
+    
+                        end
+                        7'b1111000:begin
+                            fp_op=SGNJ;// FMV.W.X = Move integer to floating-point register: rd = rs1
+                            id2exe_ctrl.fp_rnd_mode=RUP; //  op[0] (passthrough)
+                            id2exe_ctrl.fpu_opr1_sel  = FPU_OPR1_INT_REG;  // rs1  is integer
+                            id2exe_ctrl.fpu_rd_wr_req = 1'b1;
+                        end
+                            default:fp_op = 4'b0000;      // Default NOP
+                    endcase
+                end
+            end
         `endif
         endcase // instr_opcode (Instruction opcode) 
   //  end // no instruction memory fault

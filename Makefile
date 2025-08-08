@@ -67,6 +67,7 @@ help:
 src := bench/pcore_tb.sv							\
 	   $(wildcard rtl/*.sv)							\
 	   $(wildcard rtl/core/*.sv)						\
+	   $(wildcard rtl/core/fpu_new/rtl/*.sv)						\
 	   $(wildcard rtl/core/*/*.sv)						\
 	   $(wildcard rtl/interconnect/*.sv)					\
 	   $(wildcard rtl/memory/*.sv)						\

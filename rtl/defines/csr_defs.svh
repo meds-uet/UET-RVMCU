@@ -69,6 +69,12 @@ typedef enum logic [11:0] {
 
     CSR_ADDR_MCOUNTINHIBIT = 12'h320,
 
+    //Floating point unit
+    `ifdef FPU
+    CSR_ADDR_FFLAGS        =12'h000,
+    CSR_ADDR_FRM           =12'h001,
+    CSR_ADDR_FCSR          =12'h003,
+    `endif
     // User mode read-only shadow counters and timers 
     CSR_ADDR_CYCLE         = 12'hC00,
     CSR_ADDR_TIME          = 12'hC01,
@@ -176,6 +182,15 @@ typedef enum logic[1:0] {
     logic              wpri0;  // writes preserved reads ignored
 } type_status_reg_s;
 
+//Floating point csr
+`ifdef FPU
+typedef struct packed {
+    logic  [4:0]     fflags;
+    logic  [2:0]     frm;
+    logic  [23:0]    reserved;
+} type_float_reg_s;
+`endif 
+
 // Bitwidth parameters and bitfield definition for (machine/supervisor) trap vector (xTVEC) register
 localparam TVEC_MODE_WIDTH = 2;
 localparam TVEC_BASE_WIDTH = 30;
@@ -228,6 +243,18 @@ typedef struct packed {
     logic                       ssip;    // supervisor level software interrupt pending bit
     logic                       warl0;
 } type_mip_reg_s;
+
+`ifdef FPU
+
+// Floating Point State
+typedef enum logic [1:0] {
+    FS_OFF     = 2'b00,
+    FS_INITIAL = 2'b01,
+    FS_CLEAN   = 2'b10,
+    FS_DIRTY   = 2'b11
+} FS_t;
+
+`endif
 
 typedef struct packed {
     logic [27:0]               warl1;

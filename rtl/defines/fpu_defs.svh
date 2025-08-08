@@ -12,8 +12,32 @@
 `define FPU_DEFS
 
 `include "pcore_interface_defs.svh"
-import fpnew_pkg::*;
+`include "fpnew_pkg.svh"
+  localparam int unsigned OP_BITS = 4;
 
+  typedef enum logic [OP_BITS-1:0] {
+    FMADD, FNMSUB, ADD, MUL,     // ADDMUL operation group
+    DIV, SQRT,                   // DIVSQRT operation group
+    SGNJ, MINMAX, CMP, CLASSIFY, // NONCOMP operation group
+    F2F, F2I, I2F, CPKAB, CPKCD  // CONV operation group
+  } operation_e;
+
+    // -------------------
+  // RISC-V FP-SPECIFIC
+  // -------------------
+  // Rounding modes
+  typedef enum logic [2:0] {
+    RNE = 3'b000,
+    RTZ = 3'b001,
+    RDN = 3'b010,
+    RUP = 3'b011,
+    RMM = 3'b100,
+    ROD = 3'b101,  // This mode is not defined in RISC-V FP-SPEC
+    DYN = 3'b111
+  } roundmode_e;
+
+  parameter FPU_ADDMUL_LAT = 0; // Floating-Point ADDition/MULtiplication computing lane pipeline registers number
+  parameter FPU_OTHERS_LAT = 0; // Floating-Point COMParison/CONVersion computing lanes pipeline registers number
   // APU interface
   parameter APU_NARGS_CPU = 3;
   parameter APU_WOP_CPU = 6;

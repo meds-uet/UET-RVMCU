@@ -95,12 +95,18 @@ type_status_reg_s                csr_mstatus_ff,  csr_mstatus_next;
 type_mie_reg_s                   csr_mie_ff,      csr_mie_next;
 type_tvec_reg_s                  csr_mtvec_ff,    csr_mtvec_next;
 
+// Floating Point Unit 
+`ifdef FPU
+type_float_reg_s                 csr_fcsr_ff,     csr_fcsr_next; 
+`endif
+
 // Machine mode CSRs for trap handling
 logic [`XLEN-1:0]                csr_mscratch_ff, csr_mscratch_next;
 logic [`XLEN-1:0]                csr_mepc_ff,     csr_mepc_next;
 logic [`XLEN-1:0]                csr_mcause_ff,   csr_mcause_next;
 logic [`XLEN-1:0]                csr_mtval_ff,    csr_mtval_next;
 type_mip_reg_s                   csr_mip_ff,      csr_mip_next;
+       
 
 // Machine mode CSR write update flags for cycle and performance counter registers 
 logic                            csr_mcycle_wr_flag;
@@ -119,6 +125,12 @@ logic                            csr_mcause_wr_flag;
 logic                            csr_mtval_wr_flag;
 logic                            csr_mip_wr_flag;
 
+//Floating point CSR write flags
+`ifdef FPU
+logic                            csr_fcsr_wr_flag;
+logic                            csr_fflags_wr_flag;
+logic                            csr_frm_wr_flag;
+`endif
 // Privilge mode definition to keep track of processor state 
 type_priv_mode_e                 priv_mode_ff; 
 type_priv_mode_e                 trap_priv_mode;
@@ -247,6 +259,13 @@ always_comb begin
             CSR_ADDR_MCAUSE         : csr_rdata    = csr_mcause_ff;
             CSR_ADDR_MTVAL          : csr_rdata    = csr_mtval_ff;
             CSR_ADDR_MIP            : csr_rdata    = csr_mip_ff;
+            
+            //Floating point 
+            `ifdef FPU
+            CSR_ADDR_FFLAGS         :csr_rdata     = (csr_fcsr_ff.fflags & 32'h1F);
+            CSR_ADDR_FRM            :csr_rdata     = (csr_fcsr_ff.frm    & 32'h7);
+            CSR_ADDR_FCSR           :csr_rdata     = csr_fcsr_ff;
+            `endif 
 
             default                 : begin
               //  csr_rd_exc_req  = exe2csr_ctrl.csr_rd_req;
@@ -300,8 +319,12 @@ always_comb begin
             CSR_ADDR_MEPC           : csr_mepc_wr_flag     = 1'b1;
             CSR_ADDR_MCAUSE         : csr_mcause_wr_flag   = 1'b1;
             CSR_ADDR_MTVAL          : csr_mtval_wr_flag    = 1'b1;
-            CSR_ADDR_MIP            : csr_mip_wr_flag      = 1'b1;                      
-
+            CSR_ADDR_MIP            : csr_mip_wr_flag      = 1'b1;
+            `ifdef FPU
+            CSR_ADDR_FCSR           : csr_fcsr_wr_flag     = 1'b1;
+            CSR_ADDR_FRM            : csr_frm_wr_flag      = 1'b1;
+            CSR_ADDR_FFLAGS         : csr_fflags_wr_flag   = 1'b1;                     
+            `endif 
             default                 : begin
               //  csr_wr_exc_req  = 1'b1;             
             end
@@ -403,6 +426,32 @@ always_comb begin
         csr_mcycleh_next = csr_mcycleh_ff;
     end      
 end
+// Update the Floating point CSR 
+// ------------------------------------------------------------
+`ifdef FPU
+always_ff @(negedge rst_n, posedge clk) begin
+    if (~rst_n) begin
+        csr_fcsr_ff <= '0;
+    end else begin
+        csr_fcsr_ff <= csr_fcsr_next;
+    end
+end
+
+always_comb begin
+    if (exe2csr_ctrl.fpu_valid) begin
+        csr_fcsr_next.fflags=csr_fcsr_ff.fflags | exe2csr_data.fpu_fflags;
+    end
+    case (1'b1)
+        csr_fcsr_wr_flag  :csr_fcsr_next        = csr_wdata;
+        csr_fflags_wr_flag:csr_fcsr_next.fflags = csr_wdata[4:0];
+        csr_frm_wr_flag   :csr_fcsr_next.frm    = csr_wdata[2:0];
+        default: begin                                  end
+    endcase
+end
+assign csr2id_fb.frm   =  csr_fcsr_ff.frm;
+`endif 
+
+
 
 // Update the minstret (machine instruction retire counter) CSR 
 // ------------------------------------------------------------

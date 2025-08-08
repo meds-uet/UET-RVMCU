@@ -98,8 +98,9 @@ logic [`RF_AWIDTH-1:0]               rd_addr;
 
 //FPU related signals
 `ifdef FPU
-logic                                apu_rvalid;
 logic  [2:0] [`XLEN-1:0]             apu_operands;
+//preparing signals for FPU
+logic [`XLEN-1:0]                      apu_operands_i_1;
 `endif
 
 // Instantiate input control and data structures and get the ALU operator
@@ -466,13 +467,11 @@ end
 
 
 `ifdef FPU
-//preparing signals for FPU
-logic [XLEN-1] apu_operands_i_1;
 //selection between int reg data or fpu reg
 assign apu_operands_i_1=(id2exe_ctrl.fpu_opr1_sel==FPU_OPR1_FPU_REG)? id2exe_data.fpu_rs1_data:id2exe_data.rs1_data;
 // assign fpu or int rs2 data selection
 assign exe2lsu_data.rs2_data=(id2exe_ctrl.mem_opr2_sel==OPR2_INT_REG)? id2exe_data.rs2_data:id2exe_data.fpu_rs2_data;
-assign apu_operands = ((apu_op_i == 5'h02) || (apu_op_i == 5'h12)) ? 
+assign apu_operands = ((id2exe_ctrl.apu_op_i == 5'h02) || (id2exe_ctrl.apu_op_i == 5'h12)) ? 
                         {id2exe_data.fpu_rs2_data, apu_operands_i_1, id2exe_data.fpu_rs3_data} 
                       : {id2exe_data.fpu_rs3_data, id2exe_data.fpu_rs2_data, apu_operands_i_1};
 
@@ -485,12 +484,11 @@ assign apu_operands = ((apu_op_i == 5'h02) || (apu_op_i == 5'h12)) ?
       .apu_operands_i   (apu_operands),
       .apu_op_i         ({1'b0,id2exe_ctrl.apu_op_i}),
       .apu_flags_i      ({2'b10, 3'b0, 3'b0, id2exe_ctrl.fp_rnd_mode}),
-      .apu_rvalid_o     (apu_rvalid),
+      .apu_rvalid_o     (exe2csr_ctrl.fpu_valid),
       .apu_rdata_o      (exe2lsu_data.fpu_result),
-      .apu_rflags_o     (exe2csr_data.apu_rflags)
+      .apu_rflags_o     (exe2csr_data.fpu_fflags)
   );
   assign exe2lsu_ctrl.fpu_rd_wr_req=id2exe_ctrl.fpu_rd_wr_req;
-  assign exe2lsu_ctrl.fpu_enable=id2exe_ctrl.fpu_enable;
   `endif
 //==================================== Output signals update ======================================// 
 
