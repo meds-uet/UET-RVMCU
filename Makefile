@@ -70,13 +70,14 @@ src := bench/pcore_tb.sv							\
        $(wildcard rtl/core/fpu_new/rtl/*.sv)         \
        $(wildcard rtl/core/fpu_new/rtl/opene906/E906_RTL_FACTORY/gen_rtl/fdsu/rtl/*.v)          \
        $(wildcard rtl/core/fpu_new/rtl/opene906/E906_RTL_FACTORY/gen_rtl/clk/rtl/*.v)            \
+	   $(wildcard rtl/core/fpu_new/rtl/opene906/E906_RTL_FACTORY/gen_rtl/fpu/rtl/*.v)            \
        $(wildcard rtl/core/fpu_new/rtl/common_cells/src/*.sv)                                    \
 	   $(wildcard rtl/core/*/*.sv)						\
 	   $(wildcard rtl/interconnect/*.sv)					\
 	   $(wildcard rtl/memory/*.sv)						\
        $(wildcard rtl/peripherals/*/*.sv)
 
-incdir 	:= 	rtl/defines/
+incdir 	:= 	rtl/defines/ rtl/core/fpu_new/rtl/
 list_incdir := $(foreach dir, ${incdir}, +incdir+$(dir))
 
 verilate_command := $(verilator) +define+$(defines) 				\
