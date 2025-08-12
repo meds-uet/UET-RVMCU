@@ -470,7 +470,7 @@ end
 //selection between int reg data or fpu reg
 assign apu_operands_i_1=(id2exe_ctrl.fpu_opr1_sel==FPU_OPR1_FPU_REG)? id2exe_data.fpu_rs1_data:id2exe_data.rs1_data;
 // assign fpu or int rs2 data selection
-assign exe2lsu_data.rs2_data=(id2exe_ctrl.mem_opr2_sel==OPR2_INT_REG)? id2exe_data.rs2_data:id2exe_data.fpu_rs2_data;
+assign exe2lsu_data.rs2_data=(id2exe_ctrl.mem_opr2_sel==OPR2_INT_REG)? operand_rs2_data:id2exe_data.fpu_rs2_data;
 assign apu_operands = ((id2exe_ctrl.apu_op_i == 5'h02) || (id2exe_ctrl.apu_op_i == 5'h12)) ? 
                         {id2exe_data.fpu_rs2_data, apu_operands_i_1, id2exe_data.fpu_rs3_data} 
                       : {id2exe_data.fpu_rs3_data, id2exe_data.fpu_rs2_data, apu_operands_i_1};
@@ -503,7 +503,6 @@ assign exe2div.alu_d_ops  = id2exe_ctrl.alu_d_ops;
 assign exe2lsu_data.alu_result = mul_cmd ? alu_m_result : (bitmanip_cmd ? alu_b_result : alu_result);
 
 assign exe2lsu_data.pc_next    = id2exe_data.pc_next;
-assign exe2lsu_data.rs2_data   = operand_rs2_data; // MT: This should be verified due to forwarding
 
 // Assign the output control signals for LSU
 assign exe2lsu_ctrl.rd_addr    = id2exe_data.instr[11:7];

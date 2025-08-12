@@ -1,0 +1,12 @@
+# vsim -c -do "log -r /*; run -all; quit" "+imem=sdk/example-uart/hello.hex" "+max_cycles=100" "+vcd=0" work.pcore_tb 
+# Start time: 04:04:55 on Aug 13,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: rtl/peripherals/spi/spi_top.sv(73): (vopt-2241) Connection width does not match width of port 'spi_cs_o'. The port definition is at: rtl/peripherals/spi/spi.sv(35).
+# ** Warning: rtl/peripherals/spi/spi_top.sv(86): (vopt-2241) Connection width does not match width of port 'spi_cs_o'. The port definition is at: rtl/peripherals/spi/spi.sv(35).
+# ** Error (suppressible): bench/pcore_tb.sv(24): (vopt-8885) Illegal inout port connection for 'gpio_io' (4th connection) to reg type. 
+# ** Warning: bench/pcore_tb.sv(24): (vopt-2241) Connection width does not match width of port 'uart_rxd_i'. The port definition is at: rtl/soc_top.sv(73).
+# ** Warning: bench/pcore_tb.sv(24): (vopt-2241) Connection width does not match width of port 'uart_txd_o'. The port definition is at: rtl/soc_top.sv(74).
+# Optimization failed
+# Error loading design
+# End time: 04:04:55 on Aug 13,2025, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 4
