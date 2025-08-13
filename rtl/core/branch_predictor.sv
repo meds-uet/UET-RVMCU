@@ -18,8 +18,10 @@ module branch_predictor #(
     parameter int INDEX_BITS  	 =  7,							// 2^7 = 128 table entries
     parameter int TABLE_DEPTH    =  1 << INDEX_BITS,
     parameter int TAG_BITS       =  NUM_INSTRS - INDEX_BITS,
-    parameter int BHT_ENTRY_SIZE =  TAG_BITS + 2,				// 2 branch state bits + Tag bits
-    parameter int BTB_ENTRY_SIZE =  NUM_INSTRS + TAG_BITS + 1 	// 1 Valid bit + Jump address >> 2 + Tag bits
+    parameter int BHT_ENTRY_SIZE =  TAG_BITS + 3,				// 1 Valid bit + 2 branch state bits + Tag bits
+    parameter int BTB_ENTRY_SIZE =  NUM_INSTRS + TAG_BITS + 1, 	// 1 Valid bit + Jump address >> 2 + Tag bits
+    parameter int GHR_SIZE       =  3,
+    parameter int PHT_DEPTH      =  1 << GHR_SIZE
 
 )(
 
@@ -40,7 +42,13 @@ module branch_predictor #(
     // Branch History Table and Branch Target Buffer
 	logic [BHT_ENTRY_SIZE-1:0]               bht [TABLE_DEPTH-1:0];
 	logic [BTB_ENTRY_SIZE-1:0]               btb [TABLE_DEPTH-1:0];
-	
+
+	// Global History Register
+	logic [GHR_SIZE-1:0]					 ghr;
+
+	// Pattern History Table
+	localparam logic [1:0] pht [0:PHT_DEPTH-1] = '{2'b01, 2'b01, 2'b01, 2'b10, 2'b01, 2'b10, 2'b10, 2'b10};
+
 	// Local Signals
 	type_rv_opcode_e                         opcode;
 	logic [`XLEN-1:0]                        offset;
@@ -67,7 +75,7 @@ module branch_predictor #(
 	logic							         is_jal;
 	logic							         is_jalr;
 	logic					                 flush_f;
-	
+
 
 
 // branch and jump selection signals
@@ -100,10 +108,10 @@ assign index_e = pc_e[INDEX_BITS+1:2];
 assign buffer_entry = (is_jalr) ? btb[index_f] : {(BTB_ENTRY_SIZE-BHT_ENTRY_SIZE)'(0), bht[index_f]};
 assign tag = buffer_entry[TAG_BITS-1:0];
 assign tag_matched = (tag == pc_f[NUM_INSTRS+1:INDEX_BITS+2]);
-assign state_f = (tag_matched) ? buffer_entry[TAG_BITS+1:TAG_BITS] : 2'b01;
+assign state_f = (tag_matched & valid) ? buffer_entry[TAG_BITS+1:TAG_BITS] : pht[ghr];
 assign predict_taken = state_f[1];
 assign addr_from_btb = {(32-NUM_INSTRS)'(0), buffer_entry[NUM_INSTRS+TAG_BITS-1:TAG_BITS]} << 2;
-assign valid = buffer_entry[BTB_ENTRY_SIZE-1];
+assign valid = (is_jalr) ? buffer_entry[BTB_ENTRY_SIZE-1] : buffer_entry[BHT_ENTRY_SIZE-1];
 assign prediction_wrong = state_e[1] != br_actual;
 assign flush_f = prediction_wrong | jalr_addr_reqd_e;
 
@@ -148,7 +156,7 @@ always_comb begin
 	else if (is_jal)
 		mux_sel = 3'b000;
 	else if (is_branch) begin
-		if (tag_matched & predict_taken)
+		if (predict_taken)
 			mux_sel = 3'b000;
 		else
 			mux_sel = 3'b100;
@@ -201,18 +209,21 @@ always_ff @ (posedge clk) begin
 	end
 end
 
-// BHT, BTB update
+// BHT, BTB, GHR update
 always_ff @ (posedge clk) begin
 	if (!reset) begin
 		for (int i = 0; i < TABLE_DEPTH; i++) begin
-            bht[i] = {2'b01, (TAG_BITS)'(0)};						// Weak Not Taken at reset
+            bht[i] = (BHT_ENTRY_SIZE)'(0);
             btb[i] = (BTB_ENTRY_SIZE)'(0);
         end
+        ghr <= (GHR_SIZE)'(0);
 	end else if (!stall) begin
         if (jalr_addr_reqd_e)
         	btb[index_e] <= {1'b1, alu_result_e[NUM_INSTRS+1:2], pc_e[NUM_INSTRS+1:INDEX_BITS+2]};
-        if (prediction_made_e)
-        	bht[index_e] <= {new_state, pc_e[NUM_INSTRS+1:INDEX_BITS+2]};
+        if (prediction_made_e) begin
+        	bht[index_e] <= {1'b1, new_state, pc_e[NUM_INSTRS+1:INDEX_BITS+2]};
+	       	ghr <= {ghr[GHR_SIZE-2:0], br_actual};
+	    end
 	end
 end
 
