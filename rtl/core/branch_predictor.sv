@@ -112,12 +112,12 @@ assign state_f = (tag_matched & valid) ? buffer_entry[TAG_BITS+1:TAG_BITS] : pht
 assign predict_taken = state_f[1];
 assign addr_from_btb = {(32-NUM_INSTRS)'(0), buffer_entry[NUM_INSTRS+TAG_BITS-1:TAG_BITS]} << 2;
 assign valid = (is_jalr) ? buffer_entry[BTB_ENTRY_SIZE-1] : buffer_entry[BHT_ENTRY_SIZE-1];
-assign prediction_wrong = state_e[1] != br_actual;
+assign prediction_wrong = prediction_made_e & (state_e[1] != br_actual);
 assign flush_f = prediction_wrong | jalr_addr_reqd_e;
 
 
 always_comb begin
-    if (prediction_made_e & prediction_wrong) begin			// If branch prediction was wrong
+    if (prediction_wrong) begin			// If branch prediction was wrong
 		prediction_made_f = 1'b0;
 		jalr_addr_reqd_f = 1'b0;
 	end
@@ -231,6 +231,6 @@ end
 assign bp2if_o.pc_new = target_pc;
 assign bp2if_o.flush  = flush_f;
 assign bp2if_o.pc_req = ((mux_sel == 3'b000) | (mux_sel == 3'b001) |(mux_sel == 3'b010) |
-                         (mux_sel == 3'b011) | (mux_sel == 3'b100));
+                         (mux_sel == 3'b011))| (mux_sel == 3'b100);
 
 endmodule

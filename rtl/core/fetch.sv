@@ -37,7 +37,8 @@ module fetch (
     input wire type_fwd2if_s                        fwd2if_i,
    // output logic                                    if2fwd_stall_o
    // Branch predictor <---> Fetch interface
-    input wire type_bp2if_s                         bp2if_i
+    input wire type_bp2if_s                         bp2if_i, 
+    output logic                                    if_stall
 );
 
 
@@ -63,7 +64,6 @@ logic                                kill_req;
 logic [`XLEN-1:0]                    pc_ff, pc_plus_4;              // Current value of program counter (PC)
 logic [`XLEN-1:0]                    pc_next;                       // Updated value of PC
 logic [`XLEN-1:0]                    instr_word;
-logic                                if_stall;
 logic                                pc_misaligned;
 
 assign mem2if = mem2if_i;
@@ -77,7 +77,7 @@ assign bp2if     = bp2if_i;
 assign pc_misaligned = pc_ff[1] | pc_ff[0];
 
 // Stall signal for IF stage
-assign if_stall = fwd2if.if_stall | (~mem2if.ack) | irq_req_next;
+assign if_stall = !kill_req & (fwd2if.if_stall | (~mem2if.ack) | irq_req_next);
 
 // PC update state machine
 always_ff @(posedge clk) begin
@@ -107,7 +107,7 @@ always_comb begin
         if_stall              : begin  
             pc_next = pc_ff;
         end 
-        bp2if.pc_req          : begin
+        bp2if.pc_req        : begin
             pc_next = bp2if.pc_new; 
         end
         fwd2if.exe_new_pc_req : begin
@@ -179,7 +179,7 @@ irq_req_next   = irq_req_ff;
 end
 
 // Kill request to kill an on going request
-assign kill_req = fwd2if.csr_new_pc_req | fwd2if.exe_new_pc_req;
+assign kill_req = fwd2if.csr_new_pc_req | fwd2if.exe_new_pc_req | bp2if.flush;
 
 assign instr_word = ((~mem2if.ack) | irq_req_next) ? `INSTR_NOP : mem2if.r_data;
 

@@ -96,7 +96,6 @@ type_wrb2id_fb_s                        wrb2id_fb;
 logic [`XLEN-1:0]                       lsu2exe_fb_alu_result;
 logic [`XLEN-1:0]                       wrb2exe_fb_rd_data;
 //logic                                   if2fwd_stall;
-logic                                   bp2if_flush;
 logic                                   exe2bp_branch_res;
 logic [`XLEN-1:0]                       bp_pc_new;
 
@@ -115,7 +114,7 @@ type_fwd2csr_s                          fwd2csr;
 type_fwd2lsu_s                          fwd2lsu;
 type_fwd2ptop_s                         fwd2ptop;
 type_bp2if_s                            bp2if;
-
+logic                                   if_stall;
 
 // Inputs assignment to local signals
 assign dbus2lsu  = dbus2lsu_i; 
@@ -138,7 +137,8 @@ fetch fetch_module (
     .exe2if_fb_i             (exe2if_fb),
     .csr2if_fb_i             (csr2if_fb),
     .fwd2if_i                (fwd2if),
-    .bp2if_i                 (bp2if)        
+    .bp2if_i                 (bp2if),
+    .if_stall                (if_stall)        
  //   .if2fwd_stall_o             (if2fwd_stall)
 );
 
@@ -211,7 +211,7 @@ branch_predictor bp(
 	.pc_e         (id2exe_data.pc), 
 	.alu_result_e (exe2lsu_data.alu_result),	
 	.br_actual    (exe2bp_branch_res),
-	.stall        (fwd2ptop.id2exe_pipe_stall),
+	.stall        (if_stall),
 	.bp2if_o      (bp2if)
 );
 
