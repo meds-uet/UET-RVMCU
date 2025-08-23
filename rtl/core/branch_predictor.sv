@@ -28,13 +28,13 @@ module branch_predictor #(
 	input 	logic 					             clk,
 	input 	logic					             reset,
 	// Branch predictor <---> Fetch interface
-	input 	logic [`XLEN-1:0] 			         pc_f,
-	input 	logic [`XLEN-1:0]			         instruction,
+	input 	logic [`XLEN-1:0] 			         pc_if,
+	input 	logic [`XLEN-1:0]			         instr,
 	output 	type_bp2if_s                         bp2if_o,
 	//input 	logic [31:0]		             	offset,
 	// Branch predictor <---> Execute interface
-	input 	logic [`XLEN-1:0] 			         pc_e, 
-	input 	logic [`XLEN-1:0]			         alu_result_e,	
+	input 	logic [`XLEN-1:0] 			         pc_exe, 
+	input 	logic [`XLEN-1:0]			         pc_from_alu,	
 	input 	logic					             br_actual,
 	input	logic					             stall 	
 );
@@ -79,15 +79,15 @@ module branch_predictor #(
 
 
 // branch and jump selection signals
-assign opcode = type_rv_opcode_e' (instruction[6:2]);
-assign is_branch = (opcode == OPCODE_BRANCH_INST); // 7'b1100011);
-assign is_jal =    (opcode == OPCODE_JAL_INST); //7'b1101111);
-assign is_jalr =   (opcode == OPCODE_JALR_INST); //7'b1100111);
+assign opcode = type_rv_opcode_e' (instr[6:2]);
+assign is_branch = (opcode == OPCODE_BRANCH_INST); // 7'b1100011;
+assign is_jal =    (opcode == OPCODE_JAL_INST); //7'b1101111;
+assign is_jalr =   (opcode == OPCODE_JALR_INST); //7'b1100111;
 
-// immediate generation for branch and jal.
-//other than that not required so even if calculated, has no affect
-assign offset = is_branch ? {{20{instruction[31]}}, instruction[7], instruction[30:25], instruction[11:8], 1'b0} 
-                :{{12{instruction[31]}}, instruction[19:12], instruction[20], instruction[30:21], 1'b0};
+// Immediate generation for branch and jal.
+// Other than that not required. So even if calculated, has no affect
+assign offset = is_branch ? {{20{instr[31]}}, instr[7], instr[30:25], instr[11:8], 1'b0} 
+                :{{12{instr[31]}}, instr[19:12], instr[20], instr[30:21], 1'b0};
 
 // PC storage for branch incase of wrong prediction
 always_ff @ (posedge clk) begin
@@ -96,18 +96,18 @@ always_ff @ (posedge clk) begin
 	end
     else if (!stall & is_branch) begin
 		if (predict_taken)
-			opposite_dir <= pc_f + 4;
+			opposite_dir <= pc_if + 4;
 		else
-			opposite_dir <= pc_f + offset;
+			opposite_dir <= pc_if + offset;
 	end
 end
 
 
-assign index_f = pc_f[INDEX_BITS+1:2];
-assign index_e = pc_e[INDEX_BITS+1:2];
+assign index_f = pc_if[INDEX_BITS+1:2];
+assign index_e = pc_exe[INDEX_BITS+1:2];
 assign buffer_entry = (is_jalr) ? btb[index_f] : {(BTB_ENTRY_SIZE-BHT_ENTRY_SIZE)'(0), bht[index_f]};
 assign tag = buffer_entry[TAG_BITS-1:0];
-assign tag_matched = (tag == pc_f[NUM_INSTRS+1:INDEX_BITS+2]);
+assign tag_matched = (tag == pc_if[NUM_INSTRS+1:INDEX_BITS+2]);
 assign state_f = (tag_matched & valid) ? buffer_entry[TAG_BITS+1:TAG_BITS] : pht[ghr];
 assign predict_taken = state_f[1];
 assign addr_from_btb = {(32-NUM_INSTRS)'(0), buffer_entry[NUM_INSTRS+TAG_BITS-1:TAG_BITS]} << 2;
@@ -121,7 +121,7 @@ always_comb begin
 		prediction_made_f = 1'b0;
 		jalr_addr_reqd_f = 1'b0;
 	end
-	else if (jalr_addr_reqd_e) begin						// If we want calculated address of JALR
+	else if (jalr_addr_reqd_e) begin	// If we want calculated address of JALR
 		prediction_made_f = 1'b0;
 		jalr_addr_reqd_f = 1'b0;
 	end
@@ -149,9 +149,9 @@ end
 
 // Target-PC-Mux selector values
 always_comb begin
-    if (prediction_made_e & prediction_wrong)		// If branch prediction was wrong
+    if (prediction_wrong)				// If branch prediction was wrong
 		mux_sel = 3'b011;
-	else if (jalr_addr_reqd_e)						// If we want calculated address of JALR
+	else if (jalr_addr_reqd_e)			// If we want to use calculated address of JALR
 		mux_sel = 3'b010;
 	else if (is_jal)
 		mux_sel = 3'b000;
@@ -174,24 +174,23 @@ end
 // Target PC calculation mux
 always_comb begin
 	case (mux_sel)
-        3'b000: target_pc = pc_f + offset;
+        3'b000: target_pc = pc_if + offset;
         3'b001: target_pc = addr_from_btb;
-        3'b010: target_pc = alu_result_e;
+        3'b010: target_pc = pc_from_alu;
         3'b011: target_pc = opposite_dir;
-        3'b100: target_pc = pc_f + 4;
+        3'b100: target_pc = pc_if + 4;
     endcase
 end
 
 // Updating BHT Entry State
 always_comb begin
-	if (state_e == 2'b00)
-		new_state = (br_actual) ? 2'b01 : 2'b00;
-	else if (state_e == 2'b01)
-		new_state = (br_actual) ? 2'b10 : 2'b00;
-	else if (state_e == 2'b10)
-		new_state = (br_actual) ? 2'b11 : 2'b01;
-	else if (state_e == 2'b11)
-		new_state = (br_actual) ? 2'b11 : 2'b10;
+	case (state_e)
+		2'b00: new_state = (br_actual) ? 2'b01 : 2'b00;
+		2'b01: new_state = (br_actual) ? 2'b10 : 2'b00;
+		2'b10: new_state = (br_actual) ? 2'b11 : 2'b01;
+		2'b11: new_state = (br_actual) ? 2'b11 : 2'b10;
+	endcase
+
 end
 
 
@@ -219,9 +218,9 @@ always_ff @ (posedge clk) begin
         ghr <= (GHR_SIZE)'(0);
 	end else if (!stall) begin
         if (jalr_addr_reqd_e)
-        	btb[index_e] <= {1'b1, alu_result_e[NUM_INSTRS+1:2], pc_e[NUM_INSTRS+1:INDEX_BITS+2]};
+        	btb[index_e] <= {1'b1, pc_from_alu[NUM_INSTRS+1:2], pc_exe[NUM_INSTRS+1:INDEX_BITS+2]};
         if (prediction_made_e) begin
-        	bht[index_e] <= {1'b1, new_state, pc_e[NUM_INSTRS+1:INDEX_BITS+2]};
+        	bht[index_e] <= {1'b1, new_state, pc_exe[NUM_INSTRS+1:INDEX_BITS+2]};
 	       	ghr <= {ghr[GHR_SIZE-2:0], br_actual};
 	    end
 	end
@@ -231,6 +230,6 @@ end
 assign bp2if_o.pc_new = target_pc;
 assign bp2if_o.flush  = flush_f;
 assign bp2if_o.pc_req = ((mux_sel == 3'b000) | (mux_sel == 3'b001) |(mux_sel == 3'b010) |
-                         (mux_sel == 3'b011))| (mux_sel == 3'b100);
+                         (mux_sel == 3'b011));
 
 endmodule

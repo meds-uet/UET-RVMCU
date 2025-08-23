@@ -97,7 +97,6 @@ logic [`XLEN-1:0]                       lsu2exe_fb_alu_result;
 logic [`XLEN-1:0]                       wrb2exe_fb_rd_data;
 //logic                                   if2fwd_stall;
 logic                                   exe2bp_branch_res;
-logic [`XLEN-1:0]                       bp_pc_new;
 
 // Interfaces for forwarding module
 // To forwarding module
@@ -114,7 +113,6 @@ type_fwd2csr_s                          fwd2csr;
 type_fwd2lsu_s                          fwd2lsu;
 type_fwd2ptop_s                         fwd2ptop;
 type_bp2if_s                            bp2if;
-logic                                   if_stall;
 
 // Inputs assignment to local signals
 assign dbus2lsu  = dbus2lsu_i; 
@@ -137,8 +135,7 @@ fetch fetch_module (
     .exe2if_fb_i             (exe2if_fb),
     .csr2if_fb_i             (csr2if_fb),
     .fwd2if_i                (fwd2if),
-    .bp2if_i                 (bp2if),
-    .if_stall                (if_stall)        
+    .bp2if_i                 (bp2if)
  //   .if2fwd_stall_o             (if2fwd_stall)
 );
 
@@ -169,7 +166,7 @@ always_comb begin
 
     if (fwd2ptop.if2id_pipe_flush) begin
         if2id_data_next.instr         = `INSTR_NOP;
-        if2id_data_next.instr_flushed = 1'b1; //?would we need it if branch predictor flush added
+        if2id_data_next.instr_flushed = 1'b1;
         if2id_ctrl_next.exc_req       = 1'b0;
         if2id_ctrl_next.irq_req       = 1'b0;
         if2id_data_next.exc_code      = EXC_CODE_NO_EXCEPTION;
@@ -205,13 +202,12 @@ decode decode_module (
 branch_predictor bp(
 	.clk          (clk),
 	.reset        (rst_n),
-	.pc_f         (if2id_data.pc),   
-	.instruction  (if2id_data.instr),
-	//.offset       (id2exe_data.imm),
-	.pc_e         (id2exe_data.pc), 
-	.alu_result_e (exe2lsu_data.alu_result),	
+	.pc_if        (if2id_data.pc),   
+	.instr        (if2id_data.instr),
+	.pc_exe       (id2exe_data.pc), 
+	.pc_from_alu  (exe2if_fb.pc_new),	
 	.br_actual    (exe2bp_branch_res),
-	.stall        (if_stall),
+	.stall        (fwd2if.if_stall),
 	.bp2if_o      (bp2if)
 );
 

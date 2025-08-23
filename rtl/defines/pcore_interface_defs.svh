@@ -415,7 +415,6 @@ typedef struct packed {
 typedef struct packed {                            
     logic [`RF_AWIDTH-1:0]           rs1_addr;
     logic [`RF_AWIDTH-1:0]           rs2_addr;
-    logic                            new_pc_req;  
     logic                            use_rs1;
     logic                            use_rs2; 
 } type_exe2fwd_s;
@@ -430,7 +429,6 @@ typedef struct packed {
 
 // Forwarding-2-Fetch interface signals
 typedef struct packed {  
-    logic                            exe_new_pc_req;                            
     logic                            csr_new_pc_req;
     logic                            wfi_req; 
     logic                            if_stall;

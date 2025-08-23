@@ -90,7 +90,6 @@ logic  [`XLEN:0]                     cmp_output;
 logic                                cmp_not_zero;
 logic                                cmp_neg;
 logic                                cmp_overflow;
-//logic                                branch_res;
 
 logic  [4:0]                         shift_amt;
 
@@ -512,7 +511,6 @@ assign exe2csr_data.csr_wdata = (id2exe_ctrl.csr_opr_sel == CSR_OPR_REG)
 // Signals from EXE module for forwarding evaluation
 assign exe2fwd.rs1_addr   = rs1_addr;
 assign exe2fwd.rs2_addr   = rs2_addr;
-assign exe2fwd.new_pc_req = id2exe_ctrl.jump_req || (id2exe_ctrl.branch_req & branch_res);
 
 // The following signals determine whether the two operands are general-purpose registers
 // or not. These are used to minimize the number of stalls in case of load-use RAW hazards

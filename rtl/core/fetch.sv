@@ -36,9 +36,9 @@ module fetch (
     // Forward <---> Fetch interface
     input wire type_fwd2if_s                        fwd2if_i,
    // output logic                                    if2fwd_stall_o
+   
    // Branch predictor <---> Fetch interface
-    input wire type_bp2if_s                         bp2if_i, 
-    output logic                                    if_stall
+    input wire type_bp2if_s                         bp2if_i
 );
 
 
@@ -64,6 +64,7 @@ logic                                kill_req;
 logic [`XLEN-1:0]                    pc_ff, pc_plus_4;              // Current value of program counter (PC)
 logic [`XLEN-1:0]                    pc_next;                       // Updated value of PC
 logic [`XLEN-1:0]                    instr_word;
+logic                                if_stall;
 logic                                pc_misaligned;
 
 assign mem2if = mem2if_i;
@@ -77,7 +78,7 @@ assign bp2if     = bp2if_i;
 assign pc_misaligned = pc_ff[1] | pc_ff[0];
 
 // Stall signal for IF stage
-assign if_stall = !kill_req & (fwd2if.if_stall | (~mem2if.ack) | irq_req_next);
+assign if_stall = ~bp2if.flush & (fwd2if.if_stall | (~mem2if.ack) | irq_req_next);
 
 // PC update state machine
 always_ff @(posedge clk) begin
@@ -91,8 +92,6 @@ end
 assign pc_plus_4 = pc_ff + 32'd4;
 
 ////////////////////////////////////////////////////////////////
-logic [`XLEN-1:0]                    jal_imm;            
-logic                                is_jal;
 
 always_comb begin
     pc_next = (pc_plus_4);
@@ -110,21 +109,9 @@ always_comb begin
         bp2if.pc_req        : begin
             pc_next = bp2if.pc_new; 
         end
-        fwd2if.exe_new_pc_req : begin
-            pc_next = exe2if_fb.pc_new;  
-        end
-        is_jal                : begin
-            pc_next = pc_ff + jal_imm;
-        end
         default                 : begin       end
     endcase
 end
-
-
-
-assign jal_imm = {{12{instr_word[31]}}, instr_word[19:12], instr_word[20], instr_word[30:21], 1'b0};
-
-assign is_jal = if2id_data.instr[6:2] == OPCODE_JAL_INST;
 
 ////////////////////////////////////////////////////////////////
 
@@ -146,7 +133,7 @@ always_comb begin
 exc_req_next   = exc_req_ff;
 exc_code_next  = exc_code_ff;
    
-    if (fwd2if.csr_new_pc_req | fwd2if.exe_new_pc_req | fwd2if.wfi_req | (~fwd2if.if_stall & exc_req_ff)) begin    
+    if (fwd2if.csr_new_pc_req | bp2if.flush | fwd2if.wfi_req | (~fwd2if.if_stall & exc_req_ff)) begin    
         exc_req_next  = 1'b0;
         exc_code_next = EXC_CODE_NO_EXCEPTION;
     end else if (pc_misaligned) begin
@@ -170,7 +157,7 @@ end
 always_comb begin
 irq_req_next   = irq_req_ff;
    
-    if (fwd2if.csr_new_pc_req | fwd2if.exe_new_pc_req | (~fwd2if.if_stall & irq_req_ff)) begin    // 
+    if (fwd2if.csr_new_pc_req | bp2if.flush | (~fwd2if.if_stall & irq_req_ff)) begin    // 
         irq_req_next  = 1'b0;
     end else if (csr2if_fb.irq_req & ~irq_req_ff) begin
         irq_req_next   = 1'b1;
@@ -179,7 +166,7 @@ irq_req_next   = irq_req_ff;
 end
 
 // Kill request to kill an on going request
-assign kill_req = fwd2if.csr_new_pc_req | fwd2if.exe_new_pc_req | bp2if.flush;
+assign kill_req = fwd2if.csr_new_pc_req | bp2if.flush;
 
 assign instr_word = ((~mem2if.ack) | irq_req_next) ? `INSTR_NOP : mem2if.r_data;
 
@@ -193,8 +180,8 @@ assign if2mem_o.req  = kill_req ? 1'b0 : `IMEM_INST_REQ;
 // Update the outputs to ID stage
 assign if2id_data.instr         = instr_word;
 assign if2id_data.pc            = pc_ff;
-assign if2id_data.pc_next       = is_jal ? (pc_plus_4) : pc_next;
-assign if2id_data.instr_flushed = bp2if.flush;
+assign if2id_data.pc_next       = pc_plus_4;
+assign if2id_data.instr_flushed = 1'b0;
 
 assign if2id_data.exc_code      = exc_code_next;
 assign if2id_ctrl.exc_req       = exc_req_next;

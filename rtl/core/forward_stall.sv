@@ -117,13 +117,8 @@ assign ld_use_rs1_hazard = lsu2rs1_hazard & exe2fwd.use_rs1 & (lsu_div_csr_req);
 assign ld_use_rs2_hazard = lsu2rs2_hazard & exe2fwd.use_rs2 & (lsu_div_csr_req);
 assign ld_use_hazard     = (ld_use_rs1_hazard | ld_use_rs2_hazard) & ~lsu_div_stall;
 
-// New PC request from EXE stage is only processed when there is neither data hazard for the
-// instruction in EXE stage due to operand dependency on the data from LSU stage, nor there is 
-// a stall from LSU stage   
-assign exe_new_pc_req = exe2fwd.new_pc_req & ~(ld_use_hazard | lsu_div_stall);  
-
 // Pipeline flush signals for different pipeline stages/modules 
-assign id_exe_flush                = exe_new_pc_req | csr2fwd.new_pc_req | csr2fwd.wfi_req;
+assign id_exe_flush                = csr2fwd.new_pc_req | csr2fwd.wfi_req;
 assign lsu_flush                   = csr2fwd.new_pc_req | csr2fwd.wfi_req;   
 assign fwd2lsu.lsu_flush           = lsu_flush; 
 
@@ -146,7 +141,6 @@ assign fwd2ptop.pipe_fwd_wrb_rs2   = fwd2exe.fwd_wrb_rs2;
 assign fwd2csr.pipe_stall          = lsu_div_stall_ff;
 
 // Generate different PC update or stall signals for IF stage
-assign fwd2if.exe_new_pc_req = exe_new_pc_req & (~csr2fwd.new_pc_req);
 assign fwd2if.csr_new_pc_req = csr2fwd.new_pc_req;
 assign fwd2if.wfi_req        = csr2fwd.wfi_req;
 assign fwd2if.if_stall       = if_id_exe_stall;
