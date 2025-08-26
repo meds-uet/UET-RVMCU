@@ -89,6 +89,8 @@ class pcore(pluginTemplate):
           self.isa += 'a'
       if "C" in ispec["ISA"]:
           self.isa += 'c'
+      if "F" in ispec["ISA"]:
+          self.isa += 'f'
       if "_Zba" in ispec["ISA"]:
           self.isa += 'zba'
       if "_Zbb" in ispec["ISA"]:
