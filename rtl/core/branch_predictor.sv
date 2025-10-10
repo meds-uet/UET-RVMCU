@@ -22,7 +22,6 @@ module branch_predictor #(
     parameter int BTB_ENTRY_SIZE =  NUM_INSTRS + TAG_BITS + 1, 	// 1 Valid bit + Jump address >> 2 + Tag bits
     parameter int GHR_SIZE       =  3,
     parameter int PHT_DEPTH      =  1 << GHR_SIZE
-
 )(
 
 	input 	logic 					             clk,
