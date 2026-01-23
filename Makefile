@@ -83,6 +83,8 @@ list_incdir := $(foreach dir, ${incdir}, +incdir+$(dir))
 verilate_command := $(verilator) +define+$(defines) 				\
 					--cc $(list_incdir) $(src)		\
 					--top-module pcore_tb			\
+					-Wno-BLKANDNBLK				\
+					-O3 -Wno-fatal -Wno-lint			\
 					-Wno-TIMESCALEMOD 			\
 					-Wno-MULTIDRIVEN 			\
 					-Wno-CASEOVERLAP 			\
