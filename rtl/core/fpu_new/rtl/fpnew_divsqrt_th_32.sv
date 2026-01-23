@@ -16,7 +16,7 @@
 //          Jiang Lannan <jiangl@ethz.ch>
 //          Kexin Li <likexi@ethz.ch>
 
-`include "rtl/core/fpu_new/rtl/common_cells/registers.svh"
+`include "common_cells/registers.svh"
 
 module fpnew_divsqrt_th_32 #(
   // FP32-only DivSqrt

@@ -13,7 +13,7 @@
 
 // Author: Stefan Mach <smach@iis.ee.ethz.ch>
 
-`include "rtl/core/fpu_new/rtl/common_cells/registers.svh"
+`include "common_cells/registers.svh"
 
 module fpnew_cast_multi #(
   parameter fpnew_pkg::fmt_logic_t   FpFmtConfig  = '1,

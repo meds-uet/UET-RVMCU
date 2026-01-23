@@ -77,7 +77,7 @@ src := bench/pcore_tb.sv							\
 	   $(wildcard rtl/memory/*.sv)						\
        $(wildcard rtl/peripherals/*/*.sv)
 
-incdir 	:= 	rtl/defines/ rtl/core/fpu_new/rtl/
+incdir 	:= 	rtl/defines/   rtl/core/fpu_new/rtl/
 list_incdir := $(foreach dir, ${incdir}, +incdir+$(dir))
 
 verilate_command := $(verilator) +define+$(defines) 				\
